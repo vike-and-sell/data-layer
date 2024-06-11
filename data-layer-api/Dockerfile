@@ -2,6 +2,10 @@ FROM python:3.12-slim
 
 WORKDIR /data-layer-api
 
+# get linux dependencies
+RUN apt-get update
+RUN apt-get -y install libpq-dev gcc postgresql-client-13
+
 COPY requirements.txt .
 
 # Create a virtual environment and install dependencies
