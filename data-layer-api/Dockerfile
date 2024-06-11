@@ -4,7 +4,7 @@ WORKDIR /data-layer-api
 
 # get linux dependencies
 RUN apt-get update
-RUN apt-get -y install libpq-dev gcc postgresql-client-13
+RUN apt-get -y install libpq-dev gcc
 
 COPY requirements.txt .
 
