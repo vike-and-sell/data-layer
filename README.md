@@ -9,3 +9,4 @@ This is a repo containing the data-layer code, Dockerfile and docker-compose fil
 Follow these steps to get started with local development:
 
 - Ensure that docker engine and docker-compose is installed.
+- Run docker-compose up --build
