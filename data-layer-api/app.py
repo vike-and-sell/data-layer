@@ -22,7 +22,7 @@ def welcome():
 
 @app.route('/get_user', methods=['GET'])
 def test_sql():
-    result = db.session.execute(text("SELECT * FROM Users WHERE username = 'john_doe'"))
+    result = db.session.execute(text("SELECT * FROM users WHERE username = 'john_doe'"))
     rows = result.fetchall()
     return str(rows)
 
