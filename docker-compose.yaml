@@ -21,7 +21,7 @@ services:
   # define the db service
   v_s_db:
     # get postgres image
-    image: postgres
+    image: postgis/postgis
     container_name: v_s_db
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
