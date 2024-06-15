@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS Users (
 -- Create Listings table
 CREATE TABLE IF NOT EXISTS Listings (
     listing_id SERIAL PRIMARY KEY,
-    seller_id INT NOT NULL REFERENCES users(user_id),
+    seller_id INT NOT NULL REFERENCES Users(user_id),
     title VARCHAR(100) NOT NULL,
     price DECIMAL(10, 2) NOT NULL,
     location EARTH NOT NULL,
@@ -28,12 +28,19 @@ CREATE TABLE IF NOT EXISTS Listings (
     last_updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Create Chats table
+CREATE TABLE IF NOT EXISTS Chats (
+    chat_id SERIAL PRIMARY KEY,
+    seller INT NOT NULL REFERENCES Users(user_id),
+    buyer INT NOT NULL REFERENCES Users(user_id),
+    listing_id INT NOT NULL REFERENCES Listings(listing_id)
+);
+
 -- Create Messages table
 CREATE TABLE IF NOT EXISTS Messages (
     message_id SERIAL PRIMARY KEY,
-    sender_id INT NOT NULL REFERENCES users(user_id),
-    receiver_id INT NOT NULL REFERENCES users(user_id),
-    listing_id INT NOT NULL REFERENCES listings(listing_id),
+    chat_id INT NOT NULL REFERENCES Chats(chat_id),
+    sender_id INT NOT NULL REFERENCES Users(user_id),
     message_content TEXT NOT NULL,
     created_on TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
@@ -41,8 +48,8 @@ CREATE TABLE IF NOT EXISTS Messages (
 -- Create Listing Ratings table
 CREATE TABLE IF NOT EXISTS Listing_Ratings (
     listing_rating_id SERIAL PRIMARY KEY,
-    rated_listing_id INT NOT NULL REFERENCES listings(listing_id),
-    rating_user_id INT NOT NULL REFERENCES users(user_id),
+    rated_listing_id INT NOT NULL REFERENCES Listings(listing_id),
+    rating_user_id INT NOT NULL REFERENCES Users(user_id),
     rating_value INT NOT NULL CHECK (rating_value BETWEEN 1 AND 5),
     created_on TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
@@ -50,8 +57,8 @@ CREATE TABLE IF NOT EXISTS Listing_Ratings (
 -- Create Listing Reviews table
 CREATE TABLE IF NOT EXISTS Listing_Reviews (
     listing_review_id SERIAL PRIMARY KEY,
-    reviewed_listing_id INT NOT NULL REFERENCES listings(listing_id),
-    review_user_id INT NOT NULL REFERENCES users(user_id),
+    reviewed_listing_id INT NOT NULL REFERENCES Listings(listing_id),
+    review_user_id INT NOT NULL REFERENCES Users(user_id),
     review_content TEXT NOT NULL,
     created_on TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
@@ -68,11 +75,17 @@ VALUES
 (1, 'Bicycle for sale', 150.00, ll_to_earth(40.730610,-73.935242), '440 Kilner St', 'AVAILABLE'),
 (2, 'Laptop for sale', 800.00, ll_to_earth(34.052235,-118.243683), '892 Jonas Ave', 'AVAILABLE');
 
--- Insert dummy data into Messages table
-INSERT INTO Messages (sender_id, receiver_id, listing_id, message_content, created_on)
+-- Insert dummy data into Chats table
+INSERT INTO Chats (seller, buyer, listing_id)
 VALUES
-(1, 2, 1, 'Is the bicycle still available?', '2023-03-02 10:00:00'),
-(2, 1, 2, 'Can you lower the price for the laptop?', '2023-04-02 15:30:00');
+(1, 2, 1),
+(2, 1, 2);
+
+-- Insert dummy data into Messages table
+INSERT INTO Messages (sender_id, chat_id, message_content, created_on)
+VALUES
+(2, 1, 'Is the bicycle still available?', '2023-03-02 10:00:00'),
+(1, 2, 'Can you lower the price for the laptop?', '2023-04-02 15:30:00');
 
 -- Insert dummy data into Listing Ratings table
 INSERT INTO Listing_Ratings (rated_listing_id, rating_user_id, rating_value, created_on)
