@@ -55,5 +55,24 @@ def get_listings(listing_id):
     rows = result.fetchall()
     return jsonify(format_result(['username', 'rating'], rows)), 200
 
+@app.post('/create_review')
+def create_review():
+    listing_id = request.json.get('listing_id')
+    user_id = request.json.get('user_id')
+    review_content = request.json.get('review')
+
+    try:
+        result = db.session.execute(text("INSERT INTO Listing_Reviews (reviewed_listing_id, review_user_id, review_content) VALUES ({}, {}, '{}')".format(listing_id, user_id, review_content)))
+    except IntegrityError as e:
+        if e.orig.pgcode == '23503':
+            return jsonify({'message': 'Listing not found'}), 404
+        else:
+            return jsonify({}), 400
+    except:
+        return jsonify({'message': 'Something went wrong'}), 500
+    if result:
+        return jsonify({}), 200
+    return jsonify({'message': 'Something went wrong'}), 500
+
 if __name__ == '__main__':
     app.run(debug=True)
