@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 import os
+from utils import format_result 
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import text
 from sqlalchemy.exc import IntegrityError
@@ -42,6 +43,17 @@ def create_rating():
     if result:
         return jsonify({}), 200
     return jsonify({'message': 'Something went wrong'}), 500
+
+@app.get('/get_ratings/<int:listing_id>')
+def get_listings(listing_id):
+    try:
+        result = db.session.execute(text("SELECT username, rating_value FROM Listing_Ratings NATURAL JOIN Users WHERE rated_listing_id = {}".format(listing_id)))
+    except IntegrityError:
+        return jsonify({}), 400
+    except:
+        return jsonify({}), 500
+    rows = result.fetchall()
+    return jsonify(format_result(['username', 'rating'], rows)), 200
 
 if __name__ == '__main__':
     app.run(debug=True)
