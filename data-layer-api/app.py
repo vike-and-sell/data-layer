@@ -16,6 +16,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://{username}:{password}@{hos
 )
 app.config['DEBUG'] = True
 
+ENCRYPTION_KEY = os.environ['ENCRYPTION_KEY']
+
 # connect the app to the database
 db = SQLAlchemy(app)
 
@@ -26,22 +28,23 @@ def create_rating():
     rating_value = request.json.get('rating')
 
     try:
-        result = db.session.execute(text("INSERT INTO Listing_Ratings (rated_listing_id, rating_user_id, rating_value) VALUES ({}, {}, {})".format(listing_id, user_id, rating_value)))
+        db.session.execute(text("INSERT INTO Listing_Ratings (rated_listing_id, rating_user_id, rating_value) VALUES ({}, {}, {})".format(listing_id, user_id, rating_value)))
+        db.session.commit()
     except IntegrityError as e:
+        db.session.rollback()
         if e.orig.pgcode == '23503':
             return jsonify({'message': 'Listing not found'}), 404
         else:
             return jsonify({}), 400
     except:
+        db.session.rollback()
         return jsonify({'message': 'Something went wrong'}), 500
-    if result:
-        return jsonify({}), 200
-    return jsonify({'message': 'Something went wrong'}), 500
+    return jsonify({}), 200
 
 @app.get('/get_ratings/<int:listing_id>')
 def get_ratings(listing_id):
     try:
-        result = db.session.execute(text("SELECT username, rating_value FROM Listing_Ratings NATURAL JOIN Users WHERE rated_listing_id = {}".format(listing_id)))
+        result = db.session.execute(text("SELECT pgp_sym_decrypt(username::BYTEA,'{}'), rating_value FROM Listing_Ratings JOIN Users on Listing_Ratings.rating_user_id = Users.user_id WHERE rated_listing_id = {}".format(ENCRYPTION_KEY,listing_id)))
     except IntegrityError:
         return jsonify({}), 400
     except:
@@ -72,7 +75,7 @@ def create_review():
 @app.get('/get_reviews/<int:listing_id>')
 def get_reviews(listing_id):
     try:
-        result = db.session.execute(text("SELECT username, review_content FROM Listing_Reviews JOIN Users on Listing_Reviews.review_user_id = Users.user_id WHERE reviewed_listing_id = {}".format(listing_id)))
+        result = db.session.execute(text("SELECT pgp_sym_decrypt(username::BYTEA,'{}'), review_content FROM Listing_Reviews JOIN Users on Listing_Reviews.review_user_id = Users.user_id WHERE reviewed_listing_id = {}".format(ENCRYPTION_KEY, listing_id)))
     except IntegrityError:
         return jsonify({}), 400
     except:

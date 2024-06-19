@@ -13,6 +13,7 @@ services:
       RDS_HOSTNAME: v_s_db
       RDS_PORT: 5432
       RDS_DB_NAME: ${POSTGRES_DB}
+      ENCRYPTION_KEY: ${ENCRYPTION_KEY}
     depends_on:
       v_s_db:
         condition: service_healthy
@@ -27,11 +28,13 @@ services:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
+      ENCRYPTION_KEY: ${ENCRYPTION_KEY}
     ports:
       - "5432:5432"
     volumes:
       - db-volume:/var/lib/postgresql/data
-      - ./data-dump/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./data-dump/0-init.sql:/docker-entrypoint-initdb.d/0-init.sql
+      - ./data-dump/1-init-dummy-data.sh:/docker-entrypoint-initdb.d/1-init-dummy-data.sh
     healthcheck:
       # used in flask container depends_on condition to wait for the DB to be ready
       test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
