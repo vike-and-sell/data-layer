@@ -78,8 +78,11 @@ def create_review():
         return jsonify({'message': 'Something went wrong'}), 500
     return jsonify({}), 200
 
-@app.get('/get_reviews/<int:listing_id>')
-def get_reviews(listing_id):
+@app.get('/get_reviews')
+def get_reviews():
+    listing_id = request.args.get('listingId')
+    if not listing_id:
+        return jsonify({}), 400
     try:
         result = db.session.execute(text("SELECT pgp_sym_decrypt(username::BYTEA,'{}'), review_content FROM Listing_Reviews JOIN Users on Listing_Reviews.review_user_id = Users.user_id WHERE reviewed_listing_id = {}".format(ENCRYPTION_KEY, listing_id)))
     except IntegrityError:
