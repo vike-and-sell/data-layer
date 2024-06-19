@@ -94,5 +94,20 @@ def get_user():
         return  jsonify(format_result(['username', 'address', 'joining_date', 'items_sold', 'items_purchased'], rows)), 200
     return jsonify({}), 404
 
+@app.post('/update_user')
+def update_user():
+    user_id = request.json.get('user_id')
+    address = request.json.get('address')
+    try:
+        db.session.execute(text("UPDATE Users SET address = '{}' WHERE user_id = {}".format(address, user_id)))
+        db.session.commit()
+    except IntegrityError:
+        db.session.rollback()
+        return jsonify({}), 400
+    except:
+        db.session.rollback()
+        return jsonify({}), 500
+    return jsonify({}), 200
+
 if __name__ == '__main__':
     app.run(debug=True)
