@@ -25,12 +25,6 @@ db = SQLAlchemy(app)
 def welcome():
     return "Hello World"
 
-@app.route('/get_user', methods=['GET'])
-def test_sql():
-    result = db.session.execute(text("SELECT * FROM Users WHERE username = 'john_doe'"))
-    rows = result.fetchall()
-    return str(rows)
-
 @app.post('/create_rating')
 def create_rating():
     listing_id = request.json.get('listing_id')
@@ -98,6 +92,35 @@ def get_reviews():
         return jsonify({}), 500
     rows = result.fetchall()
     return jsonify(format_result(['username', 'review'], rows)), 200
+
+@app.get('/get_user')
+def get_user():
+    user_id = request.args.get('userId')
+    try:
+        result = db.session.execute(text("SELECT pgp_sym_decrypt(username::BYTEA,'{}'), pgp_sym_decrypt(address::BYTEA,'{}'), joining_date, items_sold, items_purchased FROM Users WHERE user_id = {}".format(ENCRYPTION_KEY, ENCRYPTION_KEY, user_id)))
+    except IntegrityError:
+        return jsonify({}), 400
+    except:
+        return jsonify({}), 500
+    rows = result.fetchall()
+    if (rows):
+        return  jsonify(format_result(['username', 'address', 'joining_date', 'items_sold', 'items_purchased'], rows)), 200
+    return jsonify({}), 404
+
+@app.post('/update_user')
+def update_user():
+    user_id = request.json.get('user_id')
+    address = request.json.get('address')
+    try:
+        db.session.execute(text("UPDATE Users SET address = pgp_sym_encrypt('{}', '{}') WHERE user_id = {}".format(address, ENCRYPTION_KEY, user_id)))
+        db.session.commit()
+    except IntegrityError:
+        db.session.rollback()
+        return jsonify({}), 400
+    except:
+        db.session.rollback()
+        return jsonify({}), 500
+    return jsonify({}), 200
 
 if __name__ == '__main__':
     app.run(debug=True)
