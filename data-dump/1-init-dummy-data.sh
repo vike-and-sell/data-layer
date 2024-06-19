@@ -10,7 +10,7 @@ SQL_COMMANDS=$(cat <<EOF
 INSERT INTO Users (username, email, password, location, address, joining_date)
 VALUES
 (pgp_sym_encrypt('john_doe', '${ENCRYPTION_KEY}'), pgp_sym_encrypt('john_doe@uvic.ca', '${ENCRYPTION_KEY}'), 'Password123!',  ll_to_earth(34.052235,118.243683), pgp_sym_encrypt('123 Valley Lane', '${ENCRYPTION_KEY}'), '2023-01-01'),
-(pgp_sym_encrypt('jane_smith', '${ENCRYPTION_KEY}'), pgp_sym_encrypt(jane_smith@uvic.ca', '${ENCRYPTION_KEY}')', 'SecurePass1$',  ll_to_earth(34.052235,-118.243683), pgp_sym_encrypt('842 Boniface Dr', '${ENCRYPTION_KEY}'), '2023-02-01');
+(pgp_sym_encrypt('jane_smith', '${ENCRYPTION_KEY}'), pgp_sym_encrypt('jane_smith@uvic.ca', '${ENCRYPTION_KEY}'), 'SecurePass1$',  ll_to_earth(34.052235,-118.243683), pgp_sym_encrypt('842 Boniface Dr', '${ENCRYPTION_KEY}'), '2023-02-01');
 
 -- Insert dummy data into Listings table
 INSERT INTO Listings (seller_id, title, price, location, address, status)
