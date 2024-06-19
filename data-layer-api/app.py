@@ -19,12 +19,6 @@ app.config['DEBUG'] = True
 # connect the app to the database
 db = SQLAlchemy(app)
 
-@app.route('/get_user', methods=['GET'])
-def test_sql():
-    result = db.session.execute(text("SELECT * FROM Users WHERE username = 'john_doe'"))
-    rows = result.fetchall()
-    return str(rows)
-
 @app.post('/create_rating')
 def create_rating():
     listing_id = request.json.get('listing_id')
@@ -85,6 +79,20 @@ def get_reviews(listing_id):
         return jsonify({}), 500
     rows = result.fetchall()
     return jsonify(format_result(['username', 'review'], rows)), 200
+
+@app.get('/get_user')
+def get_user():
+    user_id = request.args.get('userId')
+    try:
+        result = db.session.execute(text("SELECT username, address, joining_date, items_sold, items_purchased FROM Users WHERE user_id = {}".format(user_id)))
+    except IntegrityError:
+        return jsonify({}), 400
+    except:
+        return jsonify({}), 500
+    rows = result.fetchall()
+    if (rows):
+        return  jsonify(format_result(['username', 'address', 'joining_date', 'items_sold', 'items_purchased'], rows)), 200
+    return jsonify({}), 404
 
 if __name__ == '__main__':
     app.run(debug=True)
