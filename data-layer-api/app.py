@@ -47,8 +47,11 @@ def create_rating():
         return jsonify({'message': 'Something went wrong'}), 500
     return jsonify({}), 200
 
-@app.get('/get_ratings/<int:listing_id>')
-def get_ratings(listing_id):
+@app.get('/get_ratings')
+def get_ratings():
+    listing_id = request.args.get('listingId')
+    if not listing_id:
+        return jsonify({}), 400
     try:
         result = db.session.execute(text("SELECT pgp_sym_decrypt(username::BYTEA,'{}'), rating_value FROM Listing_Ratings JOIN Users on Listing_Ratings.rating_user_id = Users.user_id WHERE rated_listing_id = {}".format(ENCRYPTION_KEY,listing_id)))
     except IntegrityError:
