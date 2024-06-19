@@ -32,7 +32,7 @@ def create_rating():
     rating_value = request.json.get('rating')
 
     try:
-        result = db.session.execute(text("INSERT INTO Listing_Ratings (rated_listing_id, rating_user_id, rating_value) VALUES ({}, {}, {})".format(listing_id, user_id, rating_value)))
+        db.session.execute(text("INSERT INTO Listing_Ratings (rated_listing_id, rating_user_id, rating_value) VALUES ({}, {}, {})".format(listing_id, user_id, rating_value)))
         db.session.commit()
     except IntegrityError as e:
         db.session.rollback()
@@ -48,7 +48,7 @@ def create_rating():
 @app.get('/get_ratings/<int:listing_id>')
 def get_ratings(listing_id):
     try:
-        result = db.session.execute(text("SELECT username, rating_value FROM Listing_Ratings NATURAL JOIN Users WHERE rated_listing_id = {}".format(listing_id)))
+        result = db.session.execute(text("SELECT username, rating_value FROM Listing_Ratings JOIN Users on Listing_Ratings.rating_user_id = Users.user_id WHERE rated_listing_id = {}".format(listing_id)))
     except IntegrityError:
         return jsonify({}), 400
     except:
