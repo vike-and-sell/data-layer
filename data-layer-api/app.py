@@ -65,5 +65,39 @@ def get_ratings():
     rows = result.fetchall()
     return jsonify(format_result(['username', 'rating'], rows)), 200
 
+@app.post('/create_review')
+def create_review():
+    listing_id = request.json.get('listing_id')
+    user_id = request.json.get('user_id')
+    review_content = request.json.get('review')
+
+    try:
+        db.session.execute(text("INSERT INTO Listing_Reviews (reviewed_listing_id, review_user_id, review_content) VALUES ({}, {}, '{}')".format(listing_id, user_id, review_content)))
+        db.session.commit()
+    except IntegrityError as e:
+        db.session.rollback()
+        if e.orig.pgcode == '23503':
+            return jsonify({'message': 'Listing not found'}), 404
+        else:
+            return jsonify({}), 400
+    except:
+        db.session.rollback()
+        return jsonify({'message': 'Something went wrong'}), 500
+    return jsonify({}), 200
+
+@app.get('/get_reviews')
+def get_reviews():
+    listing_id = request.args.get('listingId')
+    if not listing_id:
+        return jsonify({}), 400
+    try:
+        result = db.session.execute(text("SELECT pgp_sym_decrypt(username::BYTEA,'{}'), review_content FROM Listing_Reviews JOIN Users on Listing_Reviews.review_user_id = Users.user_id WHERE reviewed_listing_id = {}".format(ENCRYPTION_KEY, listing_id)))
+    except IntegrityError:
+        return jsonify({}), 400
+    except:
+        return jsonify({}), 500
+    rows = result.fetchall()
+    return jsonify(format_result(['username', 'review'], rows)), 200
+
 if __name__ == '__main__':
     app.run(debug=True)
