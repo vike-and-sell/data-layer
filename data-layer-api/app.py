@@ -21,6 +21,10 @@ ENCRYPTION_KEY = os.environ['ENCRYPTION_KEY']
 # connect the app to the database
 db = SQLAlchemy(app)
 
+@app.route('/', methods=['GET'])
+def welcome():
+    return "Hello World"
+
 @app.route('/get_user', methods=['GET'])
 def test_sql():
     result = db.session.execute(text("SELECT * FROM Users WHERE username = 'john_doe'"))
