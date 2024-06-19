@@ -13,6 +13,7 @@ services:
       RDS_HOSTNAME: v_s_db
       RDS_PORT: 5432
       RDS_DB_NAME: ${POSTGRES_DB}
+      ENCRYPTION_KEY: ${ENCRYPTION_KEY}
     depends_on:
       v_s_db:
         condition: service_healthy

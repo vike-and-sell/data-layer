@@ -16,6 +16,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://{username}:{password}@{hos
 )
 app.config['DEBUG'] = True
 
+ENCRYPTION_KEY = os.environ['ENCRYPTION_KEY']
+
 # connect the app to the database
 db = SQLAlchemy(app)
 
@@ -48,7 +50,7 @@ def create_rating():
 @app.get('/get_ratings/<int:listing_id>')
 def get_ratings(listing_id):
     try:
-        result = db.session.execute(text("SELECT username, rating_value FROM Listing_Ratings JOIN Users on Listing_Ratings.rating_user_id = Users.user_id WHERE rated_listing_id = {}".format(listing_id)))
+        result = db.session.execute(text("SELECT pgp_sym_decrypt(username::BYTEA,'{}'), rating_value FROM Listing_Ratings JOIN Users on Listing_Ratings.rating_user_id = Users.user_id WHERE rated_listing_id = {}".format(ENCRYPTION_KEY,listing_id)))
     except IntegrityError:
         return jsonify({}), 400
     except:
