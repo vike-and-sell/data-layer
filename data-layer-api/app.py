@@ -1,11 +1,8 @@
 from flask import Flask, request, jsonify
-from flask import Flask, request, jsonify
 import os
-from utils import format_result 
 from utils import format_result 
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import text
-from sqlalchemy.exc import IntegrityError
 from sqlalchemy.exc import IntegrityError
 
 app = Flask(__name__)
