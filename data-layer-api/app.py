@@ -21,6 +21,10 @@ ENCRYPTION_KEY = os.environ['ENCRYPTION_KEY']
 # connect the app to the database
 db = SQLAlchemy(app)
 
+@app.route('/', methods=['GET'])
+def welcome():
+    return "Hello World"
+
 @app.post('/create_rating')
 def create_rating():
     listing_id = request.json.get('listing_id')
