@@ -33,19 +33,20 @@ def create_rating():
 
     try:
         result = db.session.execute(text("INSERT INTO Listing_Ratings (rated_listing_id, rating_user_id, rating_value) VALUES ({}, {}, {})".format(listing_id, user_id, rating_value)))
+        db.session.commit()
     except IntegrityError as e:
+        db.session.rollback()
         if e.orig.pgcode == '23503':
             return jsonify({'message': 'Listing not found'}), 404
         else:
             return jsonify({}), 400
     except:
+        db.session.rollback()
         return jsonify({'message': 'Something went wrong'}), 500
-    if result:
-        return jsonify({}), 200
-    return jsonify({'message': 'Something went wrong'}), 500
+    return jsonify({}), 200
 
 @app.get('/get_ratings/<int:listing_id>')
-def get_listings(listing_id):
+def get_ratings(listing_id):
     try:
         result = db.session.execute(text("SELECT username, rating_value FROM Listing_Ratings NATURAL JOIN Users WHERE rated_listing_id = {}".format(listing_id)))
     except IntegrityError:
