@@ -87,7 +87,7 @@ def get_reviews(listing_id):
 def get_user():
     user_id = request.args.get('userId')
     try:
-        result = db.session.execute(text("SELECT username, address, joining_date, items_sold, items_purchased FROM Users WHERE user_id = {}".format(user_id)))
+        result = db.session.execute(text("SELECT pgp_sym_decrypt(username::BYTEA,'{}'), pgp_sym_decrypt(address::BYTEA,'{}'), joining_date, items_sold, items_purchased FROM Users WHERE user_id = {}".format(ENCRYPTION_KEY, ENCRYPTION_KEY, user_id)))
     except IntegrityError:
         return jsonify({}), 400
     except:
@@ -102,7 +102,7 @@ def update_user():
     user_id = request.json.get('user_id')
     address = request.json.get('address')
     try:
-        db.session.execute(text("UPDATE Users SET address = '{}' WHERE user_id = {}".format(address, user_id)))
+        db.session.execute(text("UPDATE Users SET address = pgp_sym_encrypt('{}', '{}') WHERE user_id = {}".format(address, ENCRYPTION_KEY, user_id)))
         db.session.commit()
     except IntegrityError:
         db.session.rollback()
