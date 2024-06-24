@@ -9,8 +9,8 @@ SQL_COMMANDS=$(cat <<EOF
 -- Insert dummy data into Users table
 INSERT INTO Users (username, email, password, location, address, joining_date)
 VALUES
-(pgp_sym_encrypt('john_doe', '${ENCRYPTION_KEY}'), pgp_sym_encrypt('john_doe@uvic.ca', '${ENCRYPTION_KEY}'), 'Password123!',  ll_to_earth(34.052235,118.243683), pgp_sym_encrypt('123 Valley Lane', '${ENCRYPTION_KEY}'), '2023-01-01'),
-(pgp_sym_encrypt('jane_smith', '${ENCRYPTION_KEY}'), pgp_sym_encrypt('jane_smith@uvic.ca', '${ENCRYPTION_KEY}'), 'SecurePass1$',  ll_to_earth(34.052235,-118.243683), pgp_sym_encrypt('842 Boniface Dr', '${ENCRYPTION_KEY}'), '2023-02-01');
+('john_doe', 'john_doe@uvic.ca', '8b053b0b4813dc1986827113c07d5edc9a206f12244e9432cb0a98419a15ab66',  ll_to_earth(34.052235,118.243683), '123 Valley Lane', '2023-01-01'),
+('jane_smith', 'jane_smith@uvic.ca', '05f5d58d4146def0c5fb14f6b8161029d8c1672faf5c6c6f82164df64e2d9ca1',  ll_to_earth(34.052235,-118.243683), '842 Boniface Dr', '2023-02-01');
 
 -- Insert dummy data into Listings table
 INSERT INTO Listings (seller_id, title, price, location, address, status)
