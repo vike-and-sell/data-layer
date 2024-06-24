@@ -118,7 +118,7 @@ def get_ratings():
         return jsonify({}), 400
     try:
         result = db.session.execute(text(
-            "SELECT pgp_sym_decrypt(username::BYTEA,'{}'), rating_value FROM Listing_Ratings JOIN Users on Listing_Ratings.rating_user_id = Users.user_id WHERE rated_listing_id = {}".format(ENCRYPTION_KEY, listing_id)))
+            "SELECT username, rating_value FROM Listing_Ratings JOIN Users on Listing_Ratings.rating_user_id = Users.user_id WHERE rated_listing_id = {}".format(listing_id)))
     except IntegrityError:
         return jsonify({}), 400
     except:
@@ -156,7 +156,7 @@ def get_reviews():
         return jsonify({}), 400
     try:
         result = db.session.execute(text(
-            "SELECT pgp_sym_decrypt(username::BYTEA,'{}'), review_content FROM Listing_Reviews JOIN Users on Listing_Reviews.review_user_id = Users.user_id WHERE reviewed_listing_id = {}".format(ENCRYPTION_KEY, listing_id)))
+            "SELECT username, review_content FROM Listing_Reviews JOIN Users on Listing_Reviews.review_user_id = Users.user_id WHERE reviewed_listing_id = {}".format(listing_id)))
     except IntegrityError:
         return jsonify({}), 400
     except:
@@ -169,8 +169,8 @@ def get_reviews():
 def get_user():
     user_id = request.args.get('userId')
     try:
-        result = db.session.execute(text("SELECT pgp_sym_decrypt(username::BYTEA,'{}'), pgp_sym_decrypt(address::BYTEA,'{}'), joining_date, items_sold, items_purchased FROM Users WHERE user_id = {}".format(
-            ENCRYPTION_KEY, ENCRYPTION_KEY, user_id)))
+        result = db.session.execute(text(
+            "SELECT username, address, joining_date, items_sold, items_purchased FROM Users WHERE user_id = {}".format(user_id)))
     except IntegrityError:
         return jsonify({}), 400
     except:
@@ -186,8 +186,8 @@ def update_user():
     user_id = request.json.get('user_id')
     address = request.json.get('address')
     try:
-        db.session.execute(text("UPDATE Users SET address = pgp_sym_encrypt('{}', '{}') WHERE user_id = {}".format(
-            address, ENCRYPTION_KEY, user_id)))
+        db.session.execute(text("UPDATE Users SET address = '{}' WHERE user_id = {}".format(
+            address, user_id)))
         db.session.commit()
     except IntegrityError:
         db.session.rollback()
