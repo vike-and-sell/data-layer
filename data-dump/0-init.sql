@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS Users (
     user_id SERIAL PRIMARY KEY,
     username TEXT NOT NULL UNIQUE,
     email TEXT NOT NULL UNIQUE,
-    password VARCHAR(100) NOT NULL CHECK (password ~ '^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d]).{8,}$'),
+    password TEXT NOT NULL,
     location EARTH NOT NULL,
     address TEXT NOT NULL,
     joining_date DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
