@@ -197,6 +197,20 @@ def update_user():
         return jsonify({}), 500
     return jsonify({}), 200
 
+@app.get('/get_listing')
+def get_listing():
+    listing_id = request.args.get('listingId')
+    try:
+        result = db.session.execute(text(
+            "SELECT listing_id, seller_id, title, price, address, status, created_on, last_updated_at FROM Listings WHERE listing_id = {}".format(listing_id)))
+    except IntegrityError:
+        return jsonify({}), 400
+    except:
+        return jsonify({}), 500
+    rows = result.fetchall()
+    if (rows):
+        return jsonify(format_result(['listingId', 'sellerId', 'title', 'price', 'address', 'status', 'createdOn', 'lastUpdatedAt'], rows)), 200
+    return jsonify({}), 404
 
 if __name__ == '__main__':
     app.run(debug=True)
