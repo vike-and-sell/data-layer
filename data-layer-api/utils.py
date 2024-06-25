@@ -1,7 +1,7 @@
 from datetime import datetime
 
 
-def format_result(keys, rows, force_list = False):
+def format_result(keys, rows, force_list=False):
     def format_row(row):
         return {
             key: (value.isoformat() if isinstance(value, datetime) else value)
