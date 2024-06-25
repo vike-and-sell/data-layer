@@ -211,6 +211,20 @@ def get_all_users():
         return jsonify(format_result(['username', 'address', 'joining_date', 'items_sold', 'items_purchased'], rows)), 200
     return jsonify({}), 404
 
+@app.get('/get_all_listings')
+def get_all_listings():
+    try:
+        result = db.session.execute(text(
+            "SELECT listing_id, seller_id, title, price, location, address, status, created_on FROM Listings"))
+    except IntegrityError:
+        return jsonify({}), 400
+    except:
+        return jsonify({}), 500
+    rows = result.fetchall()
+    if (rows):
+        return jsonify(format_result(['listing_id', 'seller_id', 'title', 'price', 'location', 'address', 'status', 'created_on'], rows)), 200
+    return jsonify({}), 404
+
 
 if __name__ == '__main__':
     app.run(debug=True)
