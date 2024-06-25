@@ -11,9 +11,16 @@ CREATE TABLE IF NOT EXISTS Users (
     password TEXT NOT NULL,
     location EARTH NOT NULL,
     address TEXT NOT NULL,
-    joining_date DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    joining_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     items_sold INT[] NOT NULL DEFAULT '{}',
     items_purchased INT[] NOT NULL DEFAULT '{}'
+);
+
+-- Create Users table
+CREATE TABLE IF NOT EXISTS Searches (
+    user_id INT NOT NULL REFERENCES Users(user_id),
+    search_text TEXT NOT NULL,
+    search_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Create Listings table
