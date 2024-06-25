@@ -225,6 +225,21 @@ def get_all_listings():
         return jsonify(format_result(['listing_id', 'seller_id', 'title', 'price', 'location', 'address', 'status', 'created_on'], rows)), 200
     return jsonify({}), 404
 
+@app.get('/get_chats')
+def get_chats():
+    user_id = request.args.get('userId')
+    try:
+        result = db.session.execute(text("SELECT chat_id FROM Chats WHERE seller = {user_id} OR buyer = {user_id}".format(
+            user_id = user_id)))
+    except IntegrityError:
+        return jsonify({}), 400
+    except:
+        return jsonify({}), 500
+    rows = result.fetchall()
+    if (rows):
+        return jsonify([row[0] for row in rows]), 200
+    return jsonify({}), 404
+
 @app.get('/get_search_history')
 def get_search_history():
     user_id = request.args.get('userId')
@@ -239,6 +254,72 @@ def get_search_history():
     if (rows):
         return jsonify(format_result(['search_text', 'search_date'], rows)), 200
     return jsonify({}), 404
+
+@app.get('/get_chat_info')
+def get_chat_info():
+    chat_id = request.args.get('chatId')
+    try:
+        result = db.session.execute(text("SELECT chat_id, seller, buyer, listing_id FROM Chats WHERE chat_id = {}".format(
+                    chat_id)))
+    except IntegrityError:
+        return jsonify({}), 400
+    except:
+        return jsonify({}), 500
+    rows = result.fetchall()
+    if (rows):
+        return jsonify(format_result(['chat_id', 'seller', 'buyer', 'listing_id'], rows)), 200
+    return jsonify({}), 404
+
+@app.get('/get_messages')
+def get_messages():
+    chat_id = request.args.get('chatId')
+    try:
+        result = db.session.execute(text("SELECT message_id, sender_id, message_content, created_on FROM Messages WHERE chat_id = {}".format(
+            chat_id)))
+    except IntegrityError:
+        return jsonify({}), 400
+    except:
+        return jsonify({}), 500
+    rows = result.fetchall()
+    if (rows):
+        return jsonify(format_result(['message_id', 'sender_id', 'message_content', 'created_on'], rows, True)), 200
+    return jsonify({}), 404
+
+@app.get('/get_last_message_timestamp')
+def get_last_message_timestamp():
+    chat_id = request.args.get('chatId')
+    try:
+        result = db.session.execute(text("SELECT created_on FROM Messages WHERE chat_id = {} ORDER BY created_on DESC LIMIT 1".format(
+            chat_id)))
+    except IntegrityError:
+        return jsonify({}), 400
+    except:
+        return jsonify({}), 500
+    rows = result.fetchall()
+    if (rows):
+        return jsonify(format_result(['timestamp'], rows)), 200
+    return jsonify({}), 404
+
+@app.post('/create_message')
+def create_message():
+    chat_id = request.json.get('chatId')
+    message_content = request.json.get('content')
+    sender_id = request.json.get('senderId')
+
+    try:
+        db.session.execute(text("INSERT INTO Messages (chat_id, sender_id, message_content) VALUES ({}, {}, '{}')".format(
+            chat_id, sender_id, message_content)))
+        db.session.commit()
+    except IntegrityError as e:
+        db.session.rollback()
+        if e.orig.pgcode == '23503':
+            return jsonify({'message': 'Listing not found'}), 404
+        else:
+            return jsonify({}), 400
+    except:
+        db.session.rollback()
+        return jsonify({'message': 'Something went wrong'}), 500
+    return jsonify({}), 200
 
 
 if __name__ == '__main__':
