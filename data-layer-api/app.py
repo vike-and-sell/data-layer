@@ -175,19 +175,26 @@ def get_user():
         return jsonify({}), 400
     except:
         return jsonify({}), 500
-    rows = result.fetchall()
-    if (rows):
-        return jsonify(format_result(['username', 'address', 'joining_date', 'items_sold', 'items_purchased'], rows)), 200
+    row = result.fetchone()
+    if row:
+        return jsonify({
+            "username": row[0],
+            "address": row[1],
+            "joining_date": row[2].isoformat(),
+            "items_sold": row[3],
+            "items_purchased": row[4],
+        }), 200
     return jsonify({}), 404
 
 
 @app.post('/update_user')
 def update_user():
-    user_id = request.json.get('user_id')
+    user_id = request.json.get('userId')
     address = request.json.get('address')
+    location = request.json.get('location')
     try:
-        db.session.execute(text("UPDATE Users SET address = '{}' WHERE user_id = {}".format(
-            address, user_id)))
+        db.session.execute(text("UPDATE Users SET address = '{}', location = ll_to_earth({}, {}) WHERE user_id = {}".format(
+            address, location["lat"], location["lng"], user_id)))
         db.session.commit()
     except IntegrityError:
         db.session.rollback()
