@@ -242,6 +242,21 @@ def get_messages():
         return jsonify(format_result(['message_id', 'sender_id', 'message_content', 'created_on'], rows, True)), 200
     return jsonify({}), 404
 
+@app.get('/get_last_message_timestamp')
+def get_last_message_timestamp():
+    chat_id = request.args.get('chatId')
+    try:
+        result = db.session.execute(text("SELECT created_on FROM Messages WHERE chat_id = {} ORDER BY created_on DESC LIMIT 1".format(
+            chat_id)))
+    except IntegrityError:
+        return jsonify({}), 400
+    except:
+        return jsonify({}), 500
+    rows = result.fetchall()
+    if (rows):
+        return jsonify(format_result(['timestamp'], rows)), 200
+    return jsonify({}), 404
+
 @app.post('/create_message')
 def create_message():
     chat_id = request.json.get('chatId')
