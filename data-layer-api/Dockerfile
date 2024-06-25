@@ -22,4 +22,4 @@ COPY . .
 
 EXPOSE 4000
 
-CMD ["python3", "wsgi.py"]
+CMD ["python3", "-u", "wsgi.py"]

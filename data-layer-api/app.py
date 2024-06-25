@@ -89,6 +89,39 @@ def get_user_for_login():
     return jsonify({}), 404
 
 
+@app.get('/get_user_by_email')
+def get_user_by_email():
+    email = request.args.get('eml')
+    try:
+        result = db.session.execute(
+            text("SELECT user_id, username FROM Users WHERE email = '{}'".format(email)))
+        db.session.commit()
+        row = result.fetchone()
+        print(row)
+        if row:
+            return jsonify(format_result(['user_id', 'username'], [row]))
+    except Exception as e:
+        print(e)
+
+    return jsonify({}), 400
+
+
+@app.post('/update_user_password')
+def update_user_password():
+    user_id = request.json.get('user_id')
+    password = request.json.get('password')
+
+    try:
+        db.session.execute(text(
+            "UPDATE Users SET password = '{}' WHERE user_id = '{}'".format(password, user_id)))
+        db.session.commit()
+        return jsonify({}), 200
+    except Exception as e:
+        print(e)
+
+    return jsonify({}), 400
+
+
 @app.post('/create_rating')
 def create_rating():
     listing_id = request.json.get('listing_id')
@@ -204,6 +237,7 @@ def update_user():
         return jsonify({}), 500
     return jsonify({}), 200
 
+
 @app.get('/get_all_users')
 def get_all_users():
     try:
@@ -217,6 +251,7 @@ def get_all_users():
     if (rows):
         return jsonify(format_result(['username', 'address', 'joining_date', 'items_sold', 'items_purchased'], rows)), 200
     return jsonify({}), 404
+
 
 @app.get('/get_all_listings')
 def get_all_listings():
@@ -232,12 +267,13 @@ def get_all_listings():
         return jsonify(format_result(['listing_id', 'seller_id', 'title', 'price', 'location', 'address', 'status', 'created_on'], rows)), 200
     return jsonify({}), 404
 
+
 @app.get('/get_chats')
 def get_chats():
     user_id = request.args.get('userId')
     try:
         result = db.session.execute(text("SELECT chat_id FROM Chats WHERE seller = {user_id} OR buyer = {user_id}".format(
-            user_id = user_id)))
+            user_id=user_id)))
     except IntegrityError:
         return jsonify({}), 400
     except:
@@ -246,6 +282,7 @@ def get_chats():
     if (rows):
         return jsonify([row[0] for row in rows]), 200
     return jsonify({}), 404
+
 
 @app.get('/get_search_history')
 def get_search_history():
@@ -262,12 +299,13 @@ def get_search_history():
         return jsonify(format_result(['search_text', 'search_date'], rows)), 200
     return jsonify({}), 404
 
+
 @app.get('/get_chat_info')
 def get_chat_info():
     chat_id = request.args.get('chatId')
     try:
         result = db.session.execute(text("SELECT chat_id, seller, buyer, listing_id FROM Chats WHERE chat_id = {}".format(
-                    chat_id)))
+            chat_id)))
     except IntegrityError:
         return jsonify({}), 400
     except:
@@ -276,6 +314,7 @@ def get_chat_info():
     if (rows):
         return jsonify(format_result(['chat_id', 'seller', 'buyer', 'listing_id'], rows)), 200
     return jsonify({}), 404
+
 
 @app.get('/get_messages')
 def get_messages():
@@ -292,6 +331,7 @@ def get_messages():
         return jsonify(format_result(['message_id', 'sender_id', 'message_content', 'created_on'], rows, True)), 200
     return jsonify({}), 404
 
+
 @app.get('/get_last_message_timestamp')
 def get_last_message_timestamp():
     chat_id = request.args.get('chatId')
@@ -306,6 +346,7 @@ def get_last_message_timestamp():
     if (rows):
         return jsonify(format_result(['timestamp'], rows)), 200
     return jsonify({}), 404
+
 
 @app.post('/create_message')
 def create_message():
