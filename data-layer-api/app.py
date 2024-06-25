@@ -227,6 +227,30 @@ def get_listing_by_seller():
         return jsonify(format_result(['listingId', 'sellerId', 'title', 'price', 'address', 'status', 'createdOn', 'lastUpdatedAt'], rows)), 200
     return jsonify({}), 404
 
+@app.post('/create_listing')
+def create_listing():
+    seller_id = request.json.get('sellerId')
+    title = request.json.get('title')
+    price = request.json.get('price')
+    address = request.json.get('address')
+    status = request.json.get('status')
+    latitude = request.json.get('latitude')
+    longitude = request.json.get('longitude')
+
+    try:
+        db.session.execute(text("INSERT INTO Listings (seller_id, title, price, address, location, status) VALUES ({}, '{}', {}, '{}', ll_to_earth({}, {}), '{}')".format(
+            seller_id, title, price, address, latitude, longitude, status)))
+        db.session.commit()
+    except IntegrityError as e:
+        db.session.rollback()
+        if e.orig.pgcode == '23503':
+            return jsonify({'message': 'Listing not found'}), 404
+        else:
+            return jsonify({}), 400
+    except:
+        db.session.rollback()
+        return jsonify({'message': 'Something went wrong'}), 500
+    return jsonify({}), 200
 
 if __name__ == '__main__':
     app.run(debug=True)
