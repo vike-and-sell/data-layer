@@ -227,5 +227,26 @@ def get_messages():
         return jsonify(format_result(['message_id', 'sender_id', 'message_content', 'created_on'], rows, True)), 200
     return jsonify({}), 404
 
+@app.post('/create_message')
+def create_message():
+    chat_id = request.json.get('chatId')
+    message_content = request.json.get('content')
+    sender_id = request.json.get('senderId')
+
+    try:
+        db.session.execute(text("INSERT INTO Messages (chat_id, sender_id, message_content) VALUES ({}, {}, '{}')".format(
+            chat_id, sender_id, message_content)))
+        db.session.commit()
+    except IntegrityError as e:
+        db.session.rollback()
+        if e.orig.pgcode == '23503':
+            return jsonify({'message': 'Listing not found'}), 404
+        else:
+            return jsonify({}), 400
+    except:
+        db.session.rollback()
+        return jsonify({'message': 'Something went wrong'}), 500
+    return jsonify({}), 200
+
 if __name__ == '__main__':
     app.run(debug=True)
