@@ -225,6 +225,21 @@ def get_all_listings():
         return jsonify(format_result(['listing_id', 'seller_id', 'title', 'price', 'location', 'address', 'status', 'created_on'], rows)), 200
     return jsonify({}), 404
 
+@app.get('/get_search_history')
+def get_search_history():
+    user_id = request.args.get('userId')
+    try:
+        result = db.session.execute(text(
+            "SELECT search_text, search_date FROM Searches WHERE user_id = {}".format(user_id)))
+    except IntegrityError:
+        return jsonify({}), 400
+    except:
+        return jsonify({}), 500
+    rows = result.fetchall()
+    if (rows):
+        return jsonify(format_result(['search_text', 'search_date'], rows)), 200
+    return jsonify({}), 404
+
 
 if __name__ == '__main__':
     app.run(debug=True)

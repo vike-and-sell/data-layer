@@ -12,6 +12,12 @@ VALUES
 ('john_doe', 'john_doe@uvic.ca', '8b053b0b4813dc1986827113c07d5edc9a206f12244e9432cb0a98419a15ab66',  ll_to_earth(34.052235,118.243683), '123 Valley Lane', '2023-01-01'),
 ('jane_smith', 'jane_smith@uvic.ca', '05f5d58d4146def0c5fb14f6b8161029d8c1672faf5c6c6f82164df64e2d9ca1',  ll_to_earth(34.052235,-118.243683), '842 Boniface Dr', '2023-02-01');
 
+-- Insert dummy data into Searches table
+INSERT INTO Searches (user_id, search_text, search_date)
+VALUES
+(1, 'Hot Wheels', '2024-01-01'),
+(2, 'Palpatine Lego Lightning Hands', '2023-02-01');
+
 -- Insert dummy data into Listings table
 INSERT INTO Listings (seller_id, title, price, location, address, status)
 VALUES
