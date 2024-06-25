@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS Users (
 
 -- Create Users table
 CREATE TABLE IF NOT EXISTS Searches (
-    user_id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL REFERENCES Users(user_id),
     search_text TEXT NOT NULL,
     search_date DATE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );

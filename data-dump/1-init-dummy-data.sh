@@ -16,7 +16,9 @@ VALUES
 INSERT INTO Searches (user_id, search_text, search_date)
 VALUES
 (1, 'Hot Wheels', '2024-01-01'),
-(2, 'Palpatine Lego Lightning Hands', '2023-02-01');
+(1, 'iPod touch 5th Gen', '2024-01-02'),
+(2, 'Lego Palpatine Lightning Hands', '2023-02-01'),
+(2, 'Lego Power Miners', '2023-02-01');
 
 -- Insert dummy data into Listings table
 INSERT INTO Listings (seller_id, title, price, location, address, status)
