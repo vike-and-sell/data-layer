@@ -197,6 +197,20 @@ def update_user():
         return jsonify({}), 500
     return jsonify({}), 200
 
+@app.get('/get_all_users')
+def get_all_users():
+    try:
+        result = db.session.execute(text(
+            "SELECT username, address, joining_date, items_sold, items_purchased FROM Users"))
+    except IntegrityError:
+        return jsonify({}), 400
+    except:
+        return jsonify({}), 500
+    rows = result.fetchall()
+    if (rows):
+        return jsonify(format_result(['username', 'address', 'joining_date', 'items_sold', 'items_purchased'], rows)), 200
+    return jsonify({}), 404
+
 
 if __name__ == '__main__':
     app.run(debug=True)
