@@ -197,6 +197,34 @@ def update_user():
         return jsonify({}), 500
     return jsonify({}), 200
 
+@app.get('/get_all_users')
+def get_all_users():
+    try:
+        result = db.session.execute(text(
+            "SELECT username, address, joining_date, items_sold, items_purchased FROM Users"))
+    except IntegrityError:
+        return jsonify({}), 400
+    except:
+        return jsonify({}), 500
+    rows = result.fetchall()
+    if (rows):
+        return jsonify(format_result(['username', 'address', 'joining_date', 'items_sold', 'items_purchased'], rows)), 200
+    return jsonify({}), 404
+
+@app.get('/get_all_listings')
+def get_all_listings():
+    try:
+        result = db.session.execute(text(
+            "SELECT listing_id, seller_id, title, price, location, address, status, created_on FROM Listings"))
+    except IntegrityError:
+        return jsonify({}), 400
+    except:
+        return jsonify({}), 500
+    rows = result.fetchall()
+    if (rows):
+        return jsonify(format_result(['listing_id', 'seller_id', 'title', 'price', 'location', 'address', 'status', 'created_on'], rows)), 200
+    return jsonify({}), 404
+
 @app.get('/get_chats')
 def get_chats():
     user_id = request.args.get('userId')
@@ -210,6 +238,21 @@ def get_chats():
     rows = result.fetchall()
     if (rows):
         return jsonify([row[0] for row in rows]), 200
+    return jsonify({}), 404
+
+@app.get('/get_search_history')
+def get_search_history():
+    user_id = request.args.get('userId')
+    try:
+        result = db.session.execute(text(
+            "SELECT search_text, search_date FROM Searches WHERE user_id = {}".format(user_id)))
+    except IntegrityError:
+        return jsonify({}), 400
+    except:
+        return jsonify({}), 500
+    rows = result.fetchall()
+    if (rows):
+        return jsonify(format_result(['search_text', 'search_date'], rows)), 200
     return jsonify({}), 404
 
 @app.get('/get_chat_info')
@@ -277,6 +320,7 @@ def create_message():
         db.session.rollback()
         return jsonify({'message': 'Something went wrong'}), 500
     return jsonify({}), 200
+
 
 if __name__ == '__main__':
     app.run(debug=True)
