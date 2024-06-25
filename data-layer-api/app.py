@@ -212,6 +212,20 @@ def get_chats():
         return jsonify(format_result(['chat_id', 'seller', 'buyer', 'listing_id'], rows)), 200
     return jsonify({}), 404
 
+@app.get('/get_messages')
+def get_messages():
+    chat_id = request.args.get('chatId')
+    try:
+        result = db.session.execute(text("SELECT message_id, sender_id, message_content, created_on FROM Messages WHERE chat_id = {}".format(
+            chat_id)))
+    except IntegrityError:
+        return jsonify({}), 400
+    except:
+        return jsonify({}), 500
+    rows = result.fetchall()
+    if (rows):
+        return jsonify(format_result(['message_id', 'sender_id', 'message_content', 'created_on'], rows, True)), 200
+    return jsonify({}), 404
 
 if __name__ == '__main__':
     app.run(debug=True)
