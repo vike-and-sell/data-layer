@@ -10,7 +10,7 @@ SQL_COMMANDS=$(cat <<EOF
 INSERT INTO Users (username, email, password, location, address, joining_date)
 VALUES
 ('john_doe', 'john_doe@uvic.ca', '8b053b0b4813dc1986827113c07d5edc9a206f12244e9432cb0a98419a15ab66',  ll_to_earth(34.052235,118.243683), '100 Fort St, Victoria, BC V8W 1H8', '2024-05-24T02:19:32.816610+00:00'),
-('jane_smith', 'jane_smith@uvic.ca', '05f5d58d4146def0c5fb14f6b8161029d8c1672faf5c6c6f82164df64e2d9ca1',  ll_to_earth(34.052235,-118.243683), '1145 Royal Oak Dr, Victoria, BC V8X 3T7', '2024-06-25T02:19:32.816610+00:00');
+('jane_smith', 'jane_smith@uvic.ca', '2edae18d7da86b00a3aaef6b2090f563c73853eb5b2e28ba1eb915268687718a',  ll_to_earth(34.052235,-118.243683), '1145 Royal Oak Dr, Victoria, BC V8X 3T7', '2024-06-25T02:19:32.816610+00:00');
 
 -- Insert dummy data into Searches table
 INSERT INTO Searches (user_id, search_text, search_date)
