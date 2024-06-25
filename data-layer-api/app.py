@@ -252,5 +252,30 @@ def create_listing():
         return jsonify({'message': 'Something went wrong'}), 500
     return jsonify({}), 200
 
+@app.post('/update_listing')
+def update_listing():
+    listing_id = request.json.get('listing_id')
+    title = request.json.get('title')
+    price = request.json.get('price')
+    status = request.json.get('status')
+    try:
+        if title is not None:
+            db.session.execute(text("UPDATE Listings SET title = '{}' WHERE listing_id = {}".format(
+                title, listing_id)))
+        if price is not None:
+            db.session.execute(text("UPDATE Listings SET price = '{}' WHERE listing_id = {}".format(
+                price, listing_id)))
+        if status is not None:
+            db.session.execute(text("UPDATE Listings SET status = '{}' WHERE listing_id = {}".format(
+                status, listing_id)))
+        db.session.commit()
+    except IntegrityError:
+        db.session.rollback()
+        return jsonify({}), 400
+    except:
+        db.session.rollback()
+        return jsonify({}), 500
+    return jsonify({}), 200
+
 if __name__ == '__main__':
     app.run(debug=True)
