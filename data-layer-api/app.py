@@ -197,6 +197,21 @@ def update_user():
         return jsonify({}), 500
     return jsonify({}), 200
 
+@app.get('/get_chats')
+def get_chats():
+    user_id = request.args.get('userId')
+    try:
+        result = db.session.execute(text("SELECT chat_id, seller, buyer, listing_id FROM Chats WHERE seller = {user_id} OR buyer = {user_id}".format(
+            user_id = user_id)))
+    except IntegrityError:
+        return jsonify({}), 400
+    except:
+        return jsonify({}), 500
+    rows = result.fetchall()
+    if (rows):
+        return jsonify(format_result(['chat_id', 'seller', 'buyer', 'listing_id'], rows)), 200
+    return jsonify({}), 404
+
 
 if __name__ == '__main__':
     app.run(debug=True)
