@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS Users (
 CREATE TABLE IF NOT EXISTS Searches (
     user_id INT NOT NULL REFERENCES Users(user_id),
     search_text TEXT NOT NULL,
-    search_date DATE NOT NULL DEFAULT CURRENT_TIMESTAMP
+    search_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Create Listings table
