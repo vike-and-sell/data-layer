@@ -263,7 +263,7 @@ def update_listing():
             db.session.execute(text("UPDATE Listings SET title = '{}' WHERE listing_id = {}".format(
                 title, listing_id)))
         if price is not None:
-            db.session.execute(text("UPDATE Listings SET price = '{}' WHERE listing_id = {}".format(
+            db.session.execute(text("UPDATE Listings SET price = {} WHERE listing_id = {}".format(
                 price, listing_id)))
         if status is not None:
             db.session.execute(text("UPDATE Listings SET status = '{}' WHERE listing_id = {}".format(
