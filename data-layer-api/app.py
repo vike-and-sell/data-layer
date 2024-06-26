@@ -249,7 +249,7 @@ def get_listing():
         return jsonify({}), 500
     rows = result.fetchall()
     if (rows):
-        return jsonify(format_result(['listingId', 'sellerId', 'title', 'price', 'address', 'status', 'createdOn', 'lastUpdatedAt'], rows)), 200
+        return jsonify(format_result(['listingId', 'sellerId', 'title', 'price', 'address', 'status', 'listedAt', 'lastUpdatedAt'], rows)), 200
     return jsonify({}), 404
 
 @app.get('/get_listing_by_seller')
@@ -281,6 +281,8 @@ def create_listing():
         db.session.execute(text("INSERT INTO Listings (seller_id, title, price, address, location, status) VALUES ({}, '{}', {}, '{}', ll_to_earth({}, {}), '{}')".format(
             seller_id, title, price, address, latitude, longitude, status)))
         db.session.commit()
+        result = db.session.execute(text("SELECT listing_id FROM Listings WHERE seller_id = {} AND title = '{}' AND price = {} AND address = '{}' AND status = '{}'".format(
+            seller_id, title, price, address, status)))
     except IntegrityError as e:
         db.session.rollback()
         if e.orig.pgcode == '23503':
@@ -290,7 +292,9 @@ def create_listing():
     except:
         db.session.rollback()
         return jsonify({'message': 'Something went wrong'}), 500
-    return jsonify({}), 200
+    
+    row = result.fetchall()
+    return jsonify(format_result(['listingId'], row)), 201
 
 @app.post('/update_listing')
 def update_listing():
