@@ -237,6 +237,112 @@ def update_user():
         return jsonify({}), 500
     return jsonify({}), 200
 
+@app.get('/get_listings')
+def get_listings():
+    max_price = request.args.get('maxPrice', 99999999)
+    min_price = request.args.get('minPrice', 0)
+    status = request.args.get('status', 'AVAILABLE')
+    sort_by = request.args.get('sortBy', 'created_on')
+    is_descending = request.args.get('isDescending', False)
+    try:
+        if not is_descending:
+            result = db.session.execute(text(
+                "SELECT listing_id, seller_id, title, price, address, status, created_on, last_updated_at FROM Listings WHERE price < {} AND price > {} AND status = '{}' ORDER BY {}".format(max_price, min_price, status, sort_by)))
+        else:
+            result = db.session.execute(text(
+                "SELECT listing_id, seller_id, title, price, address, status, created_on, last_updated_at FROM Listings WHERE price < {} AND price > {} AND status = '{}' ORDER BY {} DESC".format(max_price, min_price, status, sort_by)))
+    except IntegrityError:
+        return jsonify({}), 400
+    except:
+        return jsonify({}), 500
+    rows = result.fetchall()
+    if (rows):
+        return jsonify(format_result(['listingId', 'sellerId', 'title', 'price', 'address', 'status', 'listedAt', 'lastUpdatedAt'], rows, True)), 200
+    return jsonify({}), 404
+
+@app.get('/get_listing')
+def get_listing():
+    listing_id = request.args.get('listingId')
+    try:
+        result = db.session.execute(text(
+            "SELECT listing_id, seller_id, title, price, address, status, created_on, last_updated_at FROM Listings WHERE listing_id = {}".format(listing_id)))
+    except IntegrityError:
+        return jsonify({}), 400
+    except:
+        return jsonify({}), 500
+    rows = result.fetchall()
+    if (rows):
+        return jsonify(format_result(['listingId', 'sellerId', 'title', 'price', 'address', 'status', 'listedAt', 'lastUpdatedAt'], rows)), 200
+    return jsonify({}), 404
+
+@app.get('/get_listing_by_seller')
+def get_listing_by_seller():
+    user_id = request.args.get('userId')
+    try:
+        result = db.session.execute(text(
+            "SELECT listing_id, seller_id, title, price, address, status, created_on, last_updated_at FROM Listings WHERE seller_id = {}".format(user_id)))
+    except IntegrityError:
+        return jsonify({}), 400
+    except:
+        return jsonify({}), 500
+    rows = result.fetchall()
+    if (rows):
+        return jsonify(format_result(['listingId', 'sellerId', 'title', 'price', 'address', 'status', 'createdOn', 'lastUpdatedAt'], rows)), 200
+    return jsonify({}), 404
+
+@app.post('/create_listing')
+def create_listing():
+    seller_id = request.json.get('sellerId')
+    title = request.json.get('title')
+    price = request.json.get('price')
+    address = request.json.get('address')
+    status = request.json.get('status')
+    latitude = request.json.get('latitude')
+    longitude = request.json.get('longitude')
+
+    try:
+        db.session.execute(text("INSERT INTO Listings (seller_id, title, price, address, location, status) VALUES ({}, '{}', {}, '{}', ll_to_earth({}, {}), '{}')".format(
+            seller_id, title, price, address, latitude, longitude, status)))
+        db.session.commit()
+        result = db.session.execute(text("SELECT listing_id FROM Listings WHERE seller_id = {} AND title = '{}' AND price = {} AND address = '{}' AND status = '{}'".format(
+            seller_id, title, price, address, status)))
+    except IntegrityError as e:
+        db.session.rollback()
+        if e.orig.pgcode == '23503':
+            return jsonify({'message': 'Listing not found'}), 404
+        else:
+            return jsonify({}), 400
+    except:
+        db.session.rollback()
+        return jsonify({'message': 'Something went wrong'}), 500
+    
+    row = result.fetchall()
+    return jsonify(format_result(['listingId'], row)), 201
+
+@app.post('/update_listing')
+def update_listing():
+    listing_id = request.json.get('listing_id')
+    title = request.json.get('title')
+    price = request.json.get('price')
+    status = request.json.get('status')
+    try:
+        if title is not None:
+            db.session.execute(text("UPDATE Listings SET title = '{}' WHERE listing_id = {}".format(
+                title, listing_id)))
+        if price is not None:
+            db.session.execute(text("UPDATE Listings SET price = {} WHERE listing_id = {}".format(
+                price, listing_id)))
+        if status is not None:
+            db.session.execute(text("UPDATE Listings SET status = '{}' WHERE listing_id = {}".format(
+                status, listing_id)))
+        db.session.commit()
+    except IntegrityError:
+        db.session.rollback()
+        return jsonify({}), 400
+    except:
+        db.session.rollback()
+        return jsonify({}), 500
+    return jsonify({}), 200
 
 @app.get('/get_all_users')
 def get_all_users():
