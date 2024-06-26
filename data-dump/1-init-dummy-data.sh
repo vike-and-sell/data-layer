@@ -23,8 +23,10 @@ VALUES
 -- Insert dummy data into Listings table
 INSERT INTO Listings (seller_id, title, price, location, address, status)
 VALUES
+
 (1, 'Bicycle for sale', 150.00, ll_to_earth(40.730610,-73.935242), '1145 Royal Oak Dr, Victoria, BC V8X 3T7', 'AVAILABLE'),
 (2, 'Laptop for sale', 800.00, ll_to_earth(34.052235,-118.243683), '100 Fort St, Victoria, BC V8W 1H8', 'AVAILABLE');
+
 
 -- Insert dummy data into Chats table
 INSERT INTO Chats (seller, buyer, listing_id)
