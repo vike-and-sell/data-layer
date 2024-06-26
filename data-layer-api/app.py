@@ -237,6 +237,29 @@ def update_user():
         return jsonify({}), 500
     return jsonify({}), 200
 
+@app.get('/get_listings')
+def get_listings():
+    max_price = request.args.get('maxPrice', 99999999)
+    min_price = request.args.get('minPrice', 0)
+    status = request.args.get('status', 'AVAILABLE')
+    sort_by = request.args.get('sortBy', 'created_on')
+    is_descending = request.args.get('isDescending', False)
+    try:
+        if not is_descending:
+            result = db.session.execute(text(
+                "SELECT listing_id, seller_id, title, price, address, status, created_on, last_updated_at FROM Listings WHERE price < {} AND price > {} AND status = '{}' ORDER BY {}".format(max_price, min_price, status, sort_by)))
+        else:
+            result = db.session.execute(text(
+                "SELECT listing_id, seller_id, title, price, address, status, created_on, last_updated_at FROM Listings WHERE price < {} AND price > {} AND status = '{}' ORDER BY {} DESC".format(max_price, min_price, status, sort_by)))
+    except IntegrityError:
+        return jsonify({}), 400
+    except:
+        return jsonify({}), 500
+    rows = result.fetchall()
+    if (rows):
+        return jsonify(format_result(['listingId', 'sellerId', 'title', 'price', 'address', 'status', 'listedAt', 'lastUpdatedAt'], rows, True)), 200
+    return jsonify({}), 404
+
 @app.get('/get_listing')
 def get_listing():
     listing_id = request.args.get('listingId')
