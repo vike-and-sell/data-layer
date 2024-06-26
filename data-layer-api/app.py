@@ -321,7 +321,7 @@ def create_listing():
 
 @app.post('/update_listing')
 def update_listing():
-    listing_id = request.json.get('listing_id')
+    listing_id = request.json.get('listingId')
     title = request.json.get('title')
     price = request.json.get('price')
     status = request.json.get('status')
