@@ -475,6 +475,36 @@ def create_message():
         return jsonify({'message': 'Something went wrong'}), 500
     return jsonify({}), 200
 
+@app.post('/create_chat')
+def create_chat():
+    listing_id = request.json.get('listingId')
+    seller_id = request.json.get('sellerId')
+    buyer_id = request.json.get('buyerId')
+    if seller_id == buyer_id:
+        return jsonify({'message': 'Cannot create a chat with yourself'}), 400
+
+    try:
+        result = db.session.execute(text("SELECT * from Chats WHERE listing_id = {} AND seller = {} AND buyer = {}".format(listing_id, seller_id, buyer_id)))
+        rows = result.fetchall()
+        if rows:
+            return jsonify({'message': 'Chat already exists'}), 400
+        db.session.execute(text("INSERT INTO Chats (listing_id, seller, buyer) VALUES ({}, {}, '{}')".format(
+            listing_id, seller_id, buyer_id)))
+        db.session.commit()
+        result = db.session.execute(text("SELECT chat_id from Chats WHERE listing_id = {} AND seller = {} AND buyer = {}".format(listing_id, seller_id, buyer_id)))
+        rows = result.fetchall()
+    except IntegrityError as e:
+        db.session.rollback()
+        if e.orig.pgcode == '23503':
+            return jsonify({'message': 'Listing not found'}), 404
+        else:
+            return jsonify({}), 400
+    except:
+        db.session.rollback()
+        return jsonify({'message': 'Something went wrong'}), 500
+    if rows:
+        return jsonify(format_result(['chatId'], rows)), 200
+    return jsonify({'message': 'Something went wrong'}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
