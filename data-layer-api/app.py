@@ -124,8 +124,8 @@ def update_user_password():
 
 @app.post('/create_rating')
 def create_rating():
-    listing_id = request.json.get('listing_id')
-    user_id = request.json.get('user_id')
+    listing_id = request.json.get('listingId')
+    user_id = request.json.get('userId')
     rating_value = request.json.get('rating')
 
     try:
@@ -162,8 +162,8 @@ def get_ratings():
 
 @app.post('/create_review')
 def create_review():
-    listing_id = request.json.get('listing_id')
-    user_id = request.json.get('user_id')
+    listing_id = request.json.get('listingId')
+    user_id = request.json.get('userId')
     review_content = request.json.get('review')
 
     try:
