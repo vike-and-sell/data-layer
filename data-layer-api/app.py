@@ -151,13 +151,13 @@ def get_ratings():
         return jsonify({}), 400
     try:
         result = db.session.execute(text(
-            "SELECT username, rating_value FROM Listing_Ratings JOIN Users on Listing_Ratings.rating_user_id = Users.user_id WHERE rated_listing_id = {}".format(listing_id)))
+            "SELECT username, rating_value, created_on FROM Listing_Ratings JOIN Users on Listing_Ratings.rating_user_id = Users.user_id WHERE rated_listing_id = {}".format(listing_id)))
     except IntegrityError:
         return jsonify({}), 400
     except:
         return jsonify({}), 500
     rows = result.fetchall()
-    return jsonify(format_result(['username', 'rating'], rows)), 200
+    return jsonify(format_result(['username', 'rating', 'created_on'], rows, True)), 200
 
 
 @app.post('/create_review')
@@ -189,13 +189,13 @@ def get_reviews():
         return jsonify({}), 400
     try:
         result = db.session.execute(text(
-            "SELECT username, review_content FROM Listing_Reviews JOIN Users on Listing_Reviews.review_user_id = Users.user_id WHERE reviewed_listing_id = {}".format(listing_id)))
+            "SELECT username, review_content, created_on FROM Listing_Reviews JOIN Users on Listing_Reviews.review_user_id = Users.user_id WHERE reviewed_listing_id = {}".format(listing_id)))
     except IntegrityError:
         return jsonify({}), 400
     except:
         return jsonify({}), 500
     rows = result.fetchall()
-    return jsonify(format_result(['username', 'review'], rows)), 200
+    return jsonify(format_result(['username', 'review', 'created_on'], rows, True)), 200
 
 
 @app.get('/get_user')
