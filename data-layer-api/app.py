@@ -1,10 +1,8 @@
 from flask import Flask, request, jsonify, Response
 import os
 from utils import format_result
-from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import text
 from sqlalchemy.exc import IntegrityError
-from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 
 app = Flask(__name__)
@@ -31,10 +29,6 @@ app.config['SQLALCHEMY_BINDS'] = {
 engine_w = create_engine(app.config['SQLALCHEMY_DATABASE_URI'])
 engine_r = create_engine(app.config['SQLALCHEMY_BINDS']['read_replica'])
 
-# # Create Session factories
-# SessionWrite = sessionmaker(bind=engine_w)
-# SessionRead = sessionmaker(bind=engine_r)
-
 app.config['DEBUG'] = True
 
 ENCRYPTION_KEY = os.environ['ENCRYPTION_KEY']
@@ -55,13 +49,14 @@ def welcome():
 
 @app.route('/dump_users', methods=['GET'])
 def dump_users():
-    try:
-        result = db.session.execute(text("SELECT * FROM Users"))
-        db.session.commit()
-        row = result.fetchall()
-        return Response(str(row), status=200)
-    except:
-        return Response(status=500)
+    with engine_r.connect() as connection:
+        try:
+            result = connection.execute(text("SELECT * FROM Users"))
+            connection.commit()
+            row = result.fetchall()
+            return Response(str(row), status=200)
+        except:
+            return Response(status=500)
 
 
 @app.post('/make_user')
