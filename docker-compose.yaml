@@ -13,6 +13,7 @@ services:
       RDS_USERNAME: ${POSTGRES_USER}
       RDS_PASSWORD: ${POSTGRES_PASSWORD}
       RDS_HOSTNAME: v_s_db
+      RDS_HOSTNAME-REPLICA: v_s_db #this is used to simulate a replicated db
       RDS_PORT: 5432
       RDS_DB_NAME: ${POSTGRES_DB}
       ENCRYPTION_KEY: ${ENCRYPTION_KEY}
@@ -20,6 +21,8 @@ services:
     depends_on:
       v_s_db:
         condition: service_healthy
+      # v_s_db_read:
+      #   condition: service_healthy
     
 
   # define the db service
