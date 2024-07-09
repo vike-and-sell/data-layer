@@ -72,8 +72,10 @@ def make_user():
 
     with engine_w.connect() as connection:
         try:
-            result = connection.execute(text("INSERT INTO Users (username, email, password, location, address, joining_date) VALUES ('{}', '{}', '{}', ll_to_earth({},{}), '{}', '{}') RETURNING user_id".format(
-                username, email, password, lat, lng, address, join_date)))
+            result = connection.execute(text(
+                "INSERT INTO Users (username, email, password, location, address, joining_date) VALUES (:usrname, :e_mail, :passwd, ll_to_earth(:lat, :lng), :addr, :joinDate) RETURNING user_id"),
+                {"usrname": username, "e_mail": email, "passwd": password, "lat": lat, "lng": lng, "addr":address, "joinDate": join_date}
+            )
             connection.commit()
             row = result.fetchone()
             if row:
@@ -91,8 +93,7 @@ def make_user():
 def get_user_for_login():
     username = request.args.get('usr')
     try:
-        result = engine_r.connect().execute(text("SELECT user_id, password FROM Users WHERE username = '{}'".format(
-            username)))
+        result = engine_r.connect().execute(text("SELECT user_id, password FROM Users WHERE username = :usrname"), {"usrname": username})
     except IntegrityError:
         return jsonify({}), 400
     except:
@@ -108,8 +109,7 @@ def get_user_by_email():
     email = request.args.get('eml')
     with engine_r.connect() as connection:
         try:
-            result = connection.execute(
-                text("SELECT user_id, username FROM Users WHERE email = '{}'".format(email)))
+            result = connection.execute(text("SELECT user_id, username FROM Users WHERE email = :e_mail"), {"e_mail": email})
             connection.commit()
             row = result.fetchone()
             print(row)
@@ -128,8 +128,7 @@ def update_user_password():
 
     with engine_w.connect() as connection:
         try:
-            connection.execute(text(
-                "UPDATE Users SET password = '{}' WHERE user_id = '{}'".format(password, user_id)))
+            connection.execute(text("UPDATE Users SET password = :passwd WHERE user_id = :uID"), {"passwd": password, "uID": user_id})
             connection.commit()
             return jsonify({}), 200
         except Exception as e:
@@ -146,8 +145,10 @@ def create_rating():
 
     with engine_w.connect() as connection:
         try:
-            connection.execute(text("INSERT INTO Listing_Ratings (rated_listing_id, rating_user_id, rating_value) VALUES ({}, {}, {})".format(
-                listing_id, user_id, rating_value)))
+            connection.execute(
+                text("INSERT INTO Listing_Ratings (rated_listing_id, rating_user_id, rating_value) VALUES (:listing_id, :usr_id, :value)"),
+                {"listing_id": listing_id, "usr_id": user_id, "value": rating_value}
+            )
             connection.commit()
         except IntegrityError as e:
             connection.rollback()
@@ -168,8 +169,10 @@ def get_ratings():
         return jsonify({}), 400
         
     try:
-        result = engine_r.connect().session.execute(text(
-            "SELECT username, rating_value, created_on FROM Listing_Ratings JOIN Users on Listing_Ratings.rating_user_id = Users.user_id WHERE rated_listing_id = {}".format(listing_id)))
+        result = engine_r.connect().execute(
+            text("SELECT username, rating_value, created_on FROM Listing_Ratings JOIN Users on Listing_Ratings.rating_user_id = Users.user_id WHERE rated_listing_id = :listing_id"),
+            {"listing_id": listing_id}
+        )
     except IntegrityError:
         return jsonify({}), 400
     except:
@@ -186,8 +189,10 @@ def create_review():
 
     with engine_w.connect() as connection:
         try:
-            connection.execute(text("INSERT INTO Listing_Reviews (reviewed_listing_id, review_user_id, review_content) VALUES ({}, {}, '{}')".format(
-                listing_id, user_id, review_content)))
+            connection.execute(
+                text("INSERT INTO Listing_Reviews (reviewed_listing_id, review_user_id, review_content) VALUES (:listing_id, :usr_id, :content)"),
+                {"listing_id": listing_id, "usr_id": user_id, "content": review_content}
+            )
             connection.commit()
         except IntegrityError as e:
             connection.rollback()
@@ -207,8 +212,10 @@ def get_reviews():
     if not listing_id:
         return jsonify({}), 400
     try:
-        result = engine_r.connect().execute(text(
-            "SELECT username, review_content, created_on FROM Listing_Reviews JOIN Users on Listing_Reviews.review_user_id = Users.user_id WHERE reviewed_listing_id = {}".format(listing_id)))
+        result = engine_r.connect().execute(
+            text("SELECT username, review_content, created_on FROM Listing_Reviews JOIN Users on Listing_Reviews.review_user_id = Users.user_id WHERE reviewed_listing_id = :listing_id"), 
+            {"listing_id": listing_id}
+        )
     except IntegrityError:
         return jsonify({}), 400
     except:
@@ -221,8 +228,7 @@ def get_reviews():
 def get_user():
     user_id = request.args.get('userId')
     try:
-        result = engine_r.connect().execute(text(
-            "SELECT username, address, joining_date, items_sold, items_purchased FROM Users WHERE user_id = {}".format(user_id)))
+        result = engine_r.connect().execute(text("SELECT username, address, joining_date, items_sold, items_purchased FROM Users WHERE user_id = :usr_id"), {"usr_id": user_id})
     except IntegrityError:
         return jsonify({}), 400
     except:
@@ -247,8 +253,10 @@ def update_user():
 
     with engine_w.connect() as connection:
         try:
-            connection.execute(text("UPDATE Users SET address = '{}', location = ll_to_earth({}, {}) WHERE user_id = {}".format(
-                address, location["lat"], location["lng"], user_id)))
+            connection.execute(
+                text("UPDATE Users SET address = :addr, location = ll_to_earth(:lat, :lng) WHERE user_id = :usr_id"),
+                {"addr": address, "lat": location["lat"], "lng": location["lng"], "usr_id": user_id}
+            )
             connection.commit()
         except IntegrityError:
             connection.rollback()
@@ -269,11 +277,15 @@ def get_listings():
     with engine_r.connect() as connection:
         try:
             if not is_descending:
-                result = connection.execute(text(
-                    "SELECT listing_id, seller_id, title, price, address, status, created_on, last_updated_at FROM Listings WHERE price < {} AND price > {} AND status = '{}' ORDER BY {}".format(max_price, min_price, status, sort_by)))
+                result = connection.execute(
+                    text("SELECT listing_id, seller_id, title, price, address, status, created_on, last_updated_at FROM Listings WHERE price < :max_price AND price > :min_price AND status = :l_status ORDER BY :srt_by"),
+                    {"max_price": max_price, "min_price": min_price, "l_status": status, "srt_by": sort_by}
+                )
             else:
-                result = connection.execute(text(
-                    "SELECT listing_id, seller_id, title, price, address, status, created_on, last_updated_at FROM Listings WHERE price < {} AND price > {} AND status = '{}' ORDER BY {} DESC".format(max_price, min_price, status, sort_by)))
+                result = connection.execute(
+                    text("SELECT listing_id, seller_id, title, price, address, status, created_on, last_updated_at FROM Listings WHERE price < :max_price AND price > :min_price AND status = :l_status ORDER BY :srt_by DESC"),
+                    {"max_price": max_price, "min_price": min_price, "l_status": status, "srt_by": sort_by}
+                )
         except IntegrityError:
             return jsonify({}), 400
         except:
@@ -287,8 +299,7 @@ def get_listings():
 def get_listing():
     listing_id = request.args.get('listingId')
     try:
-        result = engine_r.connect().execute(text(
-            "SELECT listing_id, seller_id, title, price, address, status, created_on, last_updated_at FROM Listings WHERE listing_id = {}".format(listing_id)))
+        result = engine_r.connect().execute(text("SELECT listing_id, seller_id, title, price, address, status, created_on, last_updated_at FROM Listings WHERE listing_id = :l_id"), {"l_id":listing_id})
     except IntegrityError:
         return jsonify({}), 400
     except:
@@ -302,8 +313,7 @@ def get_listing():
 def get_listing_by_seller():
     user_id = request.args.get('userId')
     try:
-        result = engine_r.connect().execute(text(
-            "SELECT listing_id, seller_id, title, price, address, status, created_on, last_updated_at FROM Listings WHERE seller_id = {}".format(user_id)))
+        result = engine_r.connect().execute(text("SELECT listing_id, seller_id, title, price, address, status, created_on, last_updated_at FROM Listings WHERE seller_id = :usr_id"), {"usr_id": user_id})
     except IntegrityError:
         return jsonify({}), 400
     except:
@@ -325,11 +335,14 @@ def create_listing():
 
     with engine_w.connect() as connection:
         try:
-            connection.execute(text("INSERT INTO Listings (seller_id, title, price, address, location, status) VALUES ({}, '{}', {}, '{}', ll_to_earth({}, {}), '{}')".format(
-                seller_id, title, price, address, latitude, longitude, status)))
+            connection.execute(
+                text("INSERT INTO Listings (seller_id, title, price, address, location, status) VALUES (:sllr_id, :l_title, :l_price, :addr, ll_to_earth(:lat, :lng), :l_status)"),
+                {"sllr_id": seller_id, "l_title": title, "l_price": price, "addr": address, "lat": latitude, "lng": longitude, "l_status": status}
+                )
             connection.commit()
-            result = connection.execute(text("SELECT listing_id FROM Listings WHERE seller_id = {} AND title = '{}' AND price = {} AND address = '{}' AND status = '{}'".format(
-                seller_id, title, price, address, status)))
+            result = connection.execute(
+                text("SELECT listing_id FROM Listings WHERE seller_id = :sllr_id AND title = :l_title AND price = :l_price AND address = :addr AND status = :l_status"),
+                {"sllr_id": seller_id, "l_title": title, "l_price": price, "addr": address, "l_status": status})
         except IntegrityError as e:
             connection.rollback()
             if e.orig.pgcode == '23503':
@@ -353,14 +366,11 @@ def update_listing():
     with engine_w.connect() as connection:
         try:
             if title is not None:
-                connection.execute(text("UPDATE Listings SET title = '{}' WHERE listing_id = {}".format(
-                    title, listing_id)))
+                connection.execute(text("UPDATE Listings SET title = :l_title WHERE listing_id = :l_id"), {"l_title": title, "l_id": listing_id})
             if price is not None:
-                connection.execute(text("UPDATE Listings SET price = {} WHERE listing_id = {}".format(
-                    price, listing_id)))
+                connection.execute(text("UPDATE Listings SET price = :l_price WHERE listing_id = :l_id"), {"l_price": price, "l_id": listing_id})
             if status is not None:
-                connection.execute(text("UPDATE Listings SET status = '{}' WHERE listing_id = {}".format(
-                    status, listing_id)))
+                connection.execute(text("UPDATE Listings SET status = :l_status WHERE listing_id = :l_id"), {"l_status": status, "l_id": listing_id})
             connection.commit()
         except IntegrityError:
             connection.rollback()
@@ -373,8 +383,7 @@ def update_listing():
 @app.get('/get_all_users')
 def get_all_users():
     try:
-        result = engine_r.connect().execute(text(
-            "SELECT username, address, joining_date, items_sold, items_purchased FROM Users"))
+        result = engine_r.connect().execute(text("SELECT username, address, joining_date, items_sold, items_purchased FROM Users"))
     except IntegrityError:
         return jsonify({}), 400
     except:
@@ -388,8 +397,7 @@ def get_all_users():
 @app.get('/get_all_listings')
 def get_all_listings():
     try:
-        result = engine_r.connect().execute(text(
-            "SELECT listing_id, seller_id, title, price, location, address, status, created_on FROM Listings"))
+        result = engine_r.connect().execute(text("SELECT listing_id, seller_id, title, price, location, address, status, created_on FROM Listings"))
     except IntegrityError:
         return jsonify({}), 400
     except:
@@ -404,8 +412,7 @@ def get_all_listings():
 def get_chats():
     user_id = request.args.get('userId')
     try:
-        result = engine_r.connect().execute(text("SELECT chat_id FROM Chats WHERE seller = {user_id} OR buyer = {user_id}".format(
-            user_id=user_id)))
+        result = engine_r.connect().execute(text("SELECT chat_id FROM Chats WHERE seller = :usr_id OR buyer = :usr_id"), {"usr_id": user_id})
     except IntegrityError:
         return jsonify({}), 400
     except:
@@ -420,8 +427,7 @@ def get_chats():
 def get_search_history():
     user_id = request.args.get('userId')
     try:
-        result = engine_r.connect().execute(text(
-            "SELECT search_text, search_date FROM Searches WHERE user_id = {}".format(user_id)))
+        result = engine_r.connect().execute(text("SELECT search_text, search_date FROM Searches WHERE user_id = :usr_id"), {"usr_id": user_id})
     except IntegrityError:
         return jsonify({}), 400
     except:
@@ -436,8 +442,7 @@ def get_search_history():
 def get_chat_info():
     chat_id = request.args.get('chatId')
     try:
-        result = engine_r.connect().execute(text("SELECT chat_id, seller, buyer, listing_id FROM Chats WHERE chat_id = {}".format(
-            chat_id)))
+        result = engine_r.connect().execute(text("SELECT chat_id, seller, buyer, listing_id FROM Chats WHERE chat_id = :c_id"), {"c_id": chat_id})
     except IntegrityError:
         return jsonify({}), 400
     except:
@@ -452,8 +457,7 @@ def get_chat_info():
 def get_messages():
     chat_id = request.args.get('chatId')
     try:
-        result = engine_r.connect().execute(text("SELECT message_id, sender_id, message_content, created_on FROM Messages WHERE chat_id = {}".format(
-            chat_id)))
+        result = engine_r.connect().execute(text("SELECT message_id, sender_id, message_content, created_on FROM Messages WHERE chat_id = :c_id"), {"c_id": chat_id})
     except IntegrityError:
         return jsonify({}), 400
     except:
@@ -468,8 +472,7 @@ def get_messages():
 def get_last_message_timestamp():
     chat_id = request.args.get('chatId')
     try:
-        result = engine_r.connect().execute(text("SELECT created_on FROM Messages WHERE chat_id = {} ORDER BY created_on DESC LIMIT 1".format(
-            chat_id)))
+        result = engine_r.connect().execute(text("SELECT created_on FROM Messages WHERE chat_id = :c_id ORDER BY created_on DESC LIMIT 1"), {"c_id": chat_id})
     except IntegrityError:
         return jsonify({}), 400
     except:
@@ -488,8 +491,7 @@ def create_message():
 
     with engine_w.connect() as connection:
         try:
-            connection.execute(text("INSERT INTO Messages (chat_id, sender_id, message_content) VALUES ({}, {}, '{}')".format(
-                chat_id, sender_id, message_content)))
+            connection.execute(text("INSERT INTO Messages (chat_id, sender_id, message_content) VALUES (:c_id, :s_id, :content)"), {"c_id": chat_id, "s_id": sender_id, "content": message_content})
             connection.commit()
         except IntegrityError as e:
             connection.rollback()
@@ -512,14 +514,13 @@ def create_chat():
 
     with engine_w.connect() as connection:
         try:
-            result = connection.execute(text("SELECT * from Chats WHERE listing_id = {} AND seller = {} AND buyer = {}".format(listing_id, seller_id, buyer_id)))
+            result = connection.execute(text("SELECT * from Chats WHERE listing_id = :l_id AND seller = :s_id AND buyer = :b_id"), {"l_id": listing_id, "s_id": seller_id, "b_id": buyer_id})
             rows = result.fetchall()
             if rows:
                 return jsonify({'message': 'Chat already exists'}), 400
-            connection.execute(text("INSERT INTO Chats (listing_id, seller, buyer) VALUES ({}, {}, '{}')".format(
-                listing_id, seller_id, buyer_id)))
+            connection.execute(text("INSERT INTO Chats (listing_id, seller, buyer) VALUES (:l_id, :s_id, :b_id)"), {"l_id": listing_id, "s_id": seller_id, "b_id": buyer_id})
             connection.commit()
-            result = connection.execute(text("SELECT chat_id from Chats WHERE listing_id = {} AND seller = {} AND buyer = {}".format(listing_id, seller_id, buyer_id)))
+            result = connection.execute(text("SELECT chat_id from Chats WHERE listing_id = :l_id AND seller = :s_id AND buyer = :b_id"), {"l_id": listing_id, "s_id": seller_id, "b_id": buyer_id})
             rows = result.fetchall()
         except IntegrityError as e:
             connection.rollback()
