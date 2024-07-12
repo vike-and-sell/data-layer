@@ -4,6 +4,7 @@ from utils import format_result
 from sqlalchemy import text
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy import create_engine
+import redis
 
 app = Flask(__name__)
 
@@ -33,7 +34,7 @@ app.config['DEBUG'] = True
 
 ENCRYPTION_KEY = os.environ['ENCRYPTION_KEY']
 API_KEY = os.environ['API_KEY']
-
+r_client = redis.Redis(host=os.environ['REDIS_URL'], port=['REDIS_PORT'])
 
 @app.before_request
 def check_api_key():
@@ -49,26 +50,40 @@ def welcome():
 
 @app.route('/dump_users', methods=['GET'])
 def dump_users():
-    with engine_r.connect() as connection:
-        try:
-            result = connection.execute(text("SELECT * FROM Users"))
-            connection.commit()
-            row = result.fetchall()
-            return Response(str(row), status=200)
-        except:
-            return Response(status=500)
+    query = "SELECT * FROM Users"
+    try:
+        result = r_client.get(query)
+        if not result is None:
+            return Response(result, status=200)
+    finally:  
+        with engine_r.connect() as connection:
+            try:
+                result = connection.execute(text(query))
+                connection.commit()
+                row = result.fetchall()
+                r_client.set(query, str(row), ex=3600)
+                return Response(str(row), status=200)
+            except:
+                return Response(status=500)
 
 
 @app.route('/dump_listings', methods=['GET'])
 def dump_listings():
-    with engine_r.connect() as connection:
-        try:
-            result = connection.execute(text("SELECT * FROM Listings"))
-            connection.commit()
-            row = result.fetchall()
-            return Response(str(row), status=200)
-        except:
-            return Response(status=500)
+    query = "SELECT * FROM Listings"
+    try:
+        result = r_client.get(query)
+        if not result is None:
+            return Response(result, status=200)
+    finally:
+        with engine_r.connect() as connection:
+            try:
+                result = connection.execute(text(query))
+                connection.commit()
+                row = result.fetchall()
+                r_client.set(query, str(row), ex=3600)
+                return Response(str(row), status=200)
+            except:
+                return Response(status=500)
 
 
 @app.post('/make_user')
@@ -460,7 +475,6 @@ def update_listing():
 
 @app.get('/get_all_users')
 def get_all_users():
-
     with engine_r.connect() as connection:
         try:
             result = connection.execute(text(
@@ -640,14 +654,21 @@ def create_chat():
 
 @app.route('/dump_ignores', methods=['GET'])
 def dump_ignores():
-    with engine_r.connect() as connection:
-        try:
-            result = connection.execute(text("SELECT * FROM Ignored"))
-            connection.commit()
-            row = result.fetchall()
-            return Response(str(row), status=200)
-        except:
-            return Response(status=500)
+    query = "SELECT * FROM Ignored"
+    try:
+        result = r_client.get(query)
+        if not result is None:
+            return Response(result, status=200)
+    finally:
+        with engine_r.connect() as connection:
+            try:
+                result = connection.execute(text(query))
+                connection.commit()
+                row = result.fetchall()
+                r_client.set(query, str(row), ex=3600)
+                return Response(str(row), status=200)
+            except:
+                return Response(status=500)
 
 
 @app.post('/ignore_listing')
