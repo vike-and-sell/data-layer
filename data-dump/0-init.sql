@@ -11,16 +11,30 @@ CREATE TABLE IF NOT EXISTS Users (
     password TEXT NOT NULL,
     location EARTH NOT NULL,
     address TEXT NOT NULL,
-    joining_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    items_sold INT[] NOT NULL DEFAULT '{}',
-    items_purchased INT[] NOT NULL DEFAULT '{}'
+    joining_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
--- Create Users table
+CREATE INDEX IF NOT EXISTS UsersUserIdIndex ON Users (
+    user_id
+);
+
+CREATE INDEX IF NOT EXISTS UsersUsernameIndex ON Users (
+    username
+);
+
+CREATE INDEX IF NOT EXISTS UsersEmailIndex ON Users (
+    email
+);
+
+-- Create Searches table
 CREATE TABLE IF NOT EXISTS Searches (
     user_id INT NOT NULL REFERENCES Users(user_id),
     search_text TEXT NOT NULL,
     search_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX IF NOT EXISTS SearchesUserIdIndex ON Searches (
+    user_id
 );
 
 -- Create Listings table
@@ -36,12 +50,51 @@ CREATE TABLE IF NOT EXISTS Listings (
     last_updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE INDEX IF NOT EXISTS ListingsListingIdIndex ON Listings (
+    listing_id
+);
+
+CREATE INDEX IF NOT EXISTS ListingsSellerIdIndex ON Listings (
+    seller_id
+);
+
+-- Create Ignores table
+CREATE TABLE IF NOT EXISTS Ignored (
+    user_id INT NOT NULL REFERENCES Users(user_id),
+    listing_id INT NOT NULL REFERENCES Listings(listing_id),
+    UNIQUE (user_id, listing_id)
+);
+
+CREATE INDEX IF NOT EXISTS IgnoredUserIdIndex ON Ignored (
+    user_id
+);
+
+-- Create Sales table
+CREATE TABLE IF NOT EXISTS Sales (
+    listing_id INT NOT NULL REFERENCES Listings(listing_id),
+    buyer_id INT NOT NULL REFERENCES Users(user_id),
+    sale_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX IF NOT EXISTS SalesListingIdIndex ON Sales (
+    listing_id
+);
+
+CREATE INDEX IF NOT EXISTS SalesBuyerIdIndex ON Sales (
+    buyer_id
+);
+
 -- Create Chats table
 CREATE TABLE IF NOT EXISTS Chats (
     chat_id SERIAL PRIMARY KEY,
     seller INT NOT NULL REFERENCES Users(user_id),
     buyer INT NOT NULL REFERENCES Users(user_id),
     listing_id INT NOT NULL REFERENCES Listings(listing_id)
+);
+
+CREATE INDEX IF NOT EXISTS SellerBuyerIdIndex ON Chats (
+    seller,
+    buyer
 );
 
 -- Create Messages table
@@ -53,6 +106,10 @@ CREATE TABLE IF NOT EXISTS Messages (
     created_on TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE INDEX IF NOT EXISTS ChatIdIndex ON Messages (
+    chat_id
+);
+
 -- Create Listing Ratings table
 CREATE TABLE IF NOT EXISTS Listing_Ratings (
     listing_rating_id SERIAL PRIMARY KEY,
@@ -62,6 +119,10 @@ CREATE TABLE IF NOT EXISTS Listing_Ratings (
     created_on TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE INDEX IF NOT EXISTS RatingsListingIdIndex ON Listing_Ratings (
+    rated_listing_id
+);
+
 -- Create Listing Reviews table
 CREATE TABLE IF NOT EXISTS Listing_Reviews (
     listing_review_id SERIAL PRIMARY KEY,
@@ -69,4 +130,8 @@ CREATE TABLE IF NOT EXISTS Listing_Reviews (
     review_user_id INT NOT NULL REFERENCES Users(user_id),
     review_content TEXT NOT NULL,
     created_on TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX IF NOT EXISTS ReviewsListingIdIndex ON Listing_Reviews (
+    reviewed_listing_id
 );

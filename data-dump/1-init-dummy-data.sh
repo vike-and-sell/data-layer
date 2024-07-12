@@ -23,8 +23,10 @@ VALUES
 -- Insert dummy data into Listings table
 INSERT INTO Listings (seller_id, title, price, location, address, status)
 VALUES
-
-(1, 'Bicycle for sale', 150.00, ll_to_earth(40.730610,-73.935242), '1145 Royal Oak Dr, Victoria, BC V8X 3T7', 'AVAILABLE'),
+(1, 'Bicycle for sale', 200.00, ll_to_earth(40.730610,-73.935242), '1145 Royal Oak Dr, Victoria, BC V8X 3T7', 'AVAILABLE'),
+(1, 'Volkswagen Jetta', 7000.00, ll_to_earth(40.730610,-73.935242), '1145 Royal Oak Dr, Victoria, BC V8X 3T7', 'AVAILABLE'),
+(1, 'Math 100 Textbook', 50.00, ll_to_earth(40.730610,-73.935242), '1145 Royal Oak Dr, Victoria, BC V8X 3T7', 'AVAILABLE'),
+(1, 'Doohickey', 100000.00, ll_to_earth(40.730610,-73.935242), '1145 Royal Oak Dr, Victoria, BC V8X 3T7', 'AVAILABLE'),
 (2, 'Laptop for sale', 800.00, ll_to_earth(34.052235,-118.243683), '100 Fort St, Victoria, BC V8W 1H8', 'AVAILABLE');
 
 
@@ -51,6 +53,13 @@ INSERT INTO Listing_Reviews (reviewed_listing_id, review_user_id, review_content
 VALUES
 (1, 2, 'The bicycle was in excellent condition, very happy with the purchase!', '2024-06-25T02:21:24.104635+00:00'),
 (2, 1, 'The laptop works perfectly, very satisfied!', '2024-06-25T02:21:38.067998+00:00');
+
+
+INSERT INTO Sales (listing_id, buyer_id)
+VALUES
+(2, 2),
+(3, 2),
+(4, 2);
 EOF
 )
 
