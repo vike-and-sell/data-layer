@@ -9,8 +9,8 @@ SQL_COMMANDS=$(cat <<EOF
 -- Insert dummy data into Users table
 INSERT INTO Users (username, email, password, location, address, joining_date)
 VALUES
-('john_doe', 'john_doe@uvic.ca', '8b053b0b4813dc1986827113c07d5edc9a206f12244e9432cb0a98419a15ab66',  ll_to_earth(34.052235,118.243683), '100 Fort St, Victoria, BC V8W 1H8', '2024-05-24T02:19:32.816610+00:00'),
-('jane_smith', 'jane_smith@uvic.ca', '2edae18d7da86b00a3aaef6b2090f563c73853eb5b2e28ba1eb915268687718a',  ll_to_earth(34.052235,-118.243683), '1145 Royal Oak Dr, Victoria, BC V8X 3T7', '2024-06-25T02:19:32.816610+00:00');
+('john_doe', 'john_doe@uvic.ca', '8b053b0b4813dc1986827113c07d5edc9a206f12244e9432cb0a98419a15ab66',  ll_to_earth(34.052235,118.243683), 'V8W', '2024-05-24T02:19:32.816610+00:00'),
+('jane_smith', 'jane_smith@uvic.ca', '2edae18d7da86b00a3aaef6b2090f563c73853eb5b2e28ba1eb915268687718a',  ll_to_earth(34.052235,-118.243683), 'V8X', '2024-06-25T02:19:32.816610+00:00');
 
 -- Insert dummy data into Searches table
 INSERT INTO Searches (user_id, search_text, search_date)
@@ -23,11 +23,11 @@ VALUES
 -- Insert dummy data into Listings table
 INSERT INTO Listings (seller_id, title, price, location, address, status)
 VALUES
-(1, 'Bicycle for sale', 200.00, ll_to_earth(40.730610,-73.935242), '1145 Royal Oak Dr, Victoria, BC V8X 3T7', 'AVAILABLE'),
-(1, 'Volkswagen Jetta', 7000.00, ll_to_earth(40.730610,-73.935242), '1145 Royal Oak Dr, Victoria, BC V8X 3T7', 'AVAILABLE'),
-(1, 'Math 100 Textbook', 50.00, ll_to_earth(40.730610,-73.935242), '1145 Royal Oak Dr, Victoria, BC V8X 3T7', 'AVAILABLE'),
-(1, 'Doohickey', 100000.00, ll_to_earth(40.730610,-73.935242), '1145 Royal Oak Dr, Victoria, BC V8X 3T7', 'AVAILABLE'),
-(2, 'Laptop for sale', 800.00, ll_to_earth(34.052235,-118.243683), '100 Fort St, Victoria, BC V8W 1H8', 'AVAILABLE');
+(1, 'Bicycle for sale', 200.00, ll_to_earth(40.730610,-73.935242), 'V8X', 'AVAILABLE'),
+(1, 'Volkswagen Jetta', 7000.00, ll_to_earth(40.730610,-73.935242), 'V8X', 'AVAILABLE'),
+(1, 'Math 100 Textbook', 50.00, ll_to_earth(40.730610,-73.935242), 'V8X', 'AVAILABLE'),
+(1, 'Doohickey', 100000.00, ll_to_earth(40.730610,-73.935242), 'V8X', 'AVAILABLE'),
+(2, 'Laptop for sale', 800.00, ll_to_earth(34.052235,-118.243683), 'V8W', 'AVAILABLE');
 
 
 -- Insert dummy data into Chats table
