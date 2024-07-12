@@ -263,8 +263,6 @@ def get_user():
                 "username": row[0],
                 "address": row[1],
                 "joining_date": row[2].isoformat(),
-                "items_sold": row[3],
-                "items_purchased": row[4],
             }), 200
         return jsonify({}), 404
 
