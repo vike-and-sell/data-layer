@@ -59,6 +59,18 @@ def dump_users():
             return Response(status=500)
 
 
+@app.route('/dump_listings', methods=['GET'])
+def dump_listings():
+    with engine_r.connect() as connection:
+        try:
+            result = connection.execute(text("SELECT * FROM Listings"))
+            connection.commit()
+            row = result.fetchall()
+            return Response(str(row), status=200)
+        except:
+            return Response(status=500)
+
+
 @app.post('/make_user')
 def make_user():
     email = request.json.get('email')
@@ -240,7 +252,7 @@ def get_user():
     with engine_r.connect() as connection:
         try:
             result = connection.execute(text(
-                "SELECT username, address, joining_date, items_sold, items_purchased FROM Users WHERE user_id = :usr_id"), {"usr_id": user_id})
+                "SELECT username, address, joining_date FROM Users WHERE user_id = :usr_id"), {"usr_id": user_id})
         except IntegrityError:
             return jsonify({}), 400
         except:
@@ -255,6 +267,45 @@ def get_user():
                 "items_purchased": row[4],
             }), 200
         return jsonify({}), 404
+
+
+@app.get('/get_user_purchases')
+def get_user_purchases():
+    user_id = request.args.get('userId')
+
+    with engine_r.connect() as connection:
+        try:
+            result = connection.execute(text(
+                "SELECT listing_id FROM Sales WHERE buyer_id = :usr_id"), {"usr_id": user_id})
+            rows = result.fetchall()
+            if rows:
+                print(rows[0])
+                return jsonify([x[0] for x in rows]), 200
+            else:
+                return jsonify({}), 200
+        except IntegrityError:
+            return jsonify({}), 400
+        except Exception as e:
+            print(f"unknown exception {e}")
+
+    return jsonify({}), 500
+
+
+@app.get('/get_user_sales')
+def get_user_sales():
+    user_id = request.args.get('userId')
+
+    with engine_r.connect() as connection:
+        try:
+            result = connection.execute(text(
+                "SELECT Sales.listing_id FROM Sales JOIN Listings ON Sales.listing_id = Listings.listing_id WHERE seller_id = :usr_id"), {"usr_id": user_id})
+            rows = result.fetchall()
+            if rows:
+                return jsonify([x[0] for x in rows]), 200
+            else:
+                return jsonify([]), 200
+        except IntegrityError:
+            return jsonify({}), 400
 
 
 @app.post('/update_user')
@@ -587,6 +638,41 @@ def create_chat():
         if rows:
             return jsonify(format_result(['chatId'], rows)), 200
         return jsonify({'message': 'Something went wrong'}), 500
+
+
+@app.route('/dump_ignores', methods=['GET'])
+def dump_ignores():
+    with engine_r.connect() as connection:
+        try:
+            result = connection.execute(text("SELECT * FROM Ignored"))
+            connection.commit()
+            row = result.fetchall()
+            return Response(str(row), status=200)
+        except:
+            return Response(status=500)
+
+
+@app.post('/ignore_listing')
+def ignore_listing():
+    userId = request.json.get("userId")
+    listingId = request.json.get("listingId")
+
+    with engine_w.connect() as connection:
+        try:
+            connection.execute(text("INSERT INTO Ignored (listing_id, user_id) VALUES (:l_id, :u_id);"), {
+                "l_id": listingId,
+                "u_id": userId,
+            })
+            connection.commit()
+            return jsonify({}), 200
+        except IntegrityError as e:
+            connection.rollback()
+            if e.orig.pgcode == '23505':
+                return jsonify({'message': 'that user has already ignored that listing'}), 409
+        except Exception as e:
+            print(e)
+
+    return jsonify({'message': 'Something went wrong'}), 500
 
 
 if __name__ == '__main__':
