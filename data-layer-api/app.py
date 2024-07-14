@@ -207,12 +207,17 @@ def create_review():
 
     with engine_w.connect() as connection:
         try:
-            connection.execute(
-                text("INSERT INTO Listing_Reviews (reviewed_listing_id, review_user_id, review_content) VALUES (:listing_id, :usr_id, :content)"),
+            result = connection.execute(
+                text("INSERT INTO Listing_Reviews (reviewed_listing_id, review_user_id, review_content) VALUES (:listing_id, :usr_id, :content) RETURNING listing_review_id, reviewed_listing_id, created_on"),
                 {"listing_id": listing_id, "usr_id": user_id,
                     "content": review_content}
             )
             connection.commit()
+            row = result.fetchone()
+            if row:
+                return jsonify(format_result(['review_id', 'listing_id', 'created_on'], [row])), 200
+            connection.rollback()
+            return jsonify({'message': 'Something went wrong'}), 500
         except IntegrityError as e:
             connection.rollback()
             if e.orig.pgcode == '23503':
