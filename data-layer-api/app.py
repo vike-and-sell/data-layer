@@ -227,7 +227,6 @@ def create_review():
         except:
             connection.rollback()
             return jsonify({'message': 'Something went wrong'}), 500
-        return jsonify({}), 200
 
 
 @app.get('/get_reviews')
