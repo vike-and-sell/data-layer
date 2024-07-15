@@ -162,11 +162,16 @@ def create_rating():
 
     with engine_w.connect() as connection:
         try:
-            connection.execute(
-                text("INSERT INTO Listing_Ratings (rated_listing_id, rating_user_id, rating_value) VALUES (:listing_id, :usr_id, :value)"),
+            result = connection.execute(
+                text("INSERT INTO Listing_Ratings (rated_listing_id, rating_user_id, rating_value) VALUES (:listing_id, :usr_id, :value) RETURNING listing_rating_id, created_on"),
                 {"listing_id": listing_id, "usr_id": user_id, "value": rating_value}
             )
             connection.commit()
+            row = result.fetchone()
+            if row:
+                return jsonify(format_result(['rating_id', 'created_on'], [row])), 200
+            connection.rollback()
+            return jsonify({'message': 'Something went wrong'}), 500
         except IntegrityError as e:
             connection.rollback()
             if e.orig.pgcode == '23503':
@@ -176,7 +181,6 @@ def create_rating():
         except:
             connection.rollback()
             return jsonify({'message': 'Something went wrong'}), 500
-        return jsonify({}), 200
 
 
 @app.get('/get_ratings')
