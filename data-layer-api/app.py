@@ -437,13 +437,6 @@ def create_listing():
         row = result.fetchall()
         return jsonify(format_result(['listingId'], row)), 201
 
-@app.get('/testsales')
-def test_sales():
-    with engine_w.connect() as connection:
-        result = connection.execute(text("SELECT * FROM Sales"))
-        rows = result.fetchall()
-        return jsonify(format_result(['a', 'b', 'c'], rows))
-
 
 @app.post('/update_listing')
 def update_listing():
