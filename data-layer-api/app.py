@@ -419,7 +419,7 @@ def create_listing():
     with engine_w.connect() as connection:
         try:
             result = connection.execute(
-                text("INSERT INTO Listings (seller_id, title, price, address, location, status) VALUES (:sllr_id, :l_title, :l_price, :addr, ll_to_earth(:lat, :lng), :l_status) RETURNING listing_id"),
+                text("INSERT INTO Listings (seller_id, title, price, address, location, status) VALUES (:sllr_id, :l_title, :l_price, :addr, ll_to_earth(:lat, :lng), :l_status) RETURNING listing_id, title, price, address, status"),
                 {"sllr_id": seller_id, "l_title": title, "l_price": price,
                     "addr": address, "lat": latitude, "lng": longitude, "l_status": status}
             )
@@ -435,7 +435,7 @@ def create_listing():
             return jsonify({'message': 'Something went wrong'}), 500
 
         row = result.fetchall()
-        return jsonify(format_result(['listingId'], row)), 201
+        return jsonify(format_result(['listingId', 'title', 'price', 'address', 'status'], row)), 201
 
 
 @app.post('/update_listing')
