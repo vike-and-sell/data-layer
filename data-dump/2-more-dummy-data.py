@@ -168,12 +168,15 @@ def main():
         review = random.choice(reviews)
         query = f"({random.randrange(1, 1000)}, {random.randrange(1, 100)}, '{review}', '{year}-{month}-{day}T02:19:32.816610+00:00'),"
         #REVIEWS
-        print(query)
+        #print(query)
 
     for i in range(100):
-        query = f"({random.randrange(1, 1000)}, {random.randrange(1, 100)}),"
+        year = random.randrange(1970, 2024)
+        month = random.randrange(1, 12)
+        day = random.randrange(1, 28)
+        query = f"({random.randrange(1, 1000)}, {random.randrange(1, 100)}, '{year}-{month}-{day}T02:19:32.816610+00:00'),"
         #SALES
-        #print(query)
+        print(query)
 
     return
 
