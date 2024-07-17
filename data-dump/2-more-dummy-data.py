@@ -14,7 +14,7 @@ def main():
             year = random.randrange(1970, 2024)
             month = random.randrange(1, 12)
             day = random.randrange(1, 28)
-            query = f"('{user}', '{email}', '{password[2:]}', ll_to_earth({round(x, 6)}, {round(y,6)}), '{pcode}', '{year}-{month}-{day}T02:19:32.816610+00:00')"
+            query = f"('{user}', '{email}', '{password[2:]}', ll_to_earth({round(x, 6)}, {round(y,6)}), '{pcode}', '{year}-{month}-{day}T02:19:32.816610+00:00'),"
             #USERS
             #print(query)
 
@@ -69,7 +69,7 @@ def main():
         for i in range(num_desc):
             itemstr = itemstr +  random.choice(desc) + ' '
         itemstr = itemstr + random.choice(items)
-        query = f"({random.randrange(1, 100)}, '{itemstr.title()}', {random.randrange(20, 10000)}, ll_to_earth({round(x, 6)}, {round(y, 6)}), '{random.choice(pcodes)}', 'AVAILABLE')"
+        query = f"({random.randrange(1, 100)}, '{itemstr.title()}', {random.randrange(20, 10000)}, ll_to_earth({round(x, 6)}, {round(y, 6)}), '{random.choice(pcodes)}', 'AVAILABLE'),"
         #LISTINGS
         #print(query)
 
@@ -82,7 +82,7 @@ def main():
         for i in range(num_desc):
             search = search + random.choice(desc) + " "
         search = search + random.choice(items)
-        query = f"({random.randrange(1, 100)}, '{search}', '{year}-{month}-{day}')"
+        query = f"({random.randrange(1, 100)}, '{search}', '{year}-{month}-{day}'),"
         #SEARCHES
         #print(query.lstrip().title())
 
@@ -92,13 +92,13 @@ def main():
     "Do you have more pics?",
     "Is there a warranty?",
     "Does it work okay?",
-    "What's your return policy?",
+    "What is your return policy?",
     "Any scratches or damage?",
     "Can I pick this up locally?",
     "Is this the final price, or are there extra fees?",
     "Is the original packaging included?",
     "Any accessories with it?",
-    "What's the exact model number?",
+    "What is the exact model number?",
     "Is this authentic?",
     "Do you take lower offers?",
     "Can I see this in person before buying?",
@@ -119,8 +119,8 @@ def main():
         seller = random.randrange(1, 100)
         listing =random.randrange(1, 1000)
         message = random.choice(messages)
-        query = f"({buyer}, {seller}, {listing})"
-        query2 = f"({random.randrange(1, 100)}, {random.choice([buyer, seller])}, '{message}', '{year}-{month}-{day}T02:19:32.816610+00:00')"
+        query = f"({buyer}, {seller}, {listing}),"
+        query2 = f"({random.randrange(1, 100)}, {random.choice([buyer, seller])}, '{message}', '{year}-{month}-{day}T02:19:32.816610+00:00'),"
         #CHATS & MESSAGES
         #print(query)
         #print(query2)
@@ -129,7 +129,7 @@ def main():
         year = random.randrange(1970, 2024)
         month = random.randrange(1, 12)
         day = random.randrange(1, 28)
-        query = f"({random.randrange(1, 1000)}, {random.randrange(1, 100)}, {random.randrange(1, 5)}, '{year}-{month}-{day}T02:19:32.816610+00:00')"
+        query = f"({random.randrange(1, 1000)}, {random.randrange(1, 100)}, {random.randrange(1, 6)}, '{year}-{month}-{day}T02:19:32.816610+00:00'),"
         #RATINGS
         #print(query)
 
@@ -153,7 +153,7 @@ def main():
         "Item arrived late but in good condition.",
         "Packaging could have been better.",
         "The product has some minor scratches.",
-        "Item didn't work as expected.",
+        "Item did not work as expected.",
         "Good communication from seller.",
         "Overall, a decent purchase.",
         "Would have preferred better packaging.",
@@ -166,14 +166,14 @@ def main():
         month = random.randrange(1, 12)
         day = random.randrange(1, 28)
         review = random.choice(reviews)
-        query = f"({random.randrange(1, 1000)}, {random.randrange(1, 100)}, '{review}', '{year}-{month}-{day}T02:19:32.816610+00:00')"
+        query = f"({random.randrange(1, 1000)}, {random.randrange(1, 100)}, '{review}', '{year}-{month}-{day}T02:19:32.816610+00:00'),"
         #REVIEWS
-        #print(query)
+        print(query)
 
     for i in range(100):
-        query = f"({random.randrange(1, 1000)}, {random.randrange(1, 100)})"
+        query = f"({random.randrange(1, 1000)}, {random.randrange(1, 100)}),"
         #SALES
-        print(query)
+        #print(query)
 
     return
 

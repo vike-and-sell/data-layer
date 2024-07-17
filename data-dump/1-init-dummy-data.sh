@@ -10,106 +10,112 @@ SQL_COMMANDS=$(cat <<EOF
 INSERT INTO Users (username, email, password, location, address, joining_date)
 VALUES
 ('john_doe', 'john_doe@uvic.ca', '8b053b0b4813dc1986827113c07d5edc9a206f12244e9432cb0a98419a15ab66',  ll_to_earth(34.052235,118.243683), 'V8W', '2024-05-24T02:19:32.816610+00:00'),
-('jane_smith', 'jane_smith@uvic.ca', '2edae18d7da86b00a3aaef6b2090f563c73853eb5b2e28ba1eb915268687718a',  ll_to_earth(34.052235,-118.243683), 'V8X', '2024-06-25T02:19:32.816610+00:00')
-('mary_smith', 'mary_smith@uvic.ca', 'd25c6279ad153bc539c1107e9e16edebd7406bbf0cfd88a9f032c4a01f9203cb', ll_to_earth(120.12758, -50.88554), 'V8M', '1988-4-4T02:19:32.816610+00:00')
-('mary_brown', 'mary_brown@uvic.ca', 'abdf26911226b49d36f63183e1c5199de7e13aafbe861815a6596024f0309b55', ll_to_earth(76.888254, 55.471924), 'V8U', '2006-3-12T02:19:32.816610+00:00')
-('mary_miller', 'mary_miller@uvic.ca', '5c1f562dba02c3ff80c50456d16b4bce2a18a7f2440474b81fb286d7502775c4', ll_to_earth(-103.58425, 12.77487), 'V9D', '2000-11-8T02:19:32.816610+00:00')
-('mary_johnson', 'mary_johnson@uvic.ca', '5fd08ff6015030b67a7f9ce3d9bc649658351074e582556cfa1b99fe012498df', ll_to_earth(-2.816756, -42.392346), 'V8N', '1986-1-4T02:19:32.816610+00:00')
-('mary_garcia', 'mary_garcia@uvic.ca', '84fc9c360c3a9d6ecdeeee277b75204dd1b963d1f54f4a75dc7011c3f66e2782', ll_to_earth(-146.158079, -24.422457), 'V8S', '1996-9-22T02:19:32.816610+00:00')
-('mary_li', 'mary_li@uvic.ca', '550f3bf3adef28794dd61e44b7b227c0a4ce31b848e2774d5c7aa30e1ba46c6c', ll_to_earth(-146.415874, -0.235083), 'V8U', '1992-10-18T02:19:32.816610+00:00')
-('mary_singh', 'mary_singh@uvic.ca', '5f66545c2bdf8cd82fcddf7117ec767cbea0803f5bbb4b4fdd51d581e0002e53', ll_to_earth(-5.000571, 55.045014), 'V9E', '1987-6-10T02:19:32.816610+00:00')
-('mary_anderson', 'mary_anderson@uvic.ca', '39caf7dbe9d1d731c8056d68cc3fa143da6309dcff971277e727c1af039e1703', ll_to_earth(101.121658, -38.234909), 'V8V', '1988-7-7T02:19:32.816610+00:00')
-('mary_young', 'mary_young@uvic.ca', '4f36b365da4f0bd006a408e0a27b94512c0429c3f02b6be0fb3a476439163328', ll_to_earth(-120.526017, -18.998922), 'V8T', '1974-9-15T02:19:32.816610+00:00')
-('mary_williams', 'mary_williams@uvic.ca', '6b4364ad4af6dd3a54492f89c43016b6af161f313ce60da54cafde358f326d41', ll_to_earth(-170.787736, -44.125609), 'V8N', '2000-10-25T02:19:32.816610+00:00')
-('james_smith', 'james_smith@uvic.ca', '8fa92aadb84a3e4b5ff16110591cf94b91f17fbd156ac96efa52959e25fd15', ll_to_earth(150.865944, -4.223262), 'V8N', '2009-6-14T02:19:32.816610+00:00')
-('james_brown', 'james_brown@uvic.ca', '849089235bd770010f0d07ac351f1f9c133eef5d060637ccf2988c43272847e9', ll_to_earth(37.804622, 27.616017), 'V8M', '2009-6-24T02:19:32.816610+00:00')
-('james_miller', 'james_miller@uvic.ca', '12a1a6ec2cad42248ac36d8382ef202633eff9d95468db21f888ef12497ac488', ll_to_earth(20.333173, -43.687693), 'V9B', '2001-1-13T02:19:32.816610+00:00')
-('james_johnson', 'james_johnson@uvic.ca', '43bf344318427773d1c67355e95ad0d5e5c8b67033faa8836911f94cb5f0a239', ll_to_earth(97.375874, 68.685732), 'V8W', '1976-9-5T02:19:32.816610+00:00')
-('james_garcia', 'james_garcia@uvic.ca', 'b86c29e28be86ac0707c54698229eaa759a8aa01cfe2e783ec876103da2f0c5f', ll_to_earth(91.015877, 40.758322), 'V8U', '2010-4-20T02:19:32.816610+00:00')
-('james_li', 'james_li@uvic.ca', '441e68c380e951152e9c5d84044831963d56f0775e3716c1a7f336ddc0d5a4fd', ll_to_earth(-16.286439, 84.644869), 'V9D', '2003-4-25T02:19:32.816610+00:00')
-('james_singh', 'james_singh@uvic.ca', '2f88aff483ac6dd0785edf719172aca3a520560960d6d516c739d1abacfaa0a2', ll_to_earth(42.61688, 81.04815), 'V8U', '1982-6-4T02:19:32.816610+00:00')
-('james_anderson', 'james_anderson@uvic.ca', '7988559c0dfd558a2842b805fcd5ada83bf212e8e898ffadfed6c6bad766778d', ll_to_earth(-177.745411, 55.789069), 'V9E', '1976-1-12T02:19:32.816610+00:00')
-('james_young', 'james_young@uvic.ca', '63d4fd7a2a6395a180dd15f07ee8be33207799bb7b5928beb97ccba7ccef51b9', ll_to_earth(61.117755, -65.50806), 'V8O', '2017-7-26T02:19:32.816610+00:00')
-('james_williams', 'james_williams@uvic.ca', '1651c1e472778318bf073c28f7b8771bb3cbbe9b9c3d474d0f192fed5d469014', ll_to_earth(116.38828, 76.38747), 'V8N', '1981-4-18T02:19:32.816610+00:00')
-('michael_smith', 'michael_smith@uvic.ca', '9ab397edd86a196e109b66a20df20f0242aa4bfc61fd7f84d9320c5d7e4949df', ll_to_earth(-116.756768, -65.396633), 'V8V', '1998-4-15T02:19:32.816610+00:00')
-('michael_brown', 'michael_brown@uvic.ca', '9bc5700602ca9b7902dd3467d5a509d62f949c2a04e95689315ea86606dca788', ll_to_earth(-154.337347, 45.134051), 'V8Y', '1975-11-2T02:19:32.816610+00:00')
-('michael_miller', 'michael_miller@uvic.ca', '6979abb7b2817c9fc000b31a180a003e0b7ba7abf37c3aa9d49a923e488e9398', ll_to_earth(-107.683226, -80.309862), 'V9E', '2009-5-8T02:19:32.816610+00:00')
-('michael_johnson', 'michael_johnson@uvic.ca', 'eabdfabab6f3a6f1f13870941201152d914f0967964a1fb184366ad14b750b4', ll_to_earth(75.955223, 34.987407), 'V8X', '1994-10-8T02:19:32.816610+00:00')
-('michael_garcia', 'michael_garcia@uvic.ca', 'e1c72c14e620269088f0568142e680de2374b7cbe2932970c0fef82261b247d8', ll_to_earth(32.05062, -82.074788), 'V8R', '2020-6-25T02:19:32.816610+00:00')
-('michael_li', 'michael_li@uvic.ca', '39ef942bb5a0127db8136d22fd181a6d3ab3af392cc43f29b4688bfa5b9b6e52', ll_to_earth(94.614551, -11.712515), 'V9B', '2014-2-10T02:19:32.816610+00:00')
-('michael_singh', 'michael_singh@uvic.ca', 'ac3204910bee6b5d11707e9caac97d4e95bda216b79df924ea4ae9a862778728', ll_to_earth(57.895521, -32.524049), 'V8N', '1978-4-1T02:19:32.816610+00:00')
-('michael_anderson', 'michael_anderson@uvic.ca', '6dba2656880c3fd30323f2b2716aa09221fa2a5fd389e6b30f0e8e46e46183c5', ll_to_earth(-153.815234, -64.712222), 'V9D', '1987-6-24T02:19:32.816610+00:00')
-('michael_young', 'michael_young@uvic.ca', 'd5da0b5ce9da1c65931597dfb93685085857589c3ecbc09e6cba509772372e4e', ll_to_earth(-178.081533, -88.866241), 'V8N', '2019-7-7T02:19:32.816610+00:00')
-('michael_williams', 'michael_williams@uvic.ca', '2175490ff22c75a329945b682911c762b3b29f20f2b3ff335a19249d3dd56cb9', ll_to_earth(136.727069, -9.637217), 'V9D', '1983-11-18T02:19:32.816610+00:00')
-('william_smith', 'william_smith@uvic.ca', '420728091fcac43848a38a4d410d270c3b02a8f6d0e0486144265eae0c30e772', ll_to_earth(-83.171062, -5.479748), 'V8P', '2005-11-23T02:19:32.816610+00:00')
-('william_brown', 'william_brown@uvic.ca', 'c39640e66a66e538e523dfb0d91393e7ff0d53507984c1cd4257792edfadf3d5', ll_to_earth(-114.225719, 5.120426), 'V9A', '2000-9-7T02:19:32.816610+00:00')
-('william_miller', 'william_miller@uvic.ca', 'ca28fbd8d737cc82e553f012949aed2d410ef2a0c38942726d7f3ef6a6a7c558', ll_to_earth(143.200421, 85.7284), 'V9C', '1977-6-24T02:19:32.816610+00:00')
-('william_johnson', 'william_johnson@uvic.ca', 'a311525fb2717834cfa43501c81316e0cde27d3e51f4590c6b73f9cda858d32', ll_to_earth(120.439791, 4.635599), 'V8O', '1991-5-1T02:19:32.816610+00:00')
-('william_garcia', 'william_garcia@uvic.ca', '6aa752c7ebb38f574d8ed2fc294c0e58aa1c7a197792d5e68bf902321a5b1efc', ll_to_earth(164.739682, 83.81144), 'V8X', '2007-6-16T02:19:32.816610+00:00')
-('william_li', 'william_li@uvic.ca', '290e8d04ee98fd98e279291424d3b86665ef65101671b94c2530b548ffd0c115', ll_to_earth(176.431458, -58.890327), 'V8M', '1982-2-5T02:19:32.816610+00:00')
-('william_singh', 'william_singh@uvic.ca', 'dffd721da99c5434a417aadb8c519a154b70e9afe5f6f45954b60edacf29512c', ll_to_earth(-58.943097, 56.445752), 'V8Z', '1993-4-3T02:19:32.816610+00:00')
-('william_anderson', 'william_anderson@uvic.ca', '8474c7dd571fb1f0f8ef9094665110356b593def2de5096f8a3931b7e9411bc9', ll_to_earth(17.005303, -40.142366), 'V8R', '1988-2-8T02:19:32.816610+00:00')
-('william_young', 'william_young@uvic.ca', '37d1cbd316e90b4e9c497e06349adb9c147873cc9579ac7a682b75c3b142a0e5', ll_to_earth(-125.819947, 30.844602), 'V8T', '1996-2-5T02:19:32.816610+00:00')
-('william_williams', 'william_williams@uvic.ca', '3cf7496be1e4dee2fa6935cccbb9f4288ed4843f4d71e4b0586f790b4509fd67', ll_to_earth(-17.521995, -34.345413), 'V8V', '1978-3-18T02:19:32.816610+00:00')
-('george_smith', 'george_smith@uvic.ca', '5a32f759e8de6b8155856ada2224892451da722b8758a0f9dab8103548b0569d', ll_to_earth(177.851171, -87.679695), 'V9B', '1995-6-25T02:19:32.816610+00:00')
-('george_brown', 'george_brown@uvic.ca', '837036aa1945a6c269be44bca18d9f04af6ad9d90848ec90888b8984c10d2b25', ll_to_earth(-27.579604, -77.919271), 'V9A', '2012-1-16T02:19:32.816610+00:00')
-('george_miller', 'george_miller@uvic.ca', '8122e3dfa65841775e39659bb8e352ca3f30ca67898cc1be06d9d154a32c453a', ll_to_earth(74.440927, 15.299252), 'V9E', '1985-10-21T02:19:32.816610+00:00')
-('george_johnson', 'george_johnson@uvic.ca', 'fa48b3340624b2429eb7992ce6c2417a65088c8d18e58be1054244af31508ddb', ll_to_earth(4.123983, 79.081308), 'V8U', '1973-11-17T02:19:32.816610+00:00')
-('george_garcia', 'george_garcia@uvic.ca', '7db2972c3a861954ac3d40e083f9e09b9b13adcfadaf072e3e09b8f0d6841d71', ll_to_earth(25.223817, 12.319886), 'V8T', '1970-5-21T02:19:32.816610+00:00')
-('george_li', 'george_li@uvic.ca', '8ce3bb41739526f8f9874a1423ec8aadebdd927e95b7f72c8e3c6b549967e8ec', ll_to_earth(124.469377, -25.804449), 'V9B', '1982-1-9T02:19:32.816610+00:00')
-('george_singh', 'george_singh@uvic.ca', '11914297e311b671f13add4ac67813b311f27c95b65f83d658f6c599e6759a10', ll_to_earth(-80.49688, 66.58826), 'V8P', '2015-3-15T02:19:32.816610+00:00')
-('george_anderson', 'george_anderson@uvic.ca', 'e8c2657ff92927e69c421400e00709a5ceed062e40388fe004d9441b09ee4a54', ll_to_earth(-171.511587, 7.653419), 'V9B', '1984-11-25T02:19:32.816610+00:00')
-('george_young', 'george_young@uvic.ca', 'dea3d8116fe1a5bdc9507cb953a170c2060115c598ba320cded1bc0ec2bb2b3d', ll_to_earth(154.693307, -21.382222), 'V8M', '2020-6-1T02:19:32.816610+00:00')
-('george_williams', 'george_williams@uvic.ca', 'be7a8dd2e6d0c0c2a9a701c922207b81157db46c50ef6a39263d9beae3da3c1b', ll_to_earth(-100.315462, 46.455419), 'V8P', '2012-7-10T02:19:32.816610+00:00')
-('thomas_smith', 'thomas_smith@uvic.ca', '3591b637cd671785b493ad83a5d447fecb2596e90f795be34a7c22874ea01f9d', ll_to_earth(-14.175459, 9.138699), 'V8P', '2018-9-18T02:19:32.816610+00:00')
-('thomas_brown', 'thomas_brown@uvic.ca', '74df40675b38601fdad2621d8da3e0e67828e5f7ab7660f2c36143d4924e122c', ll_to_earth(-153.438574, 88.966773), 'V8W', '1971-1-22T02:19:32.816610+00:00')
-('thomas_miller', 'thomas_miller@uvic.ca', '62a0496f42fe69ac5c6af1ca71d7fde56341b893889f6551751b4c2bd4486af', ll_to_earth(22.602967, -20.559839), 'V9B', '1972-9-21T02:19:32.816610+00:00')
-('thomas_johnson', 'thomas_johnson@uvic.ca', 'ad4f62728001e7f886f407367a1707dfff9771fa4f8310b63d454c3cc79839e2', ll_to_earth(9.527334, -77.724466), 'V8V', '2001-7-25T02:19:32.816610+00:00')
-('thomas_garcia', 'thomas_garcia@uvic.ca', '5c54e89531b6ed7705d8fd89b1df5334441b7e085caf9e7599fa07693f6e31a4', ll_to_earth(-101.742139, -55.230583), 'V8N', '1993-4-16T02:19:32.816610+00:00')
-('thomas_li', 'thomas_li@uvic.ca', 'd04dab75fabeb32962767d97c25a6d9ed5c3d77099cc559ac2f67233120c33e3', ll_to_earth(92.040905, -83.373757), 'V8Y', '2014-8-6T02:19:32.816610+00:00')
-('thomas_singh', 'thomas_singh@uvic.ca', '5915b9fef9ea8aeab367f340be71951f7a333c00f01928bdcf4ee5a9758d85a5', ll_to_earth(93.998445, 88.856835), 'V9C', '1992-11-12T02:19:32.816610+00:00')
-('thomas_anderson', 'thomas_anderson@uvic.ca', '42c3769369e8885d19762ed5b203619f75987cb4e6f217b704f73c6dd77b0b4', ll_to_earth(-61.601182, 46.104884), 'V8R', '2023-4-23T02:19:32.816610+00:00')
-('thomas_young', 'thomas_young@uvic.ca', 'ac64a75198dd214489d33bc7cddd6c200fecc153ac39fa2deb3356475f0f501f', ll_to_earth(88.480429, -18.432774), 'V8R', '1980-4-9T02:19:32.816610+00:00')
-('thomas_williams', 'thomas_williams@uvic.ca', '633a28ec85ac474bb22423c99c286b53f3f5870ec8927f254df17ca02f78a6ea', ll_to_earth(-102.507115, 14.788582), 'V8Y', '1970-8-18T02:19:32.816610+00:00')
-('susan_smith', 'susan_smith@uvic.ca', '14a882437990cf23188d467463303752335bbb9bdf9ee6cdda983c53a2dc2ca1', ll_to_earth(-177.577938, -32.938262), 'V8Y', '1981-3-12T02:19:32.816610+00:00')
-('susan_brown', 'susan_brown@uvic.ca', '802fafa934ce55baa9b04d01be971b823d7183652f4ab08b7b669f71ae286b75', ll_to_earth(11.998421, 88.421998), 'V8U', '2016-9-20T02:19:32.816610+00:00')
-('susan_miller', 'susan_miller@uvic.ca', 'a55358384ca2e0a1ca61976f4b08c9444271943fcc73512db466ab6ed4ff8c47', ll_to_earth(56.706265, 64.66023), 'V8W', '1981-9-16T02:19:32.816610+00:00')
-('susan_johnson', 'susan_johnson@uvic.ca', 'e2fe5da52764dc7f43488da24606419d85e7c3aabc9feb3cf52f2f43902ab3bc', ll_to_earth(-12.132941, -11.922533), 'V8Y', '2022-6-6T02:19:32.816610+00:00')
-('susan_garcia', 'susan_garcia@uvic.ca', 'a6f259f7f432598603fe55948102d6bae992c0c9e23433f8bd99d892df5bb9bb', ll_to_earth(178.367595, -62.742161), 'V8O', '1981-10-11T02:19:32.816610+00:00')
-('susan_li', 'susan_li@uvic.ca', 'e9871f35c75b15aa82b442e1d99234867a7132df42e3e313e60d65fb0f96da77', ll_to_earth(95.196969, -20.014646), 'V9C', '2019-4-26T02:19:32.816610+00:00')
-('susan_singh', 'susan_singh@uvic.ca', 'beb05410f2d10b5a17fde9d741df61461ae75b742bac96a3fdef8c25b669fe95', ll_to_earth(78.766549, -0.963675), 'V9C', '1994-2-9T02:19:32.816610+00:00')
-('susan_anderson', 'susan_anderson@uvic.ca', 'dc055641848783a7910e9a8d14783e3c2927ae270884a63d717728e0877ceebf', ll_to_earth(69.234066, 85.014957), 'V8Z', '2013-4-4T02:19:32.816610+00:00')
-('susan_young', 'susan_young@uvic.ca', '50d979a0bb39b8475a86d9484d5e9114a49db8fc9c70e10c85d977ebba157657', ll_to_earth(156.255467, -8.60849), 'V8R', '2007-2-17T02:19:32.816610+00:00')
-('susan_williams', 'susan_williams@uvic.ca', 'a0be39a52d711625c7d259b3c8c1d42efd5791376f85f0e12837f12af336d85', ll_to_earth(-74.93712, -34.465081), 'V8W', '1995-8-25T02:19:32.816610+00:00')
-('olivia_smith', 'olivia_smith@uvic.ca', '97855666d9de34631ea565329ac3a598368ac311ca9021f874e52a77fda3556c', ll_to_earth(79.470914, -69.513524), 'V8W', '1971-4-3T02:19:32.816610+00:00')
-('olivia_brown', 'olivia_brown@uvic.ca', '4240fabc8c3add9769ec2bb3dfa01d05f423b54b20993711efb6431012b9eb50', ll_to_earth(69.836695, -88.909378), 'V8Y', '1972-2-4T02:19:32.816610+00:00')
-('olivia_miller', 'olivia_miller@uvic.ca', '31a16aa1e069a07323b59c8c62b9d0dd909b1640af36247c355c19e93495562b', ll_to_earth(-146.354307, -63.616409), 'V8V', '1974-1-16T02:19:32.816610+00:00')
-('olivia_johnson', 'olivia_johnson@uvic.ca', 'c82c3ddb8c87afe62d88db204c73f5938101c1ff7f8b14d2881e6c0cf206b6cd', ll_to_earth(104.44495, -49.654062), 'V8W', '2019-6-8T02:19:32.816610+00:00')
-('olivia_garcia', 'olivia_garcia@uvic.ca', 'd3643c8757acc846986738b4b3129874c0f13c060218729485b91a9735ba5791', ll_to_earth(63.71918, -51.227256), 'V8S', '1981-3-14T02:19:32.816610+00:00')
-('olivia_li', 'olivia_li@uvic.ca', '4cd93094df639585643af1cd55c81327c8daa38fcfc16ad55172861ebd1b33ae', ll_to_earth(165.074708, 68.856085), 'V8W', '2003-2-16T02:19:32.816610+00:00')
-('olivia_singh', 'olivia_singh@uvic.ca', 'a374089c5c4fe4e160538cf2ab6e7ca9b732e64888aff1bd55432940644eea67', ll_to_earth(85.535875, 11.07494), 'V8W', '2012-6-17T02:19:32.816610+00:00')
-('olivia_anderson', 'olivia_anderson@uvic.ca', '196e6eeb046b77aec798825f0943671a83409b5b0c2282c8b2c78fddc3cdb90e', ll_to_earth(-102.124198, -23.473101), 'V9B', '1985-4-23T02:19:32.816610+00:00')
-('olivia_young', 'olivia_young@uvic.ca', '37d50f879d7097783653de1cbbd6081cbc672f6a896598f113050f093356ff52', ll_to_earth(72.289786, 19.316878), 'V9B', '2005-11-13T02:19:32.816610+00:00')
-('olivia_williams', 'olivia_williams@uvic.ca', 'c4c1f4466cef434e2548e48ef1aeb1c7d039f9faa2afcda66a9961dec5fbb51f', ll_to_earth(-24.87962, 67.607958), 'V8N', '2001-5-1T02:19:32.816610+00:00')
-('elizabeth_smith', 'elizabeth_smith@uvic.ca', 'b6af4b87a670f80f934c179d5e773035d1e1d451a269dca69cfca08f1dade53b', ll_to_earth(-107.076499, -52.711872), 'V9E', '1976-1-18T02:19:32.816610+00:00')
-('elizabeth_brown', 'elizabeth_brown@uvic.ca', '2d211b95369453a2bf6c700684e3b3d8d1e869f659d173eec66fba7d72815403', ll_to_earth(-65.683254, 80.988493), 'V8U', '1975-2-26T02:19:32.816610+00:00')
-('elizabeth_miller', 'elizabeth_miller@uvic.ca', 'a36ac3e0ff0c05e7482ea13ab06e6247ee9bf45a1241048f619bfea4848f1035', ll_to_earth(109.715121, 70.258647), 'V8O', '2000-2-16T02:19:32.816610+00:00')
-('elizabeth_johnson', 'elizabeth_johnson@uvic.ca', 'd1c4cd3806f79d56806e15aba8652852e29e8953392e738d1576c58257410c51', ll_to_earth(68.954833, 69.628492), 'V9E', '1995-4-26T02:19:32.816610+00:00')
-('elizabeth_garcia', 'elizabeth_garcia@uvic.ca', '366627d5595041074f9f24b51ced5532ac3ab59e5c83693ffe375fd980ecd4df', ll_to_earth(-136.094468, 52.870371), 'V8O', '1971-7-1T02:19:32.816610+00:00')
-('elizabeth_li', 'elizabeth_li@uvic.ca', 'eaab9a6851aa0b817a68ce33315b6929ba728e4e5f94404a10ba5932c084237c', ll_to_earth(85.903378, -62.058023), 'V8S', '1984-9-20T02:19:32.816610+00:00')
-('elizabeth_singh', 'elizabeth_singh@uvic.ca', '482b3c0e4455396fe3f66f89576fe27e2a6764f47d0386e0676f77b3bab7667b', ll_to_earth(122.871716, -31.200154), 'V8W', '2010-8-22T02:19:32.816610+00:00')
-('elizabeth_anderson', 'elizabeth_anderson@uvic.ca', 'a806f03d3bfa08067fd430ba1840283206a294f96e7e5f0e64f54c8f52e19c02', ll_to_earth(-107.397027, 57.497939), 'V8X', '2022-4-6T02:19:32.816610+00:00')
-('elizabeth_young', 'elizabeth_young@uvic.ca', 'c5e70c206199ffebed140ea0d081aff15b6e844d9306dec672223bcb0036a673', ll_to_earth(-145.161102, -54.434091), 'V8S', '2021-11-20T02:19:32.816610+00:00')
-('elizabeth_williams', 'elizabeth_williams@uvic.ca', '892c98f806c7acc866b10ae1cf71ad2a44d06cb8d6b5edd8dc0e8214ff88edff', ll_to_earth(97.130779, 58.73295), 'V8S', '1986-11-13T02:19:32.816610+00:00')
-('lisa_smith', 'lisa_smith@uvic.ca', '70e8f6b2c1a1eeb5a375a14d66cb1534f234705b93012cfe9863f3ce1bebb44d', ll_to_earth(36.313655, 89.419723), 'V8W', '1990-6-20T02:19:32.816610+00:00')
-('lisa_brown', 'lisa_brown@uvic.ca', 'e2dbc033bc69df04330c84c0739f3bd1051448c07de394ccc71854e517fe792f', ll_to_earth(98.839434, -86.498325), 'V8T', '1992-1-11T02:19:32.816610+00:00')
-('lisa_miller', 'lisa_miller@uvic.ca', '449e452197e367d05f0613592324f6728fbd2ec7bde2114b4c083d6f63b8fc89', ll_to_earth(94.155923, -76.732161), 'V9C', '2012-2-9T02:19:32.816610+00:00')
-('lisa_johnson', 'lisa_johnson@uvic.ca', '643f0da20224a29b94c937e447f636520fa22b48cfd756617ca7c4934c7029aa', ll_to_earth(-18.345722, 37.836473), 'V8S', '1983-6-26T02:19:32.816610+00:00')
-('lisa_garcia', 'lisa_garcia@uvic.ca', 'f9d98bc4f0823f39ba0fbf27e7e5329e09ca1abc5995b26c6e6f93802e6d77b6', ll_to_earth(-78.322298, 37.086908), 'V8M', '1997-1-18T02:19:32.816610+00:00')
-('lisa_li', 'lisa_li@uvic.ca', '99de1f8ff70db8bdf280eeed1d01343ba3143cea43a2f4a499a16755c02c1b53', ll_to_earth(-170.233316, 53.417635), 'V8S', '1970-5-5T02:19:32.816610+00:00')('lisa_singh', 'lisa_singh@uvic.ca', '880f45d3387c462beb13dd87f90f53bf64c23c3df5393fbc9856401c836cd521', ll_to_earth(-85.610932, 86.769488), 'V9C', '2000-5-23T02:19:32.816610+00:00')
-('lisa_anderson', 'lisa_anderson@uvic.ca', '25d922709218c41822db13cc143f4e72c6ed5ae53767da700c0d7814674947e6', ll_to_earth(-165.837853, -22.634861), 'V8P', '1976-5-27T02:19:32.816610+00:00')
-('lisa_young', 'lisa_young@uvic.ca', '827bea9632d13aa3f570eeca218e1185a560d2cea12c11a86bb368594f30e227', ll_to_earth(126.051172, 5.749295), 'V8R', '1986-1-14T02:19:32.816610+00:00')
-('lisa_williams', 'lisa_williams@uvic.ca', 'ead31769856bd925ae91551377376d1885584a5fd852154aca13cf564eb2486', ll_to_earth(-89.113135, 64.604752), 'V8U', '1980-9-1T02:19:32.816610+00:00');
+('jane_smith', 'jane_smith@uvic.ca', '2edae18d7da86b00a3aaef6b2090f563c73853eb5b2e28ba1eb915268687718a',  ll_to_earth(34.052235,-118.243683), 'V8X', '2024-06-25T02:19:32.816610+00:00'),
+('mary_smith', 'mary_smith@uvic.ca', '74d8e4be42973244754da63842c9f91e2e53c0ab099576ad4a08553d517a0f62', ll_to_earth(161.824894, 19.230461), 'V8R', '1976-1-17T02:19:32.816610+00:00'),
+('mary_brown', 'mary_brown@uvic.ca', '7742b3b11757b2de5da231251f6b37c40339944667a46ef92a3e51af13dfbb8e', ll_to_earth(8.011663, 78.745595), 'V8U', '2020-9-17T02:19:32.816610+00:00'),
+('mary_miller', 'mary_miller@uvic.ca', 'cbf94a025845ec0fe7ce99dd91fc94a1ff3ddd7080394c67d86d42c1fda3758c', ll_to_earth(-144.336058, 31.392213), 'V8O', '2013-1-12T02:19:32.816610+00:00'),
+('mary_johnson', 'mary_johnson@uvic.ca', '7a182ef4d21c8072a4b936f819f09553011f42043dc0c360fef34363d25529e3', ll_to_earth(3.33505, -75.611065), 'V8O', '1999-9-2T02:19:32.816610+00:00'),
+('mary_garcia', 'mary_garcia@uvic.ca', 'f35f20fff526cef0b35e278c77ff2a90b5e4081a0d816eca19ed5642683ac8d7', ll_to_earth(167.263645, -78.784113), 'V8M', '1989-11-20T02:19:32.816610+00:00'),
+('mary_li', 'mary_li@uvic.ca', '30a7f28d78ed2c148532f62580a6220f6bbc1d5d669f9c536779bb14b9bb524a', ll_to_earth(54.68735, 76.874484), 'V9B', '1970-7-23T02:19:32.816610+00:00'),
+('mary_singh', 'mary_singh@uvic.ca', '717a928dce0d0e305b8718aa35fdd28c13b3a137fd2a424f33ffa4dd0c516475', ll_to_earth(-118.082698, -12.482721), 'V8X', '1977-9-21T02:19:32.816610+00:00'),
+('mary_anderson', 'mary_anderson@uvic.ca', '139857e2b071dbf7b555660a8876494bd54c0429bcf76f301c87ff200a4c4b60', ll_to_earth(-30.965466, -21.928864), 'V9E', '1995-10-9T02:19:32.816610+00:00'),
+('mary_young', 'mary_young@uvic.ca', '6b19277aa6e9be13758e0c61f7890ed952685203cbc91aae6c71c9e807b7f4d0', ll_to_earth(-95.186912, 13.495098), 'V8Z', '2004-7-5T02:19:32.816610+00:00'),
+('mary_williams', 'mary_williams@uvic.ca', '1c396be5ed3fb200450a05b1968762d30aae6a8e8a0b90f04fdbec42f06ce09e', ll_to_earth(-42.330377, 89.108173), 'V8Z', '1971-9-24T02:19:32.816610+00:00'),
+('james_smith', 'james_smith@uvic.ca', '3864dd85f5babb8f13d4eac5af2268659c1f5cc6f8d2f0e603526938fb3298df', ll_to_earth(135.679453, -63.605185), 'V8P', '2005-6-22T02:19:32.816610+00:00'),
+('james_brown', 'james_brown@uvic.ca', 'a9820c63ed9a4ce8e29bc24e688fa00ebe90ba3089cfde50834f088ddf0214eb', ll_to_earth(76.146031, -28.889393), 'V8U', '2013-7-11T02:19:32.816610+00:00'),
+('james_miller', 'james_miller@uvic.ca', '2e0b9a512e44a3b78f171be056b799bd0dbc672158525cd4cf51146cab2f5500', ll_to_earth(140.827173, -38.928836), 'V8V', '1973-10-8T02:19:32.816610+00:00'),
+('james_johnson', 'james_johnson@uvic.ca', 'de81bc5e031c159ef0bdec5ac62b81173134801180e0df81f84321c5ff9d3cd', ll_to_earth(-99.569328, 25.859122), 'V8P', '2019-9-23T02:19:32.816610+00:00'),
+('james_garcia', 'james_garcia@uvic.ca', '74f6f245156efdb6217b9bf5615ca014350556219c0b6e429209148c452a7267', ll_to_earth(118.239079, 12.93053), 'V9A', '1991-5-21T02:19:32.816610+00:00'),
+('james_li', 'james_li@uvic.ca', '160af46736650685c3ae335b082f7ff6388fb00f3e8c53e31e52428bfddd96c5', ll_to_earth(-164.64031, -15.992053), 'V8M', '1988-1-14T02:19:32.816610+00:00'),
+('james_singh', 'james_singh@uvic.ca', '2e4f00abdc7a4b8ac6e9f671e30ce6c27924bae2914db47d6bdec3e1e7e3a16d', ll_to_earth(-167.211712, -20.137648), 'V8P', '2012-9-27T02:19:32.816610+00:00'),
+('james_anderson', 'james_anderson@uvic.ca', '5c2a9979c31fb57126ab221c75fe2f8a5517a90e3cadacc3e43615c26ff4481f', ll_to_earth(34.255796, -6.994723), 'V8R', '2005-2-20T02:19:32.816610+00:00'),
+('james_young', 'james_young@uvic.ca', '6267d6fe7ec1d1774c250b3a4db45f8d80a5eeda9bc9d10796fd96d6f2a27981', ll_to_earth(93.647451, -66.758354), 'V8T', '2009-2-10T02:19:32.816610+00:00'),
+('james_williams', 'james_williams@uvic.ca', '1099482dfbed52cf0ebdf22709fcb5831613a223c2d3aaf2696ac03914979054', ll_to_earth(-65.638794, 
+-88.344264), 'V8P', '1992-10-17T02:19:32.816610+00:00'),
+('michael_smith', 'michael_smith@uvic.ca', '612601615b7f0cd8a4bd2f074663fc869183f097389fd3b00361b929340c6f38', ll_to_earth(-35.563238, -23.76758), 'V8T', '1982-5-3T02:19:32.816610+00:00'),
+('michael_brown', 'michael_brown@uvic.ca', 'ae374d795b895bdbda00dd1aa003fcf25b14cbca333e3ea932e0e7e0114f0b9e', ll_to_earth(-136.535722, 84.528456), 'V8X', '1977-8-13T02:19:32.816610+00:00'),
+('michael_miller', 'michael_miller@uvic.ca', '5c7695c6b330c63147e15b3a86fce03a5d8214e45a637c89e70d01d84bbd6100', ll_to_earth(-26.81385, -2.122797), 'V9B', '2006-8-22T02:19:32.816610+00:00'),
+('michael_johnson', 'michael_johnson@uvic.ca', 'f13b7ba93334b35c9bc32251b8b62d7d23ced94ba0a3e50c10435c6c9e48384d', ll_to_earth(-168.280497, -68.136384), 'V9E', '1989-10-8T02:19:32.816610+00:00'),
+('michael_garcia', 'michael_garcia@uvic.ca', '6ad6ac515543ed17d064b518d19826ec4186f652bbf59c10cbbbc91356196e84', ll_to_earth(156.187147, 
+-70.096323), 'V9D', '1997-5-10T02:19:32.816610+00:00'),
+('michael_li', 'michael_li@uvic.ca', '548a2191d851600e429f7f2d8b0abaf7348193b22d7dcd098f3da83673319bd5', ll_to_earth(-21.686973, 37.515581), 'V8R', '1979-2-13T02:19:32.816610+00:00'),
+('michael_singh', 'michael_singh@uvic.ca', 'f9921a7d7f3df691dcaa282a211904abb8423a8d5598952eed89dd0f1e13d030', ll_to_earth(86.916844, 35.904621), 'V8X', '1995-11-24T02:19:32.816610+00:00'),
+('michael_anderson', 'michael_anderson@uvic.ca', '695d61f3649d524dc5f8e78a77d73b394cce58c71dc322e1aa34d2f03d068be8', ll_to_earth(-20.607066, 61.273859), 'V8M', '2018-4-7T02:19:32.816610+00:00'),
+('michael_young', 'michael_young@uvic.ca', 'db9ad9383fb55238734ff02b0a7e57b332438ac456f8136d1d1e9f94a36795e5', ll_to_earth(-83.922165, 3.462703), 'V8N', '2014-4-19T02:19:32.816610+00:00'),
+('michael_williams', 'michael_williams@uvic.ca', '5d5015774c057cec56657e96d84e44c6cab82240d4aed02faa608167167db560', ll_to_earth(-148.358736, 24.532525), 'V8U', '2016-1-11T02:19:32.816610+00:00'),
+('william_smith', 'william_smith@uvic.ca', 'dbf500223cb81466f505500bd6232b83ff7250151843591f3b4f30d82b9464c2', ll_to_earth(-40.733844, -70.781059), 'V9A', '2010-7-6T02:19:32.816610+00:00'),
+('william_brown', 'william_brown@uvic.ca', '43092b870e079c1ecedadc2fdc3a1bbf5ff1b7867ff060ae41697de93590c9d4', ll_to_earth(2.339957, 43.175715), 'V9C', '1995-9-2T02:19:32.816610+00:00'),
+('william_miller', 'william_miller@uvic.ca', '80e4b9a181fedce5a63f65151459a5f09b567c2ecde43b635fa6ad309837aaba', ll_to_earth(-161.984552, 67.225678), 'V8T', '2007-8-15T02:19:32.816610+00:00'),
+('william_johnson', 'william_johnson@uvic.ca', '36ed065c533e8277fff2c74c4633a7a10a3a25da70ac56cab607ac37ae62c9cd', ll_to_earth(-116.798316, 32.371043), 'V8Y', '2012-9-20T02:19:32.816610+00:00'),
+('william_garcia', 'william_garcia@uvic.ca', '7faba33467408621b37447704d3a0d579b5956e5f6457f694a73ac0fada4e093', ll_to_earth(-45.021598, 
+-84.48916), 'V8X', '2020-6-7T02:19:32.816610+00:00'),
+('william_li', 'william_li@uvic.ca', '1d679414da3c645021dae180220e3fd4cbb840f9e8681f2661b7ee4a6403c4f6', ll_to_earth(-0.225489, -60.545304), 'V8M', '2010-4-4T02:19:32.816610+00:00'),
+('william_singh', 'william_singh@uvic.ca', '1000e1085054ab8ec5426e134efe8c96f62f279d6de30a15f906ff61a0e498f1', ll_to_earth(-22.771966, -67.865235), 'V8P', '2007-11-4T02:19:32.816610+00:00'),
+('william_anderson', 'william_anderson@uvic.ca', '9046f7a7bdc4fa407608eb47f21c8ed3997e09be245d664e8b836c8b40d264ad', ll_to_earth(8.7723, 
+72.06862), 'V8R', '1994-10-4T02:19:32.816610+00:00'),
+('william_young', 'william_young@uvic.ca', 'fff268c0d132a96004480646273d6213dfbe37ccf4283fdafbdf55c43709d2cd', ll_to_earth(141.363815, -77.244739), 'V8M', '1986-2-5T02:19:32.816610+00:00'),
+('william_williams', 'william_williams@uvic.ca', '965613930acf719cca25b8ba5ba32c377c52ad25d28afb84328795b5b5161434', ll_to_earth(-126.267821, -41.974832), 'V8R', '2019-4-8T02:19:32.816610+00:00'),
+('george_smith', 'george_smith@uvic.ca', '7108e9015244bdd7168bd7411073e5a5c96d0d379b1037d3d4799f91fc218ba7', ll_to_earth(162.92238, -53.693357), 'V8U', '2020-7-16T02:19:32.816610+00:00'),
+('george_brown', 'george_brown@uvic.ca', '741ef37724f524b286ccc5d2ba4fd602188cb63f7ea89eeed76712d1b77b723a', ll_to_earth(-176.292156, -47.435323), 'V8W', '2019-7-11T02:19:32.816610+00:00'),
+('george_miller', 'george_miller@uvic.ca', '9bbdb63b84006c87a726fb07487a8b2289b9fc0df7552a019871d7e0f2ea9895', ll_to_earth(-104.298768, 83.700167), 'V8M', '2015-1-17T02:19:32.816610+00:00'),
+('george_johnson', 'george_johnson@uvic.ca', 'd9caa5d3267ad1318f3d4e3a5814624da9e89ede967b93296f24d2a06a62ef80', ll_to_earth(-122.807923, -57.646015), 'V8O', '1974-2-26T02:19:32.816610+00:00'),
+('george_garcia', 'george_garcia@uvic.ca', '33b594af54b5fa07dea50ece1d9aa3fd76407c636877bb006f3e707dc4b9990a', ll_to_earth(-120.914065, 86.918422), 'V8O', '1998-7-10T02:19:32.816610+00:00'),
+('george_li', 'george_li@uvic.ca', '3a6ff2b08bb632b245c017b6415217688d1e185f098cfe5abbbcd05bf8306572', ll_to_earth(43.030756, -41.641248), 'V8N', '1998-8-19T02:19:32.816610+00:00'),
+('george_singh', 'george_singh@uvic.ca', '28c268deae3829bdb6a1981dde5a916dca6ad467e0407cf654f403c5135e55ec', ll_to_earth(-88.358257, -58.343229), 'V8Y', '2006-2-6T02:19:32.816610+00:00'),
+('george_anderson', 'george_anderson@uvic.ca', '5a501fcc8fde7063bd59ad8744ef5074e75ec841d4cd465806df2f96e0c38c52', ll_to_earth(-5.027578, -29.261512), 'V8T', '2005-11-11T02:19:32.816610+00:00'),
+('george_young', 'george_young@uvic.ca', '6f78a0fd7257293cc5f8da9bc7b8bad4ab7cdfc7d661abce090707f1b1e8c85b', ll_to_earth(-63.444534, 77.774781), 'V8W', '1986-3-13T02:19:32.816610+00:00'),
+('george_williams', 'george_williams@uvic.ca', '188d4a9c040e473975b51db870616a6857f24c64e227dea07950f3cc5f4f13cb', ll_to_earth(-121.429083, 16.154306), 'V9D', '1972-4-21T02:19:32.816610+00:00'),
+('thomas_smith', 'thomas_smith@uvic.ca', '411e6d7d93bf74d4b9409198fc14b705522bf43a935b6b4d4ec56d1742bc1be0', ll_to_earth(-168.539888, 18.964674), 'V8Z', '1980-1-2T02:19:32.816610+00:00'),
+('thomas_brown', 'thomas_brown@uvic.ca', '34875b174d57d86fb16be41dd9707ff198a3e42000ae21dbd53bffa793739a46', ll_to_earth(-76.411623, 42.116712), 'V8U', '1983-5-13T02:19:32.816610+00:00'),
+('thomas_miller', 'thomas_miller@uvic.ca', '7ef4965126c236d3084ecde0c6accc272f02e6564196578ac62c78d3559ab320', ll_to_earth(47.377452, 22.093983), 'V8S', '1987-5-22T02:19:32.816610+00:00'),
+('thomas_johnson', 'thomas_johnson@uvic.ca', '54c1b0420dc311868e0da706b0836c0521c615aef932627182665423b04a63cd', ll_to_earth(-115.108581, 47.271232), 'V8U', '2012-4-17T02:19:32.816610+00:00'),
+('thomas_garcia', 'thomas_garcia@uvic.ca', '1451a96c167ae0c3dae0fcb8320de0333b02a7ef95c2343c13e670a44da10f07', ll_to_earth(-3.614586, 89.58896), 'V9C', '2021-2-13T02:19:32.816610+00:00'),
+('thomas_li', 'thomas_li@uvic.ca', 'd6a74216d170776bacca63f92d4ad80a6d480a897b9da226336a6862ce940176', ll_to_earth(0.497568, -49.234689), 'V8O', '1992-3-20T02:19:32.816610+00:00'),
+('thomas_singh', 'thomas_singh@uvic.ca', '1c55c4f39b353f72b37b31920613f8d189cb66c06154e274c960253bb3c02b30', ll_to_earth(133.643759, 4.728416), 'V8M', '2004-9-13T02:19:32.816610+00:00'),
+('thomas_anderson', 'thomas_anderson@uvic.ca', 'b387cc63659a148b9126d1b5ac96fe03756dafd039b5460573b6b2f3f45d8fcf', ll_to_earth(75.073017, 24.486876), 'V9B', '1978-11-18T02:19:32.816610+00:00'),
+('thomas_young', 'thomas_young@uvic.ca', 'aa2b163dc9908dc6814d3a3c8aa9fd8263d470145abefd86fb9348bef25c3874', ll_to_earth(16.71021, 42.128667), 'V8O', '1988-10-13T02:19:32.816610+00:00'),
+('thomas_williams', 'thomas_williams@uvic.ca', 'e15ac0896091156838c9bcabcd991907a64a5f87ac0f2f104314b53e66419c4c', ll_to_earth(-46.241186, -54.642562), 'V8P', '1986-8-22T02:19:32.816610+00:00'),
+('susan_smith', 'susan_smith@uvic.ca', '345625c5140953e444ce7078c66c2f3b2499929840c6d3c2db6503c4d03e8d23', ll_to_earth(-28.326627, -76.50167), 'V8M', '1971-7-18T02:19:32.816610+00:00'),
+('susan_brown', 'susan_brown@uvic.ca', '1711ed667fae0cc2e203a6659c9f2a06275913317af199412d233fce1fd56dde', ll_to_earth(-21.065263, 26.537062), 'V8W', '1983-3-5T02:19:32.816610+00:00'),
+('susan_miller', 'susan_miller@uvic.ca', '410d6222aa1259403ae179696be51fd58926bbb7ee0fa552910c81f40c0e021b', ll_to_earth(29.972689, 6.873859), 'V8P', '1975-1-22T02:19:32.816610+00:00'),
+('susan_johnson', 'susan_johnson@uvic.ca', '7068d38e5cca14ef050a43b56639f8a522d06f53343425d179eeb7520236bf2e', ll_to_earth(87.899423, 69.053328), 'V8X', '1978-4-14T02:19:32.816610+00:00'),
+('susan_garcia', 'susan_garcia@uvic.ca', '4f461ffcfc69f532900a434c8c15fe38dd97a04a2c20c2824af46ec7213dffde', ll_to_earth(-109.385714, -21.833788), 'V8O', '2020-1-19T02:19:32.816610+00:00'),
+('susan_li', 'susan_li@uvic.ca', '661c8c7b5c0715afbd3d173753f2d0bbbe38539e7eca57e494977a00e5ce3a31', ll_to_earth(-135.971082, -75.263513), 'V8Z', '1983-3-12T02:19:32.816610+00:00'),
+('susan_singh', 'susan_singh@uvic.ca', 'c94884e999abfdb07348c7d69a649bd503d3889f72c65a8871fbc8aeb3216b1e', ll_to_earth(51.489183, -75.918375), 'V8N', '1980-9-17T02:19:32.816610+00:00'),
+('susan_anderson', 'susan_anderson@uvic.ca', 'a47afa3f162b37541aee872bddf86646aa10bb707b9d5b2a5999586c881d65d6', ll_to_earth(-84.823608, 
+31.264273), 'V9A', '1972-5-14T02:19:32.816610+00:00'),
+('susan_young', 'susan_young@uvic.ca', 'c2c31efafb82998788d81a99f002c4be4e83ad12096cc514fbbb6f7ba33dd0e7', ll_to_earth(30.24188, 36.510473), 'V8T', '2013-5-27T02:19:32.816610+00:00'),
+('susan_williams', 'susan_williams@uvic.ca', 'ea52dbc1895d9665852522a238a6c87c0b36089f79c59b3d55cee4b5a33a4d90', ll_to_earth(-168.375377, -18.092308), 'V8U', '2001-6-7T02:19:32.816610+00:00'),
+('olivia_smith', 'olivia_smith@uvic.ca', '84a514edbe7572a8e1ebb5ffd169926a326778c2c29ca0363dd12101930ae899', ll_to_earth(-50.309729, 68.181832), 'V8S', '1998-5-26T02:19:32.816610+00:00'),
+('olivia_brown', 'olivia_brown@uvic.ca', '8fe821bb9ae20d3b1257fa6d626e9f0e0896740530eb9c82d90ceef1ba1ad51c', ll_to_earth(111.914526, -20.36552), 'V8V', '1995-5-1T02:19:32.816610+00:00'),
+('olivia_miller', 'olivia_miller@uvic.ca', 'c7794fd0cebac961a8eabb58cb08388063de487937a14e8706aa035bf4202379', ll_to_earth(78.07292, 31.413023), 'V8X', '1999-4-25T02:19:32.816610+00:00'),
+('olivia_johnson', 'olivia_johnson@uvic.ca', 'd3926a032447c6c1d21d6338cb4370222a2210446cdb35cd8fd32bf1bf9a2bad', ll_to_earth(-101.222413, 3.763793), 'V9A', '1974-8-26T02:19:32.816610+00:00'),
+('olivia_garcia', 'olivia_garcia@uvic.ca', '6f1ed27e474e5216d2d41ffab5b39d4421a82026af3ec57e7abc606b35210c79', ll_to_earth(-16.618327, -66.826208), 'V8S', '2005-3-22T02:19:32.816610+00:00'),
+('olivia_li', 'olivia_li@uvic.ca', '852a7889fc43eb667b25a8c0eeab999c0b7698c03d402567cb7042a82f0f6967', ll_to_earth(-5.219007, 72.339741), 'V8M', '1993-6-17T02:19:32.816610+00:00'),
+('olivia_singh', 'olivia_singh@uvic.ca', '748da9e784e285c076ad8abce7c8896331f5325813f06ef416b781ecb17b7577', ll_to_earth(134.114038, -7.457634), 'V9B', '1984-9-24T02:19:32.816610+00:00'),
+('olivia_anderson', 'olivia_anderson@uvic.ca', 'b2d4058f2fac2b607478abbd48ffe61a3a0299a6c57f47b3a5b1f29c471e8553', ll_to_earth(155.303328, -10.259649), 'V8V', '1980-7-23T02:19:32.816610+00:00'),
+('olivia_young', 'olivia_young@uvic.ca', '70418a42b7133a72fff0184a3fca80f2ada7128fcc4420a72ca789d3c5fffcd7', ll_to_earth(157.560901, -50.368763), 'V9A', '2006-5-6T02:19:32.816610+00:00'),
+('olivia_williams', 'olivia_williams@uvic.ca', '1cb180ff0cfb4f72372c9d5f694f2a2b07ba0e331f8adf391ce5b1a188dc4e2a', ll_to_earth(-143.73994, 18.642277), 'V8W', '2018-1-5T02:19:32.816610+00:00'),
+('elizabeth_smith', 'elizabeth_smith@uvic.ca', 'ae1c89ff59e923b86e8157e4cbc58b8c592ac1e70defd466e83bd246a4960d1f', ll_to_earth(-132.97435, -19.220408), 'V8Z', '1987-7-20T02:19:32.816610+00:00'),
+('elizabeth_brown', 'elizabeth_brown@uvic.ca', '82215afee891674cc137cc5a64123dc9bb94587591d2430948cb0302e620857', ll_to_earth(-24.004043, 31.488932), 'V9D', '1974-6-6T02:19:32.816610+00:00'),
+('elizabeth_miller', 'elizabeth_miller@uvic.ca', '82a52bb513713a19ae6bb6522bbb155699f16ccdc9734cf177c197b365f8a3c4', ll_to_earth(-148.309779, -81.347254), 'V9D', '1985-9-21T02:19:32.816610+00:00'),
+('elizabeth_johnson', 'elizabeth_johnson@uvic.ca', 'c28acf98024ff60f822518182eab9b5a716fe3495f60c6c83e95ae0b363f1f17', ll_to_earth(-15.459269, 77.094922), 'V8S', '1982-2-21T02:19:32.816610+00:00'),
+('elizabeth_garcia', 'elizabeth_garcia@uvic.ca', 'a78bcb70143f62822382791de30484cba6292d6c7b0f0e9c7e19d4f5c551ecb1', ll_to_earth(-137.159042, -76.18857), 'V8Y', '2014-7-12T02:19:32.816610+00:00'),
+('elizabeth_li', 'elizabeth_li@uvic.ca', 'f6317874bca010b2b30c50e4a4fb18d2e7f826ac49ef646e360ccaffece38a6e', ll_to_earth(-53.49581, -26.616814), 'V8U', '2018-11-15T02:19:32.816610+00:00'),
+('elizabeth_singh', 'elizabeth_singh@uvic.ca', '44b3b4241482754d4c32178d73dc5a7dc3b8ae995c5cb408200071223f77dad3', ll_to_earth(-177.411061, -51.700794), 'V9B', '2004-7-1T02:19:32.816610+00:00'),
+('elizabeth_anderson', 'elizabeth_anderson@uvic.ca', 'c0b1638a075290f6d1c7f4d942ff3c7963d5f255a456003101283271f4c93dee', ll_to_earth(68.01146, -71.753901), 'V8P', '1998-5-24T02:19:32.816610+00:00'),
+('elizabeth_young', 'elizabeth_young@uvic.ca', '284cb2e2e24c3c9f69672758a307e21c3773af4a4d48e127733b96d5cbd8ef55', ll_to_earth(-146.066428, -19.447274), 'V8T', '1991-4-15T02:19:32.816610+00:00'),
+('elizabeth_williams', 'elizabeth_williams@uvic.ca', '9620aa0e1a0605b24ec20cd7ac02d34fe1b3a024a9ccef692e4aef60c022133a', ll_to_earth(179.490299, 27.552206), 'V9C', '1990-10-12T02:19:32.816610+00:00'),
+('lisa_smith', 'lisa_smith@uvic.ca', 'ed7da7866869246640fa34ad774586017b214acade8d457c62526459ea6cec32', ll_to_earth(31.240392, -50.905601), 'V8V', '2015-9-4T02:19:32.816610+00:00'),
+('lisa_brown', 'lisa_brown@uvic.ca', 'faae07c628eb537e0191e5d6b509683fd94c1abacbf5245036665ad071d78b65', ll_to_earth(-30.427652, 44.273851), 'V9D', '2005-1-6T02:19:32.816610+00:00'),
+('lisa_miller', 'lisa_miller@uvic.ca', 'a497b766941a251370c1bd105856d978b7f761bda24ddaf399a076edf5ce9e1b', ll_to_earth(36.104034, -35.435719), 'V8M', '1997-3-5T02:19:32.816610+00:00'),
+('lisa_johnson', 'lisa_johnson@uvic.ca', '24c564b10ea077f50725936c18199801708e266fde53273c93d3d04687a3c207', ll_to_earth(18.837573, 50.235211), 'V8W', '1987-3-22T02:19:32.816610+00:00'),
+('lisa_garcia', 'lisa_garcia@uvic.ca', 'b198cbf030f555d72ee19e8e79612ca0383763ad4a366d590e362fd65f2eb102', ll_to_earth(164.015883, -54.555612), 'V8S', '1983-10-25T02:19:32.816610+00:00'),
+('lisa_li', 'lisa_li@uvic.ca', '792765a160e23e2c8c8a2bf7d88e67d407b197c6df5db197e743be1f41466626', ll_to_earth(131.490375, -65.291298), 'V9D', '2018-7-26T02:19:32.816610+00:00'),
+('lisa_singh', 'lisa_singh@uvic.ca', '952e4b5b511b6b22669dd201ecd500b089142e5f275cb369960f78e2e391bc27', ll_to_earth(-10.465054, -7.103699), 'V8U', '1983-8-22T02:19:32.816610+00:00'),
+('lisa_anderson', 'lisa_anderson@uvic.ca', '6e71d4f46dbb4b9b82e094a05169a5a2bbf46e984594096575548269212597fc', ll_to_earth(-58.903569, -45.269445), 'V9A', '1996-4-13T02:19:32.816610+00:00'),
+('lisa_young', 'lisa_young@uvic.ca', 'eacec46d9d72b065d2c2e8576ad20e75ba36adbc23b38760376d2ce944697bf6', ll_to_earth(132.45774, -47.900077), 'V9D', '1998-11-18T02:19:32.816610+00:00'),
+('lisa_williams', 'lisa_williams@uvic.ca', '3d28284ceb1951c1d88e41ab602943fa87c5d351574a91f23f082cf4d778fd77', ll_to_earth(176.988981, -4.431395), 'V9E', '2000-3-25T02:19:32.816610+00:00');
 
 -- Insert dummy data into Searches table
 INSERT INTO Searches (user_id, search_text, search_date)
@@ -117,107 +123,107 @@ VALUES
 (1, 'Hot Wheels', '2024-01-01'),
 (1, 'iPod touch 5th Gen', '2024-01-02'),
 (2, 'Lego Palpatine Lightning Hands', '2023-02-01'),
-(2, 'Lego Power Miners', '2023-02-01')
-(26, 'Keyboard', '1985-4-19')
-(99, 'Fast Lamp', '1996-8-25')
-(29, 'Touchscreen Bicycle', '2018-1-19')
-(84, 'Comfortable Printer', '1983-2-25')
-(49, 'Apple', '2005-2-20')
-(39, 'Adjustable Laptop', '2018-11-19')
-(68, 'Monitor', '1985-6-12')
-(19, 'Ergonomic Optical Keyboard', '1986-2-13')
-(6, 'Educational Ceramic Monitor', '2023-3-17')
-(55, 'Printer', '1996-5-3')
-(95, 'Lightweight Fast Printer', '1994-3-3')
-(54, 'Ballpoint Insulated Pen', '1983-6-26')
-(1, 'Comfortable Apple', '1995-11-13')
-(88, 'Mouse', '1977-6-13')
-(82, 'Ballpoint Touchscreen Car', '2002-4-22')
-(98, 'Keyboard', '2016-11-7')
-(40, 'Insulated Desk Chair', '2008-9-18')
-(96, 'Multifunction Mechanical Desk Chair', '1975-10-19')
-(49, 'Ballpoint Touchscreen Desk Chair', '1984-4-10')
-(58, 'Wireless Ergonomic Headphones', '1970-10-19')
-(14, 'Lamp', '1982-1-6')
-(63, 'Lamp', '1994-3-7')
-(8, 'Comfortable Breathable Laptop', '1974-11-13')
-(76, 'Breathable High-Resolution Car', '1983-1-7')
-(74, 'Multifunction Touchscreen Apple', '1970-10-9')
-(19, 'High-Resolution Ballpoint Desk Chair', '2021-4-6')
-(10, 'Tablet', '1972-3-20')
-(18, 'Ballpoint Durable Sneakers', '1999-3-13')
-(5, 'Lightweight Coffee Mug', '1985-4-17')
-(7, 'Wireless Educational Headphones', '1985-11-5')
-(29, 'Portable Touchscreen Coffee Mug', '1970-1-24')
-(87, 'Bicycle', '1980-9-27')
-(69, 'Tablet', '1997-5-12')
-(15, 'Portable Touchscreen Printer', '1993-11-3')
-(32, 'Printer', '1984-3-8')
-(47, 'Breathable Fast Pen', '1984-7-26')
-(9, 'Ceramic Mouse', '1977-8-14')
-(98, 'Lightweight Headphones', '2016-9-5')
-(68, 'High-Resolution Bicycle', '1995-11-20')
-(36, 'Adjustable Apple', '2019-5-25')
-(40, 'Optical Ballpoint Notebook', '1977-7-17')
-(22, 'Coffee Mug', '2006-7-23')
-(15, 'Portable Smartphone', '1991-6-25')
-(36, 'Ballpoint Bicycle', '2010-6-23')
-(17, 'Ergonomic Monitor', '1999-3-8')
-(49, 'Lamp', '1971-3-24')
-(35, 'Ergonomic Lamp', '2018-5-8')
-(69, 'Comfortable Breathable Apple', '2008-4-17')
-(30, 'Lightweight Laptop', '2005-5-5')
-(41, 'Printer', '1981-6-16')
-(53, 'Durable Red Lamp', '1983-8-23')
-(27, 'Optical Smartphone', '2012-11-4')
-(69, 'Comfortable Smartphone', '1996-5-1')
-(34, 'Insulated Wireless Pen', '1990-5-14')
-(91, 'High-Resolution Keyboard', '1983-7-26')
-(36, 'Insulated Backpack', '1999-7-12')
-(75, 'Adjustable Multifunction Mouse', '1986-4-18')
-(49, 'Portable Touchscreen Water Bottle', '2020-3-17')
-(37, 'Bicycle', '1999-8-27')
-(74, 'Adjustable Bicycle', '1986-8-1')
-(12, 'Ballpoint Backpack', '1987-9-16')
-(9, 'Adjustable Adjustable Printer', '2008-1-12')
-(59, 'Ballpoint Printer', '1996-4-13')
-(70, 'Lightweight Lined Monitor', '2003-8-26')
-(99, 'Breathable Lightweight Bicycle', '2001-1-27')
-(93, 'Mechanical Ceramic Mouse', '1983-3-24')
-(12, 'Bicycle', '2002-6-26')
-(27, 'Ergonomic Car', '1993-10-16')
-(33, 'Durable Water Bottle', '1982-10-20')
-(4, 'Ergonomic Wireless Water Bottle', '2000-6-22')
-(81, 'Insulated Bicycle', '1994-8-9')
-(8, 'Headphones', '1974-7-27')
-(59, 'Fast High-Resolution Pen', '2010-2-20')
-(97, 'Multifunction Comfortable Lamp', '1971-7-3')
-(10, 'Apple', '2015-8-21')
-(23, 'Headphones', '1997-9-14')
-(73, 'Mechanical Notebook', '1999-9-5')
-(18, 'Ergonomic Coffee Mug', '1995-5-12')
-(50, 'Ergonomic Lightweight Laptop', '1980-4-1')
-(35, 'Adjustable Ceramic Sneakers', '2004-11-23')
-(75, 'Lamp', '1981-11-27')
-(90, 'Ballpoint Wireless Mouse', '1990-7-2')
-(80, 'Ergonomic Water Bottle', '2021-3-11')
-(85, 'Adjustable Bicycle', '2010-1-10')
-(57, 'Comfortable Apple', '2021-9-1')
-(37, 'Bicycle', '2007-9-9')
-(87, 'Mechanical Adjustable Tablet', '2023-8-17')
-(56, 'Durable Mouse', '1989-2-17')
-(88, 'Insulated Pen', '2008-8-1')
-(75, 'Sneakers', '2023-10-4')
-(45, 'High-Resolution Ceramic Coffee Mug', '2011-5-19')
-(75, 'Keyboard', '1971-7-18')
-(59, 'Coffee Mug', '1975-10-20')
-(83, 'Educational Breathable Coffee Mug', '1979-10-7')
-(45, 'Lamp', '1993-7-4')
-(12, 'Red Desk Chair', '2021-4-22')
-(70, 'Educational Ballpoint Coffee Mug', '2014-9-2')
-(78, 'Fast Sneakers', '2003-5-8')
-(29, 'Backpack', '1982-8-11')
-(89, 'Mechanical Portable Keyboard', '1991-8-8');
+(2, 'Lego Power Miners', '2023-02-01'),
+(96, 'Pen', '2019-8-22'),
+(49, 'Apple', '1988-3-24'),
+(81, 'Ergonomic Water Bottle', '1982-2-20'),
+(44, 'Red Coffee Mug', '2011-6-9'),
+(21, 'Desk Chair', '2017-10-25'),
+(78, 'Portable Headphones', '2022-3-16'),
+(75, 'Ceramic Multifunction Backpack', '1991-9-14'), 
+(81, 'Insulated Multifunction Monitor', '2015-8-16'),
+(23, 'Portable Car', '2009-11-25'),
+(47, 'Backpack', '2018-9-20'),
+(71, 'Lined Optical Desk Chair', '1976-3-13'),       
+(38, 'Keyboard', '1992-6-23'),
+(42, 'Breathable High-Resolution Lamp', '2009-6-17'),
+(65, 'Fast Touchscreen Keyboard', '2013-10-11'),     
+(18, 'Apple', '2009-8-26'),
+(1, 'Backpack', '1986-8-12'),
+(22, 'Mechanical Keyboard', '1997-8-24'),
+(78, 'Insulated Ceramic Smartphone', '2016-9-12'),
+(69, 'Headphones', '1981-7-22'),
+(46, 'Fast High-Resolution Sneakers', '2014-4-12'),
+(10, 'Water Bottle', '2003-6-16'),
+(8, 'Educational Desk Chair', '1978-11-24'),
+(53, 'High-Resolution Educational Printer', '1990-4-8'),
+(35, 'Tablet', '1987-5-5'),
+(64, 'Water Bottle', '2004-4-3'),
+(60, 'Backpack', '1987-9-1'),
+(48, 'Bicycle', '2016-11-24'),
+(94, 'Optical Tablet', '1979-3-3'),
+(16, 'Mouse', '2008-11-21'),
+(84, 'Adjustable Adjustable Apple', '2012-4-17'),
+(48, 'Printer', '2013-3-3'),
+(93, 'Comfortable Touchscreen Bicycle', '1983-4-27'),
+(39, 'Desk Chair', '2010-8-12'),
+(47, 'Printer', '2018-2-5'),
+(25, 'Ergonomic Portable Keyboard', '2014-5-11'),
+(64, 'Monitor', '2003-8-25'),
+(29, 'Insulated Sneakers', '1972-1-27'),
+(6, 'Durable Coffee Mug', '1979-8-14'),
+(64, 'Backpack', '1983-8-13'),
+(55, 'Pen', '2012-10-7'),
+(77, 'High-Resolution Book', '1996-2-8'),
+(13, 'Mechanical Water Bottle', '1985-5-13'),
+(87, 'Tablet', '1985-1-11'),
+(13, 'Portable Mechanical Monitor', '2016-11-24'),
+(4, 'Book', '2001-7-22'),
+(33, 'Insulated Headphones', '1971-2-24'),
+(77, 'Coffee Mug', '2013-10-20'),
+(88, 'Book', '2006-10-13'),
+(11, 'Adjustable Printer', '1989-10-12'),
+(21, 'Pen', '2022-5-10'),
+(97, 'Fast Keyboard', '1976-9-8'),
+(75, 'Multifunction Smartphone', '2012-1-17'),
+(76, 'Ballpoint Apple', '1979-7-9'),
+(10, 'Portable Monitor', '2010-7-18'),
+(97, 'Ergonomic Desk Chair', '1982-7-14'),
+(44, 'Breathable Multifunction Backpack', '2003-11-17'),
+(7, 'Ergonomic Red Coffee Mug', '2000-9-10'),
+(68, 'Ballpoint Lightweight Tablet', '1994-8-20'),
+(72, 'Durable Sneakers', '1986-11-17'),
+(21, 'Educational Lamp', '1999-9-27'),
+(44, 'Adjustable Pen', '2018-2-11'),
+(79, 'Smartphone', '1996-4-22'),
+(75, 'Lamp', '2022-5-22'),
+(11, 'Breathable Keyboard', '1988-7-20'),
+(59, 'Adjustable Apple', '2001-4-13'),
+(39, 'Laptop', '1999-8-9'),
+(60, 'Wireless Sneakers', '1979-6-18'),
+(11, 'Lined Portable Printer', '1998-1-3'),
+(33, 'Keyboard', '1994-7-10'),
+(51, 'Printer', '2022-1-4'),
+(54, 'Apple', '2000-9-5'),
+(5, 'Multifunction Laptop', '1989-2-2'),
+(65, 'Educational Ceramic Backpack', '2021-7-24'),
+(87, 'Ballpoint Car', '2010-4-19'),
+(64, 'Lightweight Ballpoint Printer', '2011-8-14'),
+(48, 'Durable Pen', '1981-8-9'),
+(64, 'Educational Fast Laptop', '2013-2-12'),
+(6, 'Multifunction Wireless Apple', '2018-11-7'),
+(12, 'Ergonomic Breathable Mouse', '1980-8-9'),
+(40, 'Ceramic Portable Lamp', '2000-8-13'),
+(17, 'Laptop', '1978-10-16'),
+(29, 'Wireless Lightweight Pen', '1984-4-17'),
+(69, 'Monitor', '2021-8-7'),
+(96, 'High-Resolution Sneakers', '2023-2-17'),
+(61, 'Touchscreen Breathable Smartphone', '2014-6-14'),
+(57, 'Ballpoint Fast Car', '2002-2-23'),
+(45, 'Comfortable Car', '1997-4-8'),
+(77, 'Fast Educational Book', '1975-5-11'),
+(91, 'Lamp', '2014-9-21'),
+(64, 'Desk Chair', '2022-3-5'),
+(63, 'Lightweight Headphones', '1990-9-18'),
+(1, 'Desk Chair', '2002-2-6'),
+(71, 'Durable Fast Keyboard', '2006-4-22'),
+(23, 'Ballpoint Water Bottle', '1992-11-6'),
+(39, 'Keyboard', '1985-6-20'),
+(69, 'Educational Book', '1981-5-11'),
+(74, 'Comfortable Breathable Sneakers', '2001-1-1'),
+(14, 'Lined Lamp', '1989-8-17'),
+(92, 'Ergonomic Wireless Book', '2020-8-8'),
+(9, 'Headphones', '1984-2-26');
 
 -- Insert dummy data into Listings table
 INSERT INTO Listings (seller_id, title, price, location, address, status)
@@ -226,1538 +232,1538 @@ VALUES
 (1, 'Volkswagen Jetta', 7000.00, ll_to_earth(40.730610,-73.935242), 'V8X', 'AVAILABLE'),
 (1, 'Math 100 Textbook', 50.00, ll_to_earth(40.730610,-73.935242), 'V8X', 'AVAILABLE'),
 (1, 'Doohickey', 100000.00, ll_to_earth(40.730610,-73.935242), 'V8X', 'AVAILABLE'),
-(2, 'Laptop for sale', 800.00, ll_to_earth(34.052235,-118.243683), 'V8W', 'AVAILABLE')
-(84, 'Ballpoint Lined Backpack', 6383, ll_to_earth(-143.46375, 61.04846), 'V9B', 'AVAILABLE')
-(69, 'Insulated Smartphone', 8927, ll_to_earth(-115.334705, 74.428485), 'V8W', 'AVAILABLE')
-(3, 'Comfortable Fast Printer', 687, ll_to_earth(86.553071, -16.562537), 'V8M', 'AVAILABLE')        
-(57, 'Ceramic Adjustable Monitor', 5137, ll_to_earth(128.909222, -84.295506), 'V8S', 'AVAILABLE')   
-(3, 'Optical Educational Water Bottle', 785, ll_to_earth(16.220953, 49.391263), 'V8Z', 'AVAILABLE') 
-(3, 'Monitor', 9978, ll_to_earth(177.765467, -49.698897), 'V8V', 'AVAILABLE')
-(92, 'Water Bottle', 6868, ll_to_earth(-17.140582, -35.344018), 'V8R', 'AVAILABLE')
-(90, 'Mechanical Backpack', 1992, ll_to_earth(26.980651, 63.120914), 'V8P', 'AVAILABLE')
-(40, 'Portable Optical Book', 1720, ll_to_earth(7.356212, 59.720694), 'V9E', 'AVAILABLE')
-(42, 'Portable Breathable Pen', 1811, ll_to_earth(159.949727, 87.191915), 'V8U', 'AVAILABLE')       
-(91, 'Lined Bicycle', 5815, ll_to_earth(43.285241, 10.805843), 'V8O', 'AVAILABLE')
-(82, 'High-Resolution Ceramic Laptop', 6235, ll_to_earth(89.803798, 87.927261), 'V8Y', 'AVAILABLE') 
-(91, 'Portable Mechanical Coffee Mug', 7302, ll_to_earth(142.399856, 29.298347), 'V8X', 'AVAILABLE')
-(5, 'Optical Durable Laptop', 3759, ll_to_earth(16.269846, -37.124776), 'V8Y', 'AVAILABLE')
-(47, 'Comfortable Ceramic Desk Chair', 893, ll_to_earth(-116.270632, -65.703092), 'V8R', 'AVAILABLE')
-(83, 'Lightweight Pen', 678, ll_to_earth(77.515418, 55.834174), 'V9E', 'AVAILABLE')
-(1, 'Notebook', 7702, ll_to_earth(105.736745, -0.2727), 'V8W', 'AVAILABLE')
-(30, 'Tablet', 2102, ll_to_earth(-96.789748, 13.347473), 'V8Y', 'AVAILABLE')
-(63, 'Coffee Mug', 30, ll_to_earth(-115.799694, -10.942906), 'V8U', 'AVAILABLE')
-(32, 'Bicycle', 8538, ll_to_earth(95.923756, 70.564792), 'V8X', 'AVAILABLE')
-(61, 'Ergonomic Tablet', 5887, ll_to_earth(96.381241, -27.573518), 'V9D', 'AVAILABLE')
-(75, 'Lined Multifunction Lamp', 5243, ll_to_earth(-23.544959, -54.772863), 'V8U', 'AVAILABLE')
-(39, 'Adjustable Bicycle', 5955, ll_to_earth(21.969371, -23.173297), 'V9E', 'AVAILABLE')
-(33, 'Adjustable Coffee Mug', 7662, ll_to_earth(-62.020647, 53.453311), 'V9A', 'AVAILABLE')
-(4, 'Sneakers', 2878, ll_to_earth(-152.832471, -38.373585), 'V8V', 'AVAILABLE')
-(22, 'Optical Insulated Notebook', 2062, ll_to_earth(37.223387, -24.306131), 'V8M', 'AVAILABLE')
-(73, 'Touchscreen High-Resolution Tablet', 6933, ll_to_earth(-47.030441, 54.301097), 'V8V', 'AVAILABLE')
-(88, 'Fast Sneakers', 271, ll_to_earth(22.270263, -38.482029), 'V9C', 'AVAILABLE')
-(2, 'Bicycle', 2965, ll_to_earth(5.049072, -14.621744), 'V8Y', 'AVAILABLE')
-(36, 'Keyboard', 7436, ll_to_earth(-98.171081, 21.673656), 'V8P', 'AVAILABLE')
-(22, 'Insulated Pen', 5314, ll_to_earth(107.15627, -2.219669), 'V8P', 'AVAILABLE')
-(52, 'Wireless Car', 957, ll_to_earth(-96.857861, 4.382246), 'V8Y', 'AVAILABLE')
-(46, 'Keyboard', 5497, ll_to_earth(3.742098, 21.111512), 'V8U', 'AVAILABLE')
-(45, 'Water Bottle', 6020, ll_to_earth(-16.223688, 60.978541), 'V8N', 'AVAILABLE')
-(94, 'High-Resolution Water Bottle', 8770, ll_to_earth(102.61861, -40.338348), 'V8Y', 'AVAILABLE')
-(24, 'Fast Monitor', 5923, ll_to_earth(88.266893, -48.099074), 'V8N', 'AVAILABLE')
-(43, 'Notebook', 5764, ll_to_earth(77.555275, -62.877987), 'V8Z', 'AVAILABLE')
-(88, 'High-Resolution Desk Chair', 8164, ll_to_earth(130.95238, -59.225313), 'V8X', 'AVAILABLE')
-(87, 'Monitor', 2361, ll_to_earth(138.08526, 1.07986), 'V9C', 'AVAILABLE')
-(25, 'Portable Ceramic Printer', 5832, ll_to_earth(-22.915831, 41.565222), 'V8P', 'AVAILABLE')
-(89, 'Water Bottle', 9698, ll_to_earth(-83.861071, 56.095049), 'V8V', 'AVAILABLE')
-(59, 'Car', 9189, ll_to_earth(42.323365, -56.181212), 'V8T', 'AVAILABLE')
-(91, 'Pen', 7242, ll_to_earth(-99.300411, 54.803928), 'V8X', 'AVAILABLE')
-(76, 'Ballpoint Insulated Notebook', 1484, ll_to_earth(-58.152462, 87.0199), 'V8X', 'AVAILABLE')
-(13, 'Touchscreen Smartphone', 2337, ll_to_earth(123.921224, -18.331129), 'V9C', 'AVAILABLE')
-(4, 'Adjustable Notebook', 40, ll_to_earth(179.579855, 10.838197), 'V9C', 'AVAILABLE')
-(49, 'Lined Wireless Notebook', 2832, ll_to_earth(118.522865, 83.102644), 'V9A', 'AVAILABLE')
-(10, 'Mechanical Ergonomic Coffee Mug', 8441, ll_to_earth(20.55706, -28.094414), 'V9C', 'AVAILABLE')
-(11, 'Water Bottle', 5943, ll_to_earth(-114.888891, 17.653043), 'V8Z', 'AVAILABLE')
-(83, 'Adjustable Printer', 9361, ll_to_earth(-69.425012, -16.967599), 'V9C', 'AVAILABLE')
-(75, 'Ceramic Book', 8946, ll_to_earth(1.971458, -0.514293), 'V9B', 'AVAILABLE')
-(77, 'Multifunction Lightweight Printer', 2613, ll_to_earth(-81.719081, 21.075363), 'V8N', 'AVAILABLE')
-(33, 'Educational Ballpoint Apple', 6342, ll_to_earth(78.622887, -51.279822), 'V8U', 'AVAILABLE')
-(13, 'Multifunction Touchscreen Monitor', 8683, ll_to_earth(95.133741, 65.648797), 'V9C', 'AVAILABLE')
-(66, 'Portable Red Mouse', 5507, ll_to_earth(79.963781, 0.783735), 'V8P', 'AVAILABLE')
-(19, 'Lined Lamp', 8667, ll_to_earth(124.153842, -26.314207), 'V8Z', 'AVAILABLE')
-(11, 'Keyboard', 4361, ll_to_earth(168.809691, -25.54602), 'V8N', 'AVAILABLE')
-(4, 'Headphones', 1781, ll_to_earth(70.598919, 82.348902), 'V8P', 'AVAILABLE')
-(87, 'Lamp', 5468, ll_to_earth(144.2817, 38.998474), 'V9B', 'AVAILABLE')
-(7, 'Breathable Touchscreen Pen', 6095, ll_to_earth(89.176678, -50.382174), 'V8O', 'AVAILABLE')
-(64, 'Lightweight Adjustable Mouse', 1843, ll_to_earth(-73.200343, -71.145795), 'V8M', 'AVAILABLE')
-(2, 'High-Resolution Laptop', 7118, ll_to_earth(129.503462, -38.663538), 'V9E', 'AVAILABLE')
-(45, 'Red Tablet', 6184, ll_to_earth(153.656553, 67.323444), 'V9B', 'AVAILABLE')
-(83, 'Insulated Optical Apple', 5572, ll_to_earth(53.383095, 51.660142), 'V8M', 'AVAILABLE')
-(60, 'Laptop', 2144, ll_to_earth(-51.262442, 26.087991), 'V8P', 'AVAILABLE')
-(56, 'Coffee Mug', 6072, ll_to_earth(-47.757499, 78.899482), 'V8V', 'AVAILABLE')
-(43, 'Ceramic Ceramic Monitor', 2226, ll_to_earth(138.873701, -53.607759), 'V8V', 'AVAILABLE')
-(53, 'Educational Durable Monitor', 2505, ll_to_earth(-147.417953, 39.090352), 'V8X', 'AVAILABLE')
-(48, 'Fast High-Resolution Apple', 6781, ll_to_earth(-62.674774, -1.622982), 'V8W', 'AVAILABLE')
-(64, 'Ergonomic High-Resolution Printer', 1924, ll_to_earth(52.043144, -19.45682), 'V9D', 'AVAILABLE')
-(40, 'Ergonomic Lightweight Smartphone', 1173, ll_to_earth(-126.990659, 45.573703), 'V8T', 'AVAILABLE')
-(43, 'Educational High-Resolution Laptop', 4793, ll_to_earth(104.582868, 0.411608), 'V8S', 'AVAILABLE')
-(61, 'Coffee Mug', 6664, ll_to_earth(23.150933, 24.371619), 'V8X', 'AVAILABLE')
-(74, 'Bicycle', 2710, ll_to_earth(131.183804, -50.919113), 'V8V', 'AVAILABLE')
-(54, 'High-Resolution Laptop', 9108, ll_to_earth(143.121888, 13.980281), 'V8V', 'AVAILABLE')
-(32, 'Mechanical Tablet', 6594, ll_to_earth(100.525905, -9.396679), 'V8X', 'AVAILABLE')
-(33, 'Laptop', 6141, ll_to_earth(142.162985, -16.24256), 'V8Y', 'AVAILABLE')
-(26, 'Pen', 4171, ll_to_earth(-100.138753, 73.802474), 'V8X', 'AVAILABLE')
-(18, 'Mechanical Lined Smartphone', 2222, ll_to_earth(-150.192307, 7.463325), 'V9A', 'AVAILABLE')
-(78, 'Ballpoint Durable Book', 4927, ll_to_earth(-112.472225, 9.344926), 'V8Z', 'AVAILABLE')
-(12, 'Ceramic Monitor', 6638, ll_to_earth(-122.599951, -80.650947), 'V9D', 'AVAILABLE')
-(26, 'Multifunction Lightweight Notebook', 9203, ll_to_earth(18.712685, 53.221188), 'V8R', 'AVAILABLE')
-(94, 'Smartphone', 7074, ll_to_earth(-56.408173, 28.52402), 'V8M', 'AVAILABLE')
-(18, 'Red Multifunction Notebook', 3636, ll_to_earth(140.115972, -9.048032), 'V8R', 'AVAILABLE')
-(87, 'Book', 6899, ll_to_earth(136.141266, -54.518184), 'V9B', 'AVAILABLE')
-(65, 'Mouse', 9385, ll_to_earth(-48.886207, -84.065463), 'V9E', 'AVAILABLE')
-(64, 'Mechanical Monitor', 2470, ll_to_earth(-88.028354, -39.394277), 'V9D', 'AVAILABLE')
-(94, 'Comfortable Pen', 9675, ll_to_earth(-24.801677, -32.98206), 'V8N', 'AVAILABLE')
-(99, 'Lamp', 2016, ll_to_earth(130.265313, 82.231516), 'V8Y', 'AVAILABLE')
-(92, 'Smartphone', 2188, ll_to_earth(-61.913991, -44.238544), 'V8Y', 'AVAILABLE')
-(82, 'Car', 586, ll_to_earth(-146.689875, 84.421912), 'V8T', 'AVAILABLE')
-(56, 'Lamp', 2112, ll_to_earth(-109.914128, -29.618477), 'V8Y', 'AVAILABLE')
-(49, 'Portable Keyboard', 3922, ll_to_earth(-115.523329, -2.227832), 'V8M', 'AVAILABLE')
-(51, 'Red Mechanical Desk Chair', 9974, ll_to_earth(174.332368, 68.180427), 'V9B', 'AVAILABLE')
-(67, 'Water Bottle', 4048, ll_to_earth(-122.410839, -40.939503), 'V8N', 'AVAILABLE')
-(49, 'Comfortable Adjustable Lamp', 6764, ll_to_earth(-54.215893, -4.104125), 'V9D', 'AVAILABLE')
-(24, 'Bicycle', 3420, ll_to_earth(-153.340693, 8.935768), 'V8U', 'AVAILABLE')
-(78, 'Bicycle', 7843, ll_to_earth(-72.3572, -74.761362), 'V9C', 'AVAILABLE')
-(35, 'Breathable Optical Keyboard', 768, ll_to_earth(166.73156, -82.873656), 'V8T', 'AVAILABLE')
-(50, 'Fast Bicycle', 522, ll_to_earth(138.612544, -39.400927), 'V8P', 'AVAILABLE')
-(18, 'Optical Portable Laptop', 4779, ll_to_earth(12.402903, -1.100492), 'V9D', 'AVAILABLE')
-(76, 'Optical Insulated Book', 6908, ll_to_earth(-32.879231, -67.426591), 'V8R', 'AVAILABLE')
-(60, 'Water Bottle', 7449, ll_to_earth(119.83024, 51.510132), 'V9E', 'AVAILABLE')
-(15, 'Wireless Touchscreen Monitor', 796, ll_to_earth(-29.810484, 70.972289), 'V8T', 'AVAILABLE')
-(11, 'Fast Lightweight Apple', 9208, ll_to_earth(-130.367573, -42.429582), 'V8O', 'AVAILABLE')
-(82, 'Book', 4270, ll_to_earth(-12.631701, -36.266047), 'V8M', 'AVAILABLE')
-(19, 'Mechanical Optical Backpack', 6751, ll_to_earth(-177.881438, 31.582378), 'V8U', 'AVAILABLE')
-(96, 'Printer', 2174, ll_to_earth(-128.903466, -16.758658), 'V8U', 'AVAILABLE')
-(23, 'Optical Wireless Car', 3832, ll_to_earth(166.183334, 13.053816), 'V8P', 'AVAILABLE')
-(39, 'Adjustable Laptop', 9109, ll_to_earth(-36.430484, -29.314807), 'V8Y', 'AVAILABLE')
-(17, 'Insulated Laptop', 947, ll_to_earth(69.936516, 26.568544), 'V8M', 'AVAILABLE')
-(91, 'Monitor', 1939, ll_to_earth(-64.134894, -3.891236), 'V9D', 'AVAILABLE')
-(11, 'Portable Keyboard', 9062, ll_to_earth(13.574546, -9.114306), 'V9A', 'AVAILABLE')
-(4, 'Touchscreen Ergonomic Headphones', 885, ll_to_earth(-95.013565, 78.769593), 'V9E', 'AVAILABLE')
-(2, 'Tablet', 830, ll_to_earth(119.341062, 32.626953), 'V9B', 'AVAILABLE')
-(2, 'Lamp', 9939, ll_to_earth(145.702773, 48.333406), 'V8U', 'AVAILABLE')
-(70, 'Portable Breathable Laptop', 7188, ll_to_earth(134.774936, 83.549485), 'V8Z', 'AVAILABLE')
-(56, 'Car', 467, ll_to_earth(58.404674, 41.365391), 'V8V', 'AVAILABLE')
-(70, 'Book', 9644, ll_to_earth(153.748752, 74.045234), 'V8S', 'AVAILABLE')
-(46, 'Portable Optical Printer', 873, ll_to_earth(140.142722, 41.74444), 'V8Y', 'AVAILABLE')
-(8, 'Ceramic Coffee Mug', 5926, ll_to_earth(-105.252159, 25.121883), 'V8P', 'AVAILABLE')
-(63, 'Comfortable Printer', 3881, ll_to_earth(-149.33112, 30.752939), 'V8N', 'AVAILABLE')
-(19, 'Wireless Laptop', 8086, ll_to_earth(-38.520255, 52.4458), 'V8T', 'AVAILABLE')
-(15, 'Lightweight Multifunction Bicycle', 557, ll_to_earth(122.979943, -23.343406), 'V8Y', 'AVAILABLE')
-(80, 'Lamp', 3425, ll_to_earth(35.341122, 50.127056), 'V8R', 'AVAILABLE')
-(24, 'Monitor', 2989, ll_to_earth(-110.730227, -27.057795), 'V8Z', 'AVAILABLE')
-(68, 'Red Desk Chair', 5721, ll_to_earth(-60.732364, 53.377454), 'V9B', 'AVAILABLE')
-(17, 'Multifunction Backpack', 4301, ll_to_earth(-0.065708, -70.351914), 'V8Y', 'AVAILABLE')
-(72, 'Apple', 9431, ll_to_earth(-48.667672, -9.031467), 'V8Y', 'AVAILABLE')
-(81, 'Mechanical Insulated Headphones', 4446, ll_to_earth(169.548608, 89.50925), 'V8N', 'AVAILABLE')
-(62, 'Adjustable Mechanical Apple', 7303, ll_to_earth(-59.794624, 42.564621), 'V8W', 'AVAILABLE')
-(67, 'Lined Bicycle', 3375, ll_to_earth(166.946326, -49.708089), 'V8Y', 'AVAILABLE')
-(67, 'Multifunction Ballpoint Desk Chair', 8265, ll_to_earth(61.691288, -14.995884), 'V8W', 'AVAILABLE')
-(91, 'Desk Chair', 9528, ll_to_earth(156.639361, -0.441318), 'V9E', 'AVAILABLE')
-(25, 'Ergonomic Sneakers', 7200, ll_to_earth(-113.293448, -24.094015), 'V9D', 'AVAILABLE')
-(30, 'Insulated Durable Laptop', 8414, ll_to_earth(166.024332, 66.749173), 'V8T', 'AVAILABLE')
-(33, 'Wireless Book', 9801, ll_to_earth(106.109195, -42.082645), 'V8T', 'AVAILABLE')
-(91, 'Tablet', 185, ll_to_earth(-173.198675, -16.27905), 'V8P', 'AVAILABLE')
-(86, 'High-Resolution Pen', 7748, ll_to_earth(-74.76476, -80.534619), 'V9E', 'AVAILABLE')
-(26, 'Touchscreen Mechanical Water Bottle', 9222, ll_to_earth(170.539171, -46.034388), 'V8W', 'AVAILABLE')
-(8, 'Optical High-Resolution Sneakers', 8610, ll_to_earth(5.645989, -29.718142), 'V8V', 'AVAILABLE')
-(76, 'Mechanical High-Resolution Printer', 8495, ll_to_earth(-27.846764, 14.847117), 'V8Y', 'AVAILABLE')
-(43, 'Apple', 9713, ll_to_earth(28.296141, -20.517827), 'V8V', 'AVAILABLE')
-(45, 'Pen', 2023, ll_to_earth(-53.929557, 69.384651), 'V9A', 'AVAILABLE')
-(91, 'Bicycle', 6302, ll_to_earth(12.190406, -55.858946), 'V8T', 'AVAILABLE')
-(68, 'Mechanical Ergonomic Tablet', 2368, ll_to_earth(-46.737643, -68.685512), 'V9B', 'AVAILABLE')
-(19, 'Durable Coffee Mug', 9404, ll_to_earth(-15.672901, -57.035924), 'V8M', 'AVAILABLE')
-(46, 'Mechanical Breathable Mouse', 4862, ll_to_earth(150.417114, 87.388978), 'V9E', 'AVAILABLE')
-(40, 'Ergonomic Keyboard', 7636, ll_to_earth(48.561599, -27.062689), 'V9C', 'AVAILABLE')
-(29, 'Sneakers', 631, ll_to_earth(68.851741, -77.473401), 'V8Z', 'AVAILABLE')
-(96, 'Mechanical Apple', 124, ll_to_earth(-83.368254, 46.568188), 'V9A', 'AVAILABLE')
-(60, 'Printer', 6941, ll_to_earth(142.269005, -45.210588), 'V8N', 'AVAILABLE')
-(42, 'High-Resolution Smartphone', 1276, ll_to_earth(81.444512, 22.235498), 'V8U', 'AVAILABLE')
-(11, 'High-Resolution Headphones', 5665, ll_to_earth(-125.711599, -42.736062), 'V9C', 'AVAILABLE')
-(83, 'Insulated Optical Monitor', 1148, ll_to_earth(168.729992, 55.228751), 'V8T', 'AVAILABLE')
-(10, 'Keyboard', 8487, ll_to_earth(123.047629, 35.562688), 'V8Z', 'AVAILABLE')
-(60, 'Multifunction Insulated Coffee Mug', 9303, ll_to_earth(-56.778814, 7.447513), 'V8Z', 'AVAILABLE')
-(27, 'Comfortable Comfortable Tablet', 4674, ll_to_earth(-131.084034, -76.126042), 'V8T', 'AVAILABLE')
-(76, 'Multifunction Mouse', 1497, ll_to_earth(-16.650882, 76.686959), 'V8N', 'AVAILABLE')
-(96, 'Portable Monitor', 6978, ll_to_earth(62.800566, 2.402215), 'V8O', 'AVAILABLE')
-(84, 'Lined Headphones', 9292, ll_to_earth(-83.467355, -83.562317), 'V8V', 'AVAILABLE')
-(4, 'Multifunction Fast Pen', 6071, ll_to_earth(-98.855375, -58.243796), 'V8U', 'AVAILABLE')
-(79, 'Ballpoint Educational Notebook', 8383, ll_to_earth(-95.007586, -86.078628), 'V8R', 'AVAILABLE')
-(90, 'Sneakers', 6144, ll_to_earth(132.345959, -58.424458), 'V9D', 'AVAILABLE')
-(93, 'Durable Smartphone', 3323, ll_to_earth(87.519382, -68.936045), 'V8M', 'AVAILABLE')
-(80, 'Ceramic Desk Chair', 5583, ll_to_earth(134.957814, 17.824139), 'V9D', 'AVAILABLE')
-(28, 'Notebook', 9147, ll_to_earth(137.6, 62.33197), 'V8M', 'AVAILABLE')
-(19, 'Portable Mechanical Desk Chair', 3029, ll_to_earth(-146.78301, -6.113679), 'V9B', 'AVAILABLE')
-(85, 'Lined Ballpoint Laptop', 5039, ll_to_earth(106.002951, -25.334052), 'V8T', 'AVAILABLE')
-(75, 'Lined Pen', 7494, ll_to_earth(-126.791114, 46.048967), 'V8X', 'AVAILABLE')
-(99, 'Red Fast Printer', 2023, ll_to_earth(-9.006752, -16.030301), 'V8X', 'AVAILABLE')
-(18, 'Keyboard', 4456, ll_to_earth(73.696696, 68.03814), 'V8T', 'AVAILABLE')
-(78, 'Headphones', 9212, ll_to_earth(50.801655, 84.28619), 'V9B', 'AVAILABLE')
-(94, 'Breathable Bicycle', 9492, ll_to_earth(15.5193, 64.183862), 'V8X', 'AVAILABLE')
-(53, 'Optical Breathable Pen', 9943, ll_to_earth(1.46422, 55.993393), 'V9D', 'AVAILABLE')
-(63, 'Portable Adjustable Smartphone', 2290, ll_to_earth(-96.493178, 27.598217), 'V8R', 'AVAILABLE')
-(93, 'Headphones', 2497, ll_to_earth(9.212277, -72.91034), 'V8S', 'AVAILABLE')
-(1, 'Apple', 4252, ll_to_earth(99.260824, 80.652554), 'V8V', 'AVAILABLE')
-(74, 'Ergonomic Sneakers', 6475, ll_to_earth(65.428686, -23.449817), 'V8Z', 'AVAILABLE')
-(41, 'Educational Desk Chair', 7846, ll_to_earth(146.807658, 74.052503), 'V8S', 'AVAILABLE')
-(90, 'High-Resolution Coffee Mug', 4946, ll_to_earth(135.585654, 55.093736), 'V8V', 'AVAILABLE')
-(74, 'Multifunction Educational Bicycle', 2430, ll_to_earth(174.792505, -54.413136), 'V8V', 'AVAILABLE')
-(13, 'Mouse', 6676, ll_to_earth(47.222104, -58.512569), 'V8Z', 'AVAILABLE')
-(78, 'Backpack', 724, ll_to_earth(99.714772, -75.437087), 'V9E', 'AVAILABLE')
-(10, 'Laptop', 9945, ll_to_earth(-35.912265, 12.863414), 'V9A', 'AVAILABLE')
-(97, 'Breathable Ceramic Water Bottle', 264, ll_to_earth(103.705353, -71.439725), 'V9D', 'AVAILABLE')
-(69, 'Breathable Notebook', 4433, ll_to_earth(32.75477, -0.4614), 'V9C', 'AVAILABLE')
-(13, 'Multifunction Adjustable Monitor', 4086, ll_to_earth(45.587565, -47.814975), 'V8R', 'AVAILABLE')
-(39, 'Wireless Sneakers', 4696, ll_to_earth(-123.900623, 61.389936), 'V8M', 'AVAILABLE')
-(9, 'Ergonomic Car', 3153, ll_to_earth(-101.868456, 21.674669), 'V9D', 'AVAILABLE')
-(16, 'Apple', 2446, ll_to_earth(-114.763657, 58.146408), 'V8X', 'AVAILABLE')
-(81, 'Red Comfortable Car', 2930, ll_to_earth(-4.629654, -33.770383), 'V9C', 'AVAILABLE')
-(21, 'Laptop', 1667, ll_to_earth(42.717341, 23.233419), 'V8T', 'AVAILABLE')
-(65, 'Portable Laptop', 4622, ll_to_earth(-117.557949, -29.610095), 'V9C', 'AVAILABLE')
-(76, 'Tablet', 3222, ll_to_earth(70.426652, -55.250204), 'V8Y', 'AVAILABLE')
-(57, 'Monitor', 5851, ll_to_earth(-71.814049, -11.167143), 'V9B', 'AVAILABLE')
-(39, 'Water Bottle', 2198, ll_to_earth(54.330674, 37.393517), 'V8U', 'AVAILABLE')
-(23, 'High-Resolution Ceramic Car', 6581, ll_to_earth(-57.750538, -50.72441), 'V8N', 'AVAILABLE')
-(68, 'Red Monitor', 3033, ll_to_earth(-103.4804, 73.625894), 'V8N', 'AVAILABLE')
-(93, 'Touchscreen Lined Mouse', 1546, ll_to_earth(-78.610542, 50.718349), 'V8Y', 'AVAILABLE')
-(84, 'Wireless Printer', 5502, ll_to_earth(-105.771874, 13.798402), 'V9E', 'AVAILABLE')
-(48, 'High-Resolution Smartphone', 153, ll_to_earth(-6.171037, 19.106473), 'V9C', 'AVAILABLE')
-(3, 'Mechanical Laptop', 2634, ll_to_earth(0.596369, 39.719425), 'V9C', 'AVAILABLE')
-(51, 'Multifunction Multifunction Monitor', 8782, ll_to_earth(-65.045077, 85.864322), 'V8P', 'AVAILABLE')
-(98, 'Breathable Educational Bicycle', 7420, ll_to_earth(137.069565, 72.048251), 'V9E', 'AVAILABLE')
-(64, 'Ballpoint Insulated Coffee Mug', 4626, ll_to_earth(-175.257677, 40.454327), 'V8N', 'AVAILABLE')
-(91, 'Printer', 8670, ll_to_earth(-52.246178, -13.377467), 'V8Y', 'AVAILABLE')
-(92, 'Multifunction Touchscreen Monitor', 7446, ll_to_earth(-102.393696, 11.020985), 'V9D', 'AVAILABLE')
-(35, 'Bicycle', 5258, ll_to_earth(-160.536314, 81.729717), 'V8X', 'AVAILABLE')
-(81, 'Mouse', 1386, ll_to_earth(29.942171, -89.790898), 'V8Z', 'AVAILABLE')
-(82, 'Insulated Red Headphones', 5958, ll_to_earth(-65.333977, 52.460077), 'V9C', 'AVAILABLE')
-(43, 'Red Coffee Mug', 4676, ll_to_earth(164.468988, -38.858126), 'V9D', 'AVAILABLE')
-(43, 'Fast Water Bottle', 2607, ll_to_earth(-117.144588, 85.896814), 'V8S', 'AVAILABLE')
-(21, 'Coffee Mug', 5730, ll_to_earth(89.629463, -81.467891), 'V8S', 'AVAILABLE')
-(58, 'Educational Headphones', 37, ll_to_earth(-156.786045, -41.802992), 'V8T', 'AVAILABLE')
-(73, 'Portable Educational Desk Chair', 8635, ll_to_earth(-52.544282, -24.124551), 'V8Y', 'AVAILABLE')
-(77, 'Coffee Mug', 49, ll_to_earth(-29.853265, 71.732065), 'V8W', 'AVAILABLE')
-(49, 'Insulated Red Laptop', 2638, ll_to_earth(-32.697529, 1.864613), 'V9B', 'AVAILABLE')
-(21, 'Touchscreen Apple', 1136, ll_to_earth(-93.275669, -50.875343), 'V8M', 'AVAILABLE')
-(50, 'Notebook', 9524, ll_to_earth(-66.805678, -47.375544), 'V8X', 'AVAILABLE')
-(19, 'Mechanical Headphones', 9467, ll_to_earth(-114.875973, 61.437591), 'V8P', 'AVAILABLE')
-(61, 'Durable Optical Mouse', 8549, ll_to_earth(-22.704135, -76.320023), 'V8M', 'AVAILABLE')
-(48, 'Bicycle', 6936, ll_to_earth(-64.985677, 17.263544), 'V8P', 'AVAILABLE')
-(38, 'Notebook', 5554, ll_to_earth(-50.527857, -84.489545), 'V8Y', 'AVAILABLE')
-(52, 'Educational Ballpoint Car', 3471, ll_to_earth(54.965437, 1.602742), 'V9E', 'AVAILABLE')
-(19, 'Backpack', 4107, ll_to_earth(-126.773102, -79.572906), 'V8Z', 'AVAILABLE')
-(21, 'Ballpoint Book', 6199, ll_to_earth(65.774253, -85.114114), 'V8V', 'AVAILABLE')
-(17, 'Lined Multifunction Water Bottle', 4555, ll_to_earth(-94.854755, 50.159505), 'V8W', 'AVAILABLE')
-(75, 'Ballpoint Fast Coffee Mug', 2386, ll_to_earth(26.101609, -0.672341), 'V8U', 'AVAILABLE')
-(96, 'Breathable Lamp', 3321, ll_to_earth(-179.278659, 62.463744), 'V8O', 'AVAILABLE')
-(34, 'Ceramic Coffee Mug', 6251, ll_to_earth(11.818871, -21.499244), 'V8M', 'AVAILABLE')
-(67, 'Ergonomic Keyboard', 3419, ll_to_earth(-37.12243, -86.884678), 'V9A', 'AVAILABLE')
-(40, 'Desk Chair', 3420, ll_to_earth(176.07856, -69.370436), 'V8S', 'AVAILABLE')
-(68, 'Fast Fast Car', 5393, ll_to_earth(133.384038, -15.283063), 'V8W', 'AVAILABLE')
-(2, 'Touchscreen Durable Sneakers', 9340, ll_to_earth(-77.588227, 67.836732), 'V9A', 'AVAILABLE')
-(79, 'Lamp', 5071, ll_to_earth(-136.199944, -73.924206), 'V8Z', 'AVAILABLE')
-(22, 'High-Resolution Backpack', 9569, ll_to_earth(30.956731, -50.474798), 'V9D', 'AVAILABLE')
-(67, 'Laptop', 7473, ll_to_earth(16.951038, -69.36086), 'V8Z', 'AVAILABLE')
-(28, 'Educational Optical Headphones', 1614, ll_to_earth(-46.637022, 16.338301), 'V9C', 'AVAILABLE')
-(97, 'Monitor', 9673, ll_to_earth(168.251294, 18.519847), 'V9B', 'AVAILABLE')
-(67, 'Tablet', 6192, ll_to_earth(113.959573, -51.851015), 'V9B', 'AVAILABLE')
-(76, 'Red Comfortable Sneakers', 7179, ll_to_earth(15.379361, 47.393415), 'V8P', 'AVAILABLE')
-(85, 'Coffee Mug', 1498, ll_to_earth(-13.036126, -46.926663), 'V8T', 'AVAILABLE')
-(74, 'Adjustable Mechanical Lamp', 8350, ll_to_earth(-87.009883, -0.971418), 'V8S', 'AVAILABLE')
-(60, 'Keyboard', 4065, ll_to_earth(134.562498, -39.049992), 'V8X', 'AVAILABLE')
-(33, 'Fast Printer', 1110, ll_to_earth(-163.953466, 73.670265), 'V8Y', 'AVAILABLE')
-(75, 'Lined Pen', 9433, ll_to_earth(-107.504995, -75.184937), 'V8T', 'AVAILABLE')
-(24, 'Comfortable Smartphone', 7950, ll_to_earth(-100.099652, -58.665828), 'V8R', 'AVAILABLE')
-(75, 'Water Bottle', 1238, ll_to_earth(57.575136, 70.931813), 'V8P', 'AVAILABLE')
-(13, 'Ergonomic Keyboard', 6161, ll_to_earth(-118.973135, -71.648241), 'V8S', 'AVAILABLE')
-(18, 'Mouse', 415, ll_to_earth(-84.499281, 86.521335), 'V8U', 'AVAILABLE')
-(84, 'Notebook', 7820, ll_to_earth(5.69606, -54.830771), 'V8U', 'AVAILABLE')
-(86, 'Lined Laptop', 6485, ll_to_earth(-116.754609, -19.529983), 'V9C', 'AVAILABLE')
-(35, 'Lamp', 732, ll_to_earth(-105.88833, -80.888181), 'V8U', 'AVAILABLE')
-(58, 'Multifunction Lamp', 1734, ll_to_earth(15.019787, -50.991472), 'V8R', 'AVAILABLE')
-(11, 'Ergonomic Laptop', 6559, ll_to_earth(-100.692141, -11.200182), 'V8R', 'AVAILABLE')
-(78, 'Wireless Touchscreen Desk Chair', 4788, ll_to_earth(-120.326772, -83.527439), 'V8R', 'AVAILABLE')
-(63, 'Optical Ergonomic Lamp', 6775, ll_to_earth(-73.512317, 25.12885), 'V8Z', 'AVAILABLE')
-(39, 'Portable Insulated Monitor', 5749, ll_to_earth(-174.626766, -33.957116), 'V8T', 'AVAILABLE')
-(84, 'Breathable Wireless Apple', 9830, ll_to_earth(-42.933976, 13.813386), 'V8Z', 'AVAILABLE')
-(71, 'Desk Chair', 4671, ll_to_earth(30.829625, -87.709145), 'V8P', 'AVAILABLE')
-(38, 'Pen', 1327, ll_to_earth(111.302329, 33.428168), 'V8Z', 'AVAILABLE')
-(74, 'Monitor', 1197, ll_to_earth(-93.922829, -34.403542), 'V9D', 'AVAILABLE')
-(47, 'Sneakers', 3788, ll_to_earth(-49.024061, 84.821124), 'V9C', 'AVAILABLE')
-(86, 'Mechanical Book', 9653, ll_to_earth(47.350243, -23.694491), 'V8R', 'AVAILABLE')
-(77, 'Ergonomic Ergonomic Coffee Mug', 3177, ll_to_earth(-27.835675, -20.168793), 'V9C', 'AVAILABLE')
-(95, 'Red Wireless Pen', 1550, ll_to_earth(-158.490597, 42.381863), 'V8W', 'AVAILABLE')
-(33, 'Red Printer', 2230, ll_to_earth(151.025927, 18.584173), 'V8P', 'AVAILABLE')
-(26, 'Ceramic Sneakers', 3877, ll_to_earth(164.419856, 26.431614), 'V8U', 'AVAILABLE')
-(98, 'Backpack', 62, ll_to_earth(-142.747634, -68.623997), 'V9C', 'AVAILABLE')
-(67, 'Portable Portable Laptop', 9216, ll_to_earth(51.72871, -68.774101), 'V9A', 'AVAILABLE')
-(69, 'Optical Fast Pen', 1494, ll_to_earth(-175.2555, -85.31017), 'V8N', 'AVAILABLE')
-(34, 'Multifunction Lined Bicycle', 9195, ll_to_earth(53.530549, -7.341126), 'V8X', 'AVAILABLE')
-(55, 'Durable Ergonomic Tablet', 1119, ll_to_earth(169.570098, 71.879174), 'V8N', 'AVAILABLE')
-(79, 'Wireless Lightweight Mouse', 1885, ll_to_earth(52.049839, 59.417468), 'V8P', 'AVAILABLE')
-(9, 'Notebook', 7094, ll_to_earth(-126.563482, -76.065446), 'V8W', 'AVAILABLE')
-(21, 'Car', 5485, ll_to_earth(157.189061, 8.573415), 'V8R', 'AVAILABLE')
-(67, 'Optical Car', 8748, ll_to_earth(98.909912, -50.117252), 'V9E', 'AVAILABLE')
-(37, 'Desk Chair', 2235, ll_to_earth(51.612576, 14.962692), 'V8T', 'AVAILABLE')
-(58, 'Backpack', 909, ll_to_earth(-166.31676, -59.098943), 'V8P', 'AVAILABLE')
-(60, 'Red Tablet', 6264, ll_to_earth(2.835264, -54.65363), 'V8X', 'AVAILABLE')
-(15, 'High-Resolution Breathable Pen', 1020, ll_to_earth(18.474365, -59.029585), 'V8P', 'AVAILABLE')
-(9, 'Multifunction Mechanical Laptop', 7736, ll_to_earth(-120.29561, -75.998383), 'V9A', 'AVAILABLE')
-(42, 'Comfortable Insulated Printer', 9664, ll_to_earth(-161.908554, -17.701767), 'V8O', 'AVAILABLE')
-(14, 'Water Bottle', 5374, ll_to_earth(150.075341, 7.122058), 'V8Y', 'AVAILABLE')
-(20, 'Ballpoint Insulated Lamp', 2677, ll_to_earth(-69.52094, 86.821279), 'V8X', 'AVAILABLE')
-(28, 'Touchscreen Coffee Mug', 6003, ll_to_earth(-134.107236, 14.868412), 'V8P', 'AVAILABLE')
-(94, 'Car', 4217, ll_to_earth(-71.687618, 49.957238), 'V8R', 'AVAILABLE')
-(19, 'Monitor', 4755, ll_to_earth(-153.412257, -46.115999), 'V8V', 'AVAILABLE')
-(87, 'Printer', 3206, ll_to_earth(72.760384, -46.997497), 'V8Z', 'AVAILABLE')
-(64, 'Ballpoint Keyboard', 6973, ll_to_earth(149.075417, -6.357979), 'V9E', 'AVAILABLE')
-(8, 'High-Resolution Multifunction Sneakers', 4704, ll_to_earth(13.038632, 0.178742), 'V8O', 'AVAILABLE')
-(24, 'Insulated Mouse', 9536, ll_to_earth(76.200344, 8.756133), 'V8V', 'AVAILABLE')
-(21, 'Pen', 8978, ll_to_earth(141.065099, -79.445678), 'V9D', 'AVAILABLE')
-(60, 'Portable Water Bottle', 8075, ll_to_earth(-14.935809, 76.477045), 'V8O', 'AVAILABLE')
-(67, 'Lightweight Pen', 9931, ll_to_earth(90.900778, 14.555975), 'V9E', 'AVAILABLE')
-(34, 'Smartphone', 8370, ll_to_earth(123.882518, -50.825524), 'V8V', 'AVAILABLE')
-(74, 'Adjustable Ergonomic Book', 5503, ll_to_earth(96.99709, 27.692626), 'V8U', 'AVAILABLE')
-(28, 'Multifunction Tablet', 4544, ll_to_earth(70.321418, -80.182986), 'V8M', 'AVAILABLE')
-(2, 'Optical Pen', 6085, ll_to_earth(163.163206, -89.465976), 'V8V', 'AVAILABLE')
-(6, 'Multifunction Lightweight Sneakers', 7862, ll_to_earth(140.286101, -41.332317), 'V8W', 'AVAILABLE')
-(50, 'Educational Breathable Headphones', 265, ll_to_earth(97.170367, 52.860073), 'V9B', 'AVAILABLE')
-(82, 'Mechanical Book', 3249, ll_to_earth(144.716521, 71.103868), 'V8X', 'AVAILABLE')
-(45, 'Ergonomic Desk Chair', 2876, ll_to_earth(63.234789, -25.23757), 'V8U', 'AVAILABLE')
-(57, 'Monitor', 58, ll_to_earth(-98.850997, 16.257616), 'V8V', 'AVAILABLE')
-(50, 'Insulated Printer', 9809, ll_to_earth(-137.173071, -72.335482), 'V8X', 'AVAILABLE')
-(23, 'Comfortable Bicycle', 2393, ll_to_earth(-63.984171, 24.429558), 'V8V', 'AVAILABLE')
-(74, 'Mouse', 4539, ll_to_earth(106.671494, 66.850625), 'V9B', 'AVAILABLE')
-(7, 'Ergonomic Laptop', 5374, ll_to_earth(135.850499, 37.081658), 'V8V', 'AVAILABLE')
-(72, 'Backpack', 5730, ll_to_earth(60.24802, 69.324844), 'V8P', 'AVAILABLE')
-(78, 'Keyboard', 1199, ll_to_earth(-164.715684, -25.977064), 'V8S', 'AVAILABLE')
-(83, 'Desk Chair', 715, ll_to_earth(48.06882, -85.746544), 'V9D', 'AVAILABLE')
-(67, 'Ergonomic Ergonomic Laptop', 1835, ll_to_earth(77.269758, -47.315868), 'V8Z', 'AVAILABLE')
-(80, 'Wireless Comfortable Smartphone', 366, ll_to_earth(15.11303, 88.368154), 'V9E', 'AVAILABLE')
-(7, 'Durable Backpack', 6936, ll_to_earth(-7.250522, 37.698668), 'V8W', 'AVAILABLE')
-(72, 'Breathable Tablet', 6490, ll_to_earth(-113.980419, 87.939701), 'V8O', 'AVAILABLE')
-(25, 'Ceramic Ceramic Sneakers', 5411, ll_to_earth(-57.220908, 31.717422), 'V8V', 'AVAILABLE')
-(1, 'Touchscreen Apple', 8075, ll_to_earth(100.37467, -64.314313), 'V9C', 'AVAILABLE')
-(81, 'Optical Adjustable Sneakers', 4766, ll_to_earth(8.610097, 9.060571), 'V8Z', 'AVAILABLE')
-(60, 'Backpack', 1412, ll_to_earth(167.722944, 26.129976), 'V8Y', 'AVAILABLE')
-(58, 'Smartphone', 2748, ll_to_earth(-100.780581, -31.072553), 'V9B', 'AVAILABLE')
-(85, 'Lined High-Resolution Apple', 5165, ll_to_earth(-171.612552, 24.884345), 'V9B', 'AVAILABLE')
-(22, 'Water Bottle', 4358, ll_to_earth(62.646176, -86.39004), 'V8P', 'AVAILABLE')
-(63, 'Bicycle', 9606, ll_to_earth(120.671726, -46.461035), 'V8Y', 'AVAILABLE')
-(21, 'Adjustable Ergonomic Mouse', 5881, ll_to_earth(41.791227, 54.000559), 'V9E', 'AVAILABLE')
-(35, 'Ceramic Adjustable Car', 9562, ll_to_earth(-76.447546, -55.383191), 'V9A', 'AVAILABLE')
-(50, 'Mechanical Printer', 5053, ll_to_earth(-21.773842, -31.837977), 'V8S', 'AVAILABLE')
-(96, 'Fast Headphones', 7124, ll_to_earth(-91.100984, -22.593991), 'V8S', 'AVAILABLE')
-(84, 'Red Educational Desk Chair', 1788, ll_to_earth(-10.956247, 0.354388), 'V8X', 'AVAILABLE')
-(18, 'Ballpoint Touchscreen Lamp', 7946, ll_to_earth(-99.019349, -47.517922), 'V9B', 'AVAILABLE')
-(17, 'Educational Durable Water Bottle', 1592, ll_to_earth(120.810569, 22.270388), 'V8Z', 'AVAILABLE')
-(57, 'Fast Red Laptop', 1128, ll_to_earth(-32.389917, -73.671634), 'V8X', 'AVAILABLE')
-(61, 'High-Resolution Portable Book', 8071, ll_to_earth(-139.221861, -74.11403), 'V9D', 'AVAILABLE')
-(94, 'Mouse', 5333, ll_to_earth(105.866301, 3.769827), 'V8Y', 'AVAILABLE')
-(67, 'Car', 2369, ll_to_earth(132.070549, -66.873714), 'V8V', 'AVAILABLE')
-(46, 'Touchscreen Notebook', 1645, ll_to_earth(-12.943516, -7.313678), 'V9D', 'AVAILABLE')
-(33, 'Coffee Mug', 3645, ll_to_earth(138.33311, 73.278756), 'V9D', 'AVAILABLE')
-(81, 'Car', 3702, ll_to_earth(0.509938, 1.41745), 'V8Z', 'AVAILABLE')
-(38, 'Durable Fast Backpack', 3350, ll_to_earth(57.673665, -79.010379), 'V8W', 'AVAILABLE')
-(94, 'Headphones', 3404, ll_to_earth(-137.948065, -54.880122), 'V8V', 'AVAILABLE')
-(93, 'Multifunction Ergonomic Coffee Mug', 9415, ll_to_earth(33.667298, -15.767288), 'V9C', 'AVAILABLE')
-(58, 'Water Bottle', 187, ll_to_earth(169.485733, 30.690902), 'V8V', 'AVAILABLE')
-(37, 'Breathable Fast Desk Chair', 2781, ll_to_earth(33.019521, 84.521462), 'V9B', 'AVAILABLE')
-(30, 'Mechanical Adjustable Printer', 3984, ll_to_earth(163.946921, 66.652123), 'V8X', 'AVAILABLE')
-(23, 'Apple', 3899, ll_to_earth(-76.416466, 39.297541), 'V8S', 'AVAILABLE')
-(52, 'Insulated Lightweight Smartphone', 2542, ll_to_earth(-132.365696, 4.517292), 'V9B', 'AVAILABLE')
-(60, 'Fast Pen', 9671, ll_to_earth(-111.58166, -9.111897), 'V9C', 'AVAILABLE')
-(7, 'Mechanical Tablet', 6184, ll_to_earth(-88.6475, -76.368436), 'V8W', 'AVAILABLE')
-(81, 'Lined Sneakers', 8850, ll_to_earth(159.026778, -20.039048), 'V8P', 'AVAILABLE')
-(73, 'Durable Portable Headphones', 3274, ll_to_earth(-111.237048, 37.81968), 'V9E', 'AVAILABLE')
-(16, 'Wireless Notebook', 7857, ll_to_earth(-155.484876, -9.792028), 'V8P', 'AVAILABLE')
-(52, 'Coffee Mug', 720, ll_to_earth(34.055429, 55.128175), 'V9D', 'AVAILABLE')
-(41, 'Comfortable Educational Coffee Mug', 5752, ll_to_earth(88.466221, 20.100989), 'V8X', 'AVAILABLE')
-(8, 'Coffee Mug', 2673, ll_to_earth(-78.618482, 63.014222), 'V8Y', 'AVAILABLE')
-(89, 'Durable Educational Keyboard', 4921, ll_to_earth(172.481043, -29.168541), 'V8N', 'AVAILABLE')
-(94, 'Printer', 3318, ll_to_earth(84.442375, 63.026106), 'V8O', 'AVAILABLE')
-(60, 'High-Resolution Mechanical Notebook', 831, ll_to_earth(-95.837217, 60.901714), 'V8W', 'AVAILABLE')
-(54, 'Tablet', 8515, ll_to_earth(115.033344, 78.578233), 'V9A', 'AVAILABLE')
-(92, 'Red Red Lamp', 9443, ll_to_earth(118.424718, -17.267231), 'V8W', 'AVAILABLE')
-(65, 'Lightweight Lamp', 7415, ll_to_earth(-155.320954, -30.986946), 'V8U', 'AVAILABLE')
-(15, 'Printer', 8865, ll_to_earth(164.242112, 9.109545), 'V8P', 'AVAILABLE')
-(87, 'Insulated Durable Lamp', 3518, ll_to_earth(161.609542, -1.821953), 'V9E', 'AVAILABLE')
-(39, 'Ceramic Book', 7749, ll_to_earth(50.436147, -8.22795), 'V8W', 'AVAILABLE')
-(17, 'Ceramic Educational Lamp', 7485, ll_to_earth(83.580194, 84.231506), 'V9A', 'AVAILABLE')
-(57, 'Optical Lamp', 8649, ll_to_earth(108.673565, -31.545001), 'V8Z', 'AVAILABLE')
-(85, 'Fast Fast Backpack', 4656, ll_to_earth(116.822536, -46.394534), 'V8Y', 'AVAILABLE')
-(99, 'Portable Red Water Bottle', 3486, ll_to_earth(78.923062, -49.061029), 'V8W', 'AVAILABLE')
-(99, 'Breathable Durable Monitor', 9827, ll_to_earth(-77.04944, 58.867176), 'V8R', 'AVAILABLE')
-(36, 'Ballpoint Printer', 8565, ll_to_earth(63.662427, -3.231853), 'V8P', 'AVAILABLE')
-(98, 'Ballpoint Educational Tablet', 2527, ll_to_earth(45.937724, -27.674558), 'V8W', 'AVAILABLE')
-(30, 'Laptop', 5435, ll_to_earth(126.654918, 82.680798), 'V8S', 'AVAILABLE')
-(1, 'Desk Chair', 2835, ll_to_earth(35.366893, -42.202932), 'V8S', 'AVAILABLE')
-(70, 'Keyboard', 5423, ll_to_earth(43.55264, -65.939227), 'V8Z', 'AVAILABLE')
-(60, 'Water Bottle', 4386, ll_to_earth(-68.771588, -28.410004), 'V9A', 'AVAILABLE')
-(23, 'Lightweight Headphones', 557, ll_to_earth(-55.615105, 75.030774), 'V8P', 'AVAILABLE')
-(95, 'Educational Tablet', 2770, ll_to_earth(-151.747076, -32.903312), 'V9A', 'AVAILABLE')
-(23, 'Optical Headphones', 1746, ll_to_earth(60.971303, 29.435066), 'V8U', 'AVAILABLE')
-(26, 'Fast High-Resolution Mouse', 3367, ll_to_earth(-116.45678, 82.619727), 'V8O', 'AVAILABLE')
-(47, 'Insulated Backpack', 9046, ll_to_earth(49.746055, 7.892303), 'V8R', 'AVAILABLE')
-(97, 'Coffee Mug', 9599, ll_to_earth(-68.720932, 1.226241), 'V8N', 'AVAILABLE')
-(98, 'Lightweight Comfortable Headphones', 3823, ll_to_earth(-27.816638, -4.091), 'V8W', 'AVAILABLE')
-(45, 'Lined Tablet', 881, ll_to_earth(86.192018, 1.531811), 'V8S', 'AVAILABLE')
-(89, 'Monitor', 9943, ll_to_earth(176.967934, -1.279396), 'V8V', 'AVAILABLE')
-(43, 'Ceramic Car', 6924, ll_to_earth(-66.917831, 37.852224), 'V8S', 'AVAILABLE')
-(83, 'Apple', 9785, ll_to_earth(67.261746, -51.608225), 'V8R', 'AVAILABLE')
-(54, 'Keyboard', 8373, ll_to_earth(-108.368709, -73.360095), 'V8V', 'AVAILABLE')
-(86, 'Breathable Mouse', 5821, ll_to_earth(-83.478519, 1.066102), 'V9B', 'AVAILABLE')
-(56, 'Mechanical Monitor', 6144, ll_to_earth(50.491606, -21.857845), 'V8Z', 'AVAILABLE')
-(88, 'Optical Touchscreen Smartphone', 7341, ll_to_earth(-175.381897, 74.129773), 'V9D', 'AVAILABLE')
-(93, 'Ergonomic Ballpoint Laptop', 6860, ll_to_earth(-67.390875, -5.100096), 'V8Y', 'AVAILABLE')
-(93, 'Comfortable Insulated Water Bottle', 3570, ll_to_earth(157.98344, -51.679448), 'V8M', 'AVAILABLE')
-(98, 'Red Smartphone', 4883, ll_to_earth(-171.818909, -39.74976), 'V9C', 'AVAILABLE')
-(59, 'High-Resolution Lined Apple', 6272, ll_to_earth(50.385719, 5.749244), 'V9A', 'AVAILABLE')
-(33, 'Educational Mouse', 5537, ll_to_earth(46.061024, 23.603484), 'V9C', 'AVAILABLE')
-(31, 'Laptop', 7569, ll_to_earth(-154.605764, -20.453648), 'V8O', 'AVAILABLE')
-(69, 'High-Resolution Apple', 7095, ll_to_earth(115.780745, -28.708456), 'V8W', 'AVAILABLE')
-(35, 'Ceramic Multifunction Printer', 1842, ll_to_earth(173.737847, -77.521965), 'V8U', 'AVAILABLE')
-(59, 'Wireless High-Resolution Pen', 7444, ll_to_earth(-79.050638, 73.15698), 'V8V', 'AVAILABLE')
-(8, 'Mechanical Coffee Mug', 5083, ll_to_earth(-6.816936, 14.48409), 'V9E', 'AVAILABLE')
-(94, 'Wireless Lightweight Keyboard', 1862, ll_to_earth(91.650805, -26.927191), 'V8Z', 'AVAILABLE')
-(14, 'Adjustable Car', 7899, ll_to_earth(12.436202, -77.108408), 'V8W', 'AVAILABLE')
-(33, 'Insulated Coffee Mug', 2497, ll_to_earth(-127.736883, -82.012009), 'V8V', 'AVAILABLE')
-(85, 'Comfortable Multifunction Notebook', 5699, ll_to_earth(59.808016, 51.176132), 'V8T', 'AVAILABLE')
-(52, 'Touchscreen Multifunction Sneakers', 7085, ll_to_earth(81.823042, -17.789096), 'V8M', 'AVAILABLE')
-(11, 'Durable Smartphone', 8196, ll_to_earth(59.562928, -50.071962), 'V8X', 'AVAILABLE')
-(26, 'Breathable Tablet', 1026, ll_to_earth(-138.019039, -37.474615), 'V8W', 'AVAILABLE')
-(53, 'Adjustable Mechanical Water Bottle', 3345, ll_to_earth(-96.246984, -35.420912), 'V8R', 'AVAILABLE')
-(78, 'Breathable Backpack', 6339, ll_to_earth(134.392914, 76.128783), 'V9E', 'AVAILABLE')
-(53, 'Car', 3594, ll_to_earth(120.302897, -19.186232), 'V8Z', 'AVAILABLE')
-(49, 'Monitor', 2709, ll_to_earth(-4.447678, 60.063803), 'V8X', 'AVAILABLE')
-(53, 'Ceramic Wireless Monitor', 3140, ll_to_earth(-84.970604, -50.267037), 'V8R', 'AVAILABLE')
-(48, 'Insulated Apple', 376, ll_to_earth(149.858223, -69.806605), 'V8P', 'AVAILABLE')
-(87, 'Educational Ballpoint Bicycle', 8354, ll_to_earth(-142.300287, 58.567384), 'V8S', 'AVAILABLE')
-(81, 'Fast Coffee Mug', 1057, ll_to_earth(-69.138466, -8.143672), 'V9B', 'AVAILABLE')
-(77, 'Ballpoint Adjustable Apple', 4062, ll_to_earth(132.673987, 45.746155), 'V9B', 'AVAILABLE')
-(4, 'Adjustable Breathable Sneakers', 2216, ll_to_earth(-0.281975, -42.600678), 'V8P', 'AVAILABLE')
-(93, 'Ceramic Insulated Laptop', 2672, ll_to_earth(-16.033719, 39.074015), 'V8Y', 'AVAILABLE')
-(26, 'Mechanical Wireless Bicycle', 5784, ll_to_earth(0.094193, 18.647395), 'V9A', 'AVAILABLE')
-(16, 'Adjustable Ballpoint Book', 9974, ll_to_earth(-83.656157, 69.822783), 'V8V', 'AVAILABLE')
-(89, 'Mechanical Ceramic Sneakers', 6284, ll_to_earth(-115.478263, 75.588306), 'V8V', 'AVAILABLE')
-(28, 'Mechanical Red Headphones', 2096, ll_to_earth(144.419291, 61.791561), 'V8S', 'AVAILABLE')
-(23, 'Comfortable Insulated Bicycle', 4908, ll_to_earth(-169.820944, -1.292955), 'V8V', 'AVAILABLE')
-(36, 'Breathable Durable Backpack', 3030, ll_to_earth(-104.285227, 68.443864), 'V9E', 'AVAILABLE')
-(4, 'Insulated Ballpoint Headphones', 5590, ll_to_earth(118.340016, 63.569447), 'V8P', 'AVAILABLE')
-(46, 'Fast Notebook', 1747, ll_to_earth(43.932786, -54.651501), 'V8Y', 'AVAILABLE')
-(9, 'Apple', 664, ll_to_earth(61.036494, 2.016338), 'V8R', 'AVAILABLE')
-(29, 'Optical Educational Backpack', 3881, ll_to_earth(42.276386, 50.103765), 'V8Y', 'AVAILABLE')
-(74, 'Monitor', 2124, ll_to_earth(-45.739189, -19.527953), 'V9C', 'AVAILABLE')
-(78, 'Apple', 8100, ll_to_earth(-103.419785, 17.443639), 'V8X', 'AVAILABLE')
-(3, 'Insulated Apple', 1811, ll_to_earth(-73.494826, -89.836529), 'V8Y', 'AVAILABLE')
-(24, 'Multifunction Backpack', 4331, ll_to_earth(49.923443, -1.899001), 'V9C', 'AVAILABLE')
-(66, 'Headphones', 1123, ll_to_earth(-118.353072, 72.424639), 'V8T', 'AVAILABLE')
-(15, 'Touchscreen Educational Sneakers', 252, ll_to_earth(27.680094, 17.239398), 'V8Y', 'AVAILABLE')
-(11, 'Optical Red Lamp', 7599, ll_to_earth(-178.630355, 57.508196), 'V9C', 'AVAILABLE')
-(18, 'Apple', 850, ll_to_earth(-29.99003, 57.453538), 'V9A', 'AVAILABLE')
-(83, 'Smartphone', 3106, ll_to_earth(-41.590177, 68.733044), 'V9C', 'AVAILABLE')
-(42, 'Apple', 7839, ll_to_earth(140.667515, 1.692454), 'V8N', 'AVAILABLE')
-(66, 'Breathable Keyboard', 6307, ll_to_earth(-161.281418, -87.12311), 'V9B', 'AVAILABLE')
-(98, 'Laptop', 5545, ll_to_earth(54.392694, 64.678851), 'V9B', 'AVAILABLE')
-(12, 'Headphones', 7851, ll_to_earth(82.315467, -50.493374), 'V9A', 'AVAILABLE')
-(44, 'Monitor', 6852, ll_to_earth(50.766343, -50.933524), 'V8V', 'AVAILABLE')
-(51, 'Educational Laptop', 4102, ll_to_earth(-151.720995, 8.416369), 'V9B', 'AVAILABLE')
-(12, 'High-Resolution Coffee Mug', 1266, ll_to_earth(-15.40879, 38.710935), 'V9C', 'AVAILABLE')
-(60, 'Multifunction Optical Book', 1584, ll_to_earth(-9.830958, 7.155439), 'V8N', 'AVAILABLE')
-(59, 'Wireless Multifunction Backpack', 9286, ll_to_earth(88.386415, -42.306276), 'V8M', 'AVAILABLE')
-(15, 'High-Resolution Notebook', 423, ll_to_earth(-162.065449, -34.463874), 'V9B', 'AVAILABLE')
-(2, 'Breathable Backpack', 4675, ll_to_earth(-51.265586, -5.083863), 'V8Z', 'AVAILABLE')
-(88, 'Car', 9954, ll_to_earth(-126.599963, -7.619121), 'V9A', 'AVAILABLE')
-(70, 'Water Bottle', 325, ll_to_earth(128.765944, -19.403197), 'V9C', 'AVAILABLE')
-(83, 'Mouse', 6778, ll_to_earth(-17.329147, -74.828939), 'V8R', 'AVAILABLE')
-(96, 'High-Resolution Smartphone', 8677, ll_to_earth(-22.01879, 72.68502), 'V8W', 'AVAILABLE')
-(19, 'Red Bicycle', 3709, ll_to_earth(84.384941, 7.122942), 'V8U', 'AVAILABLE')
-(35, 'Desk Chair', 3864, ll_to_earth(-110.155707, -21.727578), 'V8W', 'AVAILABLE')
-(63, 'Educational High-Resolution Laptop', 410, ll_to_earth(-109.788943, -41.497867), 'V9E', 'AVAILABLE')
-(71, 'Wireless Pen', 2434, ll_to_earth(160.716748, 49.298151), 'V9C', 'AVAILABLE')
-(75, 'Apple', 7011, ll_to_earth(21.479124, 13.544641), 'V9D', 'AVAILABLE')
-(28, 'Monitor', 2872, ll_to_earth(138.677618, -86.521466), 'V9E', 'AVAILABLE')
-(11, 'Touchscreen Fast Coffee Mug', 9701, ll_to_earth(-23.661688, -6.977035), 'V9A', 'AVAILABLE')
-(16, 'Wireless Water Bottle', 3990, ll_to_earth(-133.010541, -54.339967), 'V9B', 'AVAILABLE')
-(74, 'Multifunction Touchscreen Coffee Mug', 6589, ll_to_earth(-26.300646, 84.165639), 'V9C', 'AVAILABLE')
-(90, 'Car', 9568, ll_to_earth(31.816364, -87.618582), 'V8U', 'AVAILABLE')
-(27, 'Mechanical Adjustable Tablet', 1968, ll_to_earth(-162.485468, 49.502146), 'V8X', 'AVAILABLE')
-(13, 'Ergonomic Bicycle', 8789, ll_to_earth(118.470263, 82.984402), 'V8Z', 'AVAILABLE')
-(50, 'Sneakers', 3179, ll_to_earth(-38.064702, -16.280213), 'V8P', 'AVAILABLE')
-(93, 'Ergonomic Comfortable Sneakers', 453, ll_to_earth(159.183165, -57.701789), 'V8M', 'AVAILABLE')
-(20, 'Headphones', 604, ll_to_earth(60.374058, 17.099038), 'V8U', 'AVAILABLE')
-(54, 'Lightweight Mouse', 3366, ll_to_earth(-82.573578, -36.752273), 'V8O', 'AVAILABLE')
-(64, 'Bicycle', 8917, ll_to_earth(130.747303, -72.50883), 'V8O', 'AVAILABLE')
-(97, 'Coffee Mug', 8667, ll_to_earth(-41.540368, 18.099305), 'V8Z', 'AVAILABLE')
-(31, 'Water Bottle', 9217, ll_to_earth(159.882988, 49.796176), 'V8N', 'AVAILABLE')
-(60, 'Portable Ballpoint Backpack', 8664, ll_to_earth(3.196021, -22.159228), 'V8P', 'AVAILABLE')
-(2, 'Multifunction Ballpoint Headphones', 8248, ll_to_earth(-98.040305, -80.787873), 'V8Y', 'AVAILABLE')
-(7, 'Ceramic Breathable Bicycle', 5451, ll_to_earth(-15.168279, 69.082231), 'V8T', 'AVAILABLE')
-(99, 'Comfortable Headphones', 5018, ll_to_earth(163.609187, -9.370191), 'V8S', 'AVAILABLE')
-(60, 'Tablet', 513, ll_to_earth(-172.06109, -37.694367), 'V8Z', 'AVAILABLE')
-(86, 'Ergonomic Apple', 6260, ll_to_earth(81.499044, 10.664568), 'V9E', 'AVAILABLE')
-(37, 'Sneakers', 6355, ll_to_earth(11.169575, -59.565993), 'V8R', 'AVAILABLE')
-(67, 'Red Fast Laptop', 2290, ll_to_earth(-161.098357, -82.670157), 'V8S', 'AVAILABLE')
-(89, 'Optical Notebook', 4115, ll_to_earth(-157.716374, -18.172931), 'V9C', 'AVAILABLE')
-(4, 'Notebook', 7574, ll_to_earth(155.312696, -54.719204), 'V8Y', 'AVAILABLE')
-(82, 'Comfortable Mechanical Sneakers', 4795, ll_to_earth(-5.327543, 26.439663), 'V8X', 'AVAILABLE')
-(46, 'Keyboard', 1933, ll_to_earth(-71.470318, -35.569765), 'V9B', 'AVAILABLE')
-(93, 'Lamp', 3419, ll_to_earth(-111.037182, 73.576123), 'V8R', 'AVAILABLE')
-(7, 'Mechanical Touchscreen Keyboard', 413, ll_to_earth(-91.042226, 22.332703), 'V9D', 'AVAILABLE')
-(47, 'Mouse', 8642, ll_to_earth(-110.876176, 13.199593), 'V8Z', 'AVAILABLE')
-(18, 'Mouse', 7272, ll_to_earth(-120.198936, -58.487199), 'V9B', 'AVAILABLE')
-(67, 'Mechanical Desk Chair', 9508, ll_to_earth(49.536181, -7.658633), 'V8Y', 'AVAILABLE')
-(69, 'Multifunction Keyboard', 3271, ll_to_earth(-158.062354, -26.733533), 'V9E', 'AVAILABLE')
-(77, 'Book', 9142, ll_to_earth(-167.07471, -68.832205), 'V9B', 'AVAILABLE')
-(60, 'Lamp', 1657, ll_to_earth(113.504753, -55.238623), 'V9D', 'AVAILABLE')
-(85, 'Lightweight Ballpoint Coffee Mug', 3515, ll_to_earth(-142.456224, -57.422809), 'V8T', 'AVAILABLE')
-(2, 'Durable Pen', 216, ll_to_earth(164.393067, -25.304763), 'V8Z', 'AVAILABLE')
-(56, 'Mechanical Educational Keyboard', 6570, ll_to_earth(21.525851, 62.355829), 'V9A', 'AVAILABLE')
-(76, 'Educational Touchscreen Printer', 936, ll_to_earth(168.355081, 21.5543), 'V9D', 'AVAILABLE')
-(86, 'Educational Book', 9816, ll_to_earth(-96.219318, 61.066892), 'V9B', 'AVAILABLE')
-(88, 'Book', 9295, ll_to_earth(-147.936687, -63.704943), 'V8S', 'AVAILABLE')
-(53, 'Educational Ballpoint Monitor', 402, ll_to_earth(7.383474, 40.591828), 'V8Y', 'AVAILABLE')
-(55, 'Durable Pen', 4436, ll_to_earth(-169.665972, -72.195361), 'V9E', 'AVAILABLE')
-(84, 'Car', 6119, ll_to_earth(-35.125784, -59.837459), 'V8T', 'AVAILABLE')
-(42, 'Fast Tablet', 298, ll_to_earth(172.435381, 28.679799), 'V8X', 'AVAILABLE')
-(35, 'Lightweight Mechanical Keyboard', 6500, ll_to_earth(158.610621, -37.33245), 'V8P', 'AVAILABLE')
-(76, 'Ceramic Fast Bicycle', 7507, ll_to_earth(-77.013951, 9.941957), 'V8P', 'AVAILABLE')
-(78, 'Insulated Water Bottle', 3707, ll_to_earth(-32.627986, 45.011225), 'V8R', 'AVAILABLE')
-(54, 'Notebook', 7250, ll_to_earth(23.525562, -69.997882), 'V8M', 'AVAILABLE')
-(50, 'Headphones', 9109, ll_to_earth(30.197999, 7.02844), 'V8M', 'AVAILABLE')
-(9, 'Ceramic Lined Coffee Mug', 7937, ll_to_earth(-55.802099, -0.968618), 'V8W', 'AVAILABLE')
-(36, 'Adjustable Pen', 6189, ll_to_earth(172.520712, 33.234254), 'V8S', 'AVAILABLE')
-(67, 'Mechanical Book', 2900, ll_to_earth(76.281393, 63.126319), 'V9B', 'AVAILABLE')
-(74, 'Smartphone', 9814, ll_to_earth(-136.312011, -51.968523), 'V9B', 'AVAILABLE')
-(40, 'Durable Ergonomic Laptop', 7409, ll_to_earth(-164.452099, 19.226658), 'V9D', 'AVAILABLE')
-(61, 'Optical Bicycle', 1288, ll_to_earth(-163.305247, -29.34161), 'V8M', 'AVAILABLE')
-(50, 'Printer', 7469, ll_to_earth(8.660673, 78.779861), 'V8N', 'AVAILABLE')
-(45, 'Book', 3356, ll_to_earth(86.052883, 16.436605), 'V8T', 'AVAILABLE')
-(25, 'Coffee Mug', 7321, ll_to_earth(68.748226, 42.24678), 'V9D', 'AVAILABLE')
-(61, 'Sneakers', 4407, ll_to_earth(106.090686, -4.206922), 'V8Z', 'AVAILABLE')
-(80, 'Sneakers', 6272, ll_to_earth(17.223449, 68.078814), 'V8X', 'AVAILABLE')
-(13, 'Touchscreen Ceramic Lamp', 464, ll_to_earth(-175.550894, -10.454012), 'V9B', 'AVAILABLE')
-(77, 'Educational Desk Chair', 9482, ll_to_earth(43.011797, -16.14726), 'V9B', 'AVAILABLE')
-(91, 'Ergonomic Mechanical Smartphone', 7121, ll_to_earth(136.297376, 35.584453), 'V8U', 'AVAILABLE')        
-(86, 'Mechanical Backpack', 3289, ll_to_earth(-105.576676, -73.674195), 'V8M', 'AVAILABLE')
-(81, 'Multifunction Headphones', 6276, ll_to_earth(147.611077, -14.13697), 'V8P', 'AVAILABLE')
-(94, 'Coffee Mug', 3914, ll_to_earth(-151.556456, -11.185538), 'V8P', 'AVAILABLE')
-(16, 'Wireless Fast Apple', 2827, ll_to_earth(-104.706194, 56.883559), 'V9D', 'AVAILABLE')
-(5, 'Adjustable Lined Car', 464, ll_to_earth(-140.558098, -12.082404), 'V8S', 'AVAILABLE')
-(48, 'High-Resolution Comfortable Water Bottle', 591, ll_to_earth(-62.28704, -58.731363), 'V9A', 'AVAILABLE')
-(79, 'Lined Pen', 4036, ll_to_earth(162.019425, -12.03255), 'V8V', 'AVAILABLE')
-(9, 'Touchscreen Book', 3745, ll_to_earth(164.603484, 72.395818), 'V8O', 'AVAILABLE')
-(68, 'Coffee Mug', 1993, ll_to_earth(61.365442, 18.819807), 'V9A', 'AVAILABLE')
-(80, 'High-Resolution Comfortable Tablet', 2256, ll_to_earth(125.858358, 44.721633), 'V8V', 'AVAILABLE')
-(27, 'Wireless Printer', 3853, ll_to_earth(118.790327, 78.958221), 'V8N', 'AVAILABLE')
-(65, 'Breathable Red Coffee Mug', 610, ll_to_earth(-154.695781, 80.593193), 'V8P', 'AVAILABLE')
-(93, 'Book', 469, ll_to_earth(-88.160437, 13.560098), 'V9D', 'AVAILABLE')
-(86, 'Coffee Mug', 2123, ll_to_earth(12.481713, -60.037021), 'V9C', 'AVAILABLE')
-(21, 'Fast Portable Headphones', 9842, ll_to_earth(-111.197965, 88.944157), 'V9A', 'AVAILABLE')
-(25, 'Lamp', 1391, ll_to_earth(-8.531991, -53.03527), 'V9D', 'AVAILABLE')
-(82, 'Coffee Mug', 8339, ll_to_earth(-34.650976, -36.109915), 'V9D', 'AVAILABLE')
-(51, 'Optical Red Car', 9069, ll_to_earth(106.063238, 70.975329), 'V8M', 'AVAILABLE')
-(95, 'Lined Smartphone', 23, ll_to_earth(68.945212, -11.879093), 'V8Z', 'AVAILABLE')
-(17, 'Mechanical Ergonomic Keyboard', 8709, ll_to_earth(-155.608445, 60.045997), 'V9C', 'AVAILABLE')
-(53, 'Lined Desk Chair', 5042, ll_to_earth(-86.028621, -64.516903), 'V8O', 'AVAILABLE')
-(45, 'Ceramic Ceramic Monitor', 8896, ll_to_earth(27.579268, -61.407441), 'V8P', 'AVAILABLE')
-(51, 'Bicycle', 6734, ll_to_earth(-68.049842, 86.853124), 'V9E', 'AVAILABLE')
-(59, 'Notebook', 2901, ll_to_earth(-1.636921, -7.056077), 'V9D', 'AVAILABLE')
-(81, 'Headphones', 5178, ll_to_earth(164.849826, -10.416966), 'V8N', 'AVAILABLE')
-(54, 'Mechanical Ergonomic Mouse', 730, ll_to_earth(106.907237, 57.975668), 'V8T', 'AVAILABLE')
-(22, 'High-Resolution Car', 1809, ll_to_earth(-106.421781, 0.648135), 'V8M', 'AVAILABLE')
-(71, 'Ballpoint High-Resolution Coffee Mug', 9134, ll_to_earth(115.11549, -37.639498), 'V8R', 'AVAILABLE')
-(89, 'Headphones', 2236, ll_to_earth(-98.064811, -20.137634), 'V8R', 'AVAILABLE')
-(42, 'Touchscreen Printer', 8016, ll_to_earth(25.10719, -89.931062), 'V9D', 'AVAILABLE')
-(56, 'Lamp', 2196, ll_to_earth(81.243257, -76.487596), 'V8T', 'AVAILABLE')
-(50, 'Fast Notebook', 4204, ll_to_earth(-98.402697, 17.689749), 'V9D', 'AVAILABLE')
-(21, 'Water Bottle', 1106, ll_to_earth(-84.421252, 23.097145), 'V9E', 'AVAILABLE')
-(22, 'Adjustable Sneakers', 6433, ll_to_earth(9.052245, -85.881795), 'V8N', 'AVAILABLE')
-(87, 'Apple', 3148, ll_to_earth(111.426407, 2.564267), 'V8V', 'AVAILABLE')
-(41, 'Ceramic Book', 3344, ll_to_earth(-76.452917, 26.466377), 'V8N', 'AVAILABLE')
-(71, 'Portable Printer', 9036, ll_to_earth(80.754696, 69.222483), 'V8N', 'AVAILABLE')
-(29, 'Portable Ceramic Car', 9217, ll_to_earth(-157.338975, -28.006871), 'V8X', 'AVAILABLE')
-(67, 'Mechanical Keyboard', 5254, ll_to_earth(-56.099687, 10.822109), 'V8U', 'AVAILABLE')
-(55, 'Wireless Water Bottle', 7686, ll_to_earth(156.088987, 39.976673), 'V8P', 'AVAILABLE')
-(46, 'Headphones', 1550, ll_to_earth(16.750129, -77.822909), 'V8O', 'AVAILABLE')
-(32, 'Portable Ballpoint Printer', 1795, ll_to_earth(8.07328, -36.608875), 'V8T', 'AVAILABLE')
-(85, 'Insulated Durable Coffee Mug', 9885, ll_to_earth(-141.607631, 81.892973), 'V8T', 'AVAILABLE')
-(28, 'Printer', 5836, ll_to_earth(-170.673865, 62.563751), 'V8W', 'AVAILABLE')
-(2, 'High-Resolution Fast Monitor', 1581, ll_to_earth(167.384565, -79.710822), 'V9B', 'AVAILABLE')
-(54, 'Wireless Apple', 4413, ll_to_earth(-21.547335, -41.993919), 'V8Y', 'AVAILABLE')
-(3, 'Optical Lightweight Apple', 8905, ll_to_earth(147.876967, 62.689721), 'V9A', 'AVAILABLE')
-(8, 'Ceramic Monitor', 9683, ll_to_earth(17.56756, -43.686039), 'V8R', 'AVAILABLE')
-(56, 'Pen', 3795, ll_to_earth(-86.411396, -21.519439), 'V8M', 'AVAILABLE')
-(2, 'Mechanical High-Resolution Backpack', 3785, ll_to_earth(2.122, 67.755178), 'V9B', 'AVAILABLE')
-(38, 'Insulated Mouse', 6228, ll_to_earth(-179.046087, 67.569564), 'V8S', 'AVAILABLE')
-(87, 'Touchscreen Ergonomic Coffee Mug', 5898, ll_to_earth(90.542419, 3.191218), 'V8N', 'AVAILABLE')
-(44, 'Wireless Ballpoint Book', 7090, ll_to_earth(25.508784, -70.157466), 'V9A', 'AVAILABLE')
-(91, 'Ergonomic Educational Keyboard', 3926, ll_to_earth(-157.921081, -4.544721), 'V8T', 'AVAILABLE')
-(18, 'Red Backpack', 5227, ll_to_earth(-66.845933, -0.205468), 'V8S', 'AVAILABLE')
-(98, 'Lamp', 486, ll_to_earth(-65.838355, -26.966068), 'V8M', 'AVAILABLE')
-(4, 'Book', 3495, ll_to_earth(42.500763, 7.743302), 'V8M', 'AVAILABLE')
-(79, 'Apple', 4721, ll_to_earth(47.253659, -88.159934), 'V8O', 'AVAILABLE')
-(81, 'Lined Water Bottle', 6685, ll_to_earth(-52.242479, -44.453454), 'V9B', 'AVAILABLE')
-(1, 'Red Lamp', 6013, ll_to_earth(-101.803341, -6.060512), 'V9D', 'AVAILABLE')
-(39, 'Lightweight Insulated Smartphone', 8245, ll_to_earth(-160.992052, -69.038331), 'V9C', 'AVAILABLE')
-(32, 'Headphones', 7065, ll_to_earth(93.644394, -83.285337), 'V8M', 'AVAILABLE')
-(8, 'Educational Ergonomic Pen', 5299, ll_to_earth(-103.92652, -50.072426), 'V9A', 'AVAILABLE')
-(88, 'Insulated Tablet', 3571, ll_to_earth(35.787523, -28.908131), 'V8X', 'AVAILABLE')
-(74, 'Bicycle', 666, ll_to_earth(-61.098822, -46.65975), 'V8M', 'AVAILABLE')
-(93, 'Durable Wireless Desk Chair', 4162, ll_to_earth(-25.053983, -45.28322), 'V9E', 'AVAILABLE')
-(82, 'Ballpoint Mechanical Keyboard', 9302, ll_to_earth(-84.894024, 30.104551), 'V8O', 'AVAILABLE')
-(3, 'Ceramic Pen', 8878, ll_to_earth(91.016828, 27.539409), 'V9D', 'AVAILABLE')
-(52, 'Headphones', 4058, ll_to_earth(51.332744, 81.692037), 'V8M', 'AVAILABLE')
-(57, 'Pen', 2626, ll_to_earth(-11.108045, 39.424963), 'V8T', 'AVAILABLE')
-(63, 'Ballpoint Portable Printer', 8244, ll_to_earth(-50.181933, -50.999887), 'V8Z', 'AVAILABLE')
-(38, 'Portable Lined Pen', 8417, ll_to_earth(168.656404, 89.939307), 'V8S', 'AVAILABLE')
-(75, 'Bicycle', 2947, ll_to_earth(117.2923, -57.905933), 'V9C', 'AVAILABLE')
-(98, 'Monitor', 8603, ll_to_earth(18.950876, 31.101342), 'V9A', 'AVAILABLE')
-(66, 'Lined Educational Lamp', 4955, ll_to_earth(-174.181347, 41.658092), 'V8V', 'AVAILABLE')
-(56, 'Headphones', 6503, ll_to_earth(140.031576, 4.04995), 'V8O', 'AVAILABLE')
-(6, 'Pen', 1356, ll_to_earth(-168.804316, 41.61952), 'V8T', 'AVAILABLE')
-(96, 'Multifunction Bicycle', 8218, ll_to_earth(120.009997, -75.35837), 'V8W', 'AVAILABLE')
-(99, 'Educational Mouse', 4946, ll_to_earth(65.569428, 89.200032), 'V8V', 'AVAILABLE')
-(64, 'Laptop', 1494, ll_to_earth(142.620104, 0.491383), 'V8R', 'AVAILABLE')
-(43, 'Educational Mechanical Keyboard', 7844, ll_to_earth(-13.471616, 79.095616), 'V8X', 'AVAILABLE')
-(64, 'Educational Ceramic Printer', 6931, ll_to_earth(177.631779, -30.290912), 'V9A', 'AVAILABLE')
-(81, 'Pen', 4373, ll_to_earth(-18.566487, 21.3995), 'V8Z', 'AVAILABLE')
-(69, 'Fast Insulated Monitor', 1477, ll_to_earth(-129.447519, 7.824795), 'V8N', 'AVAILABLE')
-(63, 'Insulated Smartphone', 9590, ll_to_earth(-27.222053, 8.869067), 'V9B', 'AVAILABLE')
-(58, 'Pen', 9649, ll_to_earth(-39.206347, 9.467114), 'V8U', 'AVAILABLE')
-(74, 'Multifunction Desk Chair', 4286, ll_to_earth(41.499895, -43.107198), 'V9A', 'AVAILABLE')
-(59, 'Mechanical Lined Tablet', 6290, ll_to_earth(-144.024305, -68.412083), 'V8N', 'AVAILABLE')
-(24, 'Ceramic Comfortable Laptop', 7284, ll_to_earth(114.811985, -86.195774), 'V8Y', 'AVAILABLE')
-(6, 'Car', 488, ll_to_earth(-79.810654, -32.253627), 'V8W', 'AVAILABLE')
-(83, 'Headphones', 2632, ll_to_earth(141.827042, -24.223068), 'V9C', 'AVAILABLE')
-(49, 'Keyboard', 3807, ll_to_earth(63.871995, 54.406189), 'V8U', 'AVAILABLE')
-(85, 'High-Resolution Educational Mouse', 6369, ll_to_earth(-105.353621, 58.314493), 'V8Y', 'AVAILABLE')
-(86, 'Printer', 7252, ll_to_earth(23.507837, 25.138684), 'V8Y', 'AVAILABLE')
-(93, 'Insulated Multifunction Smartphone', 5635, ll_to_earth(18.784062, -79.093391), 'V8R', 'AVAILABLE')
-(42, 'Headphones', 3923, ll_to_earth(-94.486913, 27.764968), 'V8S', 'AVAILABLE')
-(80, 'Apple', 4963, ll_to_earth(13.549808, 29.952482), 'V8T', 'AVAILABLE')
-(92, 'High-Resolution Lamp', 8410, ll_to_earth(129.596098, 29.337245), 'V8Z', 'AVAILABLE')
-(86, 'Red Printer', 5969, ll_to_earth(152.262575, -60.569598), 'V8S', 'AVAILABLE')
-(15, 'Monitor', 6571, ll_to_earth(-95.953655, 82.364384), 'V8X', 'AVAILABLE')
-(84, 'Educational Adjustable Pen', 2681, ll_to_earth(-128.783308, -14.310693), 'V8S', 'AVAILABLE')
-(77, 'Adjustable Sneakers', 8257, ll_to_earth(73.120745, 31.720793), 'V8V', 'AVAILABLE')
-(34, 'Mouse', 6582, ll_to_earth(-103.232577, 6.870129), 'V8R', 'AVAILABLE')
-(89, 'Multifunction Wireless Lamp', 3078, ll_to_earth(-154.355159, -52.024055), 'V8U', 'AVAILABLE')
-(89, 'Ergonomic Book', 6390, ll_to_earth(17.452516, 50.446073), 'V8M', 'AVAILABLE')
-(51, 'Insulated Smartphone', 4362, ll_to_earth(178.552678, 13.327998), 'V8O', 'AVAILABLE')
-(17, 'Ceramic High-Resolution Pen', 4237, ll_to_earth(-36.543898, 5.502496), 'V8T', 'AVAILABLE')
-(55, 'Car', 8470, ll_to_earth(8.392147, -2.155631), 'V9E', 'AVAILABLE')
-(41, 'Car', 1757, ll_to_earth(-133.021118, -31.512228), 'V8M', 'AVAILABLE')
-(33, 'Wireless Backpack', 6211, ll_to_earth(-33.1283, 25.573339), 'V8U', 'AVAILABLE')
-(67, 'Wireless Car', 810, ll_to_earth(-20.422599, 29.852459), 'V8M', 'AVAILABLE')
-(23, 'Multifunction Lamp', 964, ll_to_earth(83.363542, -77.517525), 'V8R', 'AVAILABLE')
-(81, 'Multifunction Insulated Coffee Mug', 9620, ll_to_earth(25.55424, -77.400491), 'V8T', 'AVAILABLE')
-(89, 'Mouse', 752, ll_to_earth(-105.182526, 11.434886), 'V8U', 'AVAILABLE')
-(96, 'Comfortable Water Bottle', 7143, ll_to_earth(128.432867, 18.69492), 'V8R', 'AVAILABLE')
-(92, 'Ergonomic Adjustable Keyboard', 4423, ll_to_earth(22.749217, -7.661545), 'V9D', 'AVAILABLE')
-(27, 'Coffee Mug', 773, ll_to_earth(99.64946, -77.886662), 'V8S', 'AVAILABLE')
-(34, 'Sneakers', 8797, ll_to_earth(-112.033973, -30.305765), 'V8S', 'AVAILABLE')
-(23, 'Headphones', 2620, ll_to_earth(19.69423, -16.60338), 'V8U', 'AVAILABLE')
-(90, 'Notebook', 9743, ll_to_earth(161.996927, 51.166754), 'V8Y', 'AVAILABLE')
-(58, 'Ergonomic Wireless Book', 5865, ll_to_earth(-39.189897, -58.274252), 'V8X', 'AVAILABLE')
-(62, 'Tablet', 8936, ll_to_earth(134.99362, -76.914056), 'V8X', 'AVAILABLE')
-(50, 'Keyboard', 9288, ll_to_earth(154.191833, 21.086451), 'V8T', 'AVAILABLE')
-(89, 'Multifunction Insulated Desk Chair', 305, ll_to_earth(-142.537421, 24.403993), 'V8N', 'AVAILABLE')
-(43, 'Sneakers', 2764, ll_to_earth(-110.384977, -84.675472), 'V8M', 'AVAILABLE')
-(7, 'Wireless Insulated Coffee Mug', 9082, ll_to_earth(-65.18046, 6.105283), 'V8N', 'AVAILABLE')
-(17, 'Pen', 1803, ll_to_earth(-77.483193, -8.379979), 'V8V', 'AVAILABLE')
-(9, 'Touchscreen Ceramic Laptop', 8036, ll_to_earth(-51.800407, -86.147563), 'V9D', 'AVAILABLE')
-(67, 'Red Touchscreen Monitor', 6031, ll_to_earth(81.925943, 42.693554), 'V8R', 'AVAILABLE')
-(32, 'Mechanical Comfortable Book', 2674, ll_to_earth(-133.044242, 10.871295), 'V9A', 'AVAILABLE')
-(9, 'Smartphone', 4830, ll_to_earth(-118.07311, 76.124655), 'V9D', 'AVAILABLE')
-(67, 'Sneakers', 680, ll_to_earth(62.415304, -41.176292), 'V9A', 'AVAILABLE')
-(96, 'Fast Keyboard', 2352, ll_to_earth(155.08766, 65.729419), 'V8R', 'AVAILABLE')
-(33, 'Water Bottle', 8677, ll_to_earth(-38.913832, 7.482566), 'V8X', 'AVAILABLE')
-(58, 'Educational Car', 7151, ll_to_earth(112.267657, -14.118359), 'V8Z', 'AVAILABLE')
-(79, 'Lightweight Lined Bicycle', 8411, ll_to_earth(-7.421447, -85.263019), 'V8T', 'AVAILABLE')
-(92, 'Breathable Ceramic Coffee Mug', 7024, ll_to_earth(179.311802, 44.777306), 'V8T', 'AVAILABLE')
-(16, 'Headphones', 3643, ll_to_earth(-161.184999, -69.479824), 'V9E', 'AVAILABLE')
-(57, 'Desk Chair', 3901, ll_to_earth(142.029731, 23.368712), 'V9A', 'AVAILABLE')
-(72, 'Red Headphones', 810, ll_to_earth(84.484575, -72.435633), 'V8T', 'AVAILABLE')
-(33, 'Comfortable Insulated Mouse', 3319, ll_to_earth(75.401762, 74.427589), 'V9B', 'AVAILABLE')
-(30, 'Lightweight Wireless Printer', 135, ll_to_earth(-79.624764, 39.368315), 'V8P', 'AVAILABLE')
-(16, 'Educational Tablet', 8486, ll_to_earth(4.976124, -12.88723), 'V9D', 'AVAILABLE')
-(18, 'Adjustable Notebook', 3749, ll_to_earth(-36.030096, -2.906142), 'V8O', 'AVAILABLE')
-(98, 'Educational Smartphone', 1626, ll_to_earth(24.851551, 16.986221), 'V8N', 'AVAILABLE')
-(60, 'Adjustable Smartphone', 5190, ll_to_earth(175.839741, -49.617369), 'V9A', 'AVAILABLE')
-(76, 'Red Touchscreen Sneakers', 6768, ll_to_earth(-140.229363, -48.362708), 'V8T', 'AVAILABLE')
-(92, 'Ballpoint Apple', 7371, ll_to_earth(174.083678, -88.813409), 'V9D', 'AVAILABLE')
-(96, 'Touchscreen Mechanical Mouse', 6604, ll_to_earth(-21.550049, -2.245681), 'V9C', 'AVAILABLE')
-(73, 'Multifunction Apple', 5056, ll_to_earth(-96.841639, -10.342541), 'V8X', 'AVAILABLE')
-(9, 'Ergonomic Fast Sneakers', 2576, ll_to_earth(-82.593573, -70.080867), 'V8X', 'AVAILABLE')
-(1, 'Lined Bicycle', 5648, ll_to_earth(151.645327, -2.53772), 'V9B', 'AVAILABLE')
-(80, 'Desk Chair', 5774, ll_to_earth(-56.30753, -60.638145), 'V8S', 'AVAILABLE')
-(74, 'Educational Apple', 6153, ll_to_earth(-53.167445, 64.496538), 'V8X', 'AVAILABLE')
-(56, 'Wireless Coffee Mug', 603, ll_to_earth(-102.142042, -2.605526), 'V9B', 'AVAILABLE')
-(38, 'Durable Sneakers', 6949, ll_to_earth(41.358994, -63.246396), 'V8O', 'AVAILABLE')
-(21, 'Optical Printer', 1611, ll_to_earth(-79.357032, -81.550363), 'V8P', 'AVAILABLE')
-(51, 'Fast Touchscreen Bicycle', 8592, ll_to_earth(-74.252411, -52.873831), 'V9A', 'AVAILABLE')
-(79, 'Ballpoint Ballpoint Book', 423, ll_to_earth(-167.936497, -8.429299), 'V9C', 'AVAILABLE')
-(74, 'High-Resolution Desk Chair', 6191, ll_to_earth(-159.212252, 61.978067), 'V8X', 'AVAILABLE')
-(70, 'Fast Lightweight Headphones', 6047, ll_to_earth(42.147366, 87.107611), 'V9E', 'AVAILABLE')
-(91, 'Insulated High-Resolution Desk Chair', 6379, ll_to_earth(167.785869, 40.468155), 'V9E', 'AVAILABLE')
-(66, 'Adjustable Laptop', 2171, ll_to_earth(-0.733671, -52.72723), 'V8U', 'AVAILABLE')
-(65, 'Educational Tablet', 1512, ll_to_earth(-55.578096, -72.778968), 'V8N', 'AVAILABLE')
-(2, 'Pen', 7010, ll_to_earth(111.275309, -10.120507), 'V8M', 'AVAILABLE')
-(24, 'Desk Chair', 3482, ll_to_earth(-37.826431, 74.502022), 'V9C', 'AVAILABLE')
-(9, 'Ballpoint Optical Smartphone', 8279, ll_to_earth(176.518647, 52.139217), 'V8T', 'AVAILABLE')
-(8, 'Notebook', 4296, ll_to_earth(-129.221693, 32.308723), 'V9C', 'AVAILABLE')
-(33, 'Smartphone', 6742, ll_to_earth(-106.354713, 79.333221), 'V8N', 'AVAILABLE')
-(22, 'Red Water Bottle', 207, ll_to_earth(-101.124179, -62.606603), 'V8W', 'AVAILABLE')
-(59, 'Water Bottle', 3901, ll_to_earth(26.536587, 31.983145), 'V8Y', 'AVAILABLE')
-(22, 'Printer', 2625, ll_to_earth(97.971991, 78.886054), 'V8W', 'AVAILABLE')
-(89, 'Optical High-Resolution Water Bottle', 7079, ll_to_earth(106.4488, 71.103472), 'V8P', 'AVAILABLE')
-(28, 'Lightweight Optical Car', 7320, ll_to_earth(-140.788099, 65.504402), 'V9C', 'AVAILABLE')
-(93, 'Portable High-Resolution Headphones', 5071, ll_to_earth(-173.781882, -76.304244), 'V8S', 'AVAILABLE')
-(62, 'Ceramic Ballpoint Pen', 4489, ll_to_earth(-102.582217, 31.391655), 'V8X', 'AVAILABLE')
-(22, 'Red Monitor', 7823, ll_to_earth(41.93832, -3.816546), 'V8S', 'AVAILABLE')
-(3, 'Comfortable Durable Tablet', 3272, ll_to_earth(95.788324, 51.558059), 'V9E', 'AVAILABLE')
-(79, 'Lamp', 6520, ll_to_earth(99.604537, 66.73385), 'V9A', 'AVAILABLE')
-(97, 'Ergonomic Mouse', 7112, ll_to_earth(177.29014, 48.096031), 'V8W', 'AVAILABLE')
-(83, 'Portable Mechanical Notebook', 4244, ll_to_earth(-42.972509, 88.639751), 'V8Y', 'AVAILABLE')
-(41, 'Pen', 7814, ll_to_earth(-55.963278, -14.663353), 'V8P', 'AVAILABLE')
-(90, 'Portable Lined Water Bottle', 7661, ll_to_earth(13.836462, -32.598928), 'V8P', 'AVAILABLE')
-(46, 'High-Resolution Desk Chair', 9839, ll_to_earth(-107.589725, -20.799451), 'V8W', 'AVAILABLE')
-(84, 'Portable Smartphone', 7122, ll_to_earth(-79.760828, 79.957858), 'V9B', 'AVAILABLE')
-(47, 'Multifunction Desk Chair', 8186, ll_to_earth(-40.510335, 20.314765), 'V9A', 'AVAILABLE')
-(9, 'Multifunction Durable Book', 3668, ll_to_earth(-99.964786, 12.168888), 'V8S', 'AVAILABLE')
-(2, 'Laptop', 3881, ll_to_earth(164.394022, 70.956152), 'V8Y', 'AVAILABLE')
-(18, 'Lamp', 7269, ll_to_earth(7.741164, 32.455919), 'V9C', 'AVAILABLE')
-(6, 'Portable Lamp', 1242, ll_to_earth(-2.544335, 29.123968), 'V8X', 'AVAILABLE')
-(76, 'Apple', 9181, ll_to_earth(74.385005, -4.123396), 'V8N', 'AVAILABLE')
-(36, 'Keyboard', 4806, ll_to_earth(-121.021906, -59.499709), 'V9C', 'AVAILABLE')
-(65, 'Durable Car', 6072, ll_to_earth(-42.355609, -30.263923), 'V9B', 'AVAILABLE')
-(3, 'Water Bottle', 6203, ll_to_earth(72.183258, -72.106889), 'V9A', 'AVAILABLE')
-(24, 'Lined Insulated Lamp', 1814, ll_to_earth(52.53448, -58.837821), 'V8Y', 'AVAILABLE')
-(58, 'Lined Smartphone', 642, ll_to_earth(8.707898, -67.568027), 'V8X', 'AVAILABLE')
-(3, 'Backpack', 8606, ll_to_earth(-167.396632, 11.407651), 'V8N', 'AVAILABLE')
-(88, 'Mechanical Portable Apple', 865, ll_to_earth(-21.130981, -50.801244), 'V8R', 'AVAILABLE')
-(11, 'Notebook', 8740, ll_to_earth(-106.547677, -7.718268), 'V8X', 'AVAILABLE')
-(11, 'Mouse', 9305, ll_to_earth(-137.557036, 41.715921), 'V8X', 'AVAILABLE')
-(48, 'Ergonomic Optical Backpack', 4502, ll_to_earth(-76.481113, 50.456047), 'V9D', 'AVAILABLE')
-(66, 'Optical Durable Smartphone', 3700, ll_to_earth(-78.672157, 44.339303), 'V8M', 'AVAILABLE')
-(91, 'Durable Ceramic Car', 6138, ll_to_earth(97.330143, 7.557443), 'V8T', 'AVAILABLE')
-(30, 'Breathable Monitor', 9356, ll_to_earth(-141.15322, 85.903277), 'V8Z', 'AVAILABLE')
-(15, 'Wireless Touchscreen Bicycle', 5474, ll_to_earth(-128.182541, 19.095364), 'V8M', 'AVAILABLE')
-(77, 'Smartphone', 9299, ll_to_earth(88.519598, 39.929062), 'V8U', 'AVAILABLE')
-(57, 'Ergonomic Optical Apple', 1719, ll_to_earth(-71.266226, -35.588073), 'V8Z', 'AVAILABLE')
-(25, 'Breathable Lightweight Monitor', 9885, ll_to_earth(-67.256647, 41.1656), 'V9E', 'AVAILABLE')
-(78, 'Lined Coffee Mug', 3695, ll_to_earth(55.061879, 24.19641), 'V9E', 'AVAILABLE')
-(41, 'Red Printer', 5661, ll_to_earth(-152.546832, -15.162105), 'V9C', 'AVAILABLE')
-(60, 'Book', 8242, ll_to_earth(-151.594836, 37.86887), 'V8R', 'AVAILABLE')
-(81, 'Mechanical Portable Monitor', 1237, ll_to_earth(1.07512, -51.570703), 'V8W', 'AVAILABLE')
-(93, 'Portable Comfortable Backpack', 2678, ll_to_earth(41.325421, -81.437563), 'V8U', 'AVAILABLE')
-(25, 'Lamp', 2690, ll_to_earth(-113.254541, -0.37256), 'V8T', 'AVAILABLE')
-(15, 'Notebook', 1639, ll_to_earth(-99.243511, 45.395665), 'V8T', 'AVAILABLE')
-(34, 'Mechanical Apple', 7682, ll_to_earth(3.823613, -7.907743), 'V8S', 'AVAILABLE')
-(20, 'Wireless Mouse', 4261, ll_to_earth(-2.302127, -31.514476), 'V8W', 'AVAILABLE')
-(12, 'Keyboard', 3862, ll_to_earth(-10.375496, 87.627615), 'V8S', 'AVAILABLE')
-(89, 'Mechanical Adjustable Keyboard', 1154, ll_to_earth(84.272439, -45.881666), 'V8N', 'AVAILABLE')
-(56, 'Red Ballpoint Printer', 4466, ll_to_earth(42.083222, 8.81127), 'V9B', 'AVAILABLE')
-(47, 'Monitor', 2980, ll_to_earth(107.509386, 45.615654), 'V8U', 'AVAILABLE')
-(7, 'Car', 5131, ll_to_earth(-51.99398, 52.627141), 'V8O', 'AVAILABLE')
-(60, 'Pen', 9798, ll_to_earth(-3.233852, 1.469219), 'V8S', 'AVAILABLE')
-(47, 'Educational Keyboard', 3901, ll_to_earth(56.821908, -11.688819), 'V8O', 'AVAILABLE')
-(78, 'Optical Touchscreen Book', 2383, ll_to_earth(57.785985, 40.306653), 'V8Z', 'AVAILABLE')
-(90, 'Optical Mechanical Smartphone', 9628, ll_to_earth(-171.177574, -37.636966), 'V9A', 'AVAILABLE')
-(95, 'Ceramic Lined Notebook', 7761, ll_to_earth(-84.990834, -31.013297), 'V8U', 'AVAILABLE')
-(11, 'Water Bottle', 6600, ll_to_earth(90.554413, 76.604085), 'V8T', 'AVAILABLE')
-(56, 'Pen', 220, ll_to_earth(-123.364137, -2.123306), 'V9E', 'AVAILABLE')
-(57, 'Ergonomic Book', 2259, ll_to_earth(-16.165747, 75.623951), 'V8W', 'AVAILABLE')
-(79, 'Durable Insulated Desk Chair', 2142, ll_to_earth(-109.146249, 45.157602), 'V8Y', 'AVAILABLE')
-(97, 'Fast Apple', 4004, ll_to_earth(146.551127, -46.269385), 'V8O', 'AVAILABLE')
-(63, 'Backpack', 6252, ll_to_earth(-120.011213, -20.322932), 'V8V', 'AVAILABLE')
-(45, 'Multifunction Red Coffee Mug', 306, ll_to_earth(-132.695929, 64.424207), 'V8Z', 'AVAILABLE')
-(51, 'Coffee Mug', 3507, ll_to_earth(-127.176937, 59.661602), 'V8U', 'AVAILABLE')
-(14, 'Comfortable Breathable Laptop', 929, ll_to_earth(-158.393592, -10.300205), 'V9D', 'AVAILABLE')
-(71, 'Book', 2806, ll_to_earth(34.509811, 86.960153), 'V8O', 'AVAILABLE')
-(8, 'Lightweight Lined Printer', 6252, ll_to_earth(-24.201248, 11.928647), 'V8W', 'AVAILABLE')
-(16, 'Printer', 181, ll_to_earth(-178.91198, 68.085679), 'V8N', 'AVAILABLE')
-(44, 'Multifunction Bicycle', 7405, ll_to_earth(24.683089, -31.156941), 'V9E', 'AVAILABLE')
-(9, 'Lined Touchscreen Bicycle', 3025, ll_to_earth(169.483487, 24.059058), 'V9D', 'AVAILABLE')
-(94, 'Notebook', 1175, ll_to_earth(-44.026535, 0.2172), 'V8R', 'AVAILABLE')
-(64, 'Red Lined Monitor', 1321, ll_to_earth(157.664096, -12.956176), 'V9C', 'AVAILABLE')
-(72, 'Touchscreen Wireless Pen', 7800, ll_to_earth(-86.792692, 47.695305), 'V8O', 'AVAILABLE')
-(79, 'Laptop', 1931, ll_to_earth(103.85498, 30.041119), 'V8V', 'AVAILABLE')
-(9, 'Breathable Bicycle', 5731, ll_to_earth(113.100808, -21.116003), 'V8R', 'AVAILABLE')
-(20, 'Lamp', 7092, ll_to_earth(58.883463, -30.768347), 'V8U', 'AVAILABLE')
-(2, 'Ergonomic Keyboard', 4412, ll_to_earth(47.759198, -64.549502), 'V9B', 'AVAILABLE')
-(81, 'Lightweight Car', 1863, ll_to_earth(-65.786558, 10.388128), 'V9A', 'AVAILABLE')
-(75, 'Adjustable Adjustable Sneakers', 4800, ll_to_earth(115.692666, 69.584357), 'V9B', 'AVAILABLE')
-(51, 'Adjustable Breathable Smartphone', 7843, ll_to_earth(118.68133, 51.253832), 'V9C', 'AVAILABLE')
-(47, 'Breathable Sneakers', 1975, ll_to_earth(36.380064, -50.34261), 'V8V', 'AVAILABLE')
-(89, 'Lightweight Bicycle', 4720, ll_to_earth(-23.769259, 39.602221), 'V9B', 'AVAILABLE')
-(55, 'Adjustable Headphones', 8950, ll_to_earth(122.89397, -51.593034), 'V8M', 'AVAILABLE')
-(53, 'High-Resolution Ceramic Headphones', 3005, ll_to_earth(144.417221, -49.96378), 'V8S', 'AVAILABLE')
-(41, 'Adjustable Ergonomic Pen', 2958, ll_to_earth(7.123231, -34.419042), 'V9A', 'AVAILABLE')
-(25, 'Insulated Touchscreen Lamp', 5228, ll_to_earth(-102.620445, -47.830219), 'V8R', 'AVAILABLE')
-(13, 'Educational Optical Apple', 6107, ll_to_earth(144.736277, 20.788331), 'V8V', 'AVAILABLE')
-(14, 'Red Laptop', 3170, ll_to_earth(112.398719, 38.464892), 'V8Z', 'AVAILABLE')
-(87, 'Lamp', 8298, ll_to_earth(-29.547459, -24.778719), 'V9A', 'AVAILABLE')
-(50, 'Portable Tablet', 9554, ll_to_earth(97.205485, -42.917004), 'V8O', 'AVAILABLE')
-(78, 'Headphones', 625, ll_to_earth(162.745218, 83.694722), 'V8S', 'AVAILABLE')
-(41, 'Fast Sneakers', 1109, ll_to_earth(160.218442, -44.562247), 'V8S', 'AVAILABLE')
-(84, 'High-Resolution Wireless Coffee Mug', 5666, ll_to_earth(-84.656827, 82.696867), 'V8O', 'AVAILABLE')
-(22, 'Apple', 4059, ll_to_earth(-10.133721, -24.010011), 'V9D', 'AVAILABLE')
-(39, 'Lined Mouse', 9813, ll_to_earth(124.202139, 60.241867), 'V8X', 'AVAILABLE')
-(59, 'Portable Apple', 3388, ll_to_earth(-22.770973, 28.82836), 'V8W', 'AVAILABLE')
-(9, 'Durable Smartphone', 7139, ll_to_earth(-130.266928, -13.407011), 'V8W', 'AVAILABLE')
-(95, 'Lined Smartphone', 6701, ll_to_earth(-72.418158, 81.283034), 'V8R', 'AVAILABLE')
-(19, 'Monitor', 9524, ll_to_earth(100.21148, -42.761399), 'V8W', 'AVAILABLE')
-(36, 'Adjustable Optical Monitor', 8771, ll_to_earth(-155.292748, 53.676048), 'V8Y', 'AVAILABLE')
-(64, 'Mechanical Insulated Apple', 3065, ll_to_earth(153.863461, 14.236019), 'V8N', 'AVAILABLE')
-(4, 'Comfortable Red Notebook', 3718, ll_to_earth(-80.65631, -82.012076), 'V8T', 'AVAILABLE')
-(49, 'Headphones', 725, ll_to_earth(142.159655, -1.826336), 'V8Y', 'AVAILABLE')
-(68, 'Educational Durable Mouse', 606, ll_to_earth(-151.728657, -56.630323), 'V9C', 'AVAILABLE')
-(96, 'Coffee Mug', 197, ll_to_earth(46.804777, -30.608707), 'V8O', 'AVAILABLE')
-(35, 'Lined Headphones', 2049, ll_to_earth(134.092949, -1.377746), 'V8X', 'AVAILABLE')
-(73, 'Mechanical Educational Notebook', 191, ll_to_earth(-116.160257, 11.902309), 'V8Y', 'AVAILABLE')
-(1, 'Touchscreen Sneakers', 7215, ll_to_earth(-30.728951, 48.245126), 'V8M', 'AVAILABLE')
-(55, 'Fast Laptop', 621, ll_to_earth(178.891283, 48.234734), 'V8T', 'AVAILABLE')
-(71, 'Adjustable Headphones', 4761, ll_to_earth(99.604924, 59.67928), 'V8Y', 'AVAILABLE')
-(39, 'Printer', 4209, ll_to_earth(147.331448, -61.864932), 'V8Z', 'AVAILABLE')
-(45, 'Educational Touchscreen Water Bottle', 9733, ll_to_earth(37.185081, -80.521348), 'V8O', 'AVAILABLE')
-(94, 'High-Resolution Ballpoint Car', 4983, ll_to_earth(-155.193505, 59.982214), 'V9C', 'AVAILABLE')
-(80, 'Portable Optical Laptop', 6712, ll_to_earth(-66.303139, -37.808635), 'V8M', 'AVAILABLE')
-(35, 'Printer', 4519, ll_to_earth(-100.876073, 26.556616), 'V8S', 'AVAILABLE')
-(64, 'Lined Mechanical Apple', 3938, ll_to_earth(-78.739744, -18.50896), 'V8Z', 'AVAILABLE')
-(84, 'Book', 7554, ll_to_earth(-2.384825, -78.206191), 'V8R', 'AVAILABLE')
-(22, 'Notebook', 3041, ll_to_earth(-103.449241, 31.124099), 'V8S', 'AVAILABLE')
-(78, 'Wireless Portable Lamp', 5348, ll_to_earth(83.311103, 44.1801), 'V8U', 'AVAILABLE')
-(30, 'Educational Coffee Mug', 7023, ll_to_earth(-87.374388, 43.798363), 'V8X', 'AVAILABLE')
-(33, 'Breathable Tablet', 4746, ll_to_earth(165.056145, -45.201617), 'V8P', 'AVAILABLE')
-(78, 'Insulated Backpack', 368, ll_to_earth(-74.463426, 44.199909), 'V9A', 'AVAILABLE')
-(58, 'Ceramic Lined Headphones', 1657, ll_to_earth(-75.342238, -71.19468), 'V9D', 'AVAILABLE')
-(19, 'Optical Bicycle', 3039, ll_to_earth(-97.990529, 69.640274), 'V9B', 'AVAILABLE')
-(63, 'Desk Chair', 8121, ll_to_earth(-65.518285, 8.931477), 'V8T', 'AVAILABLE')
-(88, 'Insulated Fast Monitor', 3057, ll_to_earth(-135.571126, 79.221059), 'V8U', 'AVAILABLE')
-(71, 'Touchscreen Lamp', 973, ll_to_earth(70.802926, -43.560283), 'V9C', 'AVAILABLE')
-(20, 'Car', 6444, ll_to_earth(136.473164, -72.345348), 'V8P', 'AVAILABLE')
-(22, 'Durable Coffee Mug', 9786, ll_to_earth(156.69449, -35.864837), 'V8N', 'AVAILABLE')
-(5, 'Mechanical Breathable Notebook', 8897, ll_to_earth(-26.980707, 16.948774), 'V8M', 'AVAILABLE')
-(92, 'Ballpoint Mechanical Apple', 4524, ll_to_earth(-71.79248, 51.768941), 'V8P', 'AVAILABLE')
-(8, 'Ceramic Bicycle', 3704, ll_to_earth(-122.357385, -74.610055), 'V8N', 'AVAILABLE')
-(46, 'Adjustable Wireless Desk Chair', 5466, ll_to_earth(122.837822, 73.026143), 'V8Z', 'AVAILABLE')
-(96, 'Touchscreen High-Resolution Lamp', 9936, ll_to_earth(140.008238, 22.310369), 'V8Y', 'AVAILABLE')
-(18, 'High-Resolution Tablet', 62, ll_to_earth(-117.999542, 13.771016), 'V8W', 'AVAILABLE')
-(74, 'Lightweight Headphones', 5261, ll_to_earth(100.982091, 57.078308), 'V9C', 'AVAILABLE')
-(63, 'Printer', 3521, ll_to_earth(-60.835763, -72.675712), 'V8Y', 'AVAILABLE')
-(61, 'Tablet', 210, ll_to_earth(-37.471081, -85.059432), 'V8T', 'AVAILABLE')
-(48, 'Bicycle', 1655, ll_to_earth(98.440877, -61.087531), 'V9A', 'AVAILABLE')
-(59, 'Bicycle', 3953, ll_to_earth(14.131739, -58.220697), 'V9D', 'AVAILABLE')
-(90, 'Touchscreen Desk Chair', 6714, ll_to_earth(173.762316, 84.943897), 'V8U', 'AVAILABLE')
-(81, 'Smartphone', 1863, ll_to_earth(30.518343, -37.360382), 'V8T', 'AVAILABLE')
-(68, 'Adjustable Monitor', 1873, ll_to_earth(-21.023907, -16.717012), 'V8O', 'AVAILABLE')
-(52, 'High-Resolution Desk Chair', 4243, ll_to_earth(94.307823, -79.663881), 'V8M', 'AVAILABLE')
-(10, 'Printer', 1990, ll_to_earth(17.661417, 68.436667), 'V9B', 'AVAILABLE')
-(80, 'Laptop', 527, ll_to_earth(-61.987782, -18.903367), 'V8N', 'AVAILABLE')
-(23, 'Mechanical Mouse', 3653, ll_to_earth(100.858105, 8.07773), 'V9A', 'AVAILABLE')
-(41, 'Lamp', 5689, ll_to_earth(20.922305, 64.72928), 'V8Z', 'AVAILABLE')
-(2, 'Ballpoint Water Bottle', 8672, ll_to_earth(113.227824, -76.155001), 'V8Y', 'AVAILABLE')
-(15, 'Apple', 3298, ll_to_earth(-159.061461, 7.749729), 'V8W', 'AVAILABLE')
-(9, 'Lightweight Red Backpack', 2268, ll_to_earth(80.754389, -39.206982), 'V8S', 'AVAILABLE')
-(98, 'Monitor', 3922, ll_to_earth(-36.481453, 87.248582), 'V9D', 'AVAILABLE')
-(88, 'Bicycle', 6744, ll_to_earth(43.041019, -52.798163), 'V8W', 'AVAILABLE')
-(81, 'Optical Red Notebook', 6309, ll_to_earth(-51.752552, -29.252466), 'V8O', 'AVAILABLE')
-(18, 'Insulated Printer', 3801, ll_to_earth(142.098197, 23.852354), 'V8U', 'AVAILABLE')
-(20, 'Bicycle', 5535, ll_to_earth(64.3005, -19.382805), 'V9E', 'AVAILABLE')
-(26, 'Ceramic Insulated Bicycle', 3828, ll_to_earth(-8.824046, 59.332765), 'V8U', 'AVAILABLE')
-(37, 'Car', 4906, ll_to_earth(-86.27649, -84.456514), 'V8O', 'AVAILABLE')
-(19, 'Multifunction Optical Mouse', 9759, ll_to_earth(-33.405929, 21.106867), 'V8U', 'AVAILABLE')
-(23, 'Lightweight Insulated Laptop', 4819, ll_to_earth(-152.752199, -68.513598), 'V8Y', 'AVAILABLE')
-(47, 'Insulated High-Resolution Book', 4659, ll_to_earth(-66.82873, 71.434253), 'V8Z', 'AVAILABLE')
-(65, 'Fast Comfortable Monitor', 657, ll_to_earth(-141.709885, -82.648675), 'V8V', 'AVAILABLE')
-(56, 'Laptop', 1139, ll_to_earth(4.408081, 9.738116), 'V8M', 'AVAILABLE')
-(47, 'Breathable Sneakers', 5194, ll_to_earth(12.721428, 52.548328), 'V8V', 'AVAILABLE')
-(16, 'Red Apple', 9874, ll_to_earth(-143.458196, -43.520449), 'V8T', 'AVAILABLE')
-(14, 'Wireless Smartphone', 2255, ll_to_earth(114.663421, -78.123687), 'V9C', 'AVAILABLE')
-(53, 'Notebook', 6837, ll_to_earth(27.914623, -63.442648), 'V9A', 'AVAILABLE')
-(25, 'Adjustable Smartphone', 327, ll_to_earth(131.614404, 63.115665), 'V8R', 'AVAILABLE')
-(6, 'Mechanical Water Bottle', 8214, ll_to_earth(-19.488414, 46.853343), 'V8U', 'AVAILABLE')
-(49, 'Printer', 8021, ll_to_earth(54.422642, 82.128879), 'V8Z', 'AVAILABLE')
-(43, 'Ballpoint Car', 4116, ll_to_earth(-20.807996, -67.739484), 'V8V', 'AVAILABLE')
-(63, 'Ergonomic Lamp', 47, ll_to_earth(61.197337, -10.875029), 'V9B', 'AVAILABLE')
-(72, 'Touchscreen Breathable Mouse', 9265, ll_to_earth(-102.418364, 75.158598), 'V8U', 'AVAILABLE')
-(61, 'High-Resolution Book', 2743, ll_to_earth(2.10785, -36.603791), 'V8O', 'AVAILABLE')
-(64, 'Durable Laptop', 3010, ll_to_earth(-140.642574, 63.926933), 'V9B', 'AVAILABLE')
-(60, 'Coffee Mug', 6394, ll_to_earth(20.566462, -83.536682), 'V8S', 'AVAILABLE')
-(84, 'Notebook', 219, ll_to_earth(59.771533, 23.594315), 'V9D', 'AVAILABLE')
-(11, 'Car', 1650, ll_to_earth(139.982501, -77.439587), 'V9D', 'AVAILABLE')
-(73, 'Educational Lightweight Smartphone', 5804, ll_to_earth(38.484643, -22.454702), 'V8S', 'AVAILABLE')
-(84, 'Laptop', 5637, ll_to_earth(-6.216688, 63.001683), 'V9E', 'AVAILABLE')
-(56, 'Coffee Mug', 293, ll_to_earth(26.108031, -6.563642), 'V8P', 'AVAILABLE')
-(28, 'Adjustable Wireless Tablet', 2691, ll_to_earth(-29.808905, -43.442927), 'V8O', 'AVAILABLE')
-(41, 'Bicycle', 8431, ll_to_earth(162.805672, 28.833591), 'V8W', 'AVAILABLE')
-(4, 'Lightweight Headphones', 3448, ll_to_earth(118.421947, 83.698883), 'V8U', 'AVAILABLE')
-(90, 'Fast Sneakers', 341, ll_to_earth(127.216466, 12.886956), 'V8Y', 'AVAILABLE')
-(6, 'Comfortable Sneakers', 4866, ll_to_earth(114.877294, 63.651651), 'V9A', 'AVAILABLE')
-(3, 'Wireless Breathable Mouse', 3604, ll_to_earth(-82.997943, 75.486541), 'V8R', 'AVAILABLE')
-(6, 'Ergonomic Notebook', 4394, ll_to_earth(-15.706834, 43.835724), 'V9E', 'AVAILABLE')
-(77, 'Mouse', 3924, ll_to_earth(20.103133, -73.075556), 'V8V', 'AVAILABLE')
-(46, 'Comfortable Lightweight Water Bottle', 3065, ll_to_earth(8.328861, -30.979812), 'V8M', 'AVAILABLE')
-(94, 'Mechanical Durable Bicycle', 6025, ll_to_earth(-86.130853, -1.329027), 'V8U', 'AVAILABLE')
-(8, 'Lightweight High-Resolution Tablet', 7409, ll_to_earth(-40.196066, -30.295626), 'V8X', 'AVAILABLE')
-(16, 'Notebook', 305, ll_to_earth(121.876693, -14.172005), 'V9D', 'AVAILABLE')
-(82, 'Durable Red Bicycle', 6896, ll_to_earth(51.663789, -47.216855), 'V9E', 'AVAILABLE')
-(93, 'Comfortable Multifunction Car', 1897, ll_to_earth(117.367088, 46.730105), 'V8U', 'AVAILABLE')
-(58, 'Mechanical Mouse', 3419, ll_to_earth(23.860824, 45.235367), 'V8Y', 'AVAILABLE')
-(35, 'Breathable Lamp', 415, ll_to_earth(-133.771934, 57.52054), 'V8M', 'AVAILABLE')
-(91, 'Lined Breathable Apple', 4370, ll_to_earth(67.857127, 73.8457), 'V8X', 'AVAILABLE')
-(43, 'Ergonomic Car', 2364, ll_to_earth(-161.069982, 30.496397), 'V9E', 'AVAILABLE')
-(66, 'Ballpoint Laptop', 5087, ll_to_earth(-70.181365, -33.825241), 'V9C', 'AVAILABLE')
-(26, 'Desk Chair', 4140, ll_to_earth(54.667145, -18.981055), 'V8Z', 'AVAILABLE')
-(2, 'Adjustable Water Bottle', 7749, ll_to_earth(-118.122232, 49.56676), 'V9E', 'AVAILABLE')
-(34, 'Touchscreen Educational Monitor', 1371, ll_to_earth(-12.842808, -58.644201), 'V9B', 'AVAILABLE')
-(11, 'Wireless Apple', 9501, ll_to_earth(-171.502679, -0.441623), 'V8Z', 'AVAILABLE')
-(95, 'High-Resolution Water Bottle', 7945, ll_to_earth(-123.897025, 10.74322), 'V8O', 'AVAILABLE')
-(12, 'Fast Smartphone', 1221, ll_to_earth(-63.078171, -71.279858), 'V8O', 'AVAILABLE')
-(92, 'Durable Monitor', 851, ll_to_earth(-13.831816, 44.61866), 'V9E', 'AVAILABLE')
-(6, 'Notebook', 5298, ll_to_earth(174.726126, -85.586973), 'V8W', 'AVAILABLE')
-(45, 'Multifunction Apple', 3630, ll_to_earth(-0.27459, 59.998859), 'V8T', 'AVAILABLE')
-(17, 'Laptop', 3890, ll_to_earth(168.427496, 36.194092), 'V8X', 'AVAILABLE')
-(80, 'Car', 1964, ll_to_earth(30.291601, -85.092757), 'V8Y', 'AVAILABLE')
-(71, 'Monitor', 6071, ll_to_earth(63.435044, 8.967943), 'V8M', 'AVAILABLE')
-(28, 'Adjustable Water Bottle', 3425, ll_to_earth(177.444778, -39.630803), 'V8O', 'AVAILABLE')
-(8, 'Mouse', 4422, ll_to_earth(11.227493, -15.379173), 'V8O', 'AVAILABLE')
-(30, 'Durable Lamp', 3988, ll_to_earth(-21.674483, -60.520721), 'V9C', 'AVAILABLE')
-(70, 'Wireless Breathable Laptop', 171, ll_to_earth(-171.87793, 35.397246), 'V8M', 'AVAILABLE')
-(14, 'Printer', 5200, ll_to_earth(-4.671925, -82.767587), 'V9E', 'AVAILABLE')
-(59, 'Comfortable Laptop', 8197, ll_to_earth(175.191457, 3.755948), 'V8P', 'AVAILABLE')
-(31, 'Lightweight Desk Chair', 5689, ll_to_earth(-22.62498, 37.526955), 'V8X', 'AVAILABLE')
-(67, 'Insulated Ballpoint Smartphone', 1538, ll_to_earth(-66.298626, -35.959027), 'V9D', 'AVAILABLE')
-(36, 'Coffee Mug', 1409, ll_to_earth(44.093026, -84.162062), 'V8T', 'AVAILABLE')
-(97, 'Coffee Mug', 6631, ll_to_earth(-10.964917, -77.230927), 'V9B', 'AVAILABLE')
-(48, 'High-Resolution Notebook', 7699, ll_to_earth(87.176522, 56.848084), 'V9B', 'AVAILABLE')
-(28, 'Fast Keyboard', 6598, ll_to_earth(9.289298, 43.40206), 'V8T', 'AVAILABLE')
-(14, 'Lightweight Bicycle', 7193, ll_to_earth(-149.976665, 60.130033), 'V8N', 'AVAILABLE')
-(26, 'Insulated Durable Smartphone', 2806, ll_to_earth(106.308878, 25.940378), 'V8Y', 'AVAILABLE')
-(55, 'Monitor', 7776, ll_to_earth(-73.895692, -78.066381), 'V9C', 'AVAILABLE')
-(15, 'High-Resolution Multifunction Water Bottle', 9851, ll_to_earth(-97.783143, -68.192538), 'V9C', 'AVAILABLE')
-(54, 'Car', 1824, ll_to_earth(29.024706, 14.355396), 'V8W', 'AVAILABLE')
-(96, 'Insulated Bicycle', 2528, ll_to_earth(38.65353, -61.434035), 'V9C', 'AVAILABLE')
-(14, 'Ballpoint Portable Apple', 5931, ll_to_earth(-100.771866, 14.854693), 'V9A', 'AVAILABLE')
-(40, 'Insulated Water Bottle', 3383, ll_to_earth(-28.768842, -58.486542), 'V8R', 'AVAILABLE')
-(60, 'Wireless Ceramic Notebook', 6603, ll_to_earth(-89.064803, -19.925008), 'V8M', 'AVAILABLE')
-(23, 'Educational Fast Headphones', 2622, ll_to_earth(150.232696, -17.20633), 'V9D', 'AVAILABLE')
-(95, 'Touchscreen Wireless Mouse', 4983, ll_to_earth(103.568654, -36.8076), 'V8O', 'AVAILABLE')
-(82, 'Fast Educational Bicycle', 3411, ll_to_earth(-163.713495, -51.418864), 'V9A', 'AVAILABLE')
-(61, 'Lined Coffee Mug', 1860, ll_to_earth(-68.951988, -71.543499), 'V8N', 'AVAILABLE')
-(80, 'Optical Adjustable Car', 6836, ll_to_earth(-35.30824, -50.016337), 'V8V', 'AVAILABLE')
-(54, 'Ceramic Backpack', 1953, ll_to_earth(-9.536204, -71.157852), 'V8R', 'AVAILABLE')
-(18, 'Book', 1258, ll_to_earth(45.727344, -50.53902), 'V8Z', 'AVAILABLE')
-(9, 'Lined Comfortable Book', 1679, ll_to_earth(115.259725, 6.646484), 'V8Y', 'AVAILABLE')
-(94, 'Durable Durable Keyboard', 4182, ll_to_earth(32.291421, -67.970538), 'V8O', 'AVAILABLE')
-(16, 'Pen', 5979, ll_to_earth(132.825423, -61.873596), 'V8Y', 'AVAILABLE')
-(61, 'High-Resolution Bicycle', 137, ll_to_earth(32.470803, -47.821164), 'V8Z', 'AVAILABLE')
-(51, 'Laptop', 2511, ll_to_earth(-5.579648, -61.082847), 'V8V', 'AVAILABLE')
-(17, 'High-Resolution Sneakers', 961, ll_to_earth(-25.174044, 34.583124), 'V8O', 'AVAILABLE')
-(69, 'Portable Lightweight Apple', 6328, ll_to_earth(-137.908286, 63.328703), 'V9D', 'AVAILABLE')
-(50, 'Touchscreen Bicycle', 8234, ll_to_earth(-101.692787, -58.524899), 'V9D', 'AVAILABLE')
-(40, 'Fast Durable Desk Chair', 2644, ll_to_earth(137.741781, -86.356205), 'V8N', 'AVAILABLE')
-(95, 'Bicycle', 4931, ll_to_earth(10.884886, 18.667571), 'V9A', 'AVAILABLE')
-(86, 'Pen', 2576, ll_to_earth(173.804492, -48.225649), 'V8M', 'AVAILABLE')
-(75, 'Fast Durable Printer', 7345, ll_to_earth(-91.597517, -26.855231), 'V9B', 'AVAILABLE')
-(25, 'Smartphone', 4970, ll_to_earth(114.769249, 41.784926), 'V8Y', 'AVAILABLE')
-(3, 'Adjustable Tablet', 350, ll_to_earth(91.794527, -37.492789), 'V8T', 'AVAILABLE')
-(74, 'Educational Red Desk Chair', 823, ll_to_earth(-48.299359, 46.994892), 'V8Y', 'AVAILABLE')
-(58, 'Wireless Red Smartphone', 7238, ll_to_earth(139.302674, -51.249284), 'V8W', 'AVAILABLE')
-(20, 'Mechanical Fast Laptop', 5470, ll_to_earth(-137.550768, 66.177258), 'V9E', 'AVAILABLE')
-(25, 'Ballpoint Insulated Notebook', 1156, ll_to_earth(-33.458196, -83.690157), 'V8Z', 'AVAILABLE')
-(58, 'High-Resolution Ceramic Apple', 8426, ll_to_earth(-177.120508, 11.367154), 'V8V', 'AVAILABLE')
-(94, 'Wireless Ergonomic Car', 7192, ll_to_earth(62.143068, 39.539377), 'V9A', 'AVAILABLE')
-(18, 'Multifunction Lined Headphones', 699, ll_to_earth(140.286403, -64.155191), 'V8M', 'AVAILABLE')
-(97, 'Comfortable Portable Coffee Mug', 9175, ll_to_earth(121.186838, -35.740524), 'V8O', 'AVAILABLE')
-(80, 'Insulated Durable Water Bottle', 209, ll_to_earth(-131.126721, 67.332269), 'V9A', 'AVAILABLE')
-(48, 'Ballpoint Portable Sneakers', 7280, ll_to_earth(-162.405035, -89.444607), 'V8O', 'AVAILABLE')
-(30, 'Optical Wireless Desk Chair', 8554, ll_to_earth(93.83791, -28.402636), 'V9D', 'AVAILABLE')
-(67, 'Ergonomic Mechanical Pen', 5880, ll_to_earth(22.365778, 8.108818), 'V8T', 'AVAILABLE')
-(8, 'Car', 1997, ll_to_earth(-150.464426, 24.624249), 'V8W', 'AVAILABLE')
-(31, 'Apple', 2488, ll_to_earth(-142.626815, 25.540074), 'V9B', 'AVAILABLE')
-(84, 'Educational Headphones', 339, ll_to_earth(177.261883, -53.240388), 'V8T', 'AVAILABLE')
-(33, 'Optical Notebook', 9203, ll_to_earth(82.703672, 76.693421), 'V9D', 'AVAILABLE')
-(67, 'Portable Bicycle', 4767, ll_to_earth(24.64198, -48.9289), 'V8W', 'AVAILABLE')
-(77, 'High-Resolution Tablet', 4839, ll_to_earth(-73.679556, 79.920165), 'V9D', 'AVAILABLE')
-(45, 'Comfortable Backpack', 808, ll_to_earth(20.570636, -17.695725), 'V8V', 'AVAILABLE')
-(75, 'Pen', 8806, ll_to_earth(-176.039161, -44.874769), 'V9C', 'AVAILABLE')
-(45, 'Keyboard', 4702, ll_to_earth(43.926734, -89.25519), 'V8T', 'AVAILABLE')
-(19, 'Headphones', 3863, ll_to_earth(55.380245, 51.495146), 'V9D', 'AVAILABLE')
-(53, 'Optical Monitor', 6036, ll_to_earth(22.235102, 41.877822), 'V8R', 'AVAILABLE')
-(66, 'Lightweight Ceramic Keyboard', 3343, ll_to_earth(126.935169, -66.352274), 'V8M', 'AVAILABLE')
-(51, 'Breathable Book', 3100, ll_to_earth(-61.407191, -67.36447), 'V8T', 'AVAILABLE')
-(23, 'Laptop', 5693, ll_to_earth(-93.204938, -38.601996), 'V8Z', 'AVAILABLE')
-(1, 'Lightweight Lightweight Backpack', 5228, ll_to_earth(23.770451, -89.932896), 'V8X', 'AVAILABLE')
-(38, 'Ballpoint Adjustable Coffee Mug', 105, ll_to_earth(178.202978, 0.951706), 'V9D', 'AVAILABLE')
-(3, 'High-Resolution Durable Monitor', 5950, ll_to_earth(-128.581782, 19.027405), 'V8N', 'AVAILABLE')
-(45, 'Portable Water Bottle', 4457, ll_to_earth(-52.307164, 20.78495), 'V9D', 'AVAILABLE')
-(15, 'Desk Chair', 5162, ll_to_earth(32.396257, -51.084383), 'V8X', 'AVAILABLE')
-(53, 'Portable Smartphone', 9008, ll_to_earth(-130.294383, -56.062844), 'V8S', 'AVAILABLE')
-(18, 'Portable Monitor', 5786, ll_to_earth(-8.509737, -74.149352), 'V8P', 'AVAILABLE')
-(9, 'Optical Durable Bicycle', 2726, ll_to_earth(-174.937325, 75.69074), 'V9C', 'AVAILABLE')
-(45, 'Mechanical Optical Backpack', 8614, ll_to_earth(-36.295794, -19.583977), 'V8T', 'AVAILABLE')
-(63, 'Book', 9196, ll_to_earth(123.945787, 43.206143), 'V8S', 'AVAILABLE')
-(24, 'Red Backpack', 6285, ll_to_earth(108.478608, 52.286013), 'V9D', 'AVAILABLE')
-(26, 'Multifunction Optical Tablet', 3683, ll_to_earth(-119.224898, 21.948645), 'V8X', 'AVAILABLE')
-(8, 'Lamp', 4762, ll_to_earth(-144.103759, -4.74684), 'V8N', 'AVAILABLE')
-(74, 'Ceramic Car', 4207, ll_to_earth(-81.48007, 20.538494), 'V8R', 'AVAILABLE')
-(54, 'Headphones', 2064, ll_to_earth(68.897384, -13.222021), 'V9A', 'AVAILABLE')
-(54, 'Coffee Mug', 1852, ll_to_earth(-95.44059, 51.438343), 'V9D', 'AVAILABLE')
-(64, 'Portable Bicycle', 7243, ll_to_earth(-79.59937, -79.356671), 'V9C', 'AVAILABLE')
-(18, 'Lined Sneakers', 2118, ll_to_earth(-8.015952, 80.416655), 'V8T', 'AVAILABLE')
-(89, 'Fast Apple', 284, ll_to_earth(137.390998, 13.743493), 'V8Y', 'AVAILABLE')
-(89, 'Multifunction Optical Headphones', 9257, ll_to_earth(-108.184056, -46.255904), 'V8W', 'AVAILABLE')
-(86, 'Insulated Ergonomic Book', 7511, ll_to_earth(-120.125398, 23.858974), 'V9B', 'AVAILABLE')
-(1, 'Fast Book', 6473, ll_to_earth(63.152306, 55.288997), 'V9B', 'AVAILABLE')
-(61, 'Wireless Tablet', 8127, ll_to_earth(-94.494455, -44.028741), 'V8P', 'AVAILABLE')
-(20, 'Desk Chair', 5671, ll_to_earth(-102.65869, 33.341184), 'V8T', 'AVAILABLE')
-(13, 'Laptop', 5736, ll_to_earth(48.781946, -24.265688), 'V9D', 'AVAILABLE')
-(80, 'Ceramic Car', 2122, ll_to_earth(-167.629559, 5.38662), 'V8O', 'AVAILABLE')
-(35, 'Wireless Touchscreen Water Bottle', 7347, ll_to_earth(-137.197908, 8.830569), 'V8W', 'AVAILABLE')
-(84, 'Portable Ballpoint Tablet', 677, ll_to_earth(70.905818, 71.485223), 'V8T', 'AVAILABLE')
-(16, 'Monitor', 4271, ll_to_earth(-3.184213, 33.440554), 'V8T', 'AVAILABLE')
-(79, 'Ceramic Water Bottle', 8657, ll_to_earth(82.888733, -1.328099), 'V8Y', 'AVAILABLE');
+(2, 'Laptop for sale', 800.00, ll_to_earth(34.052235,-118.243683), 'V8W', 'AVAILABLE'),
+(24, 'Ballpoint Smartphone', 9781, ll_to_earth(65.246672, -62.850975), 'V9E', 'AVAILABLE'),
+(20, 'Fast Keyboard', 2788, ll_to_earth(35.993808, 60.765299), 'V8M', 'AVAILABLE'),
+(71, 'Monitor', 6309, ll_to_earth(-113.831615, 2.351188), 'V8Z', 'AVAILABLE'),
+(41, 'Fast Ergonomic Car', 7561, ll_to_earth(33.813545, 63.350939), 'V8Z', 'AVAILABLE'),
+(53, 'Insulated Desk Chair', 953, ll_to_earth(137.155199, 80.631133), 'V8O', 'AVAILABLE'),
+(94, 'Mechanical Mouse', 5091, ll_to_earth(-38.809299, 61.420311), 'V9A', 'AVAILABLE'),
+(89, 'Coffee Mug', 1102, ll_to_earth(41.606339, 56.858946), 'V9C', 'AVAILABLE'),
+(87, 'Red Bicycle', 7969, ll_to_earth(146.369058, -2.803539), 'V9D', 'AVAILABLE'),
+(33, 'Ergonomic Printer', 2015, ll_to_earth(-108.704385, -69.725746), 'V8Y', 'AVAILABLE'),
+(17, 'Durable Pen', 764, ll_to_earth(-110.869422, 57.850574), 'V8M', 'AVAILABLE'),
+(69, 'Optical Mouse', 7532, ll_to_earth(135.583794, 63.833819), 'V8R', 'AVAILABLE'),
+(39, 'Multifunction Wireless Headphones', 3279, ll_to_earth(-128.55286, 45.729715), 'V8P', 'AVAILABLE'),
+(79, 'Touchscreen Pen', 496, ll_to_earth(-55.606771, 28.805558), 'V8S', 'AVAILABLE'),
+(10, 'Durable Multifunction Monitor', 1521, ll_to_earth(-41.309393, 36.884146), 'V9A', 'AVAILABLE'),    
+(28, 'Mechanical Pen', 4124, ll_to_earth(49.314567, -57.075963), 'V9C', 'AVAILABLE'),
+(77, 'Portable Keyboard', 8179, ll_to_earth(-64.251687, 49.525981), 'V8Y', 'AVAILABLE'),
+(75, 'Coffee Mug', 634, ll_to_earth(139.00052, -81.125343), 'V9D', 'AVAILABLE'),
+(73, 'Mouse', 7950, ll_to_earth(54.986645, -1.588886), 'V8Z', 'AVAILABLE'),
+(37, 'Durable Pen', 731, ll_to_earth(110.132345, 43.270495), 'V8V', 'AVAILABLE'),
+(65, 'Fast Ergonomic Mouse', 611, ll_to_earth(46.789435, -53.360371), 'V8P', 'AVAILABLE'),
+(17, 'Mouse', 3267, ll_to_earth(-156.110405, -53.937834), 'V8S', 'AVAILABLE'),
+(20, 'Fast Water Bottle', 5862, ll_to_earth(81.47708, -63.985059), 'V9E', 'AVAILABLE'),
+(37, 'Durable Ergonomic Keyboard', 3332, ll_to_earth(108.604077, 84.128662), 'V8P', 'AVAILABLE'),       
+(40, 'Headphones', 3574, ll_to_earth(174.443342, -39.194075), 'V9C', 'AVAILABLE'),
+(95, 'Red Ergonomic Keyboard', 5721, ll_to_earth(11.839385, -84.726105), 'V8R', 'AVAILABLE'),
+(66, 'Insulated Backpack', 3432, ll_to_earth(-122.34778, 2.983439), 'V8M', 'AVAILABLE'),
+(26, 'Lamp', 5782, ll_to_earth(144.974509, 70.670113), 'V8M', 'AVAILABLE'),
+(57, 'Tablet', 1071, ll_to_earth(-167.369139, -84.141395), 'V9C', 'AVAILABLE'),
+(31, 'Insulated Smartphone', 8935, ll_to_earth(-67.832619, -88.291418), 'V8T', 'AVAILABLE'),
+(8, 'Mouse', 6706, ll_to_earth(-40.807491, -1.818779), 'V8Y', 'AVAILABLE'),
+(21, 'Lamp', 4069, ll_to_earth(103.194934, -89.177174), 'V9D', 'AVAILABLE'),
+(55, 'Portable Comfortable Desk Chair', 3909, ll_to_earth(-175.461319, -42.223072), 'V8R', 'AVAILABLE'),
+(97, 'Adjustable Ergonomic Apple', 3845, ll_to_earth(-179.919686, -63.823687), 'V8Y', 'AVAILABLE'),
+(20, 'Red Lined Printer', 180, ll_to_earth(137.861, 71.282286), 'V9B', 'AVAILABLE'),
+(82, 'Insulated Water Bottle', 7566, ll_to_earth(-58.779984, -4.790169), 'V8X', 'AVAILABLE'),
+(9, 'Mouse', 6838, ll_to_earth(-157.142969, -18.174989), 'V8Z', 'AVAILABLE'),
+(77, 'Lined Backpack', 1425, ll_to_earth(114.584854, -18.699971), 'V8Y', 'AVAILABLE'),
+(99, 'Optical Comfortable Keyboard', 6052, ll_to_earth(154.233499, 28.733007), 'V8Z', 'AVAILABLE'),
+(37, 'Fast Printer', 5865, ll_to_earth(170.37732, 5.195993), 'V9A', 'AVAILABLE'),
+(51, 'Ceramic Wireless Smartphone', 1519, ll_to_earth(9.629781, 62.129291), 'V8Z', 'AVAILABLE'),
+(30, 'Adjustable Mouse', 2234, ll_to_earth(27.440568, 69.233545), 'V8U', 'AVAILABLE'),
+(50, 'Lightweight Lamp', 9933, ll_to_earth(9.393389, -55.002187), 'V8R', 'AVAILABLE'),
+(39, 'Fast Lined Keyboard', 8354, ll_to_earth(150.178864, 20.43665), 'V9D', 'AVAILABLE'),
+(17, 'Fast Educational Mouse', 6857, ll_to_earth(-146.566115, 58.374812), 'V9C', 'AVAILABLE'),
+(78, 'Ballpoint Monitor', 912, ll_to_earth(-43.118406, 46.97224), 'V8N', 'AVAILABLE'),
+(10, 'Breathable High-Resolution Desk Chair', 6743, ll_to_earth(-50.874479, -69.293952), 'V8S', 'AVAILABLE'),
+(33, 'Insulated Portable Book', 588, ll_to_earth(-5.324418, 18.536594), 'V9B', 'AVAILABLE'),
+(71, 'Notebook', 638, ll_to_earth(-94.062268, -72.518452), 'V8U', 'AVAILABLE'),
+(26, 'Backpack', 8150, ll_to_earth(-3.441279, 79.18514), 'V8R', 'AVAILABLE'),
+(4, 'Keyboard', 4761, ll_to_earth(-177.260905, -83.044526), 'V8R', 'AVAILABLE'),
+(8, 'Fast Educational Book', 8165, ll_to_earth(-37.624241, -86.823284), 'V8T', 'AVAILABLE'),
+(77, 'Lightweight High-Resolution Laptop', 7710, ll_to_earth(-37.261787, 83.879079), 'V8P', 'AVAILABLE'),
+(91, 'Fast Notebook', 9784, ll_to_earth(-11.571377, 10.43253), 'V8T', 'AVAILABLE'),
+(28, 'Ballpoint Durable Apple', 7149, ll_to_earth(-72.78656, 18.083053), 'V9D', 'AVAILABLE'),
+(58, 'Fast Printer', 379, ll_to_earth(143.018416, -68.495971), 'V9C', 'AVAILABLE'),
+(55, 'Comfortable Adjustable Pen', 6037, ll_to_earth(-134.304047, 76.43556), 'V8V', 'AVAILABLE'),
+(77, 'Ergonomic Durable Smartphone', 5833, ll_to_earth(-61.447781, 52.46055), 'V9C', 'AVAILABLE'),
+(50, 'Durable Mechanical Printer', 6358, ll_to_earth(-105.357984, 14.700139), 'V8T', 'AVAILABLE'),
+(25, 'Lined Wireless Apple', 5882, ll_to_earth(52.594459, -8.320725), 'V8S', 'AVAILABLE'),
+(74, 'Desk Chair', 3626, ll_to_earth(6.487593, 62.754026), 'V8Y', 'AVAILABLE'),
+(15, 'Red Lined Desk Chair', 8038, ll_to_earth(135.616521, 75.923449), 'V9E', 'AVAILABLE'),
+(72, 'Mechanical Notebook', 2870, ll_to_earth(-110.424866, 46.205318), 'V8N', 'AVAILABLE'),
+(84, 'Sneakers', 8968, ll_to_earth(12.01499, 81.086621), 'V9C', 'AVAILABLE'),
+(32, 'Bicycle', 438, ll_to_earth(-125.560897, 68.055715), 'V8T', 'AVAILABLE'),
+(64, 'Lined Backpack', 8555, ll_to_earth(-16.172262, 54.055688), 'V8M', 'AVAILABLE'),
+(18, 'High-Resolution Mechanical Tablet', 5276, ll_to_earth(60.424394, 28.249171), 'V8W', 'AVAILABLE'),
+(48, 'Headphones', 6742, ll_to_earth(-27.6458, -59.406122), 'V9B', 'AVAILABLE'),
+(3, 'Tablet', 1360, ll_to_earth(53.302393, -1.563965), 'V8X', 'AVAILABLE'),
+(30, 'Sneakers', 8443, ll_to_earth(77.247677, 64.004253), 'V9A', 'AVAILABLE'),
+(19, 'Mechanical High-Resolution Bicycle', 1082, ll_to_earth(-12.487116, 3.891534), 'V9A', 'AVAILABLE'),
+(96, 'Touchscreen Book', 6161, ll_to_earth(137.555313, 34.709624), 'V8N', 'AVAILABLE'),
+(15, 'Backpack', 7170, ll_to_earth(64.138335, 13.039133), 'V8N', 'AVAILABLE'),
+(98, 'Sneakers', 8970, ll_to_earth(-54.180321, -78.863095), 'V8R', 'AVAILABLE'),
+(52, 'Ballpoint Book', 755, ll_to_earth(2.223158, -43.173489), 'V8Y', 'AVAILABLE'),
+(81, 'Wireless Water Bottle', 4005, ll_to_earth(-93.456516, 38.932013), 'V8Y', 'AVAILABLE'),
+(74, 'Durable High-Resolution Car', 7210, ll_to_earth(39.59882, 11.35089), 'V8V', 'AVAILABLE'),
+(68, 'Ballpoint Bicycle', 2710, ll_to_earth(-71.250391, 53.911423), 'V9E', 'AVAILABLE'),
+(77, 'Laptop', 1691, ll_to_earth(-48.136018, -83.564499), 'V8M', 'AVAILABLE'),
+(21, 'Red Smartphone', 7548, ll_to_earth(-59.207054, 79.123167), 'V8U', 'AVAILABLE'),
+(66, 'Insulated Educational Bicycle', 4456, ll_to_earth(35.419344, 13.323723), 'V9B', 'AVAILABLE'),
+(22, 'Lamp', 408, ll_to_earth(170.619382, 30.079068), 'V8T', 'AVAILABLE'),
+(2, 'Comfortable Monitor', 4951, ll_to_earth(103.296389, 20.316145), 'V9C', 'AVAILABLE'),
+(53, 'High-Resolution Notebook', 1765, ll_to_earth(-81.159424, -32.10673), 'V8P', 'AVAILABLE'),
+(38, 'Durable Backpack', 3903, ll_to_earth(-34.686048, 60.617275), 'V8P', 'AVAILABLE'),
+(53, 'Pen', 1335, ll_to_earth(-113.021937, 20.774108), 'V8S', 'AVAILABLE'),
+(23, 'Wireless Mouse', 9057, ll_to_earth(19.12625, -10.242567), 'V8V', 'AVAILABLE'),
+(63, 'Bicycle', 1001, ll_to_earth(-21.194261, -70.281032), 'V8S', 'AVAILABLE'),
+(19, 'Printer', 6484, ll_to_earth(-46.352758, 81.397725), 'V8Y', 'AVAILABLE'),
+(75, 'Durable Optical Tablet', 4214, ll_to_earth(-101.699006, 5.780719), 'V8X', 'AVAILABLE'),
+(82, 'Wireless Monitor', 2475, ll_to_earth(-141.823876, -76.924218), 'V8U', 'AVAILABLE'),
+(9, 'Lightweight Breathable Water Bottle', 9862, ll_to_earth(-111.506881, -21.188813), 'V8X', 'AVAILABLE'),
+(70, 'Wireless Water Bottle', 816, ll_to_earth(-92.461421, 74.398596), 'V8Z', 'AVAILABLE'),
+(12, 'Insulated Ergonomic Car', 1122, ll_to_earth(-142.281556, -42.665985), 'V8R', 'AVAILABLE'),
+(82, 'Tablet', 7213, ll_to_earth(56.796214, 44.847622), 'V9E', 'AVAILABLE'),
+(30, 'Adjustable Bicycle', 2088, ll_to_earth(93.120128, -35.019362), 'V8X', 'AVAILABLE'),
+(60, 'Car', 1085, ll_to_earth(-149.978392, 72.718524), 'V9E', 'AVAILABLE'),
+(79, 'Lamp', 485, ll_to_earth(-107.148795, 28.06203), 'V8W', 'AVAILABLE'),
+(83, 'Mouse', 6032, ll_to_earth(-124.995822, 9.330636), 'V8W', 'AVAILABLE'),
+(92, 'Portable Durable Sneakers', 278, ll_to_earth(-117.546189, -72.586768), 'V9A', 'AVAILABLE'),
+(58, 'Adjustable Pen', 6907, ll_to_earth(106.785768, 60.673736), 'V9B', 'AVAILABLE'),
+(20, 'Comfortable Monitor', 3690, ll_to_earth(-152.474771, -43.235029), 'V8Z', 'AVAILABLE'),
+(56, 'Mechanical Notebook', 8831, ll_to_earth(166.305301, -31.416557), 'V9E', 'AVAILABLE'),
+(68, 'Monitor', 4270, ll_to_earth(-45.035643, -74.087128), 'V8Y', 'AVAILABLE'),
+(40, 'Monitor', 9094, ll_to_earth(124.742252, -32.394776), 'V8R', 'AVAILABLE'),
+(99, 'Portable Pen', 7376, ll_to_earth(-135.237835, 84.168346), 'V9D', 'AVAILABLE'),
+(44, 'Lined Lightweight Monitor', 9145, ll_to_earth(-168.73194, -64.609555), 'V8Y', 'AVAILABLE'),
+(5, 'Backpack', 9579, ll_to_earth(-146.763903, -27.850281), 'V9D', 'AVAILABLE'),
+(89, 'Notebook', 9071, ll_to_earth(-105.413998, 86.670798), 'V8Y', 'AVAILABLE'),
+(71, 'Multifunction Mechanical Smartphone', 1134, ll_to_earth(92.874668, 70.6317), 'V8M', 'AVAILABLE'),
+(69, 'Monitor', 473, ll_to_earth(16.059947, 49.320611), 'V8M', 'AVAILABLE'),
+(89, 'Educational Keyboard', 9577, ll_to_earth(1.193256, 47.82937), 'V9D', 'AVAILABLE'),
+(33, 'Touchscreen Coffee Mug', 9857, ll_to_earth(59.636577, 54.99131), 'V8O', 'AVAILABLE'),
+(6, 'Ballpoint Red Laptop', 2463, ll_to_earth(140.014312, 22.206975), 'V9A', 'AVAILABLE'),
+(61, 'Optical Laptop', 1784, ll_to_earth(91.97999, -42.987748), 'V9D', 'AVAILABLE'),
+(25, 'Ballpoint Breathable Laptop', 6920, ll_to_earth(137.669758, 85.69917), 'V8S', 'AVAILABLE'),
+(86, 'Ergonomic Notebook', 923, ll_to_earth(-40.761561, -78.659337), 'V8R', 'AVAILABLE'),
+(71, 'Pen', 9548, ll_to_earth(83.697958, 79.938545), 'V8N', 'AVAILABLE'),
+(95, 'Smartphone', 660, ll_to_earth(6.4174, 26.759582), 'V8R', 'AVAILABLE'),
+(56, 'Fast Adjustable Water Bottle', 3714, ll_to_earth(42.827169, 33.540857), 'V8P', 'AVAILABLE'),
+(99, 'Comfortable Notebook', 2152, ll_to_earth(-110.08357, -20.789962), 'V8P', 'AVAILABLE'),
+(17, 'Monitor', 5903, ll_to_earth(74.337439, -14.297971), 'V8T', 'AVAILABLE'),
+(32, 'Car', 4270, ll_to_earth(-14.085988, 67.455067), 'V8N', 'AVAILABLE'),
+(54, 'Lamp', 2905, ll_to_earth(-174.637189, -57.467172), 'V8Y', 'AVAILABLE'),
+(86, 'Ceramic Fast Pen', 6545, ll_to_earth(-69.845672, -48.716638), 'V8V', 'AVAILABLE'),
+(26, 'Lightweight Apple', 130, ll_to_earth(164.865321, 76.430622), 'V8S', 'AVAILABLE'),
+(65, 'Educational Ballpoint Apple', 2780, ll_to_earth(-97.551034, -85.98438), 'V9B', 'AVAILABLE'),
+(84, 'Monitor', 4343, ll_to_earth(76.595626, 46.886344), 'V8O', 'AVAILABLE'),
+(4, 'Sneakers', 9122, ll_to_earth(178.739459, -4.507656), 'V8V', 'AVAILABLE'),
+(91, 'Lined Lightweight Laptop', 2171, ll_to_earth(127.990018, -75.533377), 'V8S', 'AVAILABLE'),
+(6, 'Comfortable Keyboard', 1609, ll_to_earth(-148.663919, 26.138371), 'V8X', 'AVAILABLE'),
+(66, 'Comfortable Wireless Headphones', 160, ll_to_earth(12.50021, 37.143481), 'V9B', 'AVAILABLE'),
+(64, 'Lined Multifunction Desk Chair', 6101, ll_to_earth(141.290844, -51.685741), 'V8V', 'AVAILABLE'),
+(85, 'Backpack', 6897, ll_to_earth(134.088767, 67.325686), 'V8N', 'AVAILABLE'),
+(40, 'Durable Headphones', 8005, ll_to_earth(-107.160454, 14.902352), 'V9B', 'AVAILABLE'),
+(47, 'Printer', 5950, ll_to_earth(17.990645, 43.508677), 'V9A', 'AVAILABLE'),
+(85, 'Bicycle', 2984, ll_to_earth(1.738553, 27.040731), 'V9B', 'AVAILABLE'),
+(60, 'Ceramic Tablet', 8694, ll_to_earth(16.083811, -64.363217), 'V9A', 'AVAILABLE'),
+(43, 'Ceramic Coffee Mug', 9688, ll_to_earth(-63.985414, 74.096723), 'V8U', 'AVAILABLE'),
+(5, 'Multifunction Apple', 2242, ll_to_earth(163.946303, 89.821085), 'V8Z', 'AVAILABLE'),
+(37, 'Educational Car', 277, ll_to_earth(-94.57862, 30.087597), 'V8X', 'AVAILABLE'),
+(3, 'Breathable Lightweight Car', 9363, ll_to_earth(-95.188236, 74.034529), 'V8X', 'AVAILABLE'),
+(67, 'Printer', 7337, ll_to_earth(146.753267, -60.350626), 'V9B', 'AVAILABLE'),
+(21, 'Smartphone', 9066, ll_to_earth(-80.848572, 85.1833), 'V8W', 'AVAILABLE'),
+(17, 'Adjustable Insulated Lamp', 619, ll_to_earth(53.849122, 16.3734), 'V8W', 'AVAILABLE'),
+(87, 'Monitor', 4653, ll_to_earth(-137.932106, -14.257427), 'V8V', 'AVAILABLE'),
+(77, 'Multifunction Apple', 5857, ll_to_earth(13.985387, -18.218163), 'V8W', 'AVAILABLE'),
+(29, 'High-Resolution Monitor', 4255, ll_to_earth(127.989636, -75.18199), 'V9E', 'AVAILABLE'),
+(77, 'Fast Durable Smartphone', 5592, ll_to_earth(8.31714, 36.732042), 'V8R', 'AVAILABLE'),
+(20, 'Adjustable Bicycle', 5747, ll_to_earth(-142.019833, 64.240486), 'V8V', 'AVAILABLE'),
+(66, 'Durable Fast Backpack', 2036, ll_to_earth(-86.462659, -28.529731), 'V9B', 'AVAILABLE'),
+(29, 'Ceramic Backpack', 5210, ll_to_earth(-48.056996, 72.587689), 'V8S', 'AVAILABLE'),
+(61, 'Tablet', 4923, ll_to_earth(-69.76177, -66.191937), 'V8U', 'AVAILABLE'),
+(70, 'Ergonomic Smartphone', 2167, ll_to_earth(-122.072191, 75.760529), 'V8U', 'AVAILABLE'),
+(64, 'Ergonomic Notebook', 8296, ll_to_earth(-45.862796, 4.682075), 'V9D', 'AVAILABLE'),
+(15, 'Adjustable Tablet', 790, ll_to_earth(-161.983186, 11.466789), 'V8N', 'AVAILABLE'),
+(3, 'Fast Pen', 7374, ll_to_earth(-40.626757, -71.302245), 'V9C', 'AVAILABLE'),
+(78, 'Lined Ceramic Backpack', 7891, ll_to_earth(-137.291984, -76.62057), 'V8N', 'AVAILABLE'),
+(35, 'Breathable Sneakers', 8522, ll_to_earth(56.61596, -89.795235), 'V8N', 'AVAILABLE'),
+(23, 'Book', 9265, ll_to_earth(-96.32451, 86.459162), 'V8X', 'AVAILABLE'),
+(60, 'Backpack', 7094, ll_to_earth(26.084742, 17.721677), 'V8W', 'AVAILABLE'),
+(67, 'Adjustable Multifunction Monitor', 3209, ll_to_earth(-146.80625, -17.926157), 'V8S', 'AVAILABLE'),
+(25, 'Mechanical Durable Mouse', 3320, ll_to_earth(-66.115721, 46.199266), 'V9D', 'AVAILABLE'),
+(62, 'Touchscreen Durable Car', 9400, ll_to_earth(161.544892, -72.891148), 'V9E', 'AVAILABLE'),
+(70, 'Durable Ergonomic Laptop', 9556, ll_to_earth(-132.331244, -73.976126), 'V8Z', 'AVAILABLE'),
+(63, 'Headphones', 3361, ll_to_earth(-103.312197, 4.338106), 'V8Y', 'AVAILABLE'),
+(42, 'Lined Lamp', 8876, ll_to_earth(118.630989, -9.070375), 'V8U', 'AVAILABLE'),
+(43, 'Mouse', 5704, ll_to_earth(121.782667, 37.89893), 'V8X', 'AVAILABLE'),
+(98, 'Printer', 6278, ll_to_earth(-17.919243, 81.804683), 'V8P', 'AVAILABLE'),
+(13, 'Multifunction Ballpoint Mouse', 7474, ll_to_earth(-7.583086, -67.470519), 'V8U', 'AVAILABLE'),
+(52, 'Educational Mechanical Car', 9054, ll_to_earth(82.32736, -71.368171), 'V9C', 'AVAILABLE'),
+(72, 'Ceramic Lamp', 2941, ll_to_earth(-20.503231, -89.118159), 'V8V', 'AVAILABLE'),
+(3, 'Durable Mouse', 3700, ll_to_earth(-119.247653, -86.355567), 'V9D', 'AVAILABLE'),
+(69, 'Lightweight Notebook', 952, ll_to_earth(-64.70609, 49.594255), 'V8Y', 'AVAILABLE'),
+(76, 'Wireless Wireless Sneakers', 612, ll_to_earth(-148.611019, -40.174124), 'V8T', 'AVAILABLE'),
+(64, 'Ceramic Mechanical Monitor', 3125, ll_to_earth(15.800727, 7.989081), 'V9B', 'AVAILABLE'),
+(53, 'Coffee Mug', 2454, ll_to_earth(-99.783115, 55.869935), 'V8W', 'AVAILABLE'),
+(88, 'Wireless Monitor', 2602, ll_to_earth(3.944575, -63.35577), 'V8O', 'AVAILABLE'),
+(56, 'Mechanical Ceramic Car', 479, ll_to_earth(-100.825939, -5.223311), 'V9E', 'AVAILABLE'),
+(17, 'Lightweight Portable Notebook', 7914, ll_to_earth(-126.268728, -77.348608), 'V8M', 'AVAILABLE'),
+(52, 'Fast Lined Printer', 4419, ll_to_earth(66.688985, -2.621755), 'V8N', 'AVAILABLE'),
+(77, 'Ergonomic Fast Desk Chair', 5630, ll_to_earth(-55.557351, 68.39616), 'V9C', 'AVAILABLE'),
+(12, 'Headphones', 5468, ll_to_earth(95.28326, 57.216744), 'V8X', 'AVAILABLE'),
+(91, 'Wireless Wireless Keyboard', 5105, ll_to_earth(-162.519706, -5.224134), 'V8N', 'AVAILABLE'),
+(44, 'Lined Apple', 9690, ll_to_earth(90.412544, -72.632371), 'V8S', 'AVAILABLE'),
+(66, 'Durable Sneakers', 3464, ll_to_earth(-43.114466, 52.472657), 'V9C', 'AVAILABLE'),
+(92, 'Ceramic Educational Monitor', 2995, ll_to_earth(-168.452907, 85.129148), 'V9D', 'AVAILABLE'),
+(98, 'Ceramic Fast Tablet', 7204, ll_to_earth(-114.903989, -16.269007), 'V9D', 'AVAILABLE'),
+(66, 'Red Book', 2084, ll_to_earth(13.258392, -10.081521), 'V8S', 'AVAILABLE'),
+(53, 'Red Pen', 8110, ll_to_earth(-3.940373, 19.236462), 'V8V', 'AVAILABLE'),
+(21, 'Ballpoint Optical Laptop', 3139, ll_to_earth(7.533478, -68.211643), 'V9A', 'AVAILABLE'),
+(84, 'Portable Tablet', 9202, ll_to_earth(37.031568, -28.625612), 'V8Y', 'AVAILABLE'),
+(17, 'Smartphone', 5041, ll_to_earth(-177.613067, -58.979933), 'V8Z', 'AVAILABLE'),
+(3, 'Fast Ergonomic Desk Chair', 5855, ll_to_earth(-147.346416, 50.828348), 'V8X', 'AVAILABLE'),
+(42, 'Breathable Comfortable Mouse', 4694, ll_to_earth(-91.948643, -80.41159), 'V8R', 'AVAILABLE'),
+(19, 'Smartphone', 34, ll_to_earth(84.211653, 69.465312), 'V8X', 'AVAILABLE'),
+(95, 'Breathable Lined Keyboard', 7917, ll_to_earth(45.015282, -30.594653), 'V8P', 'AVAILABLE'),
+(52, 'Wireless Comfortable Notebook', 1877, ll_to_earth(-159.557623, -24.431421), 'V8O', 'AVAILABLE'),
+(74, 'Insulated Notebook', 4712, ll_to_earth(-167.213779, 51.143565), 'V8M', 'AVAILABLE'),
+(19, 'Keyboard', 9050, ll_to_earth(59.191864, -65.141435), 'V9B', 'AVAILABLE'),
+(27, 'Mechanical Car', 4012, ll_to_earth(-112.894083, -75.875274), 'V8O', 'AVAILABLE'),
+(21, 'Desk Chair', 448, ll_to_earth(39.953829, -67.647936), 'V8O', 'AVAILABLE'),
+(86, 'Wireless Backpack', 1053, ll_to_earth(-104.825751, -24.399327), 'V8N', 'AVAILABLE'),
+(79, 'Headphones', 4406, ll_to_earth(-121.66308, -11.890728), 'V8M', 'AVAILABLE'),
+(29, 'Portable Keyboard', 4762, ll_to_earth(-89.821769, 55.531866), 'V8U', 'AVAILABLE'),
+(30, 'Coffee Mug', 868, ll_to_earth(-29.879272, -45.403285), 'V8O', 'AVAILABLE'),
+(45, 'Tablet', 7318, ll_to_earth(12.581225, -87.900781), 'V9E', 'AVAILABLE'),
+(10, 'Red Bicycle', 1184, ll_to_earth(83.734998, 9.474722), 'V9C', 'AVAILABLE'),
+(97, 'Durable Insulated Car', 2446, ll_to_earth(-120.670256, 54.764506), 'V8U', 'AVAILABLE'),
+(76, 'Insulated Notebook', 4881, ll_to_earth(-76.026714, 37.477947), 'V8U', 'AVAILABLE'),
+(36, 'Water Bottle', 565, ll_to_earth(11.651918, -48.99248), 'V9A', 'AVAILABLE'),
+(45, 'Optical Portable Sneakers', 358, ll_to_earth(-163.256487, -56.603483), 'V9C', 'AVAILABLE'),
+(56, 'Ballpoint Lightweight Desk Chair', 5841, ll_to_earth(117.511963, -30.213618), 'V9B', 'AVAILABLE'),
+(99, 'High-Resolution Optical Mouse', 558, ll_to_earth(84.149077, -24.591665), 'V9D', 'AVAILABLE'),
+(32, 'Lined Desk Chair', 3257, ll_to_earth(122.231878, 77.304689), 'V8M', 'AVAILABLE'),
+(8, 'Coffee Mug', 6369, ll_to_earth(137.903516, 57.306655), 'V9B', 'AVAILABLE'),
+(79, 'Water Bottle', 2843, ll_to_earth(-53.448501, 47.881215), 'V8U', 'AVAILABLE'),
+(97, 'Tablet', 2271, ll_to_earth(93.305486, 16.255852), 'V8R', 'AVAILABLE'),
+(43, 'Durable Optical Printer', 7403, ll_to_earth(27.681986, 38.466379), 'V9C', 'AVAILABLE'),
+(28, 'Sneakers', 380, ll_to_earth(85.471539, -54.427396), 'V8R', 'AVAILABLE'),
+(91, 'Optical Red Monitor', 7459, ll_to_earth(-77.362122, 41.03672), 'V9D', 'AVAILABLE'),
+(27, 'Mechanical Durable Pen', 6567, ll_to_earth(-90.187857, -71.284661), 'V8P', 'AVAILABLE'),
+(14, 'Fast Apple', 9948, ll_to_earth(70.425321, 39.814314), 'V8U', 'AVAILABLE'),
+(91, 'Ballpoint Lamp', 4927, ll_to_earth(116.340918, 14.34573), 'V9A', 'AVAILABLE'),
+(16, 'Ergonomic Sneakers', 849, ll_to_earth(18.797475, 51.554849), 'V8W', 'AVAILABLE'),
+(63, 'Mechanical Lined Coffee Mug', 8557, ll_to_earth(2.593477, -41.571041), 'V8N', 'AVAILABLE'),
+(36, 'Touchscreen Durable Tablet', 6759, ll_to_earth(-112.820919, 49.872146), 'V9D', 'AVAILABLE'),
+(64, 'Lightweight Adjustable Monitor', 9686, ll_to_earth(-36.72425, -35.866832), 'V8W', 'AVAILABLE'),
+(60, 'Pen', 4063, ll_to_earth(-168.424658, 51.911099), 'V9B', 'AVAILABLE'),
+(60, 'Ballpoint Lightweight Monitor', 1629, ll_to_earth(-4.851538, 61.533061), 'V8N', 'AVAILABLE'),
+(49, 'Lightweight Car', 8266, ll_to_earth(-27.366871, 21.35819), 'V8X', 'AVAILABLE'),
+(76, 'Mechanical Multifunction Lamp', 3752, ll_to_earth(-92.281386, -28.98341), 'V9D', 'AVAILABLE'),
+(77, 'Red Bicycle', 8815, ll_to_earth(-108.510811, 72.149362), 'V8Z', 'AVAILABLE'),
+(13, 'Lamp', 2946, ll_to_earth(-128.185103, 14.484812), 'V8N', 'AVAILABLE'),
+(10, 'Lined Tablet', 7463, ll_to_earth(-158.716768, -44.559031), 'V8P', 'AVAILABLE'),
+(39, 'High-Resolution Lightweight Mouse', 4526, ll_to_earth(121.309437, -29.676564), 'V9B', 'AVAILABLE'),
+(56, 'Touchscreen Headphones', 8635, ll_to_earth(130.600165, 87.939069), 'V8M', 'AVAILABLE'),
+(11, 'Backpack', 5633, ll_to_earth(-105.359724, -66.733922), 'V8U', 'AVAILABLE'),
+(36, 'Book', 8691, ll_to_earth(27.652643, 20.248297), 'V8O', 'AVAILABLE'),
+(4, 'Wireless Notebook', 5338, ll_to_earth(-29.026525, 28.424568), 'V9D', 'AVAILABLE'),
+(26, 'Touchscreen Water Bottle', 6917, ll_to_earth(103.107102, -21.788449), 'V8N', 'AVAILABLE'),
+(37, 'Ballpoint Ballpoint Coffee Mug', 9970, ll_to_earth(-91.562422, 87.72654), 'V8X', 'AVAILABLE'),
+(28, 'Tablet', 8382, ll_to_earth(-3.666123, -88.151668), 'V8U', 'AVAILABLE'),
+(93, 'Breathable High-Resolution Notebook', 1068, ll_to_earth(-72.185456, 12.332742), 'V9D', 'AVAILABLE'),
+(12, 'Lightweight Ergonomic Water Bottle', 8500, ll_to_earth(148.362162, 33.270105), 'V8S', 'AVAILABLE'),
+(20, 'Mouse', 1488, ll_to_earth(170.005468, -43.289962), 'V8Y', 'AVAILABLE'),
+(41, 'Ergonomic Fast Bicycle', 7018, ll_to_earth(13.081744, 64.628485), 'V9E', 'AVAILABLE'),
+(74, 'Mouse', 708, ll_to_earth(-151.993633, 59.237492), 'V9D', 'AVAILABLE'),
+(75, 'Coffee Mug', 8994, ll_to_earth(-119.368379, 56.411332), 'V8T', 'AVAILABLE'),
+(19, 'Wireless Car', 7785, ll_to_earth(69.194689, 61.432494), 'V8R', 'AVAILABLE'),
+(68, 'Mechanical Headphones', 5285, ll_to_earth(-60.305339, 37.530505), 'V8U', 'AVAILABLE'),
+(56, 'Backpack', 320, ll_to_earth(153.734635, 37.373917), 'V8T', 'AVAILABLE'),
+(28, 'Backpack', 3961, ll_to_earth(-169.42705, 78.992664), 'V8Y', 'AVAILABLE'),
+(13, 'Smartphone', 5646, ll_to_earth(-156.816825, 28.427169), 'V9A', 'AVAILABLE'),
+(1, 'Breathable Coffee Mug', 3525, ll_to_earth(-102.712894, -11.639354), 'V8P', 'AVAILABLE'),
+(92, 'Fast Ceramic Car', 5320, ll_to_earth(90.551365, 40.435), 'V9A', 'AVAILABLE'),
+(35, 'Lined Book', 6223, ll_to_earth(-94.570965, -86.207558), 'V8M', 'AVAILABLE'),
+(87, 'Durable Coffee Mug', 9733, ll_to_earth(48.643154, 74.671933), 'V8N', 'AVAILABLE'),
+(84, 'Wireless Lined Desk Chair', 8376, ll_to_earth(-18.407351, 72.001411), 'V8S', 'AVAILABLE'),
+(71, 'Ceramic Red Smartphone', 8874, ll_to_earth(-154.180927, -87.166644), 'V8Y', 'AVAILABLE'),
+(41, 'Ballpoint Red Mouse', 8821, ll_to_earth(19.321909, -70.306793), 'V8V', 'AVAILABLE'),
+(97, 'Backpack', 6413, ll_to_earth(80.559884, -58.650517), 'V9B', 'AVAILABLE'),
+(55, 'Book', 9721, ll_to_earth(104.71046, -55.632741), 'V8Z', 'AVAILABLE'),
+(77, 'Optical Keyboard', 4035, ll_to_earth(145.412252, -18.477238), 'V8R', 'AVAILABLE'),
+(58, 'Smartphone', 2901, ll_to_earth(56.470118, 35.523911), 'V8N', 'AVAILABLE'),
+(84, 'Tablet', 8203, ll_to_earth(-112.264214, 69.038736), 'V8W', 'AVAILABLE'),
+(5, 'Ceramic Educational Desk Chair', 4332, ll_to_earth(-45.336459, 49.859924), 'V8M', 'AVAILABLE'),
+(57, 'Insulated Optical Backpack', 3878, ll_to_earth(14.443718, 58.779432), 'V8Y', 'AVAILABLE'),
+(68, 'Fast Desk Chair', 2054, ll_to_earth(-26.458253, -51.116035), 'V9B', 'AVAILABLE'),
+(64, 'Adjustable Fast Coffee Mug', 9084, ll_to_earth(65.833132, -12.129205), 'V8T', 'AVAILABLE'),
+(49, 'Lightweight Ballpoint Headphones', 3934, ll_to_earth(172.826848, -10.33145), 'V9D', 'AVAILABLE'),
+(8, 'Adjustable Tablet', 3451, ll_to_earth(-114.689829, -32.320192), 'V8U', 'AVAILABLE'),
+(65, 'Comfortable Optical Mouse', 6784, ll_to_earth(9.185125, 55.438534), 'V8Y', 'AVAILABLE'),
+(89, 'Coffee Mug', 8590, ll_to_earth(-156.71913, 41.205852), 'V8Z', 'AVAILABLE'),
+(38, 'Sneakers', 6568, ll_to_earth(-128.55689, -50.048631), 'V8X', 'AVAILABLE'),
+(57, 'Insulated Sneakers', 8202, ll_to_earth(57.925264, -41.522078), 'V9D', 'AVAILABLE'),
+(70, 'Ceramic Car', 4804, ll_to_earth(-66.840997, -69.482648), 'V9C', 'AVAILABLE'),
+(26, 'Ceramic Car', 7124, ll_to_earth(-144.052344, 53.623531), 'V8W', 'AVAILABLE'),
+(91, 'Touchscreen Durable Car', 5528, ll_to_earth(-160.120809, 77.407952), 'V8M', 'AVAILABLE'),
+(32, 'Backpack', 4646, ll_to_earth(-90.061352, -20.794468), 'V8U', 'AVAILABLE'),
+(81, 'Pen', 3855, ll_to_earth(135.835762, -65.719999), 'V9D', 'AVAILABLE'),
+(94, 'Fast Durable Headphones', 8811, ll_to_earth(142.092836, 57.118788), 'V8W', 'AVAILABLE'),
+(42, 'Breathable Sneakers', 6396, ll_to_earth(53.580197, 57.763296), 'V8S', 'AVAILABLE'),
+(92, 'Lined Printer', 5142, ll_to_earth(-159.194364, 24.878547), 'V8N', 'AVAILABLE'),
+(87, 'Comfortable Keyboard', 8050, ll_to_earth(33.741175, -30.236346), 'V8M', 'AVAILABLE'),
+(94, 'Headphones', 6398, ll_to_earth(-93.972339, -60.441424), 'V9E', 'AVAILABLE'),
+(14, 'Fast Bicycle', 2196, ll_to_earth(18.619365, -11.270607), 'V8R', 'AVAILABLE'),
+(52, 'Ballpoint Touchscreen Keyboard', 9084, ll_to_earth(27.587796, -36.825701), 'V8Z', 'AVAILABLE'),
+(79, 'Lamp', 7814, ll_to_earth(118.519439, 62.104873), 'V9A', 'AVAILABLE'),
+(17, 'Ceramic Fast Water Bottle', 8726, ll_to_earth(165.339838, -68.967577), 'V9A', 'AVAILABLE'),
+(55, 'High-Resolution Fast Backpack', 8792, ll_to_earth(-118.157408, -1.997087), 'V9E', 'AVAILABLE'),
+(82, 'Comfortable Durable Book', 5727, ll_to_earth(99.946819, 49.444008), 'V8Y', 'AVAILABLE'),
+(74, 'Ballpoint Portable Notebook', 5540, ll_to_earth(12.372089, 89.13197), 'V9E', 'AVAILABLE'),
+(13, 'Laptop', 9513, ll_to_earth(158.756044, -46.325936), 'V8O', 'AVAILABLE'),
+(1, 'Ergonomic Notebook', 4718, ll_to_earth(62.29592, 52.164241), 'V8T', 'AVAILABLE'),
+(52, 'Headphones', 56, ll_to_earth(4.791462, 89.967986), 'V8S', 'AVAILABLE'),
+(10, 'Red Mechanical Pen', 554, ll_to_earth(-106.113318, -45.047235), 'V8V', 'AVAILABLE'),
+(48, 'Pen', 1049, ll_to_earth(-104.118212, -51.819012), 'V9A', 'AVAILABLE'),
+(29, 'Breathable Headphones', 2752, ll_to_earth(61.445642, 83.709269), 'V8U', 'AVAILABLE'),
+(75, 'Ergonomic Sneakers', 6394, ll_to_earth(-21.201118, 77.444016), 'V8N', 'AVAILABLE'),
+(95, 'High-Resolution Breathable Tablet', 2549, ll_to_earth(70.00021, -73.64148), 'V9B', 'AVAILABLE'),
+(83, 'Keyboard', 4472, ll_to_earth(-58.480178, 18.672522), 'V9C', 'AVAILABLE'),
+(65, 'Monitor', 273, ll_to_earth(13.564083, 81.477809), 'V8M', 'AVAILABLE'),
+(74, 'Headphones', 2797, ll_to_earth(12.104691, -89.91964), 'V8T', 'AVAILABLE'),
+(93, 'Headphones', 4607, ll_to_earth(-173.164645, 45.180616), 'V8R', 'AVAILABLE'),
+(49, 'Pen', 308, ll_to_earth(29.656621, -88.19958), 'V9E', 'AVAILABLE'),
+(42, 'Laptop', 8670, ll_to_earth(23.970302, 10.464207), 'V8S', 'AVAILABLE'),
+(69, 'Durable Notebook', 8742, ll_to_earth(96.146891, -80.241894), 'V8O', 'AVAILABLE'),
+(96, 'Portable Mechanical Bicycle', 2241, ll_to_earth(-91.581997, 78.417745), 'V8O', 'AVAILABLE'),
+(98, 'Apple', 6297, ll_to_earth(-6.294328, 53.770993), 'V8V', 'AVAILABLE'),
+(35, 'Educational Monitor', 3210, ll_to_earth(141.30004, -9.724257), 'V8X', 'AVAILABLE'),
+(79, 'Mouse', 5565, ll_to_earth(24.491868, 71.621232), 'V9B', 'AVAILABLE'),
+(41, 'Coffee Mug', 2090, ll_to_earth(-85.062684, -36.329907), 'V8U', 'AVAILABLE'),
+(57, 'Smartphone', 7189, ll_to_earth(-2.87955, -4.95408), 'V8Z', 'AVAILABLE'),
+(89, 'Ballpoint Fast Coffee Mug', 8918, ll_to_earth(138.041876, 52.505851), 'V8O', 'AVAILABLE'),
+(57, 'Lined Ergonomic Printer', 8531, ll_to_earth(-133.926387, 28.838425), 'V9A', 'AVAILABLE'),
+(55, 'Wireless Desk Chair', 9101, ll_to_earth(127.406747, -46.132547), 'V8S', 'AVAILABLE'),
+(74, 'Breathable Wireless Mouse', 4872, ll_to_earth(1.543186, -57.709691), 'V8Z', 'AVAILABLE'),
+(78, 'Educational Wireless Coffee Mug', 587, ll_to_earth(-16.35884, 39.725406), 'V8R', 'AVAILABLE'),
+(80, 'Lightweight Wireless Apple', 3464, ll_to_earth(87.718608, -68.789771), 'V9A', 'AVAILABLE'),
+(96, 'Ceramic Optical Sneakers', 3028, ll_to_earth(106.363384, -67.801544), 'V8W', 'AVAILABLE'),
+(24, 'Mouse', 3938, ll_to_earth(-144.475216, -28.900351), 'V9B', 'AVAILABLE'),
+(75, 'Book', 6841, ll_to_earth(-136.931416, -10.097806), 'V9D', 'AVAILABLE'),
+(33, 'Comfortable Notebook', 2577, ll_to_earth(170.229254, -89.097537), 'V8V', 'AVAILABLE'),
+(87, 'Touchscreen Book', 4397, ll_to_earth(141.744831, -72.131085), 'V9B', 'AVAILABLE'),
+(47, 'Red Touchscreen Book', 3415, ll_to_earth(-8.960505, 71.836136), 'V8S', 'AVAILABLE'),
+(82, 'Laptop', 1527, ll_to_earth(99.03602, -52.007062), 'V8Y', 'AVAILABLE'),
+(36, 'Ergonomic Tablet', 6417, ll_to_earth(73.79177, 18.900002), 'V8Z', 'AVAILABLE'),
+(68, 'Red Lamp', 8840, ll_to_earth(131.51692, 0.077211), 'V8Z', 'AVAILABLE'),
+(24, 'Red Notebook', 643, ll_to_earth(47.063174, 54.302677), 'V8U', 'AVAILABLE'),
+(78, 'Optical Backpack', 999, ll_to_earth(-2.940762, 21.993687), 'V8T', 'AVAILABLE'),
+(76, 'Insulated Wireless Desk Chair', 3493, ll_to_earth(-78.30018, 51.494383), 'V8X', 'AVAILABLE'),
+(29, 'Ballpoint Insulated Backpack', 5594, ll_to_earth(-14.298324, 48.185142), 'V8X', 'AVAILABLE'),
+(29, 'Ballpoint High-Resolution Backpack', 3505, ll_to_earth(23.132026, 68.616639), 'V8N', 'AVAILABLE'),
+(44, 'Tablet', 4031, ll_to_earth(12.742901, -20.855835), 'V8R', 'AVAILABLE'),
+(58, 'Pen', 3350, ll_to_earth(-150.149769, 1.684126), 'V9C', 'AVAILABLE'),
+(44, 'Fast Portable Book', 7479, ll_to_earth(26.678764, 56.250905), 'V8W', 'AVAILABLE'),
+(17, 'Coffee Mug', 8603, ll_to_earth(125.669091, -75.715983), 'V8R', 'AVAILABLE'),
+(38, 'Wireless Optical Backpack', 8382, ll_to_earth(-47.635215, -22.389917), 'V8N', 'AVAILABLE'),
+(6, 'Multifunction Pen', 2010, ll_to_earth(-54.093022, -4.435542), 'V8Y', 'AVAILABLE'),
+(29, 'Touchscreen Insulated Monitor', 6477, ll_to_earth(109.866785, -86.773341), 'V8Z', 'AVAILABLE'),
+(24, 'Fast Fast Keyboard', 5434, ll_to_earth(-178.419828, 57.124866), 'V8Z', 'AVAILABLE'),
+(85, 'Keyboard', 4220, ll_to_earth(161.56336, 68.680268), 'V9E', 'AVAILABLE'),
+(48, 'Red Adjustable Printer', 6353, ll_to_earth(-109.823365, 23.613135), 'V9B', 'AVAILABLE'),
+(26, 'Headphones', 6237, ll_to_earth(176.086919, -31.430555), 'V9D', 'AVAILABLE'),
+(39, 'Sneakers', 7430, ll_to_earth(-41.406485, -88.03336), 'V8W', 'AVAILABLE'),
+(67, 'Desk Chair', 9054, ll_to_earth(-164.689404, 70.261724), 'V8V', 'AVAILABLE'),
+(24, 'High-Resolution Wireless Apple', 7567, ll_to_earth(18.826901, 69.421675), 'V8V', 'AVAILABLE'),
+(91, 'Water Bottle', 2736, ll_to_earth(-16.665178, -16.934959), 'V8T', 'AVAILABLE'),
+(80, 'Ballpoint Tablet', 2775, ll_to_earth(-36.415438, -1.190596), 'V8T', 'AVAILABLE'),
+(24, 'Wireless Coffee Mug', 8899, ll_to_earth(-103.663531, 14.500155), 'V9C', 'AVAILABLE'),
+(36, 'Wireless Multifunction Printer', 1635, ll_to_earth(79.884723, 88.47706), 'V8T', 'AVAILABLE'),
+(66, 'Educational Car', 1769, ll_to_earth(-107.403764, 52.840886), 'V8P', 'AVAILABLE'),
+(91, 'Adjustable Apple', 718, ll_to_earth(-130.715579, -56.462886), 'V8Y', 'AVAILABLE'),
+(13, 'Lightweight Lightweight Car', 9532, ll_to_earth(-149.400144, 16.454148), 'V9E', 'AVAILABLE'),
+(72, 'Red Printer', 578, ll_to_earth(7.100594, -10.455946), 'V8Y', 'AVAILABLE'),
+(99, 'Portable Keyboard', 8814, ll_to_earth(-106.57664, 54.201301), 'V9C', 'AVAILABLE'),
+(5, 'Apple', 8579, ll_to_earth(-60.073821, -46.689636), 'V9A', 'AVAILABLE'),
+(91, 'Water Bottle', 1242, ll_to_earth(141.396541, 33.918708), 'V8O', 'AVAILABLE'),
+(67, 'Comfortable Apple', 4274, ll_to_earth(83.991362, -34.974511), 'V8T', 'AVAILABLE'),
+(59, 'Optical Headphones', 3918, ll_to_earth(148.276913, 28.393297), 'V8R', 'AVAILABLE'),
+(68, 'Red Headphones', 7924, ll_to_earth(152.912424, -70.164774), 'V8T', 'AVAILABLE'),
+(66, 'Notebook', 4201, ll_to_earth(16.400413, -29.282408), 'V8X', 'AVAILABLE'),
+(58, 'Durable Optical Tablet', 8206, ll_to_earth(-58.986075, -41.721432), 'V8O', 'AVAILABLE'),
+(4, 'Mouse', 4400, ll_to_earth(24.676427, -48.508813), 'V9E', 'AVAILABLE'),
+(36, 'Multifunction Optical Sneakers', 826, ll_to_earth(173.967827, -88.875415), 'V8S', 'AVAILABLE'),
+(96, 'Breathable Mechanical Mouse', 992, ll_to_earth(-112.263131, -81.09703), 'V8R', 'AVAILABLE'),
+(17, 'Portable Water Bottle', 6528, ll_to_earth(-127.21121, 19.541734), 'V9A', 'AVAILABLE'),
+(4, 'Comfortable Durable Book', 8237, ll_to_earth(156.395047, 30.880501), 'V9C', 'AVAILABLE'),
+(60, 'Pen', 6907, ll_to_earth(-68.085829, 35.823831), 'V9D', 'AVAILABLE'),
+(93, 'Ceramic Keyboard', 7763, ll_to_earth(48.440159, -63.192153), 'V8N', 'AVAILABLE'),
+(10, 'Mouse', 9074, ll_to_earth(32.779275, -82.194596), 'V8P', 'AVAILABLE'),
+(60, 'Durable Comfortable Bicycle', 6193, ll_to_earth(82.219003, 22.886924), 'V8V', 'AVAILABLE'),
+(40, 'Multifunction Keyboard', 1963, ll_to_earth(59.125121, 88.20408), 'V9E', 'AVAILABLE'),
+(39, 'Lined Red Sneakers', 9594, ll_to_earth(76.668408, -43.900626), 'V9A', 'AVAILABLE'),
+(49, 'Lightweight Red Printer', 9597, ll_to_earth(91.636349, -9.88633), 'V9B', 'AVAILABLE'),
+(85, 'Durable Mechanical Desk Chair', 3014, ll_to_earth(61.363705, -86.135386), 'V8Y', 'AVAILABLE'),
+(80, 'Mouse', 8799, ll_to_earth(12.530755, 61.385701), 'V8Z', 'AVAILABLE'),
+(65, 'Breathable Adjustable Sneakers', 1840, ll_to_earth(-29.716454, 23.528068), 'V8Z', 'AVAILABLE'),
+(87, 'Fast Book', 9047, ll_to_earth(-163.543783, -70.424101), 'V9E', 'AVAILABLE'),
+(62, 'Touchscreen Educational Smartphone', 4547, ll_to_earth(-167.453164, 72.863262), 'V8V', 'AVAILABLE'),
+(97, 'Apple', 7955, ll_to_earth(60.708623, 62.187293), 'V8O', 'AVAILABLE'),
+(6, 'Lamp', 6460, ll_to_earth(-112.640372, 88.058692), 'V8M', 'AVAILABLE'),
+(96, 'Adjustable Adjustable Car', 7217, ll_to_earth(-94.885951, -43.583513), 'V8P', 'AVAILABLE'),
+(68, 'Adjustable Wireless Desk Chair', 978, ll_to_earth(77.004564, -38.224723), 'V8O', 'AVAILABLE'),
+(16, 'Desk Chair', 9586, ll_to_earth(57.18204, 21.992267), 'V8P', 'AVAILABLE'),
+(84, 'Mechanical Lined Monitor', 7549, ll_to_earth(-4.749816, 21.091473), 'V8N', 'AVAILABLE'),
+(24, 'Adjustable Monitor', 5711, ll_to_earth(-81.03881, -57.882937), 'V8Y', 'AVAILABLE'),
+(8, 'Headphones', 320, ll_to_earth(126.118136, -78.196575), 'V8S', 'AVAILABLE'),
+(96, 'Educational High-Resolution Monitor', 3086, ll_to_earth(-123.156498, 26.007076), 'V8Y', 'AVAILABLE'),
+(63, 'Educational Keyboard', 804, ll_to_earth(-111.471168, 83.249473), 'V8N', 'AVAILABLE'),
+(77, 'Multifunction Touchscreen Desk Chair', 4752, ll_to_earth(84.599087, -33.65842), 'V9D', 'AVAILABLE'),
+(36, 'Laptop', 1525, ll_to_earth(-53.735747, 21.950362), 'V8R', 'AVAILABLE'),
+(65, 'Desk Chair', 6721, ll_to_earth(-23.327307, -27.562765), 'V8R', 'AVAILABLE'),
+(8, 'Ceramic Notebook', 3637, ll_to_earth(76.052894, 82.188049), 'V9D', 'AVAILABLE'),
+(47, 'Sneakers', 9232, ll_to_earth(-134.710811, -26.827548), 'V9D', 'AVAILABLE'),
+(51, 'Ergonomic Keyboard', 5832, ll_to_earth(18.090369, 4.769809), 'V9C', 'AVAILABLE'),
+(64, 'Lined Apple', 340, ll_to_earth(19.583626, 4.85108), 'V8U', 'AVAILABLE'),
+(92, 'Educational Mechanical Desk Chair', 1998, ll_to_earth(32.145675, 4.486822), 'V8X', 'AVAILABLE'),
+(8, 'Ballpoint Laptop', 4147, ll_to_earth(-114.844737, 73.151616), 'V9C', 'AVAILABLE'),
+(92, 'Ergonomic Red Pen', 8855, ll_to_earth(-53.157094, -42.996952), 'V8U', 'AVAILABLE'),
+(57, 'Breathable Red Backpack', 3583, ll_to_earth(131.54312, -27.936508), 'V8P', 'AVAILABLE'),
+(41, 'Lamp', 768, ll_to_earth(25.134857, 1.527238), 'V9A', 'AVAILABLE'),
+(33, 'Optical Educational Apple', 5380, ll_to_earth(22.848424, 57.321784), 'V8R', 'AVAILABLE'),
+(17, 'High-Resolution Lined Notebook', 6205, ll_to_earth(-69.235901, 70.362066), 'V8V', 'AVAILABLE'),
+(36, 'Comfortable Backpack', 6303, ll_to_earth(-27.213946, 46.912983), 'V9B', 'AVAILABLE'),
+(60, 'Bicycle', 3682, ll_to_earth(-146.020208, 69.394896), 'V8R', 'AVAILABLE'),
+(45, 'Touchscreen Laptop', 7600, ll_to_earth(76.72514, -43.559919), 'V9E', 'AVAILABLE'),
+(39, 'Water Bottle', 7180, ll_to_earth(46.418391, -31.948456), 'V8Z', 'AVAILABLE'),
+(37, 'Keyboard', 9978, ll_to_earth(91.426536, 7.916865), 'V9D', 'AVAILABLE'),
+(98, 'Ceramic Apple', 5008, ll_to_earth(-94.367377, -45.41475), 'V9D', 'AVAILABLE'),
+(36, 'Mechanical Mechanical Bicycle', 7771, ll_to_earth(-36.25577, 30.227614), 'V9D', 'AVAILABLE'),
+(14, 'Mouse', 7251, ll_to_earth(-75.728506, 9.188189), 'V8U', 'AVAILABLE'),
+(59, 'Insulated Insulated Sneakers', 1878, ll_to_earth(88.580283, 10.293203), 'V9E', 'AVAILABLE'),
+(90, 'Lightweight Bicycle', 2836, ll_to_earth(20.786502, 82.723517), 'V9E', 'AVAILABLE'),
+(54, 'Lightweight Water Bottle', 6439, ll_to_earth(-5.679047, 41.768641), 'V8O', 'AVAILABLE'),
+(14, 'Wireless Pen', 9774, ll_to_earth(-76.483428, 38.130105), 'V9D', 'AVAILABLE'),
+(99, 'Lamp', 7164, ll_to_earth(-66.15004, -81.653046), 'V8X', 'AVAILABLE'),
+(50, 'Durable Red Apple', 413, ll_to_earth(147.372131, 81.749527), 'V9A', 'AVAILABLE'),
+(44, 'Mechanical Bicycle', 906, ll_to_earth(-114.676429, 16.815472), 'V8M', 'AVAILABLE'),
+(65, 'Wireless Coffee Mug', 793, ll_to_earth(32.567623, 61.003234), 'V8S', 'AVAILABLE'),
+(36, 'Ergonomic Pen', 5624, ll_to_earth(145.992075, -1.053082), 'V9D', 'AVAILABLE'),
+(76, 'Ballpoint Ergonomic Desk Chair', 4329, ll_to_earth(15.413838, -12.386536), 'V8Z', 'AVAILABLE'),
+(79, 'Touchscreen Ceramic Tablet', 5466, ll_to_earth(-176.256637, -12.986623), 'V9B', 'AVAILABLE'),
+(25, 'Touchscreen Water Bottle', 7840, ll_to_earth(46.539397, 43.291277), 'V8U', 'AVAILABLE'),
+(14, 'Adjustable Optical Headphones', 6662, ll_to_earth(-2.551302, 24.202847), 'V8P', 'AVAILABLE'),
+(75, 'Ballpoint Desk Chair', 9931, ll_to_earth(149.817306, -68.978606), 'V8O', 'AVAILABLE'),
+(34, 'Desk Chair', 1044, ll_to_earth(66.359241, 78.915554), 'V8Y', 'AVAILABLE'),
+(25, 'Printer', 351, ll_to_earth(-172.863978, -89.917415), 'V9C', 'AVAILABLE'),
+(31, 'Ceramic Ballpoint Bicycle', 3685, ll_to_earth(-120.695787, 17.856877), 'V8R', 'AVAILABLE'),
+(50, 'Mechanical Car', 4998, ll_to_earth(78.26988, 68.728177), 'V8N', 'AVAILABLE'),
+(27, 'Ergonomic Monitor', 3325, ll_to_earth(84.139389, 60.650576), 'V9C', 'AVAILABLE'),
+(59, 'Ceramic Touchscreen Desk Chair', 7032, ll_to_earth(-17.688049, -29.954974), 'V9A', 'AVAILABLE'),
+(50, 'Headphones', 9887, ll_to_earth(-82.14031, 49.011902), 'V8Y', 'AVAILABLE'),
+(12, 'Mechanical Touchscreen Tablet', 9434, ll_to_earth(-174.597421, 50.912165), 'V8W', 'AVAILABLE'),
+(38, 'Touchscreen Apple', 4826, ll_to_earth(47.41879, -60.502628), 'V8Y', 'AVAILABLE'),
+(81, 'Lightweight Ballpoint Monitor', 9482, ll_to_earth(-168.967359, 6.854442), 'V9B', 'AVAILABLE'),
+(1, 'Desk Chair', 4572, ll_to_earth(-140.212491, -45.230697), 'V8M', 'AVAILABLE'),
+(36, 'Ceramic Tablet', 7371, ll_to_earth(-92.029425, 31.11866), 'V8O', 'AVAILABLE'),
+(91, 'Bicycle', 7692, ll_to_earth(-76.398585, 3.164073), 'V8T', 'AVAILABLE'),
+(28, 'Car', 1005, ll_to_earth(-139.455564, 11.977429), 'V9D', 'AVAILABLE'),
+(43, 'Coffee Mug', 2696, ll_to_earth(98.019114, -6.599769), 'V9D', 'AVAILABLE'),
+(67, 'Headphones', 875, ll_to_earth(-75.674142, 37.530887), 'V8Z', 'AVAILABLE'),
+(40, 'High-Resolution Book', 9854, ll_to_earth(-9.849417, 75.05797), 'V8N', 'AVAILABLE'),
+(31, 'Comfortable Ballpoint Book', 3941, ll_to_earth(72.333565, -36.636001), 'V8S', 'AVAILABLE'),
+(34, 'Smartphone', 6337, ll_to_earth(-22.522832, -42.347258), 'V8S', 'AVAILABLE'),
+(92, 'Mechanical Adjustable Headphones', 2348, ll_to_earth(56.00998, -40.950248), 'V8T', 'AVAILABLE'),
+(84, 'Printer', 6723, ll_to_earth(-83.109219, 56.231947), 'V8O', 'AVAILABLE'),
+(15, 'Desk Chair', 2345, ll_to_earth(2.043058, 86.625726), 'V8Z', 'AVAILABLE'),
+(90, 'Mechanical Notebook', 7018, ll_to_earth(163.901816, 51.624678), 'V8P', 'AVAILABLE'),
+(82, 'Fast Portable Bicycle', 5118, ll_to_earth(-137.562293, 6.432413), 'V8V', 'AVAILABLE'),
+(65, 'Red Monitor', 930, ll_to_earth(55.677861, 68.525725), 'V9D', 'AVAILABLE'),
+(84, 'Lined Comfortable Coffee Mug', 9131, ll_to_earth(-3.041714, -84.77726), 'V8Z', 'AVAILABLE'),
+(76, 'Pen', 7802, ll_to_earth(60.095367, -18.716577), 'V8V', 'AVAILABLE'),
+(65, 'Portable Backpack', 5034, ll_to_earth(-69.383826, -47.477048), 'V9E', 'AVAILABLE'),
+(91, 'Red Lamp', 2384, ll_to_earth(-61.068798, -60.87636), 'V8R', 'AVAILABLE'),
+(65, 'Mechanical Mouse', 1508, ll_to_earth(-26.186227, 61.175073), 'V8X', 'AVAILABLE'),
+(3, 'Insulated Keyboard', 7589, ll_to_earth(-113.256703, 1.803795), 'V8P', 'AVAILABLE'),
+(76, 'Smartphone', 6768, ll_to_earth(105.543712, -33.033092), 'V8M', 'AVAILABLE'),
+(64, 'Tablet', 1618, ll_to_earth(-65.875647, 41.03865), 'V9C', 'AVAILABLE'),
+(42, 'Ergonomic Mechanical Mouse', 5827, ll_to_earth(55.708087, -69.428384), 'V9E', 'AVAILABLE'),
+(47, 'Portable Water Bottle', 4997, ll_to_earth(-60.164728, 66.71653), 'V8M', 'AVAILABLE'),
+(4, 'High-Resolution Mouse', 5214, ll_to_earth(-65.814955, -8.523219), 'V9A', 'AVAILABLE'),
+(5, 'Mechanical Smartphone', 1099, ll_to_earth(-62.125229, -6.326755), 'V9D', 'AVAILABLE'),
+(67, 'Adjustable Car', 1855, ll_to_earth(149.166653, -86.306979), 'V8T', 'AVAILABLE'),
+(77, 'Fast Notebook', 1807, ll_to_earth(13.158001, -82.176543), 'V8W', 'AVAILABLE'),
+(37, 'Breathable Smartphone', 8094, ll_to_earth(118.725082, 67.795423), 'V9A', 'AVAILABLE'),
+(44, 'Mechanical Ballpoint Tablet', 1848, ll_to_earth(54.826437, -75.803841), 'V8O', 'AVAILABLE'),
+(35, 'Water Bottle', 3798, ll_to_earth(130.246944, 65.765122), 'V8S', 'AVAILABLE'),
+(7, 'Tablet', 8958, ll_to_earth(75.507206, -12.35565), 'V8P', 'AVAILABLE'),
+(59, 'Comfortable Backpack', 2661, ll_to_earth(-76.152762, 18.84773), 'V8N', 'AVAILABLE'),
+(38, 'Desk Chair', 4303, ll_to_earth(-154.174751, 10.033764), 'V9B', 'AVAILABLE'),
+(58, 'Lined Adjustable Coffee Mug', 4644, ll_to_earth(16.789001, -60.81396), 'V8Z', 'AVAILABLE'),
+(36, 'Multifunction Breathable Lamp', 1888, ll_to_earth(-12.815547, -58.69271), 'V8Y', 'AVAILABLE'),
+(91, 'Durable Bicycle', 9421, ll_to_earth(-122.393893, -41.296219), 'V8Y', 'AVAILABLE'),
+(11, 'Ergonomic Red Water Bottle', 2313, ll_to_earth(76.457704, -70.712926), 'V9C', 'AVAILABLE'),
+(82, 'Backpack', 6856, ll_to_earth(-23.231496, 18.760637), 'V9A', 'AVAILABLE'),
+(16, 'Insulated Insulated Lamp', 3545, ll_to_earth(41.565497, 17.026155), 'V8P', 'AVAILABLE'),
+(69, 'Insulated Tablet', 4957, ll_to_earth(-156.839124, -68.087008), 'V8Y', 'AVAILABLE'),
+(9, 'Ballpoint Comfortable Water Bottle', 7138, ll_to_earth(-152.187601, -29.701536), 'V8W', 'AVAILABLE'),
+(92, 'Desk Chair', 4801, ll_to_earth(92.078198, 15.68852), 'V8V', 'AVAILABLE'),
+(36, 'Comfortable Headphones', 8212, ll_to_earth(-78.414696, 23.031725), 'V8O', 'AVAILABLE'),
+(30, 'Multifunction Touchscreen Sneakers', 7551, ll_to_earth(84.34579, -5.311464), 'V8P', 'AVAILABLE'),
+(53, 'Adjustable Adjustable Pen', 2203, ll_to_earth(-78.359811, -21.445579), 'V9D', 'AVAILABLE'),
+(21, 'Optical Notebook', 4536, ll_to_earth(-91.698538, -12.294747), 'V8U', 'AVAILABLE'),
+(39, 'Comfortable Ballpoint Sneakers', 2568, ll_to_earth(-123.997905, -7.947945), 'V9A', 'AVAILABLE'),
+(28, 'Adjustable Headphones', 6495, ll_to_earth(-79.449461, -72.059546), 'V9B', 'AVAILABLE'),
+(43, 'Bicycle', 6604, ll_to_earth(23.145833, -76.176668), 'V9C', 'AVAILABLE'),
+(49, 'Insulated Fast Water Bottle', 5956, ll_to_earth(-86.112988, 49.526638), 'V9C', 'AVAILABLE'),
+(25, 'Wireless High-Resolution Book', 415, ll_to_earth(-18.038149, -18.885994), 'V8W', 'AVAILABLE'),
+(32, 'Wireless Mouse', 3076, ll_to_earth(-76.268649, -69.795065), 'V8W', 'AVAILABLE'),
+(75, 'Insulated Ballpoint Keyboard', 5665, ll_to_earth(-30.398588, 36.099184), 'V8P', 'AVAILABLE'),
+(95, 'Lightweight Lightweight Smartphone', 3423, ll_to_earth(21.808712, 64.840367), 'V8V', 'AVAILABLE'),
+(76, 'Wireless Sneakers', 6326, ll_to_earth(-31.294018, -44.283389), 'V9A', 'AVAILABLE'),
+(14, 'Red Educational Tablet', 4053, ll_to_earth(60.118205, -19.451898), 'V9D', 'AVAILABLE'),
+(58, 'Breathable Keyboard', 7412, ll_to_earth(27.95325, -8.422703), 'V8W', 'AVAILABLE'),
+(73, 'Mechanical Wireless Laptop', 1390, ll_to_earth(26.276437, 12.794446), 'V8O', 'AVAILABLE'),
+(2, 'Tablet', 1431, ll_to_earth(-140.246687, -37.332385), 'V8X', 'AVAILABLE'),
+(25, 'Lined Desk Chair', 2498, ll_to_earth(117.396516, 51.980737), 'V9D', 'AVAILABLE'),
+(75, 'Touchscreen Breathable Laptop', 2264, ll_to_earth(161.877978, 31.106733), 'V9E', 'AVAILABLE'),
+(97, 'Notebook', 7157, ll_to_earth(123.150738, 82.106787), 'V9B', 'AVAILABLE'),
+(85, 'Fast Wireless Car', 5587, ll_to_earth(2.517723, 84.851965), 'V8V', 'AVAILABLE'),
+(89, 'Mechanical Water Bottle', 2005, ll_to_earth(30.414796, -32.94149), 'V8N', 'AVAILABLE'),
+(75, 'Monitor', 5749, ll_to_earth(99.56374, -66.554185), 'V8S', 'AVAILABLE'),
+(30, 'Sneakers', 8266, ll_to_earth(95.250593, -65.435645), 'V8S', 'AVAILABLE'),
+(97, 'Pen', 7044, ll_to_earth(104.934217, 47.637728), 'V9E', 'AVAILABLE'),
+(8, 'Pen', 3164, ll_to_earth(-6.896709, 54.17609), 'V8N', 'AVAILABLE'),
+(34, 'Touchscreen Monitor', 2907, ll_to_earth(-118.772015, -71.525033), 'V8T', 'AVAILABLE'),
+(14, 'Ergonomic Desk Chair', 3046, ll_to_earth(67.923838, -17.04078), 'V8T', 'AVAILABLE'),
+(66, 'Lined Insulated Mouse', 7721, ll_to_earth(90.002722, -74.808092), 'V9C', 'AVAILABLE'),
+(8, 'Red Red Keyboard', 1949, ll_to_earth(-167.355536, -37.177367), 'V8S', 'AVAILABLE'),
+(18, 'Mechanical Laptop', 6281, ll_to_earth(70.751995, 70.37902), 'V8S', 'AVAILABLE'),
+(86, 'Educational Headphones', 9874, ll_to_earth(166.149713, -37.339759), 'V8X', 'AVAILABLE'),
+(5, 'Optical Insulated Sneakers', 9132, ll_to_earth(-20.632663, -21.140605), 'V8V', 'AVAILABLE'),       
+(6, 'Educational Lined Smartphone', 9797, ll_to_earth(-8.222087, 5.048612), 'V8S', 'AVAILABLE'),        
+(70, 'Book', 1844, ll_to_earth(112.933005, -29.299333), 'V8R', 'AVAILABLE'),
+(73, 'Multifunction Desk Chair', 6347, ll_to_earth(-41.685457, 3.816292), 'V8O', 'AVAILABLE'),
+(85, 'Headphones', 5268, ll_to_earth(97.291911, -48.286036), 'V8O', 'AVAILABLE'),
+(12, 'High-Resolution Adjustable Laptop', 6518, ll_to_earth(170.612616, 57.149755), 'V8U', 'AVAILABLE'),
+(86, 'Ergonomic Fast Tablet', 3219, ll_to_earth(112.541068, -6.335951), 'V8T', 'AVAILABLE'),
+(66, 'Wireless Apple', 5720, ll_to_earth(-106.735713, 82.422097), 'V8Z', 'AVAILABLE'),
+(61, 'Ergonomic Coffee Mug', 8241, ll_to_earth(-119.036294, 44.239662), 'V8S', 'AVAILABLE'),
+(24, 'Monitor', 3010, ll_to_earth(75.49677, 86.756835), 'V8P', 'AVAILABLE'),
+(92, 'Multifunction Ceramic Apple', 9754, ll_to_earth(152.967237, 88.802503), 'V8M', 'AVAILABLE'),      
+(45, 'Red Smartphone', 8749, ll_to_earth(-53.430229, -60.888722), 'V8O', 'AVAILABLE'),
+(63, 'Backpack', 4643, ll_to_earth(-91.185804, -23.059241), 'V8V', 'AVAILABLE'),
+(74, 'Printer', 9593, ll_to_earth(-37.258478, -73.383055), 'V9B', 'AVAILABLE'),
+(30, 'Backpack', 3028, ll_to_earth(89.816039, -21.300849), 'V8Y', 'AVAILABLE'),
+(73, 'Mechanical Monitor', 7416, ll_to_earth(-74.387632, -81.185434), 'V9C', 'AVAILABLE'),
+(88, 'Ballpoint Ceramic Keyboard', 3462, ll_to_earth(-6.598005, 40.704542), 'V8R', 'AVAILABLE'),        
+(53, 'Optical Red Coffee Mug', 5783, ll_to_earth(14.184361, 63.85301), 'V8M', 'AVAILABLE'),
+(91, 'Durable Mechanical Book', 6056, ll_to_earth(68.164012, -77.065805), 'V9D', 'AVAILABLE'),
+(41, 'Multifunction Pen', 6606, ll_to_earth(-40.416003, 43.606869), 'V9D', 'AVAILABLE'),
+(79, 'Ballpoint Comfortable Tablet', 1084, ll_to_earth(-74.739632, -88.40562), 'V8V', 'AVAILABLE'),     
+(35, 'High-Resolution Pen', 3220, ll_to_earth(-102.37028, 71.96295), 'V8O', 'AVAILABLE'),
+(13, 'Mechanical Backpack', 8772, ll_to_earth(-153.422597, 28.282187), 'V8T', 'AVAILABLE'),
+(84, 'Monitor', 6398, ll_to_earth(148.401746, -77.910448), 'V8W', 'AVAILABLE'),
+(90, 'Adjustable Backpack', 6062, ll_to_earth(60.206225, 38.120925), 'V8U', 'AVAILABLE'),
+(16, 'Touchscreen Adjustable Monitor', 4392, ll_to_earth(-15.082143, 6.133942), 'V8T', 'AVAILABLE'),
+(88, 'Laptop', 6741, ll_to_earth(41.299364, -28.917463), 'V9A', 'AVAILABLE'),
+(54, 'Mouse', 2422, ll_to_earth(-123.928268, 78.808972), 'V8Z', 'AVAILABLE'),
+(79, 'Coffee Mug', 606, ll_to_earth(-24.992092, 78.422242), 'V8U', 'AVAILABLE'),
+(46, 'Multifunction Ergonomic Coffee Mug', 3220, ll_to_earth(-116.060462, -9.557322), 'V8X', 'AVAILABLE'),
+(18, 'Desk Chair', 9272, ll_to_earth(-110.055657, 83.127362), 'V8N', 'AVAILABLE'),
+(44, 'Headphones', 3893, ll_to_earth(129.921065, 83.651761), 'V8M', 'AVAILABLE'),
+(53, 'Educational Headphones', 9977, ll_to_earth(-48.879258, -23.638121), 'V8T', 'AVAILABLE'),
+(20, 'Laptop', 9123, ll_to_earth(105.808436, -87.511945), 'V8O', 'AVAILABLE'),
+(3, 'Mechanical Keyboard', 4783, ll_to_earth(-175.53601, -13.73814), 'V8S', 'AVAILABLE'),
+(60, 'Touchscreen Water Bottle', 5573, ll_to_earth(117.184138, 13.882565), 'V8S', 'AVAILABLE'),
+(65, 'Lined Backpack', 7328, ll_to_earth(-118.836652, 41.830338), 'V8P', 'AVAILABLE'),
+(80, 'Printer', 9328, ll_to_earth(85.188717, 51.116357), 'V8Y', 'AVAILABLE'),
+(27, 'Apple', 871, ll_to_earth(-18.373291, -30.732872), 'V9E', 'AVAILABLE'),
+(71, 'Apple', 1228, ll_to_earth(-149.342782, -61.797071), 'V8P', 'AVAILABLE'),
+(33, 'Book', 3273, ll_to_earth(-155.380361, 2.740498), 'V8X', 'AVAILABLE'),
+(95, 'Insulated Mouse', 3518, ll_to_earth(-156.904165, -9.369049), 'V8W', 'AVAILABLE'),
+(57, 'Ballpoint Lightweight Desk Chair', 735, ll_to_earth(-156.558881, 81.19513), 'V8M', 'AVAILABLE'),
+(4, 'Coffee Mug', 9706, ll_to_earth(92.286136, 38.521324), 'V8N', 'AVAILABLE'),
+(51, 'Mechanical Laptop', 6597, ll_to_earth(75.616314, -66.658479), 'V8O', 'AVAILABLE'),
+(67, 'Coffee Mug', 7894, ll_to_earth(9.521859, 27.579794), 'V9C', 'AVAILABLE'),
+(26, 'Durable Notebook', 1917, ll_to_earth(179.955809, 20.205696), 'V8N', 'AVAILABLE'),
+(52, 'Headphones', 9030, ll_to_earth(142.846552, 79.042182), 'V8M', 'AVAILABLE'),
+(19, 'Sneakers', 4739, ll_to_earth(-75.815805, 48.624703), 'V9A', 'AVAILABLE'),
+(73, 'Insulated Bicycle', 5240, ll_to_earth(139.255286, 5.274919), 'V8Z', 'AVAILABLE'),
+(85, 'Fast Apple', 5551, ll_to_earth(-87.45067, -65.86978), 'V9E', 'AVAILABLE'),
+(74, 'Water Bottle', 4835, ll_to_earth(118.015381, 21.380385), 'V8V', 'AVAILABLE'),
+(20, 'Insulated Red Lamp', 8979, ll_to_earth(128.883353, 82.021634), 'V8O', 'AVAILABLE'),
+(8, 'Red Desk Chair', 7021, ll_to_earth(126.357422, -78.663712), 'V9B', 'AVAILABLE'),
+(20, 'Pen', 1826, ll_to_earth(77.423462, -76.784293), 'V9C', 'AVAILABLE'),
+(79, 'Ergonomic Comfortable Backpack', 1478, ll_to_earth(-27.342816, -30.205864), 'V8M', 'AVAILABLE'),
+(6, 'Ceramic Portable Lamp', 1795, ll_to_earth(113.850336, 36.786821), 'V9E', 'AVAILABLE'),
+(67, 'Smartphone', 7409, ll_to_earth(0.196215, -82.426289), 'V9B', 'AVAILABLE'),
+(65, 'Ceramic Monitor', 9324, ll_to_earth(-108.463928, 88.136788), 'V8N', 'AVAILABLE'),
+(14, 'Desk Chair', 1959, ll_to_earth(-26.897204, 54.150637), 'V8Y', 'AVAILABLE'),
+(61, 'Red Ergonomic Smartphone', 5537, ll_to_earth(53.811979, 1.466109), 'V8M', 'AVAILABLE'),
+(73, 'Educational Insulated Car', 5988, ll_to_earth(-91.723733, 52.561343), 'V8U', 'AVAILABLE'),
+(19, 'Educational Desk Chair', 1420, ll_to_earth(-91.315086, 39.393909), 'V9A', 'AVAILABLE'),
+(43, 'Keyboard', 7826, ll_to_earth(-147.465821, -2.33463), 'V9E', 'AVAILABLE'),
+(26, 'Multifunction Laptop', 9264, ll_to_earth(-127.944125, 11.29821), 'V8P', 'AVAILABLE'),
+(44, 'Optical Coffee Mug', 3387, ll_to_earth(-83.015329, -69.584091), 'V8N', 'AVAILABLE'),
+(88, 'Lightweight Touchscreen Desk Chair', 748, ll_to_earth(167.874894, -57.468113), 'V8S', 'AVAILABLE'),
+(95, 'Fast Car', 6099, ll_to_earth(-164.282914, -46.397542), 'V8P', 'AVAILABLE'),
+(28, 'Keyboard', 5573, ll_to_earth(-120.444483, -73.779531), 'V8X', 'AVAILABLE'),
+(37, 'Portable Mechanical Apple', 9448, ll_to_earth(165.856985, 64.711564), 'V8U', 'AVAILABLE'),
+(15, 'Ceramic Portable Smartphone', 224, ll_to_earth(-156.618553, 60.517271), 'V8M', 'AVAILABLE'),
+(69, 'Fast Comfortable Book', 9456, ll_to_earth(-176.088419, 61.649231), 'V8T', 'AVAILABLE'),
+(29, 'Adjustable Pen', 7365, ll_to_earth(51.631158, -60.073115), 'V8N', 'AVAILABLE'),
+(79, 'Ballpoint Breathable Water Bottle', 3363, ll_to_earth(65.829133, -13.467391), 'V8V', 'AVAILABLE'),
+(15, 'Wireless Ballpoint Smartphone', 1054, ll_to_earth(-49.969273, 15.026701), 'V8R', 'AVAILABLE'),
+(70, 'Water Bottle', 591, ll_to_earth(-143.272201, 27.713137), 'V8W', 'AVAILABLE'),
+(16, 'Touchscreen Wireless Water Bottle', 7636, ll_to_earth(33.951014, 63.480939), 'V8X', 'AVAILABLE'),
+(79, 'Insulated Fast Sneakers', 1809, ll_to_earth(46.68396, -15.36974), 'V8P', 'AVAILABLE'),
+(17, 'Mechanical Headphones', 1955, ll_to_earth(42.999479, -11.027524), 'V9D', 'AVAILABLE'),
+(45, 'Ballpoint Tablet', 3514, ll_to_earth(37.573147, 19.590172), 'V8Y', 'AVAILABLE'),
+(60, 'Touchscreen Bicycle', 2983, ll_to_earth(77.328962, 57.906929), 'V9D', 'AVAILABLE'),
+(10, 'Ergonomic Breathable Notebook', 6136, ll_to_earth(37.831584, -64.789531), 'V8X', 'AVAILABLE'),
+(25, 'Backpack', 3235, ll_to_earth(167.96699, -73.90709), 'V9A', 'AVAILABLE'),
+(63, 'Water Bottle', 1882, ll_to_earth(26.103571, 89.20526), 'V8T', 'AVAILABLE'),
+(35, 'Pen', 431, ll_to_earth(-118.448692, -74.109198), 'V8O', 'AVAILABLE'),
+(80, 'Red Lamp', 7328, ll_to_earth(96.463157, -19.401299), 'V9D', 'AVAILABLE'),
+(29, 'Bicycle', 9381, ll_to_earth(48.580149, -38.845466), 'V8Y', 'AVAILABLE'),
+(85, 'Fast Multifunction Car', 118, ll_to_earth(-157.109122, -60.204189), 'V8W', 'AVAILABLE'),
+(75, 'Pen', 584, ll_to_earth(-168.362275, -39.290607), 'V8S', 'AVAILABLE'),
+(10, 'Insulated Mechanical Coffee Mug', 4750, ll_to_earth(-38.089161, 38.077538), 'V8T', 'AVAILABLE'),
+(77, 'Red Insulated Laptop', 1839, ll_to_earth(116.564686, 61.590888), 'V8W', 'AVAILABLE'),
+(37, 'Portable Mouse', 8769, ll_to_earth(-78.234051, -88.702114), 'V8O', 'AVAILABLE'),
+(63, 'Bicycle', 2595, ll_to_earth(80.368592, -56.287504), 'V8U', 'AVAILABLE'),
+(45, 'Printer', 4927, ll_to_earth(-56.404249, -21.566797), 'V8Y', 'AVAILABLE'),
+(99, 'Coffee Mug', 3373, ll_to_earth(153.526664, -88.322869), 'V8X', 'AVAILABLE'),
+(21, 'Ergonomic Touchscreen Headphones', 8289, ll_to_earth(9.651215, 24.323581), 'V9B', 'AVAILABLE'),
+(54, 'Mechanical Adjustable Headphones', 8742, ll_to_earth(-61.788934, -67.334494), 'V8Y', 'AVAILABLE'),
+(14, 'Portable High-Resolution Printer', 8979, ll_to_earth(107.378541, -76.509072), 'V8S', 'AVAILABLE'),
+(59, 'Apple', 2159, ll_to_earth(172.901368, -58.832865), 'V8N', 'AVAILABLE'),
+(36, 'Mouse', 781, ll_to_earth(134.283427, 57.867942), 'V8T', 'AVAILABLE'),
+(42, 'Keyboard', 960, ll_to_earth(-96.952009, -48.974417), 'V9E', 'AVAILABLE'),
+(47, 'Water Bottle', 5729, ll_to_earth(139.359132, -5.282471), 'V8V', 'AVAILABLE'),
+(53, 'Educational Car', 2634, ll_to_earth(-28.706625, -88.829691), 'V8R', 'AVAILABLE'),
+(53, 'Ergonomic Book', 6949, ll_to_earth(61.726869, 25.084969), 'V8M', 'AVAILABLE'),
+(59, 'Notebook', 6761, ll_to_earth(-127.780744, 60.293877), 'V9D', 'AVAILABLE'),
+(46, 'Lightweight Durable Laptop', 9156, ll_to_earth(16.142696, 68.665293), 'V8T', 'AVAILABLE'),
+(95, 'Insulated Monitor', 3273, ll_to_earth(77.802797, 46.801564), 'V8N', 'AVAILABLE'),
+(78, 'Lined Lightweight Bicycle', 8826, ll_to_earth(138.906491, -58.025285), 'V8X', 'AVAILABLE'),
+(67, 'Insulated Backpack', 9005, ll_to_earth(160.73263, -21.002841), 'V8O', 'AVAILABLE'),
+(65, 'Wireless Ergonomic Water Bottle', 7476, ll_to_earth(-110.532659, 44.428346), 'V8U', 'AVAILABLE'),
+(97, 'Portable Bicycle', 8763, ll_to_earth(12.399253, 37.07113), 'V8W', 'AVAILABLE'),
+(42, 'Fast Tablet', 4084, ll_to_earth(-133.795695, -62.848788), 'V8N', 'AVAILABLE'),
+(24, 'Keyboard', 746, ll_to_earth(-51.723705, 63.79472), 'V9D', 'AVAILABLE'),
+(86, 'Ballpoint Mechanical Smartphone', 4441, ll_to_earth(48.21191, 63.043705), 'V8T', 'AVAILABLE'),
+(51, 'Lined Book', 4793, ll_to_earth(-99.146638, 3.831106), 'V8Z', 'AVAILABLE'),
+(38, 'Portable Durable Lamp', 1719, ll_to_earth(-26.754242, -44.151755), 'V8X', 'AVAILABLE'),
+(27, 'Sneakers', 4027, ll_to_earth(58.916019, 36.793052), 'V8T', 'AVAILABLE'),
+(48, 'Fast Sneakers', 1400, ll_to_earth(-73.215372, -18.418832), 'V8N', 'AVAILABLE'),
+(6, 'Printer', 257, ll_to_earth(106.943101, 52.650432), 'V8U', 'AVAILABLE'),
+(8, 'Lightweight Durable Mouse', 6576, ll_to_earth(-96.025612, 15.07839), 'V8O', 'AVAILABLE'),
+(19, 'Lightweight Tablet', 4978, ll_to_earth(168.498281, -67.830701), 'V9D', 'AVAILABLE'),
+(64, 'Ballpoint Tablet', 2888, ll_to_earth(-91.7818, -30.01354), 'V8Z', 'AVAILABLE'),
+(87, 'Mouse', 4522, ll_to_earth(158.666102, -43.248059), 'V8N', 'AVAILABLE'),
+(65, 'Backpack', 4449, ll_to_earth(160.661155, 32.209911), 'V9E', 'AVAILABLE'),
+(38, 'Headphones', 6221, ll_to_earth(-13.017322, -66.371195), 'V8X', 'AVAILABLE'),
+(45, 'Water Bottle', 4559, ll_to_earth(101.944402, 17.950113), 'V9D', 'AVAILABLE'),
+(66, 'Wireless Red Lamp', 9025, ll_to_earth(-76.339905, -88.44487), 'V8Z', 'AVAILABLE'),
+(3, 'Ceramic Mouse', 9276, ll_to_earth(90.854291, 60.627309), 'V9D', 'AVAILABLE'),
+(23, 'Mechanical Laptop', 5020, ll_to_earth(174.324269, 26.477181), 'V8T', 'AVAILABLE'),
+(5, 'Book', 8146, ll_to_earth(-171.579721, -52.014001), 'V8W', 'AVAILABLE'),
+(32, 'Laptop', 4685, ll_to_earth(8.840753, 24.561526), 'V8Y', 'AVAILABLE'),
+(85, 'Mechanical Coffee Mug', 1738, ll_to_earth(32.087757, 47.861957), 'V8Z', 'AVAILABLE'),
+(59, 'Adjustable Touchscreen Desk Chair', 82, ll_to_earth(-38.701492, 16.526936), 'V8V', 'AVAILABLE'),
+(46, 'Portable Portable Keyboard', 686, ll_to_earth(62.273896, -50.505505), 'V8W', 'AVAILABLE'),
+(30, 'Adjustable Laptop', 2274, ll_to_earth(-68.992055, 28.570843), 'V8V', 'AVAILABLE'),
+(16, 'Breathable Educational Mouse', 2658, ll_to_earth(59.711175, 47.789693), 'V9B', 'AVAILABLE'),
+(64, 'Fast Fast Coffee Mug', 4606, ll_to_earth(-7.863394, -44.225455), 'V8N', 'AVAILABLE'),
+(26, 'Car', 1550, ll_to_earth(-150.095462, 66.163431), 'V8S', 'AVAILABLE'),
+(49, 'Desk Chair', 6297, ll_to_earth(56.433071, -9.872469), 'V8T', 'AVAILABLE'),
+(91, 'Mechanical Portable Lamp', 7265, ll_to_earth(-84.627709, 63.644617), 'V9D', 'AVAILABLE'),
+(38, 'Ballpoint Adjustable Mouse', 3260, ll_to_earth(82.856052, 78.139247), 'V9A', 'AVAILABLE'),
+(39, 'Lined Lightweight Sneakers', 429, ll_to_earth(30.735938, 80.376428), 'V9A', 'AVAILABLE'),
+(53, 'Headphones', 3838, ll_to_earth(59.532892, -44.619471), 'V9A', 'AVAILABLE'),
+(61, 'Wireless Headphones', 1929, ll_to_earth(-73.029026, -85.016506), 'V9B', 'AVAILABLE'),
+(13, 'Ballpoint Adjustable Headphones', 5252, ll_to_earth(-41.051836, -32.11307), 'V8U', 'AVAILABLE'),
+(23, 'Book', 7238, ll_to_earth(-99.610527, -39.165445), 'V8U', 'AVAILABLE'),
+(93, 'Multifunction Book', 2682, ll_to_earth(49.475029, -27.281898), 'V9D', 'AVAILABLE'),
+(35, 'Breathable Mechanical Headphones', 2385, ll_to_earth(-49.736729, 75.906285), 'V8V', 'AVAILABLE'),
+(35, 'Monitor', 5868, ll_to_earth(52.81202, 13.670505), 'V8S', 'AVAILABLE'),
+(21, 'Durable Monitor', 6154, ll_to_earth(21.385909, -72.143344), 'V9C', 'AVAILABLE'),
+(28, 'Desk Chair', 1956, ll_to_earth(-161.550903, 11.878858), 'V9A', 'AVAILABLE'),
+(1, 'Tablet', 4518, ll_to_earth(-118.473601, 2.724945), 'V8U', 'AVAILABLE'),
+(4, 'Ceramic Fast Monitor', 5714, ll_to_earth(9.934083, 77.511806), 'V8O', 'AVAILABLE'),
+(52, 'Touchscreen Lamp', 6205, ll_to_earth(-79.030807, 31.609868), 'V8U', 'AVAILABLE'),
+(49, 'Optical Breathable Car', 5733, ll_to_earth(-2.833344, -64.849538), 'V9C', 'AVAILABLE'),
+(56, 'Laptop', 5089, ll_to_earth(-179.588554, 9.363227), 'V8N', 'AVAILABLE'),
+(12, 'Backpack', 3377, ll_to_earth(134.066237, -37.767545), 'V8R', 'AVAILABLE'),
+(90, 'Lamp', 2924, ll_to_earth(35.208241, 17.902018), 'V8W', 'AVAILABLE'),
+(19, 'Touchscreen Tablet', 76, ll_to_earth(-16.550747, 85.13333), 'V8T', 'AVAILABLE'),
+(81, 'Wireless Touchscreen Apple', 9792, ll_to_earth(59.362401, 28.583484), 'V9E', 'AVAILABLE'),
+(21, 'Lined Printer', 3046, ll_to_earth(155.635532, -21.203924), 'V8W', 'AVAILABLE'),
+(80, 'Touchscreen Lamp', 5267, ll_to_earth(129.691278, 62.86627), 'V8U', 'AVAILABLE'),
+(74, 'Water Bottle', 785, ll_to_earth(-4.840545, -36.0479), 'V8W', 'AVAILABLE'),
+(97, 'Backpack', 8263, ll_to_earth(66.145514, 76.736571), 'V8T', 'AVAILABLE'),
+(20, 'Wireless Pen', 7793, ll_to_earth(20.574767, -38.712322), 'V8P', 'AVAILABLE'),
+(36, 'Lamp', 7703, ll_to_earth(47.123793, 77.93081), 'V8W', 'AVAILABLE'),
+(26, 'Ballpoint Insulated Smartphone', 5870, ll_to_earth(133.244689, 6.879788), 'V8U', 'AVAILABLE'),
+(29, 'Mouse', 8250, ll_to_earth(114.418546, -22.493892), 'V8O', 'AVAILABLE'),
+(36, 'Lined Ceramic Book', 3224, ll_to_earth(114.732374, -66.026829), 'V8W', 'AVAILABLE'),
+(67, 'Breathable Optical Laptop', 4595, ll_to_earth(-92.347616, 1.364463), 'V8U', 'AVAILABLE'),
+(84, 'Notebook', 7738, ll_to_earth(-98.254965, 60.73919), 'V8R', 'AVAILABLE'),
+(67, 'Notebook', 2514, ll_to_earth(58.993222, 88.268264), 'V8T', 'AVAILABLE'),
+(16, 'Lined Water Bottle', 4334, ll_to_earth(-169.90146, -61.310243), 'V8W', 'AVAILABLE'),
+(36, 'Laptop', 1486, ll_to_earth(134.559134, -80.499452), 'V8V', 'AVAILABLE'),
+(10, 'Lined Keyboard', 3224, ll_to_earth(38.817282, 34.49548), 'V8X', 'AVAILABLE'),
+(37, 'Breathable Fast Coffee Mug', 4706, ll_to_earth(151.701424, 64.697575), 'V9C', 'AVAILABLE'),
+(39, 'Tablet', 57, ll_to_earth(27.363209, 69.074748), 'V8Z', 'AVAILABLE'),
+(39, 'Touchscreen Tablet', 9831, ll_to_earth(134.68456, 52.158711), 'V9D', 'AVAILABLE'),
+(22, 'Tablet', 3403, ll_to_earth(43.425727, -62.769657), 'V8W', 'AVAILABLE'),
+(39, 'Lined Red Tablet', 5179, ll_to_earth(-18.835393, -72.194217), 'V8W', 'AVAILABLE'),
+(96, 'Breathable Insulated Headphones', 4980, ll_to_earth(70.198489, 1.902078), 'V9B', 'AVAILABLE'),
+(95, 'Mechanical Red Apple', 1698, ll_to_earth(-144.398997, -49.685194), 'V8S', 'AVAILABLE'),
+(26, 'Insulated Tablet', 3424, ll_to_earth(-71.624248, -32.046872), 'V8R', 'AVAILABLE'),
+(3, 'Book', 8022, ll_to_earth(-159.128413, 2.310799), 'V9D', 'AVAILABLE'),
+(5, 'High-Resolution Notebook', 3682, ll_to_earth(36.94033, 65.044403), 'V8V', 'AVAILABLE'),
+(88, 'Bicycle', 5489, ll_to_earth(-106.891147, -8.460027), 'V8V', 'AVAILABLE'),
+(84, 'Lightweight Tablet', 6221, ll_to_earth(-137.555666, 78.815562), 'V9A', 'AVAILABLE'),
+(22, 'Keyboard', 5942, ll_to_earth(-147.713878, -5.616232), 'V9A', 'AVAILABLE'),
+(34, 'Adjustable Multifunction Mouse', 9428, ll_to_earth(-94.400462, -17.019839), 'V8R', 'AVAILABLE'),
+(3, 'Coffee Mug', 9979, ll_to_earth(-128.803101, 64.174513), 'V8M', 'AVAILABLE'),
+(43, 'Lined Water Bottle', 4802, ll_to_earth(63.472852, -32.669447), 'V9C', 'AVAILABLE'),
+(83, 'Ballpoint Bicycle', 3143, ll_to_earth(-135.509464, -32.347993), 'V8M', 'AVAILABLE'),
+(40, 'Tablet', 7071, ll_to_earth(-113.763546, 71.658081), 'V9E', 'AVAILABLE'),
+(57, 'Pen', 4801, ll_to_earth(116.599183, 21.563347), 'V8O', 'AVAILABLE'),
+(49, 'Optical Tablet', 4812, ll_to_earth(-123.482624, 62.730754), 'V9D', 'AVAILABLE'),
+(96, 'High-Resolution Apple', 4204, ll_to_earth(93.774869, -23.465158), 'V9B', 'AVAILABLE'),
+(89, 'Mouse', 1636, ll_to_earth(131.569121, -3.592203), 'V9D', 'AVAILABLE'),
+(26, 'Optical Apple', 1338, ll_to_earth(-177.423823, 57.360758), 'V8X', 'AVAILABLE'),
+(11, 'Optical Durable Headphones', 3087, ll_to_earth(-23.043118, 22.553074), 'V8T', 'AVAILABLE'),
+(70, 'Printer', 2688, ll_to_earth(165.528704, -80.932207), 'V8V', 'AVAILABLE'),
+(72, 'Lined Mechanical Coffee Mug', 5810, ll_to_earth(-59.247127, -47.589208), 'V8W', 'AVAILABLE'),
+(77, 'Mechanical Durable Smartphone', 9598, ll_to_earth(-18.347174, -58.316266), 'V8R', 'AVAILABLE'),
+(40, 'Coffee Mug', 3010, ll_to_earth(-70.950636, -57.075665), 'V8N', 'AVAILABLE'),
+(74, 'Mouse', 7600, ll_to_earth(-117.134714, 12.1818), 'V9A', 'AVAILABLE'),
+(50, 'Mechanical Mechanical Water Bottle', 6788, ll_to_earth(-63.774289, -78.147661), 'V9D', 'AVAILABLE'),
+(49, 'Ergonomic Durable Apple', 9075, ll_to_earth(45.354597, -80.877717), 'V9C', 'AVAILABLE'),
+(47, 'Ergonomic Lamp', 3103, ll_to_earth(117.185329, -37.210611), 'V8R', 'AVAILABLE'),
+(91, 'Car', 1828, ll_to_earth(-98.909347, 7.482051), 'V9C', 'AVAILABLE'),
+(71, 'Optical Lined Keyboard', 4690, ll_to_earth(115.914401, -34.112817), 'V8S', 'AVAILABLE'),
+(98, 'Adjustable Insulated Car', 4423, ll_to_earth(-20.88495, 30.82749), 'V9C', 'AVAILABLE'),
+(42, 'Multifunction Sneakers', 6222, ll_to_earth(-154.964149, -78.761528), 'V9C', 'AVAILABLE'),
+(96, 'Keyboard', 8814, ll_to_earth(-16.881491, -24.551599), 'V9C', 'AVAILABLE'),
+(10, 'Desk Chair', 3726, ll_to_earth(82.573221, 88.105259), 'V8T', 'AVAILABLE'),
+(48, 'Portable Wireless Keyboard', 5888, ll_to_earth(-81.503886, -57.18477), 'V8T', 'AVAILABLE'),
+(25, 'Ceramic Mouse', 341, ll_to_earth(-106.413874, -53.822052), 'V9D', 'AVAILABLE'),
+(14, 'Durable Lamp', 5369, ll_to_earth(-123.618277, -17.940291), 'V8Y', 'AVAILABLE'),
+(87, 'Printer', 1424, ll_to_earth(-127.656406, -84.302463), 'V8P', 'AVAILABLE'),
+(61, 'Ergonomic Coffee Mug', 4603, ll_to_earth(-106.342591, -21.300996), 'V9D', 'AVAILABLE'),
+(81, 'Lined Durable Water Bottle', 2799, ll_to_earth(-2.63377, -18.983788), 'V8O', 'AVAILABLE'),
+(86, 'Portable Ergonomic Water Bottle', 5990, ll_to_earth(-87.005287, -39.301014), 'V8S', 'AVAILABLE'),
+(66, 'Smartphone', 9257, ll_to_earth(-175.340584, 1.223271), 'V8V', 'AVAILABLE'),
+(47, 'Breathable Coffee Mug', 1295, ll_to_earth(-16.610334, -10.85244), 'V8X', 'AVAILABLE'),
+(39, 'Fast Laptop', 9210, ll_to_earth(-81.340472, 50.814253), 'V8W', 'AVAILABLE'),
+(11, 'Desk Chair', 3035, ll_to_earth(63.951521, -27.412488), 'V8V', 'AVAILABLE'),
+(74, 'Notebook', 9503, ll_to_earth(-42.540903, -29.76302), 'V8N', 'AVAILABLE'),
+(12, 'Red Apple', 1631, ll_to_earth(-49.616559, 3.896179), 'V8S', 'AVAILABLE'),
+(25, 'Wireless Pen', 5649, ll_to_earth(69.317508, -53.883221), 'V9C', 'AVAILABLE'),
+(19, 'Monitor', 3771, ll_to_earth(-44.556193, -13.821957), 'V8Z', 'AVAILABLE'),
+(77, 'Printer', 1890, ll_to_earth(-49.954664, -60.399252), 'V8Y', 'AVAILABLE'),
+(68, 'Backpack', 9415, ll_to_earth(-30.287002, 21.893793), 'V8M', 'AVAILABLE'),
+(48, 'Wireless Portable Smartphone', 8506, ll_to_earth(-146.391802, -2.534295), 'V9D', 'AVAILABLE'),
+(43, 'Car', 7906, ll_to_earth(-99.56368, -0.990638), 'V8X', 'AVAILABLE'),
+(76, 'Notebook', 2258, ll_to_earth(42.263612, -53.385585), 'V8O', 'AVAILABLE'),
+(66, 'Educational Ballpoint Tablet', 2892, ll_to_earth(-22.727193, -16.523695), 'V8M', 'AVAILABLE'),
+(7, 'Multifunction Headphones', 9005, ll_to_earth(-149.372247, -61.270845), 'V8R', 'AVAILABLE'),
+(92, 'Red Printer', 2814, ll_to_earth(-116.687122, 70.457057), 'V9E', 'AVAILABLE'),
+(65, 'Portable Keyboard', 7883, ll_to_earth(157.222077, 59.801087), 'V8R', 'AVAILABLE'),
+(65, 'Multifunction Mouse', 3540, ll_to_earth(67.103925, 71.555622), 'V9B', 'AVAILABLE'),
+(13, 'Red Tablet', 9224, ll_to_earth(-176.416566, 66.791717), 'V8S', 'AVAILABLE'),
+(44, 'Mechanical Tablet', 1356, ll_to_earth(-173.857351, -1.134478), 'V8T', 'AVAILABLE'),
+(31, 'Ballpoint Multifunction Backpack', 5430, ll_to_earth(176.610229, -55.258), 'V8P', 'AVAILABLE'),
+(85, 'Wireless Ballpoint Pen', 4681, ll_to_earth(21.128228, -85.093107), 'V9C', 'AVAILABLE'),
+(69, 'Ergonomic Headphones', 5824, ll_to_earth(-34.887481, -21.077373), 'V8U', 'AVAILABLE'),
+(33, 'Car', 6546, ll_to_earth(-4.88568, -8.830223), 'V8Z', 'AVAILABLE'),
+(51, 'High-Resolution Fast Desk Chair', 1235, ll_to_earth(-34.494566, -75.813638), 'V9C', 'AVAILABLE'),
+(3, 'Touchscreen Ergonomic Printer', 7656, ll_to_earth(147.220899, 1.61867), 'V9E', 'AVAILABLE'),
+(82, 'Multifunction Red Laptop', 3773, ll_to_earth(89.762487, -2.838855), 'V8T', 'AVAILABLE'),
+(10, 'Adjustable Water Bottle', 6142, ll_to_earth(-82.815304, -76.688582), 'V8R', 'AVAILABLE'),
+(60, 'Laptop', 1391, ll_to_earth(12.829593, -8.823988), 'V9A', 'AVAILABLE'),
+(35, 'High-Resolution Printer', 6632, ll_to_earth(143.990146, 11.84564), 'V8Y', 'AVAILABLE'),
+(61, 'Ceramic Comfortable Sneakers', 8742, ll_to_earth(-88.407175, -21.089922), 'V8T', 'AVAILABLE'),
+(81, 'Wireless High-Resolution Lamp', 2688, ll_to_earth(147.485919, 26.975659), 'V8V', 'AVAILABLE'),
+(45, 'Monitor', 7970, ll_to_earth(101.221669, 87.549455), 'V8X', 'AVAILABLE'),
+(89, 'Breathable Lined Smartphone', 6515, ll_to_earth(-91.077387, 33.716264), 'V8U', 'AVAILABLE'),
+(94, 'Mechanical Book', 9331, ll_to_earth(-150.766682, -5.15336), 'V9A', 'AVAILABLE'),
+(76, 'High-Resolution Optical Book', 6081, ll_to_earth(108.342258, 58.070299), 'V8U', 'AVAILABLE'),
+(66, 'Lined Monitor', 6501, ll_to_earth(166.16384, -0.894982), 'V9B', 'AVAILABLE'),
+(87, 'Multifunction Optical Printer', 4254, ll_to_earth(-98.654265, -59.335531), 'V9A', 'AVAILABLE'),
+(97, 'Adjustable Insulated Book', 74, ll_to_earth(-70.039565, 3.630968), 'V9D', 'AVAILABLE'),
+(36, 'Coffee Mug', 7902, ll_to_earth(102.720861, -89.663106), 'V8N', 'AVAILABLE'),
+(36, 'Monitor', 9183, ll_to_earth(146.521938, -30.503322), 'V9E', 'AVAILABLE'),
+(11, 'Mechanical Ballpoint Printer', 2137, ll_to_earth(115.014192, 37.417237), 'V8Z', 'AVAILABLE'),
+(27, 'Laptop', 5753, ll_to_earth(70.604224, -53.217672), 'V8T', 'AVAILABLE'),
+(70, 'Ballpoint Lined Tablet', 6891, ll_to_earth(38.067434, 44.645388), 'V8N', 'AVAILABLE'),
+(52, 'Smartphone', 7936, ll_to_earth(-6.159456, 88.453681), 'V8W', 'AVAILABLE'),
+(52, 'Red Coffee Mug', 8422, ll_to_earth(-136.271657, 62.338999), 'V8Y', 'AVAILABLE'),
+(59, 'Breathable Durable Water Bottle', 1549, ll_to_earth(-170.580709, 37.782317), 'V8U', 'AVAILABLE'),
+(95, 'Ergonomic Apple', 9595, ll_to_earth(-6.419901, -0.686289), 'V9A', 'AVAILABLE'),
+(88, 'Smartphone', 7890, ll_to_earth(-17.818995, 32.652402), 'V8S', 'AVAILABLE'),
+(97, 'Coffee Mug', 7837, ll_to_earth(-173.131746, 68.53793), 'V9E', 'AVAILABLE'),
+(3, 'Apple', 318, ll_to_earth(-127.53987, 45.591136), 'V8P', 'AVAILABLE'),
+(15, 'Wireless Comfortable Apple', 9299, ll_to_earth(-86.778847, 41.778661), 'V8X', 'AVAILABLE'),
+(6, 'Fast Tablet', 5130, ll_to_earth(139.324364, -18.7971), 'V8U', 'AVAILABLE'),
+(59, 'Desk Chair', 2901, ll_to_earth(155.507144, 71.008578), 'V8N', 'AVAILABLE'),
+(98, 'Multifunction Fast Lamp', 80, ll_to_earth(114.446743, -51.438228), 'V8M', 'AVAILABLE'),
+(33, 'Car', 6836, ll_to_earth(-131.643526, -23.663292), 'V8M', 'AVAILABLE'),
+(28, 'Apple', 9821, ll_to_earth(-106.773142, 49.176367), 'V8P', 'AVAILABLE'),
+(77, 'Fast Lined Laptop', 2166, ll_to_earth(62.398371, 47.225532), 'V8M', 'AVAILABLE'),
+(6, 'Desk Chair', 4726, ll_to_earth(165.254063, -71.655002), 'V9B', 'AVAILABLE'),
+(50, 'Apple', 2398, ll_to_earth(78.266591, 36.025595), 'V9E', 'AVAILABLE'),
+(17, 'Optical Touchscreen Apple', 449, ll_to_earth(-138.201111, 64.678568), 'V8W', 'AVAILABLE'),
+(58, 'Ballpoint Wireless Printer', 7057, ll_to_earth(71.817023, 15.79173), 'V8M', 'AVAILABLE'),
+(43, 'Ballpoint Backpack', 408, ll_to_earth(45.323537, -34.878816), 'V8O', 'AVAILABLE'),
+(16, 'Tablet', 8384, ll_to_earth(3.088486, -83.535186), 'V8M', 'AVAILABLE'),
+(8, 'Lightweight Printer', 7846, ll_to_earth(-82.41986, -17.77366), 'V9E', 'AVAILABLE'),
+(31, 'Ceramic Ceramic Mouse', 3298, ll_to_earth(-28.130379, -2.391384), 'V8X', 'AVAILABLE'),
+(86, 'Tablet', 3658, ll_to_earth(-102.794473, 40.83832), 'V8S', 'AVAILABLE'),
+(55, 'Fast Car', 2911, ll_to_earth(-130.717322, -65.568509), 'V8N', 'AVAILABLE'),
+(68, 'Notebook', 8762, ll_to_earth(-16.441582, -86.426037), 'V8Y', 'AVAILABLE'),
+(84, 'Sneakers', 2881, ll_to_earth(-17.271961, -46.754864), 'V8N', 'AVAILABLE'),
+(50, 'Mouse', 2116, ll_to_earth(-112.145743, -58.202537), 'V9D', 'AVAILABLE'),
+(50, 'Educational Laptop', 3369, ll_to_earth(67.932202, 88.467425), 'V8X', 'AVAILABLE'),
+(62, 'Comfortable Mechanical Car', 3319, ll_to_earth(158.574413, 33.542716), 'V8U', 'AVAILABLE'),
+(46, 'Ceramic Desk Chair', 4143, ll_to_earth(-129.193262, -38.103657), 'V9A', 'AVAILABLE'),
+(71, 'Fast Bicycle', 9720, ll_to_earth(-17.084242, 6.513331), 'V8Y', 'AVAILABLE'),
+(59, 'Desk Chair', 2844, ll_to_earth(113.062893, -89.257823), 'V8V', 'AVAILABLE'),
+(85, 'Insulated Smartphone', 8074, ll_to_earth(104.812603, 85.81076), 'V9D', 'AVAILABLE'),
+(81, 'Book', 9251, ll_to_earth(-109.758139, 69.873782), 'V9D', 'AVAILABLE'),
+(89, 'Mechanical Keyboard', 8761, ll_to_earth(-13.664732, 39.041984), 'V8P', 'AVAILABLE'),
+(22, 'Wireless Smartphone', 137, ll_to_earth(-82.216309, -12.575461), 'V8X', 'AVAILABLE'),
+(45, 'Backpack', 6192, ll_to_earth(-145.755991, 64.975931), 'V8U', 'AVAILABLE'),
+(38, 'Touchscreen Laptop', 3572, ll_to_earth(141.564564, 0.067246), 'V8U', 'AVAILABLE'),
+(62, 'Smartphone', 8400, ll_to_earth(-160.505164, -33.609843), 'V9D', 'AVAILABLE'),
+(93, 'Wireless Laptop', 2589, ll_to_earth(21.286919, 5.883071), 'V8U', 'AVAILABLE'),
+(32, 'Monitor', 3925, ll_to_earth(-161.730576, -33.62441), 'V8Z', 'AVAILABLE'),
+(94, 'High-Resolution Multifunction Sneakers', 9770, ll_to_earth(-133.135435, -6.003724), 'V9A', 'AVAILABLE'),
+(53, 'Ballpoint Apple', 2816, ll_to_earth(-46.389146, -2.740746), 'V9E', 'AVAILABLE'),
+(17, 'Comfortable Portable Coffee Mug', 9864, ll_to_earth(141.104486, -9.463738), 'V8U', 'AVAILABLE'),
+(88, 'Mouse', 7215, ll_to_earth(-88.762529, -37.878068), 'V8N', 'AVAILABLE'),
+(85, 'Ballpoint Tablet', 6933, ll_to_earth(-18.745948, -79.949809), 'V9D', 'AVAILABLE'),
+(56, 'Insulated Coffee Mug', 94, ll_to_earth(46.669204, -4.908612), 'V8T', 'AVAILABLE'),
+(43, 'Durable Car', 7367, ll_to_earth(-70.845219, -13.430939), 'V9B', 'AVAILABLE'),
+(92, 'Ceramic Book', 859, ll_to_earth(133.185756, -24.446439), 'V8Y', 'AVAILABLE'),
+(62, 'Breathable Portable Headphones', 8063, ll_to_earth(-80.530585, 87.309618), 'V9C', 'AVAILABLE'),
+(72, 'Keyboard', 303, ll_to_earth(147.745079, 46.310165), 'V9D', 'AVAILABLE'),
+(53, 'Multifunction Wireless Car', 8023, ll_to_earth(98.326917, -65.799576), 'V8R', 'AVAILABLE'),
+(73, 'Optical Red Sneakers', 6897, ll_to_earth(-21.311963, 31.604891), 'V8O', 'AVAILABLE'),
+(1, 'Educational Smartphone', 337, ll_to_earth(-1.327899, 75.705713), 'V8T', 'AVAILABLE'),
+(46, 'Portable Coffee Mug', 4435, ll_to_earth(-47.912871, 30.826363), 'V8Y', 'AVAILABLE'),
+(97, 'Wireless Notebook', 3486, ll_to_earth(-10.615367, -57.598879), 'V9A', 'AVAILABLE'),
+(42, 'Red Backpack', 4350, ll_to_earth(-124.311914, 29.692473), 'V8P', 'AVAILABLE'),
+(68, 'Ballpoint Laptop', 4198, ll_to_earth(157.16778, -16.243399), 'V8S', 'AVAILABLE'),
+(41, 'Book', 9225, ll_to_earth(144.426118, -71.203164), 'V8Z', 'AVAILABLE'),
+(25, 'Adjustable Ballpoint Sneakers', 154, ll_to_earth(46.464162, 24.671929), 'V8S', 'AVAILABLE'),
+(31, 'Printer', 6870, ll_to_earth(-117.061542, -44.389295), 'V8M', 'AVAILABLE'),
+(7, 'Lined Water Bottle', 8045, ll_to_earth(-34.527339, 9.860238), 'V8N', 'AVAILABLE'),
+(71, 'Notebook', 3570, ll_to_earth(98.563295, -85.857084), 'V9E', 'AVAILABLE'),
+(25, 'Monitor', 6937, ll_to_earth(173.22768, 72.995568), 'V9C', 'AVAILABLE'),
+(12, 'Touchscreen Smartphone', 8640, ll_to_earth(-65.976724, 54.884128), 'V8P', 'AVAILABLE'),
+(40, 'Car', 7187, ll_to_earth(156.085062, -40.818166), 'V9A', 'AVAILABLE'),
+(83, 'Printer', 7314, ll_to_earth(169.580266, 53.318691), 'V8S', 'AVAILABLE'),
+(78, 'Wireless Apple', 4884, ll_to_earth(-145.370949, -40.977815), 'V9C', 'AVAILABLE'),
+(16, 'Lined Lightweight Monitor', 8644, ll_to_earth(-165.420766, -67.659246), 'V8Y', 'AVAILABLE'),
+(25, 'High-Resolution Notebook', 7777, ll_to_earth(-25.08975, -71.725796), 'V9D', 'AVAILABLE'),
+(9, 'Mouse', 6616, ll_to_earth(-171.556729, 33.208947), 'V8T', 'AVAILABLE'),
+(91, 'Printer', 6589, ll_to_earth(-89.581564, -76.209641), 'V8U', 'AVAILABLE'),
+(89, 'Adjustable Adjustable Tablet', 1736, ll_to_earth(49.399503, -56.315868), 'V9B', 'AVAILABLE'),
+(89, 'Notebook', 6550, ll_to_earth(-4.648078, 35.727814), 'V8T', 'AVAILABLE'),
+(58, 'Durable Mouse', 9411, ll_to_earth(-85.648633, -83.742163), 'V9A', 'AVAILABLE'),
+(90, 'Breathable Pen', 2943, ll_to_earth(-145.882047, 22.678579), 'V8V', 'AVAILABLE'),
+(46, 'Desk Chair', 1789, ll_to_earth(-105.957588, -85.596932), 'V9E', 'AVAILABLE'),
+(65, 'Portable Laptop', 1755, ll_to_earth(66.292293, -34.74067), 'V9C', 'AVAILABLE'),
+(39, 'Pen', 7389, ll_to_earth(94.253012, 44.503545), 'V8N', 'AVAILABLE'),
+(36, 'Lamp', 7842, ll_to_earth(-75.468552, 4.089498), 'V8X', 'AVAILABLE'),
+(44, 'Mechanical Fast Tablet', 6928, ll_to_earth(-30.220925, 60.442488), 'V9B', 'AVAILABLE'),
+(19, 'Red Keyboard', 3392, ll_to_earth(-46.671017, -9.180127), 'V8R', 'AVAILABLE'),
+(59, 'Educational Printer', 2071, ll_to_earth(-100.315914, 38.82659), 'V8R', 'AVAILABLE'),
+(7, 'Educational Car', 4394, ll_to_earth(-38.5998, -71.387639), 'V8T', 'AVAILABLE'),
+(33, 'Monitor', 2803, ll_to_earth(178.403068, -74.557001), 'V9A', 'AVAILABLE'),
+(4, 'Comfortable Multifunction Headphones', 6740, ll_to_earth(44.532026, -54.416335), 'V8O', 'AVAILABLE'),
+(40, 'Wireless Lined Apple', 4915, ll_to_earth(133.901591, -46.742797), 'V8Z', 'AVAILABLE'),
+(90, 'Lined Apple', 3822, ll_to_earth(26.655283, -14.905334), 'V8N', 'AVAILABLE'),
+(82, 'Lightweight Lamp', 4244, ll_to_earth(-17.13959, -61.995458), 'V8Z', 'AVAILABLE'),
+(69, 'Keyboard', 8355, ll_to_earth(135.888727, 63.387214), 'V8P', 'AVAILABLE'),
+(77, 'Ceramic Lamp', 9171, ll_to_earth(-102.962684, 29.581886), 'V8Y', 'AVAILABLE'),
+(88, 'Multifunction Laptop', 6382, ll_to_earth(-149.424062, 45.07386), 'V8V', 'AVAILABLE'),
+(43, 'Tablet', 7136, ll_to_earth(-47.826665, 25.048555), 'V8O', 'AVAILABLE'),
+(41, 'Ceramic Ergonomic Notebook', 8400, ll_to_earth(121.704129, -57.626167), 'V8V', 'AVAILABLE'),
+(29, 'Tablet', 8689, ll_to_earth(154.70249, -24.180378), 'V8N', 'AVAILABLE'),
+(92, 'Mechanical Apple', 4029, ll_to_earth(3.716313, 65.574186), 'V9D', 'AVAILABLE'),
+(78, 'Durable Adjustable Bicycle', 3376, ll_to_earth(102.585148, -42.089097), 'V8Z', 'AVAILABLE'),
+(2, 'Apple', 1514, ll_to_earth(-176.383753, 72.868655), 'V9D', 'AVAILABLE'),
+(22, 'Portable Breathable Pen', 3855, ll_to_earth(-56.530856, 9.443155), 'V8S', 'AVAILABLE'),
+(2, 'Durable Book', 7242, ll_to_earth(-128.485156, -5.454691), 'V8Z', 'AVAILABLE'),
+(43, 'Multifunction Apple', 3181, ll_to_earth(-86.100956, 6.964333), 'V8M', 'AVAILABLE'),
+(32, 'Red Adjustable Smartphone', 503, ll_to_earth(-18.979136, -39.59135), 'V8R', 'AVAILABLE'),
+(53, 'Lightweight Durable Water Bottle', 731, ll_to_earth(72.090408, 3.486632), 'V9D', 'AVAILABLE'),
+(23, 'Touchscreen Sneakers', 239, ll_to_earth(-32.200839, 2.99053), 'V8V', 'AVAILABLE'),
+(85, 'Monitor', 556, ll_to_earth(108.065839, -5.622465), 'V9B', 'AVAILABLE'),
+(43, 'Water Bottle', 1741, ll_to_earth(45.968126, -9.541852), 'V8Z', 'AVAILABLE'),
+(17, 'Lightweight Fast Mouse', 3869, ll_to_earth(101.778601, -54.473962), 'V8U', 'AVAILABLE'),
+(43, 'Red Adjustable Book', 8233, ll_to_earth(0.006673, 60.229155), 'V8Z', 'AVAILABLE'),
+(36, 'Comfortable Tablet', 2421, ll_to_earth(160.217347, -17.731323), 'V9C', 'AVAILABLE'),
+(22, 'Ergonomic Book', 6646, ll_to_earth(-88.840156, 58.365342), 'V9A', 'AVAILABLE'),
+(78, 'Headphones', 9000, ll_to_earth(6.418067, 4.859799), 'V8T', 'AVAILABLE'),
+(98, 'Book', 3591, ll_to_earth(-172.023501, -22.089963), 'V8U', 'AVAILABLE'),
+(62, 'Book', 1456, ll_to_earth(111.277153, 21.844102), 'V8T', 'AVAILABLE'),
+(58, 'Insulated Optical Notebook', 5050, ll_to_earth(-76.307241, 75.780598), 'V8P', 'AVAILABLE'),
+(73, 'Breathable Optical Book', 4902, ll_to_earth(55.088725, -77.910359), 'V8R', 'AVAILABLE'),
+(14, 'Multifunction Touchscreen Backpack', 3645, ll_to_earth(53.25546, 6.747933), 'V8W', 'AVAILABLE'),
+(40, 'Adjustable Red Monitor', 283, ll_to_earth(-75.118114, 20.31199), 'V8R', 'AVAILABLE'),
+(37, 'Lamp', 5617, ll_to_earth(121.804464, 53.439584), 'V8X', 'AVAILABLE'),
+(98, 'Lined Durable Bicycle', 9369, ll_to_earth(-146.210185, -72.547656), 'V9D', 'AVAILABLE'),
+(85, 'Ergonomic Tablet', 5373, ll_to_earth(132.184167, -67.263295), 'V8Z', 'AVAILABLE'),
+(8, 'Durable Red Headphones', 7292, ll_to_earth(-3.990968, -24.10608), 'V8M', 'AVAILABLE'),
+(4, 'Headphones', 4290, ll_to_earth(22.103047, -9.707748), 'V9A', 'AVAILABLE'),
+(10, 'Mechanical Backpack', 488, ll_to_earth(-143.56652, 8.001442), 'V8R', 'AVAILABLE'),
+(44, 'Mechanical Red Sneakers', 8648, ll_to_earth(-118.794391, -37.341376), 'V9D', 'AVAILABLE'),
+(10, 'Fast Durable Sneakers', 2931, ll_to_earth(133.053424, -37.364286), 'V9B', 'AVAILABLE'),
+(19, 'Printer', 237, ll_to_earth(41.445278, -1.89723), 'V8O', 'AVAILABLE'),
+(58, 'Wireless Adjustable Mouse', 5950, ll_to_earth(-14.478042, -83.241605), 'V8T', 'AVAILABLE'),
+(8, 'Laptop', 1254, ll_to_earth(89.163233, -62.960143), 'V9C', 'AVAILABLE'),
+(42, 'Lightweight Wireless Notebook', 1102, ll_to_earth(75.622893, 44.291206), 'V8Y', 'AVAILABLE'),
+(74, 'Breathable Portable Car', 5460, ll_to_earth(165.692715, -78.092584), 'V9E', 'AVAILABLE'),
+(66, 'Insulated Smartphone', 4435, ll_to_earth(-62.210128, 33.861564), 'V9A', 'AVAILABLE'),
+(45, 'Book', 4108, ll_to_earth(-165.846859, 78.141319), 'V9D', 'AVAILABLE'),
+(20, 'Educational Ceramic Printer', 990, ll_to_earth(26.319631, 41.404486), 'V8Y', 'AVAILABLE'),
+(49, 'Lamp', 9349, ll_to_earth(10.872811, -16.112401), 'V8Y', 'AVAILABLE'),
+(33, 'Sneakers', 4451, ll_to_earth(-60.15206, 69.876196), 'V8Y', 'AVAILABLE'),
+(11, 'Breathable Multifunction Bicycle', 401, ll_to_earth(29.516745, -76.230678), 'V9E', 'AVAILABLE'),
+(45, 'Printer', 9197, ll_to_earth(-114.885032, -58.988766), 'V9E', 'AVAILABLE'),
+(25, 'Lightweight Ballpoint Desk Chair', 3183, ll_to_earth(98.294733, 24.794736), 'V9E', 'AVAILABLE'),
+(40, 'Optical Smartphone', 2239, ll_to_earth(-154.217275, 43.618414), 'V8X', 'AVAILABLE'),
+(77, 'Ballpoint Durable Keyboard', 6719, ll_to_earth(-94.861436, 89.780529), 'V8V', 'AVAILABLE'),
+(43, 'Durable Coffee Mug', 4274, ll_to_earth(107.258939, 8.986187), 'V8T', 'AVAILABLE'),
+(67, 'Monitor', 2746, ll_to_earth(-52.342194, 31.201929), 'V8W', 'AVAILABLE'),
+(39, 'Lamp', 6840, ll_to_earth(-115.829786, -77.307333), 'V8S', 'AVAILABLE'),
+(95, 'Adjustable Notebook', 4062, ll_to_earth(121.257489, 22.877749), 'V8O', 'AVAILABLE'),
+(56, 'Water Bottle', 5627, ll_to_earth(126.013734, -25.478902), 'V8Y', 'AVAILABLE'),
+(14, 'Lined Headphones', 7115, ll_to_earth(-41.697365, -65.848248), 'V8P', 'AVAILABLE'),
+(72, 'High-Resolution Book', 2382, ll_to_earth(179.014353, -66.347074), 'V8W', 'AVAILABLE'),
+(9, 'Optical Insulated Monitor', 7270, ll_to_earth(0.126932, 52.060127), 'V9C', 'AVAILABLE'),
+(81, 'Lined Multifunction Coffee Mug', 4410, ll_to_earth(-151.95981, 1.078832), 'V9A', 'AVAILABLE'),
+(26, 'Portable Ergonomic Pen', 156, ll_to_earth(-76.933688, 20.5033), 'V9E', 'AVAILABLE'),
+(79, 'Ergonomic Portable Book', 2226, ll_to_earth(90.284135, -40.626636), 'V8Z', 'AVAILABLE'),
+(9, 'Wireless Bicycle', 736, ll_to_earth(-108.493647, -48.733957), 'V9B', 'AVAILABLE'),
+(54, 'Lamp', 4757, ll_to_earth(5.495035, 12.130586), 'V8Z', 'AVAILABLE'),
+(22, 'Mechanical Lined Book', 4192, ll_to_earth(-7.863809, -25.840248), 'V8U', 'AVAILABLE'),
+(82, 'Fast Touchscreen Smartphone', 6284, ll_to_earth(120.229847, 56.212079), 'V8Y', 'AVAILABLE'),
+(97, 'Touchscreen Ballpoint Coffee Mug', 7528, ll_to_earth(-5.763566, 10.207079), 'V8Z', 'AVAILABLE'),
+(11, 'Educational Insulated Book', 4231, ll_to_earth(27.554841, -64.732224), 'V8Z', 'AVAILABLE'),
+(60, 'Bicycle', 29, ll_to_earth(96.808692, -37.840277), 'V8S', 'AVAILABLE'),
+(14, 'Touchscreen Portable Water Bottle', 7293, ll_to_earth(-10.028606, -56.906917), 'V9E', 'AVAILABLE'),
+(63, 'Car', 1231, ll_to_earth(102.27132, 67.816865), 'V8N', 'AVAILABLE'),
+(37, 'Optical Fast Tablet', 3322, ll_to_earth(-97.914402, 32.263296), 'V9B', 'AVAILABLE'),
+(73, 'Touchscreen Monitor', 7489, ll_to_earth(96.112191, -18.231977), 'V8Z', 'AVAILABLE'),
+(28, 'Lightweight Notebook', 1708, ll_to_earth(-49.849535, 40.909741), 'V9C', 'AVAILABLE'),
+(61, 'Educational Portable Tablet', 748, ll_to_earth(1.655335, 28.598556), 'V8Z', 'AVAILABLE'),
+(7, 'Ergonomic Educational Headphones', 6039, ll_to_earth(54.439827, 39.312515), 'V9B', 'AVAILABLE'),
+(76, 'Comfortable Breathable Smartphone', 3276, ll_to_earth(-65.780496, 86.133793), 'V8N', 'AVAILABLE'),
+(66, 'Optical Optical Book', 9596, ll_to_earth(-102.189319, -25.965302), 'V8W', 'AVAILABLE'),
+(49, 'Adjustable Ceramic Smartphone', 7838, ll_to_earth(5.903529, 52.130545), 'V9B', 'AVAILABLE'),
+(38, 'Laptop', 3071, ll_to_earth(30.342992, 70.026246), 'V9E', 'AVAILABLE'),
+(2, 'Desk Chair', 8903, ll_to_earth(-141.681386, 75.338588), 'V8M', 'AVAILABLE'),
+(74, 'Adjustable Durable Coffee Mug', 3852, ll_to_earth(-76.254116, -0.208872), 'V9B', 'AVAILABLE'),
+(18, 'High-Resolution Laptop', 3793, ll_to_earth(-85.525782, -85.03994), 'V8V', 'AVAILABLE'),
+(39, 'Monitor', 7724, ll_to_earth(-170.650546, -87.042879), 'V8O', 'AVAILABLE'),
+(65, 'Wireless Coffee Mug', 6957, ll_to_earth(50.302097, 26.603292), 'V9C', 'AVAILABLE'),
+(32, 'Fast Fast Laptop', 1154, ll_to_earth(-56.346473, -7.426702), 'V8T', 'AVAILABLE'),
+(38, 'Coffee Mug', 1030, ll_to_earth(-57.619321, -9.015701), 'V8V', 'AVAILABLE'),
+(89, 'Red Mechanical Tablet', 7478, ll_to_earth(153.384935, 31.294061), 'V8R', 'AVAILABLE'),
+(69, 'Headphones', 8137, ll_to_earth(-54.209898, 77.688282), 'V9D', 'AVAILABLE'),
+(75, 'Wireless Optical Desk Chair', 3945, ll_to_earth(2.016298, 51.501825), 'V8O', 'AVAILABLE'),
+(22, 'Lightweight Printer', 2721, ll_to_earth(57.80338, -59.052825), 'V9A', 'AVAILABLE'),
+(77, 'Adjustable Water Bottle', 3932, ll_to_earth(53.641375, -45.686426), 'V8T', 'AVAILABLE'),
+(69, 'Mechanical Lamp', 4058, ll_to_earth(-126.052384, 46.014957), 'V9A', 'AVAILABLE'),
+(79, 'Multifunction Breathable Pen', 5177, ll_to_earth(-80.13641, -20.53903), 'V8S', 'AVAILABLE'),
+(29, 'Breathable Mechanical Headphones', 6015, ll_to_earth(125.202178, 29.731829), 'V8P', 'AVAILABLE'),
+(92, 'Ergonomic Sneakers', 7562, ll_to_earth(-77.255791, 61.13223), 'V8V', 'AVAILABLE'),
+(84, 'Laptop', 8814, ll_to_earth(-155.446084, -14.024498), 'V8P', 'AVAILABLE'),
+(40, 'Tablet', 1153, ll_to_earth(89.15699, 57.148668), 'V8O', 'AVAILABLE'),
+(14, 'Fast Durable Backpack', 2574, ll_to_earth(-60.999252, 79.323316), 'V8Z', 'AVAILABLE'),
+(54, 'Bicycle', 5311, ll_to_earth(-31.558768, -81.577453), 'V8S', 'AVAILABLE'),
+(35, 'Lightweight Printer', 7994, ll_to_earth(-85.64271, -26.169514), 'V8U', 'AVAILABLE'),
+(99, 'Multifunction Backpack', 1334, ll_to_earth(36.766859, 31.047741), 'V8O', 'AVAILABLE'),
+(46, 'Ballpoint Mouse', 2522, ll_to_earth(119.588144, 34.957087), 'V8V', 'AVAILABLE'),
+(5, 'Educational Lined Notebook', 1457, ll_to_earth(81.677214, 54.960368), 'V9C', 'AVAILABLE'),
+(58, 'Ergonomic Smartphone', 7526, ll_to_earth(106.262705, -54.033058), 'V8W', 'AVAILABLE'),
+(36, 'Ceramic Car', 5512, ll_to_earth(134.370411, -26.125904), 'V8Z', 'AVAILABLE'),
+(41, 'Comfortable Tablet', 2629, ll_to_earth(-51.403152, -45.124978), 'V8O', 'AVAILABLE'),
+(55, 'Red Water Bottle', 3048, ll_to_earth(-157.020227, 62.222977), 'V9E', 'AVAILABLE'),
+(2, 'High-Resolution Coffee Mug', 4229, ll_to_earth(15.302116, -42.27327), 'V8R', 'AVAILABLE'),
+(71, 'Insulated Ceramic Backpack', 3083, ll_to_earth(57.596089, 77.500889), 'V8Z', 'AVAILABLE'),
+(51, 'High-Resolution Tablet', 757, ll_to_earth(73.510017, 81.198305), 'V8Y', 'AVAILABLE'),
+(57, 'Portable Pen', 9131, ll_to_earth(61.859829, -65.499401), 'V9D', 'AVAILABLE'),
+(93, 'Bicycle', 8295, ll_to_earth(49.830923, 58.021515), 'V8M', 'AVAILABLE'),
+(66, 'Bicycle', 1947, ll_to_earth(-88.106521, -46.599248), 'V9D', 'AVAILABLE'),
+(18, 'High-Resolution Optical Car', 481, ll_to_earth(-12.84491, -22.828112), 'V8Y', 'AVAILABLE'),
+(15, 'Adjustable Comfortable Laptop', 6444, ll_to_earth(-149.548676, 41.071865), 'V9A', 'AVAILABLE'),
+(83, 'Wireless Printer', 8434, ll_to_earth(-90.151012, -1.891913), 'V8U', 'AVAILABLE'),
+(85, 'Headphones', 9755, ll_to_earth(72.255657, -32.131309), 'V8R', 'AVAILABLE'),
+(33, 'Lightweight Printer', 8840, ll_to_earth(-95.095761, 3.888643), 'V9E', 'AVAILABLE'),
+(17, 'Coffee Mug', 33, ll_to_earth(108.675356, -2.993872), 'V8Y', 'AVAILABLE'),
+(49, 'Lightweight Wireless Pen', 701, ll_to_earth(108.6399, -43.076656), 'V9A', 'AVAILABLE'),
+(95, 'Car', 1487, ll_to_earth(-56.30307, 77.322827), 'V9B', 'AVAILABLE'),
+(9, 'Multifunction Smartphone', 4804, ll_to_earth(-140.73784, -51.485058), 'V9A', 'AVAILABLE'),
+(69, 'Fast Car', 7196, ll_to_earth(-114.262411, 87.023391), 'V8W', 'AVAILABLE'),
+(8, 'Book', 8001, ll_to_earth(163.090479, 4.858417), 'V8U', 'AVAILABLE'),
+(16, 'Bicycle', 4304, ll_to_earth(19.042297, -77.270397), 'V9A', 'AVAILABLE'),
+(66, 'Lined Adjustable Backpack', 3074, ll_to_earth(-109.196347, -83.885913), 'V9C', 'AVAILABLE'),
+(70, 'Coffee Mug', 5982, ll_to_earth(-119.681924, 20.474156), 'V8P', 'AVAILABLE'),
+(33, 'Lined Touchscreen Printer', 2520, ll_to_earth(-56.52363, 19.786988), 'V9A', 'AVAILABLE'),
+(67, 'Monitor', 224, ll_to_earth(-142.167385, 34.049086), 'V8R', 'AVAILABLE'),
+(60, 'Notebook', 6206, ll_to_earth(-129.622639, -83.167165), 'V8T', 'AVAILABLE'),
+(49, 'Red Wireless Desk Chair', 9825, ll_to_earth(142.983658, 43.165832), 'V8V', 'AVAILABLE'),
+(74, 'Mechanical High-Resolution Keyboard', 7417, ll_to_earth(-161.476804, -67.552503), 'V8M', 'AVAILABLE'),
+(79, 'Tablet', 7967, ll_to_earth(-97.690477, -67.101531), 'V9E', 'AVAILABLE'),
+(2, 'Multifunction High-Resolution Pen', 4040, ll_to_earth(52.053915, 0.108587), 'V8M', 'AVAILABLE');
 
 
 -- Insert dummy data into Chats table
 INSERT INTO Chats (seller, buyer, listing_id)
 VALUES
 (1, 2, 1),
-(2, 1, 2)
-(61, 4, 226)
-(40, 39, 584)
-(18, 71, 28) 
-(23, 57, 288)
-(22, 92, 55) 
-(17, 55, 490)
-(76, 58, 677)
-(56, 73, 458)
-(35, 90, 466)
-(64, 34, 420)
-(21, 33, 979)
-(5, 76, 362) 
-(96, 20, 591)
-(82, 59, 187)
-(21, 38, 295)
-(54, 68, 882)
-(75, 50, 564)
-(67, 27, 201)
-(93, 87, 540)
-(95, 6, 962)
-(87, 12, 607)
-(25, 76, 20)
-(47, 41, 1)
-(41, 14, 6)
-(51, 53, 13)
-(56, 81, 999)
-(34, 16, 893)
-(14, 10, 523)
-(17, 2, 206)
-(83, 70, 877)
-(65, 31, 129)
-(75, 67, 779)
-(88, 76, 483)
-(27, 98, 465)
-(35, 10, 869)
-(72, 55, 873)
-(81, 46, 532)
-(35, 8, 495)
-(66, 68, 578)
-(33, 33, 769)
-(95, 59, 688)
-(69, 88, 346)
-(49, 90, 838)
-(58, 51, 403)
-(25, 80, 42)
-(64, 10, 302)
-(63, 23, 590)
-(66, 10, 837)
-(69, 98, 222)
-(64, 9, 116)
-(45, 35, 207)
-(67, 53, 706)
-(76, 53, 491)
-(13, 36, 971)
-(58, 34, 922)
-(67, 74, 351)
-(10, 98, 104)
-(23, 13, 878)
-(33, 51, 540)
-(31, 10, 641)
-(11, 51, 4)
-(24, 55, 468)
-(76, 98, 950)
-(78, 60, 621)
-(43, 68, 115)
-(58, 4, 223)
-(59, 35, 635)
-(50, 14, 541)
-(17, 25, 993)
-(46, 19, 124)
-(61, 92, 107)
-(13, 3, 710)
-(37, 87, 345)
-(5, 24, 548)
-(68, 55, 605)
-(28, 39, 879)
-(19, 18, 258)
-(98, 68, 207)
-(46, 15, 747)
-(56, 65, 426)
-(24, 32, 685)
-(7, 49, 551)
-(90, 65, 979)
-(18, 13, 879)
-(43, 71, 836)
-(31, 45, 223)
-(88, 79, 698)
-(95, 54, 680)
-(21, 10, 631)
-(5, 49, 173)
-(21, 39, 816)
-(38, 10, 921)
-(33, 57, 199)
-(79, 73, 901)
-(56, 60, 375)
-(66, 16, 810)
-(90, 25, 20)
-(76, 74, 498)
-(63, 17, 143)
-(18, 30, 551);
+(2, 1, 2),
+(97, 83, 239),
+(22, 61, 442),
+(12, 33, 873),
+(39, 8, 707), 
+(46, 83, 393),
+(9, 6, 636),  
+(21, 31, 967),
+(76, 58, 355),
+(70, 51, 400),
+(56, 58, 316),
+(52, 46, 728),
+(99, 71, 764),
+(6, 24, 534), 
+(28, 79, 911),
+(59, 89, 940),
+(25, 29, 785),
+(67, 36, 310),
+(35, 68, 590),
+(56, 67, 666),
+(65, 75, 436),
+(88, 42, 878),
+(58, 50, 419),
+(45, 37, 33), 
+(74, 60, 83), 
+(21, 2, 168), 
+(28, 63, 686),
+(76, 10, 251),
+(63, 61, 884),
+(7, 61, 49),  
+(39, 12, 418),
+(72, 34, 306),
+(42, 19, 428),
+(73, 36, 13),
+(94, 32, 440),
+(22, 57, 284),
+(36, 88, 878),
+(28, 17, 700),
+(24, 73, 422),
+(90, 44, 993),
+(96, 64, 230),
+(1, 73, 680),
+(58, 26, 493),
+(69, 88, 697),
+(32, 14, 420),
+(83, 53, 984),
+(68, 67, 634),
+(98, 14, 151),
+(32, 10, 351),
+(68, 55, 825),
+(2, 51, 574),
+(57, 93, 646),
+(38, 74, 27),
+(42, 72, 392),
+(85, 2, 241),
+(40, 21, 310),
+(26, 75, 371),
+(91, 42, 855),
+(69, 60, 589),
+(63, 96, 625),
+(6, 33, 578),
+(41, 85, 909),
+(12, 28, 942),
+(91, 23, 206),
+(4, 98, 981),
+(65, 45, 903),
+(65, 56, 588),
+(76, 43, 991),
+(72, 24, 653),
+(66, 38, 34),
+(84, 41, 422),
+(72, 14, 418),
+(9, 75, 99),
+(7, 28, 402),
+(32, 78, 500),
+(66, 12, 735),
+(14, 4, 966),
+(3, 39, 132),
+(89, 83, 979),
+(31, 64, 862),
+(52, 58, 337),
+(3, 5, 818),
+(37, 74, 996),
+(73, 55, 51),
+(61, 46, 749),
+(43, 6, 620),
+(40, 23, 908),
+(9, 17, 180),
+(39, 39, 700),
+(47, 60, 92),
+(66, 16, 194),
+(41, 12, 685),
+(31, 80, 865),
+(33, 11, 925),
+(27, 38, 504),
+(26, 27, 622),
+(38, 4, 442),
+(36, 27, 635),
+(66, 89, 40),
+(56, 23, 978),
+(66, 11, 255);
 
 -- Insert dummy data into Messages table
 INSERT INTO Messages (chat_id, sender_id, message_content, created_on)
 VALUES
 (2, 1, 'Is the bicycle still available?', '2024-06-25T02:20:33.197311+00:00'),
-(1, 2, 'Can you lower the price for the laptop?', '2024-06-25T02:20:48.554520+00:00')
-(89, 25, 'Any issues I should know about?', '2022-2-27T02:19:32.816610+00:00')
-(65, 24, 'Is the price flexible?', '1978-7-7T02:19:32.816610+00:00')
-(84, 22, 'Can I see this in person before buying?', '1972-7-4T02:19:32.816610+00:00')
-(64, 92, 'Can I see this in person before buying?', '1975-1-14T02:19:32.816610+00:00')
-(43, 5, 'Has it been in storage long?', '1977-2-26T02:19:32.816610+00:00')
-(47, 6, 'Does it work okay?', '1997-4-11T02:19:32.816610+00:00')
-(66, 20, 'Any accessories with it?', '2010-8-3T02:19:32.816610+00:00')
-(3, 92, 'What's the exact model number?', '2013-10-10T02:19:32.816610+00:00')
-(11, 58, 'Has it been in storage long?', '1990-9-11T02:19:32.816610+00:00')
-(46, 92, 'Can you tell me more about the condition of this?', '1970-7-2T02:19:32.816610+00:00')
-(59, 58, 'What's your return policy?', '1997-6-20T02:19:32.816610+00:00')
-(27, 11, 'Is there a warranty?', '1986-7-27T02:19:32.816610+00:00')
-(2, 47, 'Does it come from a smoke-free home?', '1973-7-4T02:19:32.816610+00:00')
-(68, 83, 'What's the exact model number?', '1983-9-7T02:19:32.816610+00:00')
-(20, 94, 'Any accessories with it?', '2007-7-4T02:19:32.816610+00:00')
-(5, 67, 'Does it come from a smoke-free home?', '1984-2-13T02:19:32.816610+00:00')
-(45, 10, 'Does it come from a smoke-free home?', '1974-1-15T02:19:32.816610+00:00')
-(41, 80, 'Can I pick this up locally?', '1974-9-2T02:19:32.816610+00:00')
-(34, 59, 'What's your return policy?', '1982-4-13T02:19:32.816610+00:00')
-(84, 34, 'Any issues I should know about?', '1978-1-24T02:19:32.816610+00:00')
-(4, 9, 'Can I see this in person before buying?', '1989-9-25T02:19:32.816610+00:00')
-(4, 29, 'Can I see this in person before buying?', '1985-1-3T02:19:32.816610+00:00')
-(53, 38, 'How old is this item?', '1997-10-22T02:19:32.816610+00:00')
-(78, 87, 'Is this the final price, or are there extra fees?', '1987-11-26T02:19:32.816610+00:00')
-(26, 10, 'Does it work okay?', '1997-5-20T02:19:32.816610+00:00')
-(33, 6, 'Has it been in storage long?', '2006-11-13T02:19:32.816610+00:00')
-(16, 20, 'Do you have more pics?', '1977-4-21T02:19:32.816610+00:00')
-(53, 72, 'Can I pick this up locally?', '1985-9-21T02:19:32.816610+00:00')
-(94, 54, 'Can I pick this up locally?', '2021-10-6T02:19:32.816610+00:00')
-(59, 89, 'Is the original packaging included?', '1996-4-27T02:19:32.816610+00:00')
-(31, 65, 'Has it been repaired before?', '1975-1-21T02:19:32.816610+00:00')
-(75, 10, 'Why are you selling it?', '1991-1-19T02:19:32.816610+00:00')
-(18, 53, 'Is there a user manual included?', '2006-7-24T02:19:32.816610+00:00')
-(31, 70, 'Does it come from a smoke-free home?', '1981-5-12T02:19:32.816610+00:00')
-(71, 62, 'Is this authentic?', '2006-7-8T02:19:32.816610+00:00')
-(96, 65, 'What's your return policy?', '1993-11-14T02:19:32.816610+00:00')
-(61, 72, 'Does it come from a smoke-free home?', '2008-9-1T02:19:32.816610+00:00')
-(4, 61, 'Is this the final price, or are there extra fees?', '2014-7-7T02:19:32.816610+00:00')
-(26, 92, 'Is this the final price, or are there extra fees?', '1979-3-11T02:19:32.816610+00:00')
-(80, 95, 'Is the price flexible?', '1974-1-21T02:19:32.816610+00:00')
-(83, 83, 'Has it been in storage long?', '2020-2-24T02:19:32.816610+00:00')
-(83, 1, 'Is the price flexible?', '2010-11-23T02:19:32.816610+00:00')
-(56, 22, 'Do you take lower offers?', '1977-4-5T02:19:32.816610+00:00')
-(1, 21, 'Any accessories with it?', '2022-11-1T02:19:32.816610+00:00')
-(42, 60, 'Why are you selling it?', '1971-1-13T02:19:32.816610+00:00')
-(38, 88, 'Does it work okay?', '2003-4-16T02:19:32.816610+00:00')
-(5, 73, 'Can I pick this up locally?', '2010-1-23T02:19:32.816610+00:00')
-(24, 47, 'Is it pet-friendly?', '2011-9-6T02:19:32.816610+00:00')
-(41, 84, 'Is this authentic?', '2011-10-24T02:19:32.816610+00:00')
-(92, 1, 'Why are you selling it?', '2006-6-27T02:19:32.816610+00:00')
-(76, 3, 'What's your return policy?', '2021-7-23T02:19:32.816610+00:00')
-(72, 83, 'Is there a warranty?', '2002-5-18T02:19:32.816610+00:00')
-(71, 54, 'Has it been repaired before?', '2023-6-20T02:19:32.816610+00:00')
-(81, 7, 'What's the exact model number?', '1986-5-14T02:19:32.816610+00:00')
-(54, 11, 'Do you take lower offers?', '2015-7-9T02:19:32.816610+00:00')
-(28, 72, 'Has it been in storage long?', '1986-4-4T02:19:32.816610+00:00')
-(58, 98, 'Any accessories with it?', '1995-8-20T02:19:32.816610+00:00')
-(63, 69, 'How old is this item?', '2011-2-13T02:19:32.816610+00:00')
-(52, 23, 'Is there a user manual included?', '2014-11-13T02:19:32.816610+00:00')
-(57, 73, 'Does it come from a smoke-free home?', '1998-6-13T02:19:32.816610+00:00')
-(45, 23, 'Any issues I should know about?', '1984-1-9T02:19:32.816610+00:00')
-(85, 84, 'Why are you selling it?', '1978-10-10T02:19:32.816610+00:00')
-(97, 45, 'Is the original packaging included?', '2016-6-20T02:19:32.816610+00:00')
-(48, 4, 'Why are you selling it?', '2004-9-1T02:19:32.816610+00:00')
-(73, 10, 'Does it work okay?', '2000-11-20T02:19:32.816610+00:00')
-(90, 27, 'Why are you selling it?', '1979-9-17T02:19:32.816610+00:00')
-(45, 34, 'Is this the final price, or are there extra fees?', '1994-8-26T02:19:32.816610+00:00')
-(49, 91, 'Is the price flexible?', '1996-11-27T02:19:32.816610+00:00')
-(89, 47, 'Do you take lower offers?', '2001-6-3T02:19:32.816610+00:00')
-(33, 89, 'Is there a warranty?', '2000-5-22T02:19:32.816610+00:00')
-(80, 2, 'How old is this item?', '2019-3-8T02:19:32.816610+00:00')
-(48, 36, 'Has it been repaired before?', '2001-9-8T02:19:32.816610+00:00')
-(39, 57, 'Why are you selling it?', '1983-1-2T02:19:32.816610+00:00')
-(94, 83, 'Can you tell me more about the condition of this?', '2019-10-26T02:19:32.816610+00:00')
-(26, 95, 'Is there a user manual included?', '1985-3-14T02:19:32.816610+00:00')
-(64, 14, 'Any accessories with it?', '1998-6-21T02:19:32.816610+00:00')
-(14, 12, 'Has it been repaired before?', '2015-10-25T02:19:32.816610+00:00')
-(40, 6, 'Is it pet-friendly?', '1985-4-24T02:19:32.816610+00:00')
-(71, 97, 'Is there a user manual included?', '1975-6-22T02:19:32.816610+00:00')
-(1, 25, 'Has it been in storage long?', '1973-1-17T02:19:32.816610+00:00')
-(88, 58, 'Is the price flexible?', '2003-9-5T02:19:32.816610+00:00')
-(52, 40, 'Is the price flexible?', '2023-2-6T02:19:32.816610+00:00')
-(52, 43, 'Any issues I should know about?', '2019-8-22T02:19:32.816610+00:00')
-(30, 49, 'Can I see this in person before buying?', '1982-9-17T02:19:32.816610+00:00')
-(93, 89, 'Do you take lower offers?', '2011-8-14T02:19:32.816610+00:00')
-(19, 99, 'Why are you selling it?', '2010-6-14T02:19:32.816610+00:00')
-(93, 53, 'Is the original packaging included?', '1991-4-13T02:19:32.816610+00:00')
-(83, 57, 'Has it been repaired before?', '1973-2-18T02:19:32.816610+00:00')
-(10, 72, 'Is the price flexible?', '2003-9-15T02:19:32.816610+00:00')
-(45, 43, 'Can you tell me more about the condition of this?', '1975-5-5T02:19:32.816610+00:00')
-(4, 64, 'What's your return policy?', '2010-8-4T02:19:32.816610+00:00')
-(91, 47, 'Any scratches or damage?', '1987-9-7T02:19:32.816610+00:00')
-(77, 82, 'Why are you selling it?', '2013-6-3T02:19:32.816610+00:00')
-(78, 87, 'Why are you selling it?', '2007-7-20T02:19:32.816610+00:00')
-(24, 47, 'Why are you selling it?', '2017-6-3T02:19:32.816610+00:00')
-(50, 61, 'Is there a user manual included?', '2004-11-9T02:19:32.816610+00:00')
-(14, 87, 'Is this authentic?', '1975-2-11T02:19:32.816610+00:00')
-(79, 88, 'Has it been repaired before?', '1986-8-4T02:19:32.816610+00:00')
-(87, 55, 'Is it pet-friendly?', '2004-4-23T02:19:32.816610+00:00')
-(8, 83, 'Is this the final price, or are there extra fees?', '1976-8-10T02:19:32.816610+00:00');
+(1, 2, 'Can you lower the price for the laptop?', '2024-06-25T02:20:48.554520+00:00'),
+(36, 65, 'Any scratches or damage?', '2010-8-4T02:19:32.816610+00:00'),
+(27, 90, 'Is this authentic?', '1990-8-7T02:19:32.816610+00:00'),
+(59, 74, 'Can I see this in person before buying?', '2018-11-22T02:19:32.816610+00:00'),
+(94, 91, 'Is there a user manual included?', '2004-3-9T02:19:32.816610+00:00'),
+(14, 92, 'Why are you selling it?', '2003-3-21T02:19:32.816610+00:00'),
+(78, 6, 'Has it been in storage long?', '2007-7-23T02:19:32.816610+00:00'),
+(61, 94, 'Can you tell me more about the condition of this?', '1983-11-5T02:19:32.816610+00:00'), 
+(4, 16, 'Is there a user manual included?', '2006-3-18T02:19:32.816610+00:00'),
+(67, 12, 'Is this the final price, or are there extra fees?', '1984-11-21T02:19:32.816610+00:00'),
+(12, 26, 'Is there a warranty?', '2006-8-20T02:19:32.816610+00:00'),
+(57, 67, 'Why are you selling it?', '1974-10-12T02:19:32.816610+00:00'),
+(24, 96, 'Has it been repaired before?', '1982-10-22T02:19:32.816610+00:00'),
+(73, 86, 'Is there a user manual included?', '1975-3-9T02:19:32.816610+00:00'),
+(61, 94, 'Is the price flexible?', '1972-2-13T02:19:32.816610+00:00'),
+(78, 23, 'Can I see this in person before buying?', '2017-9-24T02:19:32.816610+00:00'),
+(68, 31, 'Does it come from a smoke-free home?', '1994-4-5T02:19:32.816610+00:00'),
+(62, 72, 'Any accessories with it?', '1999-1-16T02:19:32.816610+00:00'),
+(52, 97, 'Do you have more pics?', '1997-11-10T02:19:32.816610+00:00'),
+(77, 36, 'Can I see this in person before buying?', '1987-2-19T02:19:32.816610+00:00'),
+(68, 67, 'Does it come from a smoke-free home?', '2003-4-10T02:19:32.816610+00:00'),
+(90, 95, 'Has it been in storage long?', '1991-8-24T02:19:32.816610+00:00'),
+(48, 56, 'Is there a user manual included?', '2021-4-26T02:19:32.816610+00:00'),
+(34, 78, 'Can I pick this up locally?', '1995-7-17T02:19:32.816610+00:00'),
+(99, 71, 'Can I see this in person before buying?', '1992-9-4T02:19:32.816610+00:00'),
+(1, 68, 'Does it work okay?', '2005-7-5T02:19:32.816610+00:00'),
+(60, 14, 'Is this the final price, or are there extra fees?', '2000-8-6T02:19:32.816610+00:00'),
+(86, 62, 'Any scratches or damage?', '2018-5-26T02:19:32.816610+00:00'),
+(32, 20, 'Does it work okay?', '1994-1-8T02:19:32.816610+00:00'),
+(89, 62, 'Is this authentic?', '1992-7-25T02:19:32.816610+00:00'),
+(1, 79, 'Is it pet-friendly?', '1996-7-16T02:19:32.816610+00:00'),
+(73, 22, 'Can I see this in person before buying?', '1995-6-20T02:19:32.816610+00:00'),
+(40, 50, 'Is the price flexible?', '2015-4-17T02:19:32.816610+00:00'),
+(50, 83, 'Any accessories with it?', '2022-10-6T02:19:32.816610+00:00'),
+(94, 64, 'What is your return policy?', '2012-4-7T02:19:32.816610+00:00'),
+(49, 42, 'What is the exact model number?', '2013-2-24T02:19:32.816610+00:00'),
+(73, 1, 'Is the price flexible?', '2019-1-27T02:19:32.816610+00:00'),
+(15, 4, 'Has it been in storage long?', '2006-10-4T02:19:32.816610+00:00'),
+(40, 52, 'Any scratches or damage?', '2019-10-21T02:19:32.816610+00:00'),
+(2, 15, 'Do you take lower offers?', '1990-7-21T02:19:32.816610+00:00'),
+(54, 91, 'Does it come from a smoke-free home?', '2013-2-13T02:19:32.816610+00:00'),
+(87, 40, 'Can I see this in person before buying?', '2004-11-24T02:19:32.816610+00:00'),
+(27, 54, 'What is the exact model number?', '1997-10-19T02:19:32.816610+00:00'),
+(17, 44, 'Is there a user manual included?', '1993-7-27T02:19:32.816610+00:00'),
+(10, 38, 'Can I see this in person before buying?', '1996-2-22T02:19:32.816610+00:00'),
+(3, 33, 'Can you tell me more about the condition of this?', '1974-8-11T02:19:32.816610+00:00'),
+(40, 67, 'Is the original packaging included?', '2008-10-5T02:19:32.816610+00:00'),
+(92, 36, 'Does it work okay?', '1996-1-6T02:19:32.816610+00:00'),
+(18, 11, 'Can I see this in person before buying?', '1970-8-19T02:19:32.816610+00:00'),
+(39, 3, 'Can I pick this up locally?', '2005-5-20T02:19:32.816610+00:00'),
+(35, 95, 'Why are you selling it?', '1970-11-7T02:19:32.816610+00:00'),
+(95, 79, 'Is there a warranty?', '1980-11-22T02:19:32.816610+00:00'),
+(97, 38, 'Is this the final price, or are there extra fees?', '1986-10-13T02:19:32.816610+00:00'),
+(89, 2, 'Is this authentic?', '1993-2-25T02:19:32.816610+00:00'),
+(98, 18, 'Is there a user manual included?', '1981-4-5T02:19:32.816610+00:00'),
+(96, 30, 'Is this authentic?', '1981-8-15T02:19:32.816610+00:00'),
+(43, 70, 'What is the exact model number?', '1982-2-20T02:19:32.816610+00:00'),
+(11, 37, 'Why are you selling it?', '2002-1-27T02:19:32.816610+00:00'),
+(84, 97, 'Any issues I should know about?', '2002-11-19T02:19:32.816610+00:00'),
+(5, 28, 'Has it been in storage long?', '1996-11-7T02:19:32.816610+00:00'),
+(80, 4, 'Is this the final price, or are there extra fees?', '2016-11-9T02:19:32.816610+00:00'),
+(37, 55, 'Any scratches or damage?', '2014-2-6T02:19:32.816610+00:00'),
+(54, 42, 'What is your return policy?', '1986-6-23T02:19:32.816610+00:00'),
+(20, 87, 'Is this the final price, or are there extra fees?', '1972-6-7T02:19:32.816610+00:00'),
+(41, 72, 'Does it work okay?', '2006-11-20T02:19:32.816610+00:00'),
+(75, 47, 'Do you take lower offers?', '2010-9-4T02:19:32.816610+00:00'),
+(91, 43, 'Is the price flexible?', '1997-10-25T02:19:32.816610+00:00'),
+(37, 3, 'Do you take lower offers?', '1995-5-16T02:19:32.816610+00:00'),
+(41, 37, 'Is this authentic?', '1989-2-2T02:19:32.816610+00:00'),
+(87, 1, 'Is there a warranty?', '1999-9-2T02:19:32.816610+00:00'),
+(39, 42, 'How old is this item?', '2010-8-1T02:19:32.816610+00:00'),
+(55, 7, 'Do you have more pics?', '1977-10-26T02:19:32.816610+00:00'),
+(15, 93, 'What is your return policy?', '2000-9-5T02:19:32.816610+00:00'),
+(10, 43, 'Is the price flexible?', '1982-1-4T02:19:32.816610+00:00'),
+(42, 78, 'Has it been repaired before?', '1972-7-17T02:19:32.816610+00:00'),
+(6, 73, 'How old is this item?', '1996-11-6T02:19:32.816610+00:00'),
+(1, 16, 'Is the original packaging included?', '2003-11-19T02:19:32.816610+00:00'),
+(89, 42, 'Is it pet-friendly?', '2009-7-6T02:19:32.816610+00:00'),
+(4, 87, 'Is this authentic?', '1983-6-12T02:19:32.816610+00:00'),
+(53, 57, 'Do you take lower offers?', '2002-6-9T02:19:32.816610+00:00'),
+(68, 93, 'What is the exact model number?', '2008-2-23T02:19:32.816610+00:00'),
+(67, 29, 'Any accessories with it?', '2008-6-22T02:19:32.816610+00:00'),
+(71, 13, 'Has it been in storage long?', '2018-3-20T02:19:32.816610+00:00'),
+(83, 38, 'Is it pet-friendly?', '2015-1-24T02:19:32.816610+00:00'),
+(96, 98, 'Can you tell me more about the condition of this?', '1992-9-27T02:19:32.816610+00:00'),
+(11, 84, 'Can I see this in person before buying?', '2012-4-13T02:19:32.816610+00:00'),
+(14, 56, 'Has it been in storage long?', '1983-11-22T02:19:32.816610+00:00'),
+(46, 8, 'Is there a warranty?', '2002-2-16T02:19:32.816610+00:00'),
+(19, 21, 'Is there a warranty?', '1996-8-25T02:19:32.816610+00:00'),
+(79, 39, 'Any accessories with it?', '2020-10-24T02:19:32.816610+00:00'),
+(37, 86, 'Does it work okay?', '1974-8-15T02:19:32.816610+00:00'),
+(72, 79, 'Does it work okay?', '1997-3-27T02:19:32.816610+00:00'),
+(68, 12, 'Can I pick this up locally?', '1993-7-21T02:19:32.816610+00:00'),
+(20, 2, 'Is this authentic?', '1972-1-22T02:19:32.816610+00:00'),
+(81, 71, 'Can I pick this up locally?', '1975-6-18T02:19:32.816610+00:00'),
+(48, 45, 'Is this authentic?', '2000-3-16T02:19:32.816610+00:00'),
+(56, 40, 'Is this the final price, or are there extra fees?', '1999-6-8T02:19:32.816610+00:00'),
+(84, 28, 'Has it been repaired before?', '1999-5-9T02:19:32.816610+00:00'),
+(51, 63, 'Can you tell me more about the condition of this?', '2018-8-20T02:19:32.816610+00:00'),
+(33, 41, 'Is there a warranty?', '2000-10-24T02:19:32.816610+00:00'),
+(91, 40, 'Is there a user manual included?', '1995-5-12T02:19:32.816610+00:00');
 
 -- Insert dummy data into Listing Ratings table
 INSERT INTO Listing_Ratings (rated_listing_id, rating_user_id, rating_value, created_on)
 VALUES
 (1, 2, 4, '2024-06-25T02:21:02.212634+00:00'),
-(2, 1, 5, '2024-06-25T02:21:13.816068+00:00')
-(414, 8, 4, '1999-4-4T02:19:32.816610+00:00')
-(58, 83, 3, '1990-11-16T02:19:32.816610+00:00')
-(298, 1, 1, '1971-9-18T02:19:32.816610+00:00') 
-(417, 55, 2, '2007-8-6T02:19:32.816610+00:00') 
-(505, 61, 3, '2013-2-5T02:19:32.816610+00:00') 
-(224, 9, 2, '1992-10-16T02:19:32.816610+00:00')
-(98, 79, 4, '1982-4-11T02:19:32.816610+00:00') 
-(634, 55, 4, '1989-7-25T02:19:32.816610+00:00')
-(814, 81, 2, '2013-6-22T02:19:32.816610+00:00')
-(771, 72, 1, '2006-9-8T02:19:32.816610+00:00') 
-(515, 24, 2, '1984-6-27T02:19:32.816610+00:00')
-(373, 83, 1, '1998-5-18T02:19:32.816610+00:00')
-(536, 84, 3, '1992-4-15T02:19:32.816610+00:00')
-(121, 62, 2, '1978-1-13T02:19:32.816610+00:00')
-(299, 61, 2, '2018-6-8T02:19:32.816610+00:00') 
-(657, 32, 3, '2003-6-17T02:19:32.816610+00:00')
-(839, 75, 3, '2006-3-5T02:19:32.816610+00:00')
-(649, 73, 3, '2000-4-8T02:19:32.816610+00:00')
-(385, 74, 1, '2017-6-8T02:19:32.816610+00:00')
-(704, 20, 1, '1971-6-19T02:19:32.816610+00:00')
-(767, 81, 4, '2016-1-17T02:19:32.816610+00:00')
-(302, 51, 3, '1978-3-11T02:19:32.816610+00:00')
-(702, 73, 4, '1986-5-5T02:19:32.816610+00:00')
-(413, 88, 4, '1993-1-24T02:19:32.816610+00:00')
-(914, 82, 2, '2011-8-9T02:19:32.816610+00:00')
-(375, 22, 3, '1983-3-1T02:19:32.816610+00:00')
-(672, 77, 1, '1988-4-11T02:19:32.816610+00:00')
-(429, 32, 2, '2007-4-21T02:19:32.816610+00:00')
-(160, 65, 4, '1997-4-5T02:19:32.816610+00:00')
-(755, 81, 4, '2011-4-13T02:19:32.816610+00:00')
-(422, 74, 4, '2021-4-7T02:19:32.816610+00:00')
-(349, 17, 3, '1970-10-13T02:19:32.816610+00:00')
-(703, 81, 2, '2008-8-3T02:19:32.816610+00:00')
-(426, 49, 3, '1981-8-1T02:19:32.816610+00:00')
-(675, 63, 4, '2021-9-19T02:19:32.816610+00:00')
-(319, 5, 2, '2000-7-26T02:19:32.816610+00:00')
-(965, 63, 4, '2019-9-4T02:19:32.816610+00:00')
-(531, 49, 1, '1972-4-7T02:19:32.816610+00:00')
-(138, 74, 1, '2021-3-24T02:19:32.816610+00:00')
-(260, 28, 2, '2000-2-3T02:19:32.816610+00:00')
-(55, 66, 4, '2016-5-9T02:19:32.816610+00:00')
-(170, 96, 2, '2014-3-20T02:19:32.816610+00:00')
-(750, 85, 2, '1995-10-24T02:19:32.816610+00:00')
-(754, 80, 1, '1991-9-25T02:19:32.816610+00:00')
-(405, 24, 3, '2020-9-7T02:19:32.816610+00:00')
-(8, 87, 2, '2018-9-13T02:19:32.816610+00:00')
-(811, 87, 4, '2000-7-22T02:19:32.816610+00:00')
-(859, 98, 4, '2021-7-3T02:19:32.816610+00:00')
-(771, 64, 4, '2015-5-4T02:19:32.816610+00:00')
-(274, 94, 3, '1983-10-1T02:19:32.816610+00:00')
-(92, 76, 4, '1976-4-13T02:19:32.816610+00:00')
-(152, 20, 4, '1985-9-17T02:19:32.816610+00:00')
-(31, 22, 3, '2023-5-12T02:19:32.816610+00:00')
-(9, 51, 1, '2022-7-12T02:19:32.816610+00:00')
-(210, 13, 2, '2015-9-12T02:19:32.816610+00:00')
-(440, 4, 2, '1976-1-6T02:19:32.816610+00:00')
-(35, 80, 3, '2011-2-6T02:19:32.816610+00:00')
-(628, 65, 2, '2014-10-4T02:19:32.816610+00:00')
-(116, 61, 3, '1978-10-11T02:19:32.816610+00:00')
-(681, 80, 1, '1984-2-1T02:19:32.816610+00:00')
-(913, 20, 2, '2005-9-18T02:19:32.816610+00:00')
-(557, 81, 4, '1989-6-9T02:19:32.816610+00:00')
-(895, 61, 1, '1978-11-26T02:19:32.816610+00:00')
-(278, 9, 4, '2023-7-24T02:19:32.816610+00:00')
-(933, 25, 3, '2006-1-6T02:19:32.816610+00:00')
-(347, 22, 2, '1987-3-4T02:19:32.816610+00:00')
-(980, 82, 3, '1971-8-2T02:19:32.816610+00:00')
-(261, 11, 3, '1972-5-26T02:19:32.816610+00:00')
-(729, 29, 2, '2022-9-22T02:19:32.816610+00:00')
-(927, 2, 4, '1990-9-9T02:19:32.816610+00:00')
-(988, 60, 2, '1971-9-16T02:19:32.816610+00:00')
-(794, 44, 3, '1999-11-5T02:19:32.816610+00:00')
-(75, 66, 4, '1985-1-5T02:19:32.816610+00:00')
-(652, 80, 4, '1975-7-11T02:19:32.816610+00:00')
-(200, 11, 1, '2000-1-3T02:19:32.816610+00:00')
-(784, 81, 1, '2006-5-21T02:19:32.816610+00:00')
-(400, 89, 1, '1976-3-23T02:19:32.816610+00:00')
-(330, 88, 1, '1996-10-3T02:19:32.816610+00:00')
-(953, 55, 1, '1975-6-19T02:19:32.816610+00:00')
-(811, 70, 4, '1991-5-18T02:19:32.816610+00:00')
-(800, 18, 4, '2004-3-12T02:19:32.816610+00:00')
-(728, 83, 4, '2004-7-8T02:19:32.816610+00:00')
-(853, 50, 4, '1984-10-19T02:19:32.816610+00:00')
-(100, 66, 3, '2010-5-3T02:19:32.816610+00:00')
-(741, 36, 2, '2021-7-27T02:19:32.816610+00:00')
-(643, 77, 3, '2021-5-5T02:19:32.816610+00:00')
-(580, 19, 2, '1985-9-25T02:19:32.816610+00:00')
-(320, 85, 3, '1998-11-10T02:19:32.816610+00:00')
-(177, 23, 3, '2005-11-18T02:19:32.816610+00:00')
-(654, 32, 3, '1971-7-26T02:19:32.816610+00:00')
-(571, 75, 1, '2019-9-1T02:19:32.816610+00:00')
-(421, 45, 3, '2004-3-22T02:19:32.816610+00:00')
-(471, 48, 4, '1981-9-22T02:19:32.816610+00:00')
-(37, 30, 2, '1978-6-17T02:19:32.816610+00:00')
-(469, 17, 4, '2005-11-2T02:19:32.816610+00:00')
-(883, 66, 3, '1979-5-4T02:19:32.816610+00:00')
-(724, 25, 4, '2014-3-24T02:19:32.816610+00:00')
-(45, 88, 3, '2017-5-5T02:19:32.816610+00:00')
-(820, 3, 3, '2006-9-8T02:19:32.816610+00:00')
-(637, 31, 3, '1970-2-7T02:19:32.816610+00:00');
+(2, 1, 5, '2024-06-25T02:21:13.816068+00:00'),
+(908, 11, 4, '2013-6-14T02:19:32.816610+00:00'),
+(536, 85, 2, '1977-10-6T02:19:32.816610+00:00'),
+(72, 59, 2, '2013-4-11T02:19:32.816610+00:00'), 
+(127, 16, 4, '2001-5-6T02:19:32.816610+00:00'), 
+(243, 52, 1, '2012-9-19T02:19:32.816610+00:00'),
+(643, 34, 5, '2022-2-14T02:19:32.816610+00:00'),
+(148, 53, 3, '1973-4-25T02:19:32.816610+00:00'),
+(936, 33, 4, '1986-1-15T02:19:32.816610+00:00'),
+(363, 28, 2, '2004-7-1T02:19:32.816610+00:00'), 
+(52, 76, 5, '2001-5-19T02:19:32.816610+00:00'), 
+(690, 45, 3, '1975-2-8T02:19:32.816610+00:00'), 
+(468, 69, 2, '1986-6-1T02:19:32.816610+00:00'), 
+(299, 75, 2, '2006-11-7T02:19:32.816610+00:00'),
+(534, 38, 3, '1978-9-19T02:19:32.816610+00:00'),
+(525, 20, 5, '1986-6-23T02:19:32.816610+00:00'),
+(678, 71, 1, '1981-6-13T02:19:32.816610+00:00'),
+(212, 94, 2, '1973-2-4T02:19:32.816610+00:00'), 
+(806, 69, 1, '2014-8-10T02:19:32.816610+00:00'),
+(533, 21, 2, '1976-3-7T02:19:32.816610+00:00'), 
+(171, 27, 3, '1994-9-4T02:19:32.816610+00:00'), 
+(532, 97, 1, '1978-10-4T02:19:32.816610+00:00'),
+(72, 35, 4, '2019-4-22T02:19:32.816610+00:00'), 
+(862, 72, 3, '2022-6-8T02:19:32.816610+00:00'),
+(965, 27, 4, '1993-1-4T02:19:32.816610+00:00'),
+(619, 49, 5, '1993-1-20T02:19:32.816610+00:00'),
+(628, 59, 1, '1992-8-24T02:19:32.816610+00:00'),
+(638, 24, 1, '2003-4-4T02:19:32.816610+00:00'),
+(779, 41, 3, '1978-1-14T02:19:32.816610+00:00'),
+(378, 6, 4, '2010-9-23T02:19:32.816610+00:00'),
+(70, 38, 1, '2011-11-7T02:19:32.816610+00:00'),
+(590, 19, 4, '1984-9-16T02:19:32.816610+00:00'),
+(147, 4, 3, '1995-5-17T02:19:32.816610+00:00'),
+(846, 57, 1, '2022-1-26T02:19:32.816610+00:00'),
+(402, 91, 2, '2020-2-8T02:19:32.816610+00:00'),
+(969, 16, 2, '1987-3-3T02:19:32.816610+00:00'),
+(559, 65, 4, '1972-10-5T02:19:32.816610+00:00'),
+(454, 97, 3, '2010-4-11T02:19:32.816610+00:00'),
+(701, 57, 3, '2022-1-26T02:19:32.816610+00:00'),
+(237, 29, 3, '2010-4-2T02:19:32.816610+00:00'),
+(568, 63, 2, '1984-2-12T02:19:32.816610+00:00'),
+(528, 90, 4, '2017-6-15T02:19:32.816610+00:00'),
+(191, 23, 5, '1994-7-1T02:19:32.816610+00:00'),
+(937, 35, 1, '1972-1-10T02:19:32.816610+00:00'),
+(317, 93, 3, '1977-4-16T02:19:32.816610+00:00'),
+(52, 80, 2, '2023-3-16T02:19:32.816610+00:00'),
+(13, 59, 3, '1986-2-24T02:19:32.816610+00:00'),
+(170, 98, 3, '1981-5-7T02:19:32.816610+00:00'),
+(938, 74, 5, '2022-7-26T02:19:32.816610+00:00'),
+(719, 28, 1, '1970-3-24T02:19:32.816610+00:00'),
+(123, 80, 5, '2014-4-11T02:19:32.816610+00:00'),
+(601, 72, 2, '1998-10-24T02:19:32.816610+00:00'),
+(794, 64, 4, '1986-8-10T02:19:32.816610+00:00'),
+(6, 73, 2, '1982-6-25T02:19:32.816610+00:00'),
+(841, 93, 5, '1988-4-11T02:19:32.816610+00:00'),
+(47, 30, 1, '2003-2-2T02:19:32.816610+00:00'),
+(414, 81, 4, '1999-6-13T02:19:32.816610+00:00'),
+(707, 53, 4, '1982-2-12T02:19:32.816610+00:00'),
+(636, 73, 4, '1971-7-14T02:19:32.816610+00:00'),
+(903, 72, 1, '1997-3-3T02:19:32.816610+00:00'),
+(930, 47, 3, '2011-10-24T02:19:32.816610+00:00'),
+(107, 23, 5, '2009-8-6T02:19:32.816610+00:00'),
+(789, 82, 1, '1996-9-15T02:19:32.816610+00:00'),
+(721, 27, 3, '1977-2-10T02:19:32.816610+00:00'),
+(878, 98, 4, '1998-7-4T02:19:32.816610+00:00'),
+(251, 96, 5, '2016-3-20T02:19:32.816610+00:00'),
+(184, 32, 2, '1998-5-11T02:19:32.816610+00:00'),
+(98, 51, 4, '1974-10-9T02:19:32.816610+00:00'),
+(875, 29, 4, '2013-3-16T02:19:32.816610+00:00'),
+(265, 6, 5, '1970-4-13T02:19:32.816610+00:00'),
+(25, 92, 3, '1996-7-16T02:19:32.816610+00:00'),
+(690, 8, 2, '2003-1-9T02:19:32.816610+00:00'),
+(723, 21, 2, '2005-3-19T02:19:32.816610+00:00'),
+(413, 72, 1, '1981-10-11T02:19:32.816610+00:00'),
+(936, 29, 2, '2001-11-7T02:19:32.816610+00:00'),
+(349, 23, 2, '1977-8-16T02:19:32.816610+00:00'),
+(442, 85, 4, '2008-8-2T02:19:32.816610+00:00'),
+(755, 59, 5, '1981-4-4T02:19:32.816610+00:00'),
+(692, 59, 2, '1984-8-13T02:19:32.816610+00:00'),
+(778, 50, 2, '2005-4-16T02:19:32.816610+00:00'),
+(856, 92, 5, '2011-8-8T02:19:32.816610+00:00'),
+(673, 96, 4, '1981-1-24T02:19:32.816610+00:00'),
+(623, 49, 3, '1970-8-18T02:19:32.816610+00:00'),
+(624, 51, 5, '2009-4-2T02:19:32.816610+00:00'),
+(103, 51, 1, '1973-2-19T02:19:32.816610+00:00'),
+(516, 98, 2, '2014-3-2T02:19:32.816610+00:00'),
+(771, 65, 2, '1985-3-26T02:19:32.816610+00:00'),
+(254, 13, 1, '2011-9-6T02:19:32.816610+00:00'),
+(703, 25, 4, '2016-11-17T02:19:32.816610+00:00'),
+(266, 6, 4, '1975-9-10T02:19:32.816610+00:00'),
+(227, 97, 5, '1986-7-10T02:19:32.816610+00:00'),
+(971, 83, 3, '1974-6-22T02:19:32.816610+00:00'),
+(99, 28, 3, '1979-7-1T02:19:32.816610+00:00'),
+(172, 24, 2, '2005-8-6T02:19:32.816610+00:00'),
+(999, 12, 2, '1984-7-6T02:19:32.816610+00:00'),
+(84, 81, 4, '2018-9-24T02:19:32.816610+00:00'),
+(535, 38, 5, '1978-7-9T02:19:32.816610+00:00'),
+(241, 7, 2, '1987-9-4T02:19:32.816610+00:00'),
+(175, 72, 2, '2022-4-14T02:19:32.816610+00:00'),
+(36, 77, 4, '2004-6-6T02:19:32.816610+00:00'),
+(704, 69, 1, '1982-4-5T02:19:32.816610+00:00');
 
 -- Insert dummy data into Listing Reviews table
 INSERT INTO Listing_Reviews (reviewed_listing_id, review_user_id, review_content, created_on)
 VALUES
 (1, 2, 'The bicycle was in excellent condition, very happy with the purchase!', '2024-06-25T02:21:24.104635+00:00'),
-(2, 1, 'The laptop works perfectly, very satisfied!', '2024-06-25T02:21:38.067998+00:00')
-(508, 39, 'Would have preferred better packaging.', '2011-1-1T02:19:32.816610+00:00')
-(76, 37, 'Item arrived on time and well-packaged.', '2019-10-17T02:19:32.816610+00:00')
-(954, 44, 'Item didn't work as expected.', '2011-9-27T02:19:32.816610+00:00')
-(732, 42, 'Had some issues, but seller resolved them quickly.', '2006-8-25T02:19:32.816610+00:00')
-(258, 99, 'Quality is top-notch.', '1984-3-7T02:19:32.816610+00:00')
-(823, 56, 'Packaging could have been better.', '1992-10-13T02:19:32.816610+00:00')
-(324, 78, 'Item didn't work as expected.', '2020-1-8T02:19:32.816610+00:00')
-(227, 15, 'Had some issues, but seller resolved them quickly.', '1974-8-18T02:19:32.816610+00:00')
-(752, 13, 'Good communication from seller.', '2010-6-17T02:19:32.816610+00:00')
-(858, 61, 'Item was just as pictured.', '2009-3-18T02:19:32.816610+00:00')
-(344, 32, 'Had some issues, but seller resolved them quickly.', '1998-6-25T02:19:32.816610+00:00')
-(49, 29, 'Item was just as pictured.', '1982-7-25T02:19:32.816610+00:00')
-(917, 49, 'Item is okay, but not great.', '2003-2-26T02:19:32.816610+00:00')
-(621, 16, 'Highly recommend this seller.', '2022-10-3T02:19:32.816610+00:00')
-(434, 6, 'Seller was very responsive and helpful.', '2019-11-7T02:19:32.816610+00:00')
-(723, 52, 'Five stars all the way!', '1988-1-27T02:19:32.816610+00:00')
-(3, 24, 'Good communication from seller.', '1971-9-4T02:19:32.816610+00:00')
-(163, 12, 'Item is okay, but not great.', '2013-2-24T02:19:32.816610+00:00')
-(690, 31, 'Good value for the money.', '1990-5-10T02:19:32.816610+00:00')
-(729, 17, 'Item arrived late but in good condition.', '2008-11-23T02:19:32.816610+00:00')
-(744, 16, 'Great condition, exactly as described!', '2016-4-16T02:19:32.816610+00:00')
-(339, 45, 'Item is okay, but not great.', '2017-8-13T02:19:32.816610+00:00')
-(851, 15, 'Item is okay, but not great.', '2011-4-3T02:19:32.816610+00:00')
-(191, 59, 'Would definitely buy from this seller again.', '2003-11-2T02:19:32.816610+00:00')
-(107, 19, 'The product has some minor scratches.', '1971-5-19T02:19:32.816610+00:00')
-(379, 70, 'Product works perfectly, no issues at all.', '1997-6-19T02:19:32.816610+00:00')
-(529, 94, 'Overall, a decent purchase.', '1972-11-1T02:19:32.816610+00:00')
-(345, 13, 'Seller was very responsive and helpful.', '2009-10-12T02:19:32.816610+00:00')
-(955, 40, 'Product works perfectly, no issues at all.', '2019-1-27T02:19:32.816610+00:00')
-(133, 47, 'Item is okay, but not great.', '2002-3-27T02:19:32.816610+00:00')
-(230, 30, 'The product has some minor scratches.', '2012-3-18T02:19:32.816610+00:00')
-(514, 57, 'Overall, a decent purchase.', '2008-11-19T02:19:32.816610+00:00')
-(313, 76, 'The product has some minor scratches.', '2017-9-13T02:19:32.816610+00:00')
-(711, 84, 'Fast shipping and great service.', '1982-10-22T02:19:32.816610+00:00')
-(242, 82, 'Would have preferred better packaging.', '2019-10-9T02:19:32.816610+00:00')
-(783, 66, 'Fast shipping and great service.', '1978-5-14T02:19:32.816610+00:00')
-(202, 32, 'Good communication from seller.', '1996-9-27T02:19:32.816610+00:00')
-(865, 39, 'Good communication from seller.', '2020-8-23T02:19:32.816610+00:00')
-(757, 76, 'Would definitely buy from this seller again.', '2014-11-18T02:19:32.816610+00:00')
-(694, 91, 'Five stars all the way!', '1997-6-2T02:19:32.816610+00:00')
-(2, 24, 'Great condition, exactly as described!', '1977-11-17T02:19:32.816610+00:00')
-(782, 17, 'Would definitely buy from this seller again.', '2022-7-5T02:19:32.816610+00:00')
-(571, 73, 'Packaging could have been better.', '2017-4-23T02:19:32.816610+00:00')
-(997, 12, 'Exceeded my expectations!', '2012-2-7T02:19:32.816610+00:00')
-(661, 90, 'Item arrived on time and well-packaged.', '1971-1-10T02:19:32.816610+00:00')
-(66, 20, 'Product works perfectly, no issues at all.', '1991-7-15T02:19:32.816610+00:00')
-(120, 30, 'Quality is top-notch.', '2007-2-2T02:19:32.816610+00:00')
-(288, 78, 'Packaging could have been better.', '1970-1-22T02:19:32.816610+00:00')
-(110, 49, 'Item didn't work as expected.', '2014-10-10T02:19:32.816610+00:00')
-(488, 92, 'Packaging could have been better.', '1981-2-24T02:19:32.816610+00:00')
-(599, 8, 'Highly recommend this seller.', '2013-9-3T02:19:32.816610+00:00')
-(360, 28, 'Would definitely buy from this seller again.', '1999-7-27T02:19:32.816610+00:00')
-(437, 63, 'Would definitely buy from this seller again.', '2013-6-22T02:19:32.816610+00:00')
-(620, 27, 'Product works perfectly, no issues at all.', '1973-5-17T02:19:32.816610+00:00')
-(599, 19, 'Product works perfectly, no issues at all.', '1982-1-17T02:19:32.816610+00:00')
-(898, 89, 'Seller was very responsive and helpful.', '1997-2-20T02:19:32.816610+00:00')
-(728, 75, 'Item arrived late but in good condition.', '2016-1-4T02:19:32.816610+00:00')
-(648, 50, 'Five stars all the way!', '1978-10-13T02:19:32.816610+00:00')
-(898, 18, 'Item arrived on time and well-packaged.', '1992-6-14T02:19:32.816610+00:00')
-(651, 10, 'Five stars all the way!', '1998-2-13T02:19:32.816610+00:00')
-(672, 95, 'Item didn't work as expected.', '1970-1-16T02:19:32.816610+00:00')
-(890, 13, 'Five stars all the way!', '2019-11-16T02:19:32.816610+00:00')
-(891, 17, 'Really happy with this purchase, thanks!', '2012-10-15T02:19:32.816610+00:00')
-(239, 86, 'Would have preferred better packaging.', '1987-9-11T02:19:32.816610+00:00')
-(28, 97, 'Fast shipping and great service.', '1987-4-22T02:19:32.816610+00:00')
-(365, 28, 'Exceeded my expectations!', '1996-9-8T02:19:32.816610+00:00')
-(509, 22, 'Fast shipping and great service.', '2010-6-1T02:19:32.816610+00:00')
-(708, 87, 'Really happy with this purchase, thanks!', '1992-9-24T02:19:32.816610+00:00')
-(651, 88, 'Item is okay, but not great.', '1981-3-18T02:19:32.816610+00:00')
-(116, 83, 'The product has some minor scratches.', '1999-1-25T02:19:32.816610+00:00')
-(435, 17, 'Really happy with this purchase, thanks!', '1990-6-6T02:19:32.816610+00:00')
-(709, 80, 'Good value for the money.', '1982-8-1T02:19:32.816610+00:00')
-(217, 4, 'Packaging could have been better.', '1995-11-21T02:19:32.816610+00:00')
-(982, 11, 'Good communication from seller.', '1984-8-21T02:19:32.816610+00:00')
-(653, 27, 'Good communication from seller.', '1986-10-24T02:19:32.816610+00:00')
-(891, 23, 'Had some issues, but seller resolved them quickly.', '2021-10-17T02:19:32.816610+00:00')
-(435, 71, 'The product has some minor scratches.', '1991-10-17T02:19:32.816610+00:00')
-(262, 56, 'Would definitely buy from this seller again.', '2011-1-19T02:19:32.816610+00:00')
-(376, 52, 'Item didn't work as expected.', '1995-1-10T02:19:32.816610+00:00')
-(207, 44, 'Quality is top-notch.', '2011-3-15T02:19:32.816610+00:00')
-(382, 23, 'Good communication from seller.', '2014-8-16T02:19:32.816610+00:00')
-(158, 75, 'Fast shipping and great service.', '2004-8-25T02:19:32.816610+00:00')
-(889, 77, 'Highly recommend this seller.', '1998-7-23T02:19:32.816610+00:00')
-(172, 65, 'Item is okay, but not great.', '2005-8-13T02:19:32.816610+00:00')
-(16, 30, 'Overall, a decent purchase.', '2006-4-20T02:19:32.816610+00:00')
-(570, 94, 'Seller was very responsive and helpful.', '1973-2-15T02:19:32.816610+00:00')
-(142, 18, 'Product works perfectly, no issues at all.', '1983-7-17T02:19:32.816610+00:00')
-(812, 40, 'Good communication from seller.', '1971-4-7T02:19:32.816610+00:00')
-(325, 1, 'Highly recommend this seller.', '2017-8-9T02:19:32.816610+00:00')
-(301, 62, 'Quality is top-notch.', '2004-5-24T02:19:32.816610+00:00')
-(856, 12, 'Product works perfectly, no issues at all.', '2020-6-15T02:19:32.816610+00:00')
-(8, 31, 'Good communication from seller.', '1991-10-22T02:19:32.816610+00:00')
-(438, 97, 'Quality is top-notch.', '1971-3-16T02:19:32.816610+00:00')
-(302, 88, 'Good communication from seller.', '2023-1-24T02:19:32.816610+00:00')
-(924, 95, 'Item arrived on time and well-packaged.', '2023-4-16T02:19:32.816610+00:00')
-(773, 89, 'Overall, a decent purchase.', '2016-2-11T02:19:32.816610+00:00')
-(793, 30, 'Would definitely buy from this seller again.', '2016-6-8T02:19:32.816610+00:00')
-(717, 17, 'Quality is top-notch.', '1991-4-12T02:19:32.816610+00:00')
-(613, 34, 'Item was just as pictured.', '1978-5-6T02:19:32.816610+00:00')
-(110, 77, 'Product works perfectly, no issues at all.', '2005-7-4T02:19:32.816610+00:00');
+(2, 1, 'The laptop works perfectly, very satisfied!', '2024-06-25T02:21:38.067998+00:00'),
+(78, 86, 'Item did not work as expected.', '2002-8-2T02:19:32.816610+00:00'),
+(611, 53, 'Would definitely buy from this seller again.', '2005-2-7T02:19:32.816610+00:00'),
+(819, 90, 'Five stars all the way!', '2011-8-23T02:19:32.816610+00:00'),
+(768, 61, 'Fast shipping and great service.', '1987-5-26T02:19:32.816610+00:00'),
+(500, 57, 'Quality is top-notch.', '2011-9-21T02:19:32.816610+00:00'),
+(107, 25, 'Had some issues, but seller resolved them quickly.', '1972-7-17T02:19:32.816610+00:00'),
+(151, 71, 'Good value for the money.', '2023-10-21T02:19:32.816610+00:00'),
+(797, 97, 'Item did not work as expected.', '1972-11-10T02:19:32.816610+00:00'),
+(54, 92, 'Item was just as pictured.', '1976-5-9T02:19:32.816610+00:00'),
+(980, 83, 'Good value for the money.', '2007-8-12T02:19:32.816610+00:00'),
+(343, 10, 'Product works perfectly, no issues at all.', '2014-7-10T02:19:32.816610+00:00'),
+(475, 53, 'Quality is top-notch.', '2017-8-3T02:19:32.816610+00:00'),
+(858, 45, 'Item was just as pictured.', '1991-1-27T02:19:32.816610+00:00'),
+(39, 69, 'Not as described, a bit disappointed.', '1979-4-20T02:19:32.816610+00:00'),
+(827, 60, 'Had some issues, but seller resolved them quickly.', '2016-1-7T02:19:32.816610+00:00'),
+(650, 27, 'Seller was very responsive and helpful.', '1970-9-11T02:19:32.816610+00:00'),
+(418, 72, 'Good communication from seller.', '1985-2-13T02:19:32.816610+00:00'),
+(220, 62, 'Five stars all the way!', '2010-3-27T02:19:32.816610+00:00'),
+(800, 93, 'Would have preferred better packaging.', '2021-1-20T02:19:32.816610+00:00'),
+(412, 59, 'Would have preferred better packaging.', '1994-11-19T02:19:32.816610+00:00'),
+(180, 78, 'Product works perfectly, no issues at all.', '1971-2-3T02:19:32.816610+00:00'),
+(942, 61, 'The product has some minor scratches.', '1993-8-14T02:19:32.816610+00:00'),
+(110, 61, 'Exactly what I was looking for!', '1981-8-15T02:19:32.816610+00:00'),
+(284, 86, 'Item is okay, but not great.', '2004-7-15T02:19:32.816610+00:00'),
+(609, 15, 'Had some issues, but seller resolved them quickly.', '1993-3-4T02:19:32.816610+00:00'),
+(803, 65, 'The product has some minor scratches.', '1989-8-8T02:19:32.816610+00:00'),
+(559, 62, 'Quality is top-notch.', '2013-3-19T02:19:32.816610+00:00'),
+(289, 45, 'Packaging could have been better.', '1976-6-18T02:19:32.816610+00:00'),
+(305, 23, 'Product works perfectly, no issues at all.', '2013-6-24T02:19:32.816610+00:00'),
+(941, 75, 'Exceeded my expectations!', '1994-6-23T02:19:32.816610+00:00'),
+(975, 93, 'Really happy with this purchase, thanks!', '2003-3-7T02:19:32.816610+00:00'),
+(988, 66, 'Product works perfectly, no issues at all.', '1998-11-24T02:19:32.816610+00:00'),
+(513, 62, 'Had some issues, but seller resolved them quickly.', '1990-10-8T02:19:32.816610+00:00'),
+(40, 42, 'The product has some minor scratches.', '1990-9-9T02:19:32.816610+00:00'),
+(662, 62, 'Item arrived on time and well-packaged.', '2016-7-2T02:19:32.816610+00:00'),
+(291, 24, 'Product works perfectly, no issues at all.', '2021-1-1T02:19:32.816610+00:00'),
+(956, 78, 'Item arrived on time and well-packaged.', '1976-5-18T02:19:32.816610+00:00'),
+(830, 75, 'Not as described, a bit disappointed.', '1987-7-24T02:19:32.816610+00:00'),
+(534, 89, 'Item was just as pictured.', '2004-8-22T02:19:32.816610+00:00'),
+(906, 22, 'Exceeded my expectations!', '1988-5-23T02:19:32.816610+00:00'),
+(894, 49, 'Item did not work as expected.', '1978-1-18T02:19:32.816610+00:00'),
+(377, 84, 'Item did not work as expected.', '2018-10-9T02:19:32.816610+00:00'),
+(818, 96, 'Packaging could have been better.', '1978-7-5T02:19:32.816610+00:00'),
+(636, 94, 'Good communication from seller.', '1982-9-4T02:19:32.816610+00:00'),
+(974, 64, 'Product works perfectly, no issues at all.', '2005-8-1T02:19:32.816610+00:00'),
+(850, 92, 'Fast shipping and great service.', '2007-7-9T02:19:32.816610+00:00'),
+(401, 92, 'Item arrived on time and well-packaged.', '1990-6-27T02:19:32.816610+00:00'),
+(337, 42, 'Seller was very responsive and helpful.', '1996-2-4T02:19:32.816610+00:00'),
+(162, 84, 'Five stars all the way!', '2001-8-27T02:19:32.816610+00:00'),
+(314, 38, 'The product has some minor scratches.', '1982-1-18T02:19:32.816610+00:00'),
+(862, 30, 'Item did not work as expected.', '2018-1-3T02:19:32.816610+00:00'),
+(781, 84, 'Fast shipping and great service.', '1997-4-18T02:19:32.816610+00:00'),
+(653, 10, 'The product has some minor scratches.', '1975-9-23T02:19:32.816610+00:00'),
+(639, 27, 'Would definitely buy from this seller again.', '1994-7-6T02:19:32.816610+00:00'),
+(66, 66, 'Seller was very responsive and helpful.', '1996-8-12T02:19:32.816610+00:00'),
+(537, 50, 'Packaging could have been better.', '1979-10-23T02:19:32.816610+00:00'),
+(208, 74, 'Overall, a decent purchase.', '1990-6-11T02:19:32.816610+00:00'),
+(109, 21, 'The product has some minor scratches.', '1995-6-5T02:19:32.816610+00:00'),
+(185, 9, 'Product works perfectly, no issues at all.', '1985-10-16T02:19:32.816610+00:00'),
+(824, 76, 'Exactly what I was looking for!', '1978-10-24T02:19:32.816610+00:00'),
+(834, 59, 'Really happy with this purchase, thanks!', '1983-9-2T02:19:32.816610+00:00'),
+(412, 32, 'Quality is top-notch.', '1980-4-20T02:19:32.816610+00:00'),
+(991, 44, 'Item was just as pictured.', '1980-11-27T02:19:32.816610+00:00'),
+(520, 87, 'Good communication from seller.', '1973-2-16T02:19:32.816610+00:00'),
+(199, 47, 'Quality is top-notch.', '2019-8-14T02:19:32.816610+00:00'),
+(26, 26, 'Good communication from seller.', '1970-3-21T02:19:32.816610+00:00'),
+(619, 51, 'Really happy with this purchase, thanks!', '1991-11-16T02:19:32.816610+00:00'),
+(932, 78, 'Item was just as pictured.', '1985-4-26T02:19:32.816610+00:00'),
+(314, 16, 'Product works perfectly, no issues at all.', '2022-3-17T02:19:32.816610+00:00'),
+(197, 13, 'Packaging could have been better.', '2014-7-15T02:19:32.816610+00:00'),
+(483, 87, 'Item arrived late but in good condition.', '2013-1-21T02:19:32.816610+00:00'),
+(950, 73, 'Exceeded my expectations!', '1979-7-18T02:19:32.816610+00:00'),
+(842, 59, 'Good value for the money.', '1994-4-17T02:19:32.816610+00:00'),
+(291, 45, 'Great condition, exactly as described!', '2013-4-10T02:19:32.816610+00:00'),
+(205, 46, 'Great condition, exactly as described!', '1985-3-26T02:19:32.816610+00:00'),
+(911, 64, 'Item arrived on time and well-packaged.', '1979-10-22T02:19:32.816610+00:00'),
+(770, 53, 'Good communication from seller.', '2013-11-27T02:19:32.816610+00:00'),
+(86, 48, 'Really happy with this purchase, thanks!', '2019-11-9T02:19:32.816610+00:00'),
+(479, 27, 'Item did not work as expected.', '1985-9-2T02:19:32.816610+00:00'),
+(39, 26, 'Had some issues, but seller resolved them quickly.', '1991-9-27T02:19:32.816610+00:00'),
+(624, 56, 'Item arrived on time and well-packaged.', '2023-3-4T02:19:32.816610+00:00'),
+(952, 92, 'Item is okay, but not great.', '1982-8-27T02:19:32.816610+00:00'),
+(871, 68, 'Item arrived late but in good condition.', '2020-5-19T02:19:32.816610+00:00'),
+(558, 71, 'Five stars all the way!', '1979-5-17T02:19:32.816610+00:00'),
+(865, 50, 'Had some issues, but seller resolved them quickly.', '1980-10-27T02:19:32.816610+00:00'),
+(967, 33, 'Item was just as pictured.', '2008-11-2T02:19:32.816610+00:00'),
+(250, 97, 'Exceeded my expectations!', '1983-1-10T02:19:32.816610+00:00'),
+(121, 65, 'Overall, a decent purchase.', '1984-11-19T02:19:32.816610+00:00'),
+(883, 72, 'Item arrived late but in good condition.', '1974-1-9T02:19:32.816610+00:00'),
+(659, 18, 'Overall, a decent purchase.', '2010-5-26T02:19:32.816610+00:00'),
+(254, 56, 'Exceeded my expectations!', '2008-4-22T02:19:32.816610+00:00'),
+(32, 90, 'Exactly what I was looking for!', '1983-1-11T02:19:32.816610+00:00'),
+(138, 53, 'Not as described, a bit disappointed.', '1977-6-12T02:19:32.816610+00:00'),
+(396, 52, 'Seller was very responsive and helpful.', '2000-2-16T02:19:32.816610+00:00'),
+(231, 58, 'Item is okay, but not great.', '1971-4-12T02:19:32.816610+00:00'),
+(160, 55, 'Would have preferred better packaging.', '2016-11-20T02:19:32.816610+00:00'),
+(468, 38, 'Really happy with this purchase, thanks!', '2008-8-25T02:19:32.816610+00:00'),
+(374, 20, 'Good value for the money.', '2001-4-2T02:19:32.816610+00:00'),
+(730, 33, 'Exactly what I was looking for!', '1980-2-8T02:19:32.816610+00:00'),
+(599, 89, 'Exceeded my expectations!', '1985-9-26T02:19:32.816610+00:00');
 
 
 INSERT INTO Sales (listing_id, buyer_id)
 VALUES
 (2, 2),
 (3, 2),
-(4, 2)
-(140, 31)
-(291, 66)
-(900, 61)
-(899, 40)
-(295, 19)
-(50, 12)
-(422, 92)
-(657, 99)
-(702, 9)
-(904, 76)
-(599, 47)
-(324, 96)
-(419, 9)
-(460, 41)
-(928, 76)
-(234, 95)
-(366, 38)
-(38, 62)
-(83, 70)
-(764, 81)
-(770, 30)
-(603, 54)
-(913, 14)
-(847, 69)
-(537, 94)
-(742, 72)
-(895, 48)
-(880, 35)
-(827, 68)
-(341, 41)
-(631, 30)
-(206, 81)
-(436, 78)
-(983, 37)
-(23, 7)
-(47, 87)
-(650, 70)
-(743, 24)
-(496, 36)
-(564, 42)
-(218, 62)
-(831, 43)
-(277, 22)
-(552, 87)
-(123, 31)
-(865, 96)
-(760, 73)
-(615, 52)
-(530, 84)
-(149, 29)
-(734, 80)
-(422, 42)
-(528, 38)
-(827, 39)
-(98, 4)
-(154, 39)
-(962, 46)
-(369, 68)
-(41, 93)
-(981, 34)
-(272, 87)
-(152, 61)
-(459, 39)
-(635, 19)
-(482, 74)
-(598, 5)
-(623, 55)
-(396, 57)
-(440, 60)
-(756, 14)
-(750, 61)
-(59, 58)
-(183, 66)
-(28, 89)
-(353, 23)
-(992, 10)
-(532, 34)
-(645, 50)
-(254, 5)
-(674, 38)
-(565, 47)
-(364, 2)
-(863, 26)
-(43, 59)
-(247, 60)
-(399, 87)
-(223, 83)
-(24, 76)
-(44, 70)
-(527, 16)
-(605, 6)
-(610, 62)
-(897, 83)
-(754, 41)
-(814, 36)
-(739, 17)
-(625, 1)
-(443, 49)
-(72, 16)
+(4, 2),
+(140, 31),
+(291, 66),
+(900, 61),
+(899, 40),
+(295, 19),
+(50, 12),
+(422, 92),
+(657, 99),
+(702, 9),
+(904, 76),
+(599, 47),
+(324, 96),
+(419, 9),
+(460, 41),
+(928, 76),
+(234, 95),
+(366, 38),
+(38, 62),
+(83, 70),
+(764, 81),
+(770, 30),
+(603, 54),
+(913, 14),
+(847, 69),
+(537, 94),
+(742, 72),
+(895, 48),
+(880, 35),
+(827, 68),
+(341, 41),
+(631, 30),
+(206, 81),
+(436, 78),
+(983, 37),
+(23, 7),
+(47, 87),
+(650, 70),
+(743, 24),
+(496, 36),
+(564, 42),
+(218, 62),
+(831, 43),
+(277, 22),
+(552, 87),
+(123, 31),
+(865, 96),
+(760, 73),
+(615, 52),
+(530, 84),
+(149, 29),
+(734, 80),
+(422, 42),
+(528, 38),
+(827, 39),
+(98, 4),
+(154, 39),
+(962, 46),
+(369, 68),
+(41, 93),
+(981, 34),
+(272, 87),
+(152, 61),
+(459, 39),
+(635, 19),
+(482, 74),
+(598, 5),
+(623, 55),
+(396, 57),
+(440, 60),
+(756, 14),
+(750, 61),
+(59, 58),
+(183, 66),
+(28, 89),
+(353, 23),
+(992, 10),
+(532, 34),
+(645, 50),
+(254, 5),
+(674, 38),
+(565, 47),
+(364, 2),
+(863, 26),
+(43, 59),
+(247, 60),
+(399, 87),
+(223, 83),
+(24, 76),
+(44, 70),
+(527, 16),
+(605, 6),
+(610, 62),
+(897, 83),
+(754, 41),
+(814, 36),
+(739, 17),
+(625, 1),
+(443, 49),
+(72, 16),
 (650, 17);
 EOF
 )
