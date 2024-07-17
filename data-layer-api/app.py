@@ -535,6 +535,22 @@ def get_search_history():
             return jsonify(format_result(['search_text', 'search_date'], rows)), 200
         return jsonify({}), 404
 
+@app.post('/create_search')
+def get_search():
+    user_id = request.json.get('userId')
+    search = request.json.get('search')
+    with engine_w.connect() as connection:
+        try:
+            connection.execute(
+                text("INSERT INTO Searches (user_id, search_text) VALUES (:u_id, :search)"),
+                {"u_id": user_id, "search": search}
+            )
+            connection.commit()
+        except:
+            connection.rollback()
+            return jsonify({'message': 'Something went wrong'}), 500
+    return jsonify({}), 200
+
 
 @app.get('/get_chat_info')
 def get_chat_info():
