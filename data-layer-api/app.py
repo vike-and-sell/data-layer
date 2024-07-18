@@ -34,7 +34,7 @@ app.config['DEBUG'] = True
 
 ENCRYPTION_KEY = os.environ['ENCRYPTION_KEY']
 API_KEY = os.environ['API_KEY']
-r_client = redis.Redis(host=os.environ['REDIS_URL'], port=['REDIS_PORT'])
+r_client = redis.Redis(host='magical_tu', port=6379)
 
 @app.before_request
 def check_api_key():
@@ -120,36 +120,53 @@ def make_user():
 @app.get('/get_user_info_for_login')
 def get_user_for_login():
     username = request.args.get('usr')
-    with engine_r.connect() as connection:
-        try:
-            result = connection.execute(text(
-                "SELECT user_id, password FROM Users WHERE username = :usrname"), {"usrname": username})
-        except IntegrityError:
-            return jsonify({}), 400
-        except:
-            return jsonify({}), 500
-        row = result.fetchone()
-        if (row):
-            return jsonify(format_result(['user_id', 'password'], [row])), 200
-        return jsonify({}), 404
+    query = f"SELECT user_id, password FROM Users WHERE username = {username}"
+    try:
+        result = r_client.get(query)
+        result = jsonify(result)
+        print(result)
+        if not result is None:
+            return jsonify(result), 200
+    finally:
+        with engine_r.connect() as connection:
+            try:
+                result = connection.execute(text(
+                    "SELECT user_id, password FROM Users WHERE username = :usrname"), {"usrname": username})
+            except IntegrityError:
+                return jsonify({}), 400
+            except:
+                return jsonify({}), 500
+            row = result.fetchone()
+            if (row):
+                r_client.set(query, str(format_result(['user_id', 'password'], [row])), ex=3600)
+                return jsonify(format_result(['user_id', 'password'], [row])), 200
+            return jsonify({}), 404
 
 
 @app.get('/get_user_by_email')
 def get_user_by_email():
     email = request.args.get('eml')
-    with engine_r.connect() as connection:
-        try:
-            result = connection.execute(text(
-                "SELECT user_id, username FROM Users WHERE email = :e_mail"), {"e_mail": email})
-            connection.commit()
-            row = result.fetchone()
-            print(row)
-            if row:
-                return jsonify(format_result(['user_id', 'username'], [row]))
-        except Exception as e:
-            print(e)
+    query = f"SELECT user_id, username FROM Users WHERE email = {email}"
+    try:
+        result = r_client.get(query)
+        if not result is None:
+            return jsonify(result)
+    finally:
+        with engine_r.connect() as connection:
+            try:
+                result = connection.execute(text(
+                    "SELECT user_id, username FROM Users WHERE email = :e_mail"), {"e_mail": email})
+                connection.commit()
+                row = result.fetchone()
+                print(row)
+                if row:
 
-        return jsonify({}), 400
+                    r_client.set(query, str(format_result(['user_id', 'username'], [row])), ex=3600)
+                    return jsonify(format_result(['user_id', 'username'], [row]))
+            except Exception as e:
+                print(e)
+
+            return jsonify({}), 400
 
 
 @app.post('/update_user_password')
@@ -245,80 +262,112 @@ def get_reviews():
     listing_id = request.args.get('listingId')
     if not listing_id:
         return jsonify({}), 400
+    query = f"SELECT username, review_content, created_on FROM Listing_Reviews JOIN Users on Listing_Reviews.review_user_id = Users.user_id WHERE reviewed_listing_id = {listing_id}"
 
-    with engine_r.connect() as connection:
-        try:
-            result = connection.execute(
-                text("SELECT username, review_content, created_on FROM Listing_Reviews JOIN Users on Listing_Reviews.review_user_id = Users.user_id WHERE reviewed_listing_id = :listing_id"),
-                {"listing_id": listing_id}
-            )
-        except IntegrityError:
-            return jsonify({}), 400
-        except:
-            return jsonify({}), 500
-        rows = result.fetchall()
-        return jsonify(format_result(['username', 'review', 'created_on'], rows, True)), 200
+    try:
+        result = r_client.get(query)
+        if not result is None:
+            return result, 200
+    finally:
+        with engine_r.connect() as connection:
+            try:
+                result = connection.execute(
+                    text("SELECT username, review_content, created_on FROM Listing_Reviews JOIN Users on Listing_Reviews.review_user_id = Users.user_id WHERE reviewed_listing_id = :listing_id"),
+                    {"listing_id": listing_id}
+                )
+            except IntegrityError:
+                return jsonify({}), 400
+            except:
+                return jsonify({}), 500
+            rows = result.fetchall()
+            json = jsonify(format_result(['username', 'review', 'created_on'], rows, True))
+            r_client.set(query, json, ex=3600)
+            return json, 200
 
 
 @app.get('/get_user')
 def get_user():
     user_id = request.args.get('userId')
+    query = f"SELECT username, address, joining_date FROM Users WHERE user_id = {user_id}"
 
-    with engine_r.connect() as connection:
-        try:
-            result = connection.execute(text(
-                "SELECT username, address, joining_date FROM Users WHERE user_id = :usr_id"), {"usr_id": user_id})
-        except IntegrityError:
-            return jsonify({}), 400
-        except:
-            return jsonify({}), 500
-        row = result.fetchone()
-        if row:
-            return jsonify({
-                "username": row[0],
-                "address": row[1],
-                "joining_date": row[2].isoformat(),
-            }), 200
-        return jsonify({}), 404
+    try:
+        result = r_client.get(query)
+        if not result is None:
+            return result, 200
+    finally:
+        with engine_r.connect() as connection:
+            try:
+                result = connection.execute(text(
+                    "SELECT username, address, joining_date FROM Users WHERE user_id = :usr_id"), {"usr_id": user_id})
+            except IntegrityError:
+                return jsonify({}), 400
+            except:
+                return jsonify({}), 500
+            row = result.fetchone()
+            if row:
+                json = jsonify({
+                    "username": row[0],
+                    "address": row[1],
+                    "joining_date": row[2].isoformat(),
+                })
+                r_client.set(query, json, ex=3600)
+                return json, 200
+            return jsonify({}), 404
 
 
 @app.get('/get_user_purchases')
 def get_user_purchases():
     user_id = request.args.get('userId')
+    query = f"SELECT listing_id FROM Sales WHERE buyer_id = {user_id}"
 
-    with engine_r.connect() as connection:
-        try:
-            result = connection.execute(text(
-                "SELECT listing_id FROM Sales WHERE buyer_id = :usr_id"), {"usr_id": user_id})
-            rows = result.fetchall()
-            if rows:
-                print(rows[0])
-                return jsonify([x[0] for x in rows]), 200
-            else:
-                return jsonify({}), 200
-        except IntegrityError:
-            return jsonify({}), 400
-        except Exception as e:
-            print(f"unknown exception {e}")
+    try:
+        result = r_client.get(query)
+        if not result is None:
+            return result, 200
+    finally:
+        with engine_r.connect() as connection:
+            try:
+                result = connection.execute(text(
+                    "SELECT listing_id FROM Sales WHERE buyer_id = :usr_id"), {"usr_id": user_id})
+                rows = result.fetchall()
+                if rows:
+                    print(rows[0])
+                    json = jsonify([x[0] for x in rows])
+                    r_client.set(query, json, ex=3600)
+                    return json, 200
+                else:
+                    return jsonify({}), 200
+            except IntegrityError:
+                return jsonify({}), 400
+            except Exception as e:
+                print(f"unknown exception {e}")
 
-    return jsonify({}), 500
+        return jsonify({}), 500
 
 
 @app.get('/get_user_sales')
 def get_user_sales():
     user_id = request.args.get('userId')
+    query = f"SELECT Sales.listing_id FROM Sales JOIN Listings ON Sales.listing_id = Listings.listing_id WHERE seller_id = {user_id}"
 
-    with engine_r.connect() as connection:
-        try:
-            result = connection.execute(text(
-                "SELECT Sales.listing_id FROM Sales JOIN Listings ON Sales.listing_id = Listings.listing_id WHERE seller_id = :usr_id"), {"usr_id": user_id})
-            rows = result.fetchall()
-            if rows:
-                return jsonify([x[0] for x in rows]), 200
-            else:
-                return jsonify([]), 200
-        except IntegrityError:
-            return jsonify({}), 400
+    try:
+        result = r_client.get(query)
+        if not result is None:
+            return result, 200
+    finally:
+        with engine_r.connect() as connection:
+            try:
+                result = connection.execute(text(
+                    "SELECT Sales.listing_id FROM Sales JOIN Listings ON Sales.listing_id = Listings.listing_id WHERE seller_id = :usr_id"), {"usr_id": user_id})
+                rows = result.fetchall()
+                if rows:
+                    json = jsonify([x[0] for x in rows])
+                    r_client.set(query, json, ex=3600)
+                    return json, 200
+                else:
+                    return jsonify([]), 200
+            except IntegrityError:
+                return jsonify({}), 400
 
 
 @app.post('/update_user')
@@ -380,37 +429,53 @@ def get_listings():
 @app.get('/get_listing')
 def get_listing():
     listing_id = request.args.get('listingId')
+    query = f"SELECT listing_id, seller_id, title, price, address, status, created_on, last_updated_at FROM Listings WHERE listing_id = {listing_id}"
 
-    with engine_r.connect() as connection:
-        try:
-            result = connection.execute(text(
-                "SELECT listing_id, seller_id, title, price, address, status, created_on, last_updated_at FROM Listings WHERE listing_id = :l_id"), {"l_id": listing_id})
-        except IntegrityError:
-            return jsonify({}), 400
-        except:
-            return jsonify({}), 500
-        rows = result.fetchall()
-        if (rows):
-            return jsonify(format_result(['listingId', 'sellerId', 'title', 'price', 'address', 'status', 'listedAt', 'lastUpdatedAt'], rows)), 200
-        return jsonify({}), 404
+    try:
+        result = r_client.get(query)
+        if not result is None:
+            return result, 200
+    finally:
+        with engine_r.connect() as connection:
+            try:
+                result = connection.execute(text(
+                    "SELECT listing_id, seller_id, title, price, address, status, created_on, last_updated_at FROM Listings WHERE listing_id = :l_id"), {"l_id": listing_id})
+            except IntegrityError:
+                return jsonify({}), 400
+            except:
+                return jsonify({}), 500
+            rows = result.fetchall()
+            if (rows):
+                json = jsonify(format_result(['listingId', 'sellerId', 'title', 'price', 'address', 'status', 'listedAt', 'lastUpdatedAt'], rows))
+                r_client.set(query, json, ex=3600)
+                return json, 200
+            return jsonify({}), 404
 
 
 @app.get('/get_listing_by_seller')
 def get_listing_by_seller():
     user_id = request.args.get('userId')
+    query = f"SELECT listing_id, seller_id, title, price, address, status, created_on, last_updated_at FROM Listings WHERE seller_id = {user_id}"
 
-    with engine_r.connect() as connection:
-        try:
-            result = connection.execute(text(
-                "SELECT listing_id, seller_id, title, price, address, status, created_on, last_updated_at FROM Listings WHERE seller_id = :usr_id"), {"usr_id": user_id})
-        except IntegrityError:
-            return jsonify({}), 400
-        except:
-            return jsonify({}), 500
-        rows = result.fetchall()
-        if (rows):
-            return jsonify(format_result(['listingId', 'sellerId', 'title', 'price', 'address', 'status', 'createdOn', 'lastUpdatedAt'], rows)), 200
-        return jsonify({}), 404
+    try:
+        result = r_client.get(query)
+        if not result is None:
+            return result, 200
+    finally:
+        with engine_r.connect() as connection:
+            try:
+                result = connection.execute(text(
+                    "SELECT listing_id, seller_id, title, price, address, status, created_on, last_updated_at FROM Listings WHERE seller_id = :usr_id"), {"usr_id": user_id})
+            except IntegrityError:
+                return jsonify({}), 400
+            except:
+                return jsonify({}), 500
+            rows = result.fetchall()
+            if (rows):
+                json = jsonify(format_result(['listingId', 'sellerId', 'title', 'price', 'address', 'status', 'createdOn', 'lastUpdatedAt'], rows))
+                r_client.set(query, json, ex=3600)
+                return json, 200
+            return jsonify({}), 404
 
 
 @app.post('/create_listing')
@@ -475,125 +540,182 @@ def update_listing():
 
 @app.get('/get_all_users')
 def get_all_users():
-    with engine_r.connect() as connection:
-        try:
-            result = connection.execute(text(
-                "SELECT username, address, joining_date, items_sold, items_purchased FROM Users"))
-        except IntegrityError:
-            return jsonify({}), 400
-        except:
-            return jsonify({}), 500
-        rows = result.fetchall()
-        if (rows):
-            return jsonify(format_result(['username', 'address', 'joining_date', 'items_sold', 'items_purchased'], rows)), 200
-        return jsonify({}), 404
+    query = "SELECT username, address, joining_date, items_sold, items_purchased FROM Users"
+
+    try:
+        result = r_client.get(query)
+        if not result is None:
+            return result, 200
+    finally:  
+        with engine_r.connect() as connection:
+            try:
+                result = connection.execute(text(
+                    "SELECT username, address, joining_date, items_sold, items_purchased FROM Users"))
+            except IntegrityError:
+                return jsonify({}), 400
+            except:
+                return jsonify({}), 500
+            rows = result.fetchall()
+            if (rows):
+                json = jsonify(format_result(['username', 'address', 'joining_date', 'items_sold', 'items_purchased'], rows))
+                r_client.set(query, json, ex=3600)
+                return json, 200
+            return jsonify({}), 404
 
 
 @app.get('/get_all_listings')
 def get_all_listings():
+    query = "SELECT listing_id, seller_id, title, price, location, address, status, created_on FROM Listings"
 
-    with engine_r.connect() as connection:
-        try:
-            result = connection.execute(text(
-                "SELECT listing_id, seller_id, title, price, location, address, status, created_on FROM Listings"))
-        except IntegrityError:
-            return jsonify({}), 400
-        except:
-            return jsonify({}), 500
-        rows = result.fetchall()
-        if (rows):
-            return jsonify(format_result(['listing_id', 'seller_id', 'title', 'price', 'location', 'address', 'status', 'created_on'], rows)), 200
-        return jsonify({}), 404
+    try:
+        result = r_client.get(query)
+        if not result is None:
+            return result, 200
+    finally: 
+        with engine_r.connect() as connection:
+            try:
+                result = connection.execute(text(
+                    "SELECT listing_id, seller_id, title, price, location, address, status, created_on FROM Listings"))
+            except IntegrityError:
+                return jsonify({}), 400
+            except:
+                return jsonify({}), 500
+            rows = result.fetchall()
+            if (rows):
+                json = jsonify(format_result(['listing_id', 'seller_id', 'title', 'price', 'location', 'address', 'status', 'created_on'], rows))
+                r_client.set(query, json, ex=3600)
+                return json, 200
+            return jsonify({}), 404
 
 
 @app.get('/get_chats')
 def get_chats():
     user_id = request.args.get('userId')
+    query = f"SELECT chat_id FROM Chats WHERE seller = {user_id} OR buyer = {user_id}"
 
-    with engine_r.connect() as connection:
-        try:
-            result = connection.execute(text(
-                "SELECT chat_id FROM Chats WHERE seller = :usr_id OR buyer = :usr_id"), {"usr_id": user_id})
-        except IntegrityError:
-            return jsonify({}), 400
-        except:
-            return jsonify({}), 500
-        rows = result.fetchall()
-        if (rows):
-            return jsonify([row[0] for row in rows]), 200
-        return jsonify({}), 404
+    try:
+        result = r_client.get(query)
+        if not result is None:
+            return result, 200
+    finally: 
+        with engine_r.connect() as connection:
+            try:
+                result = connection.execute(text(
+                    "SELECT chat_id FROM Chats WHERE seller = :usr_id OR buyer = :usr_id"), {"usr_id": user_id})
+            except IntegrityError:
+                return jsonify({}), 400
+            except:
+                return jsonify({}), 500
+            rows = result.fetchall()
+            if (rows):
+                json = jsonify([row[0] for row in rows])
+                r_client.set(query, json, ex=3600)
+                return json, 200
+            return jsonify({}), 404
 
 
 @app.get('/get_search_history')
 def get_search_history():
     user_id = request.args.get('userId')
+    query = f"SELECT search_text, search_date FROM Searches WHERE user_id = {user_id}"
 
-    with engine_r.connect() as connection:
-        try:
-            result = connection.execute(text(
-                "SELECT search_text, search_date FROM Searches WHERE user_id = :usr_id"), {"usr_id": user_id})
-        except IntegrityError:
-            return jsonify({}), 400
-        except:
-            return jsonify({}), 500
-        rows = result.fetchall()
-        if (rows):
-            return jsonify(format_result(['search_text', 'search_date'], rows)), 200
-        return jsonify({}), 404
+    try:
+        result = r_client.get(query)
+        if not result is None:
+            return result, 200
+    finally:
+        with engine_r.connect() as connection:
+            try:
+                result = connection.execute(text(
+                    "SELECT search_text, search_date FROM Searches WHERE user_id = :usr_id"), {"usr_id": user_id})
+            except IntegrityError:
+                return jsonify({}), 400
+            except:
+                return jsonify({}), 500
+            rows = result.fetchall()
+            if (rows):
+                json = jsonify(format_result(['search_text', 'search_date'], rows))
+                r_client.set(query, json, ex=3600)
+                return json, 200
+            return jsonify({}), 404
 
 
 @app.get('/get_chat_info')
 def get_chat_info():
     chat_id = request.args.get('chatId')
+    query = f"SELECT chat_id, seller, buyer, listing_id FROM Chats WHERE chat_id = {chat_id}"
 
-    with engine_r.connect() as connection:
-        try:
-            result = connection.execute(text(
-                "SELECT chat_id, seller, buyer, listing_id FROM Chats WHERE chat_id = :c_id"), {"c_id": chat_id})
-        except IntegrityError:
-            return jsonify({}), 400
-        except:
-            return jsonify({}), 500
-        rows = result.fetchall()
-        if (rows):
-            return jsonify(format_result(['chat_id', 'seller', 'buyer', 'listing_id'], rows)), 200
-        return jsonify({}), 404
+    try:
+        result = r_client.get(query)
+        if not result is None:
+            return result, 200
+    finally:
+        with engine_r.connect() as connection:
+            try:
+                result = connection.execute(text(
+                    "SELECT chat_id, seller, buyer, listing_id FROM Chats WHERE chat_id = :c_id"), {"c_id": chat_id})
+            except IntegrityError:
+                return jsonify({}), 400
+            except:
+                return jsonify({}), 500
+            rows = result.fetchall()
+            if (rows):
+                json = jsonify(format_result(['chat_id', 'seller', 'buyer', 'listing_id'], rows))
+                r_client.set(query, json, ex=3600)
+                return json, 200
+            return jsonify({}), 404
 
 
 @app.get('/get_messages')
 def get_messages():
     chat_id = request.args.get('chatId')
+    query = f"SELECT message_id, sender_id, message_content, created_on FROM Messages WHERE chat_id = {chat_id}"
 
-    with engine_r.connect() as connection:
-        try:
-            result = connection.execute(text(
-                "SELECT message_id, sender_id, message_content, created_on FROM Messages WHERE chat_id = :c_id"), {"c_id": chat_id})
-        except IntegrityError:
-            return jsonify({}), 400
-        except:
-            return jsonify({}), 500
-        rows = result.fetchall()
-        if (rows):
-            return jsonify(format_result(['message_id', 'sender_id', 'message_content', 'created_on'], rows, True)), 200
-        return jsonify({}), 404
+    try:
+        result = r_client.get(query)
+        if not result is None:
+            return result, 200
+    finally:
+        with engine_r.connect() as connection:
+            try:
+                result = connection.execute(text(
+                    "SELECT message_id, sender_id, message_content, created_on FROM Messages WHERE chat_id = :c_id"), {"c_id": chat_id})
+            except IntegrityError:
+                return jsonify({}), 400
+            except:
+                return jsonify({}), 500
+            rows = result.fetchall()
+            if (rows):
+                json = jsonify(format_result(['message_id', 'sender_id', 'message_content', 'created_on'], rows, True))
+                r_client.set(query, json, ex=3600)
+                return json, 200
+            return jsonify({}), 404
 
 
 @app.get('/get_last_message_timestamp')
 def get_last_message_timestamp():
     chat_id = request.args.get('chatId')
+    query = f"SELECT created_on FROM Messages WHERE chat_id = {chat_id} ORDER BY created_on DESC LIMIT 1"
 
-    with engine_r.connect() as connection:
-        try:
-            result = connection.execute(text(
-                "SELECT created_on FROM Messages WHERE chat_id = :c_id ORDER BY created_on DESC LIMIT 1"), {"c_id": chat_id})
-        except IntegrityError:
-            return jsonify({}), 400
-        except:
-            return jsonify({}), 500
-        rows = result.fetchall()
-        if (rows):
-            return jsonify(format_result(['timestamp'], rows)), 200
-        return jsonify({}), 404
+    try:
+        result = r_client.get(query)
+        if not result is None:
+            return result, 200
+    finally:
+        with engine_r.connect() as connection:
+            try:
+                result = connection.execute(text(
+                    "SELECT created_on FROM Messages WHERE chat_id = :c_id ORDER BY created_on DESC LIMIT 1"), {"c_id": chat_id})
+            except IntegrityError:
+                return jsonify({}), 400
+            except:
+                return jsonify({}), 500
+            rows = result.fetchall()
+            if (rows):
+                json = jsonify(format_result(['timestamp'], rows))
+                r_client.set(query, json, ex=3600)
+                return json, 200
+            return jsonify({}), 404
 
 
 @app.post('/create_message')
