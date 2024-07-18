@@ -61,7 +61,7 @@ def dump_users():
                 result = connection.execute(text(query))
                 connection.commit()
                 row = result.fetchall()
-                r_client.set(query, str(row), ex=3600)
+                r_client.set(query, str(row))
                 return Response(str(row), status=200)
             except:
                 return Response(status=500)
@@ -80,7 +80,7 @@ def dump_listings():
                 result = connection.execute(text(query))
                 connection.commit()
                 row = result.fetchall()
-                r_client.set(query, str(row), ex=3600)
+                r_client.set(query, str(row))
                 return Response(str(row), status=200)
             except:
                 return Response(status=500)
@@ -123,10 +123,8 @@ def get_user_for_login():
     query = f"SELECT user_id, password FROM Users WHERE username = {username}"
     try:
         result = r_client.get(query)
-        result = jsonify(result)
-        print(result)
         if not result is None:
-            return jsonify(result), 200
+            return result, 200
     finally:
         with engine_r.connect() as connection:
             try:
@@ -138,8 +136,9 @@ def get_user_for_login():
                 return jsonify({}), 500
             row = result.fetchone()
             if (row):
-                r_client.set(query, str(format_result(['user_id', 'password'], [row])), ex=3600)
-                return jsonify(format_result(['user_id', 'password'], [row])), 200
+                json = jsonify(format_result(['user_id', 'password'], [row]))
+                r_client.set(query, str(json))
+                return json, 200
             return jsonify({}), 404
 
 
@@ -150,7 +149,7 @@ def get_user_by_email():
     try:
         result = r_client.get(query)
         if not result is None:
-            return jsonify(result)
+            return result
     finally:
         with engine_r.connect() as connection:
             try:
@@ -158,11 +157,10 @@ def get_user_by_email():
                     "SELECT user_id, username FROM Users WHERE email = :e_mail"), {"e_mail": email})
                 connection.commit()
                 row = result.fetchone()
-                print(row)
                 if row:
-
-                    r_client.set(query, str(format_result(['user_id', 'username'], [row])), ex=3600)
-                    return jsonify(format_result(['user_id', 'username'], [row]))
+                    json = jsonify(format_result(['user_id', 'username'], [row]))
+                    r_client.set(query, str(json))
+                    return json
             except Exception as e:
                 print(e)
 
@@ -216,19 +214,27 @@ def get_ratings():
     listing_id = request.args.get('listingId')
     if not listing_id:
         return jsonify({}), 400
+    query = f"SELECT username, rating_value, created_on FROM Listing_Ratings JOIN Users on Listing_Ratings.rating_user_id = Users.user_id WHERE rated_listing_id = {listing_id}"
 
-    with engine_r.connect() as connection:
-        try:
-            result = connection.execute(
-                text("SELECT username, rating_value, created_on FROM Listing_Ratings JOIN Users on Listing_Ratings.rating_user_id = Users.user_id WHERE rated_listing_id = :listing_id"),
-                {"listing_id": listing_id}
-            )
-        except IntegrityError:
-            return jsonify({}), 400
-        except:
-            return jsonify({}), 500
-        rows = result.fetchall()
-        return jsonify(format_result(['username', 'rating', 'created_on'], rows, True)), 200
+    try:
+        result = r_client.get(query)
+        if not result is None:
+            return result, 200
+    finally:
+        with engine_r.connect() as connection:
+            try:
+                result = connection.execute(
+                    text("SELECT username, rating_value, created_on FROM Listing_Ratings JOIN Users on Listing_Ratings.rating_user_id = Users.user_id WHERE rated_listing_id = :listing_id"),
+                    {"listing_id": listing_id}
+                )
+            except IntegrityError:
+                return jsonify({}), 400
+            except:
+                return jsonify({}), 500
+            rows = result.fetchall()
+            json = jsonify(format_result(['username', 'rating', 'created_on'], rows, True))
+            r_client.set(query, str(json))
+            return json, 200
 
 
 @app.post('/create_review')
@@ -281,7 +287,7 @@ def get_reviews():
                 return jsonify({}), 500
             rows = result.fetchall()
             json = jsonify(format_result(['username', 'review', 'created_on'], rows, True))
-            r_client.set(query, json, ex=3600)
+            r_client.set(query, str(json))
             return json, 200
 
 
@@ -310,7 +316,7 @@ def get_user():
                     "address": row[1],
                     "joining_date": row[2].isoformat(),
                 })
-                r_client.set(query, json, ex=3600)
+                r_client.set(query, str(json))
                 return json, 200
             return jsonify({}), 404
 
@@ -331,9 +337,8 @@ def get_user_purchases():
                     "SELECT listing_id FROM Sales WHERE buyer_id = :usr_id"), {"usr_id": user_id})
                 rows = result.fetchall()
                 if rows:
-                    print(rows[0])
                     json = jsonify([x[0] for x in rows])
-                    r_client.set(query, json, ex=3600)
+                    r_client.set(query, str(json))
                     return json, 200
                 else:
                     return jsonify({}), 200
@@ -362,7 +367,7 @@ def get_user_sales():
                 rows = result.fetchall()
                 if rows:
                     json = jsonify([x[0] for x in rows])
-                    r_client.set(query, json, ex=3600)
+                    r_client.set(query, str(json))
                     return json, 200
                 else:
                     return jsonify([]), 200
@@ -401,29 +406,40 @@ def get_listings():
     status = request.args.get('status', 'AVAILABLE')
     sort_by = request.args.get('sortBy', 'created_on')
     is_descending = request.args.get('isDescending', False)
+    if not is_descending:
+        query = f"SELECT listing_id, seller_id, title, price, address, status, created_on, last_updated_at FROM Listings WHERE price < {max_price} AND price > {min_price} AND status = {status} ORDER BY {sort_by} DESC"
+    else:
+        query = f"SELECT listing_id, seller_id, title, price, address, status, created_on, last_updated_at FROM Listings WHERE price < {max_price} AND price > {min_price} AND status = {status} ORDER BY {sort_by} DESC"
 
-    with engine_r.connect() as connection:
-        try:
-            if not is_descending:
-                result = connection.execute(
-                    text("SELECT listing_id, seller_id, title, price, address, status, created_on, last_updated_at FROM Listings WHERE price < :max_price AND price > :min_price AND status = :l_status ORDER BY :srt_by"),
-                    {"max_price": max_price, "min_price": min_price,
-                        "l_status": status, "srt_by": sort_by}
-                )
-            else:
-                result = connection.execute(
-                    text("SELECT listing_id, seller_id, title, price, address, status, created_on, last_updated_at FROM Listings WHERE price < :max_price AND price > :min_price AND status = :l_status ORDER BY :srt_by DESC"),
-                    {"max_price": max_price, "min_price": min_price,
-                        "l_status": status, "srt_by": sort_by}
-                )
-        except IntegrityError:
-            return jsonify({}), 400
-        except:
-            return jsonify({}), 500
-        rows = result.fetchall()
-        if (rows):
-            return jsonify(format_result(['listingId', 'sellerId', 'title', 'price', 'address', 'status', 'listedAt', 'lastUpdatedAt'], rows, True)), 200
-        return jsonify({}), 404
+    try:
+        result = r_client.get(query)
+        if not result is None:
+            return result, 200
+    finally:
+        with engine_r.connect() as connection:
+            try:
+                if not is_descending:
+                    result = connection.execute(
+                        text("SELECT listing_id, seller_id, title, price, address, status, created_on, last_updated_at FROM Listings WHERE price < :max_price AND price > :min_price AND status = :l_status ORDER BY :srt_by"),
+                        {"max_price": max_price, "min_price": min_price,
+                            "l_status": status, "srt_by": sort_by}
+                    )
+                else:
+                    result = connection.execute(
+                        text("SELECT listing_id, seller_id, title, price, address, status, created_on, last_updated_at FROM Listings WHERE price < :max_price AND price > :min_price AND status = :l_status ORDER BY :srt_by DESC"),
+                        {"max_price": max_price, "min_price": min_price,
+                            "l_status": status, "srt_by": sort_by}
+                    )
+            except IntegrityError:
+                return jsonify({}), 400
+            except:
+                return jsonify({}), 500
+            rows = result.fetchall()
+            if (rows):
+                json = jsonify(format_result(['listingId', 'sellerId', 'title', 'price', 'address', 'status', 'listedAt', 'lastUpdatedAt'], rows, True))
+                r_client.set(query, str(json))
+                return json, 200
+            return jsonify({}), 404
 
 
 @app.get('/get_listing')
@@ -447,7 +463,7 @@ def get_listing():
             rows = result.fetchall()
             if (rows):
                 json = jsonify(format_result(['listingId', 'sellerId', 'title', 'price', 'address', 'status', 'listedAt', 'lastUpdatedAt'], rows))
-                r_client.set(query, json, ex=3600)
+                r_client.set(query, str(json))
                 return json, 200
             return jsonify({}), 404
 
@@ -473,7 +489,7 @@ def get_listing_by_seller():
             rows = result.fetchall()
             if (rows):
                 json = jsonify(format_result(['listingId', 'sellerId', 'title', 'price', 'address', 'status', 'createdOn', 'lastUpdatedAt'], rows))
-                r_client.set(query, json, ex=3600)
+                r_client.set(query, str(json))
                 return json, 200
             return jsonify({}), 404
 
@@ -558,7 +574,7 @@ def get_all_users():
             rows = result.fetchall()
             if (rows):
                 json = jsonify(format_result(['username', 'address', 'joining_date', 'items_sold', 'items_purchased'], rows))
-                r_client.set(query, json, ex=3600)
+                r_client.set(query, str(json))
                 return json, 200
             return jsonify({}), 404
 
@@ -583,7 +599,7 @@ def get_all_listings():
             rows = result.fetchall()
             if (rows):
                 json = jsonify(format_result(['listing_id', 'seller_id', 'title', 'price', 'location', 'address', 'status', 'created_on'], rows))
-                r_client.set(query, json, ex=3600)
+                r_client.set(query, str(json))
                 return json, 200
             return jsonify({}), 404
 
@@ -609,7 +625,7 @@ def get_chats():
             rows = result.fetchall()
             if (rows):
                 json = jsonify([row[0] for row in rows])
-                r_client.set(query, json, ex=3600)
+                r_client.set(query, str(json))
                 return json, 200
             return jsonify({}), 404
 
@@ -635,7 +651,7 @@ def get_search_history():
             rows = result.fetchall()
             if (rows):
                 json = jsonify(format_result(['search_text', 'search_date'], rows))
-                r_client.set(query, json, ex=3600)
+                r_client.set(query, str(json))
                 return json, 200
             return jsonify({}), 404
 
@@ -661,7 +677,7 @@ def get_chat_info():
             rows = result.fetchall()
             if (rows):
                 json = jsonify(format_result(['chat_id', 'seller', 'buyer', 'listing_id'], rows))
-                r_client.set(query, json, ex=3600)
+                r_client.set(query, str(json))
                 return json, 200
             return jsonify({}), 404
 
@@ -687,7 +703,7 @@ def get_messages():
             rows = result.fetchall()
             if (rows):
                 json = jsonify(format_result(['message_id', 'sender_id', 'message_content', 'created_on'], rows, True))
-                r_client.set(query, json, ex=3600)
+                r_client.set(query, str(json))
                 return json, 200
             return jsonify({}), 404
 
@@ -713,7 +729,7 @@ def get_last_message_timestamp():
             rows = result.fetchall()
             if (rows):
                 json = jsonify(format_result(['timestamp'], rows))
-                r_client.set(query, json, ex=3600)
+                r_client.set(query, str(json))
                 return json, 200
             return jsonify({}), 404
 
@@ -787,7 +803,7 @@ def dump_ignores():
                 result = connection.execute(text(query))
                 connection.commit()
                 row = result.fetchall()
-                r_client.set(query, str(row), ex=3600)
+                r_client.set(query, str(row))
                 return Response(str(row), status=200)
             except:
                 return Response(status=500)
