@@ -642,11 +642,11 @@ def create_chat():
 
     with engine_w.connect() as connection:
         try:
-            result = connection.execute(text("SELECT chat_id from Chats WHERE listing_id = :l_id AND seller = :s_id AND buyer = :b_id"), {
+            result = connection.execute(text("SELECT * from Chats WHERE listing_id = :l_id AND seller = :s_id AND buyer = :b_id"), {
                                         "l_id": listing_id, "s_id": seller_id, "b_id": buyer_id})
-            row = result.fetchone()
-            if row:
-                return jsonify(format_result(['chatId'], [row])), 409
+            rows = result.fetchall()
+            if rows:
+                return jsonify({'message': 'Chat already exists'}), 409
             result = connection.execute(text("INSERT INTO Chats (listing_id, seller, buyer) VALUES (:l_id, :s_id, :b_id) RETURNING chat_id"), {
                                         "l_id": listing_id, "s_id": seller_id, "b_id": buyer_id})
             connection.commit()
