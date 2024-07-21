@@ -437,6 +437,25 @@ def create_listing():
         row = result.fetchall()
         return jsonify(format_result(['listingId', 'title', 'price', 'address', 'status'], row)), 201
 
+@app.post('/create_sale')
+def create_sale():
+    listing_id = request.json.get('listingId')
+    buyer_username = request.json.get('buyerUsername')
+    with engine_w.connect() as connection:
+        try:
+            result = connection.execute(text("SELECT user_id from Users WHERE username = :username"), {
+                            "username": buyer_username})
+            row = result.fetchone()
+            if row:
+                connection.execute(text("INSERT INTO Sales (listing_id, buyer_id) VALUES (:l_id, :b_id)"), {
+                                "l_id": listing_id, "b_id": row[0]})
+                connection.commit()
+            else:
+                return jsonify({}), 404
+        except:
+            connection.rollback()
+            return jsonify({}), 500
+        return jsonify({}), 200
 
 @app.post('/update_listing')
 def update_listing():
