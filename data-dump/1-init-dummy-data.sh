@@ -1767,7 +1767,7 @@ VALUES
 (255, 5, '2022-2-13T02:19:32.816610+00:00');
 
 -- Insert dummy data into Charity table
-INSERT INTO Charity (name, status, fund, logoUrl, startDate, endDate, numListings)
+INSERT INTO Charity (name, status, fund, logo_url, start_date, end_date, num_listings)
 VALUES
 ('Heart Foundation', 'AVAILABLE', 0.00,  'https://theheartfoundation.org/wp-content/uploads/2023/02/thf_logo-white.png', '2024-05-24T02:19:32.816610+00:00', '2025-05-24T02:19:32.816610+00:00', 0),
 ('RainCoast Dog Rescue', 'AVAILABLE', 0.00,  'https://raincoastdogrescue.com/wp-content/uploads/2020/04/Raincoast-Logo-Web3.png', '2024-05-24T02:19:32.816610+00:00', '2026-05-24T02:19:32.816610+00:00', 0);

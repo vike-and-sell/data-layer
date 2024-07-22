@@ -47,6 +47,7 @@ CREATE TABLE IF NOT EXISTS Listings (
     location EARTH NOT NULL,
     address TEXT NOT NULL,
     status VARCHAR(20) NOT NULL CHECK (status IN ('AVAILABLE', 'SOLD', 'REMOVED')),
+    for_charity BOOLEAN NOT NULL DEFAULT FALSE,
     created_on TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     last_updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
@@ -143,10 +144,10 @@ CREATE TABLE IF NOT EXISTS Charity (
     name TEXT NOT NULL UNIQUE,
     status VARCHAR(20) NOT NULL CHECK (status IN ('AVAILABLE', 'CLOSED')),
     fund DECIMAL(10, 2) NOT NULL,
-    logoUrl TEXT NOT NULL UNIQUE,
-    startDate TIMESTAMP NOT NULL,
-    endDate TIMESTAMP NOT NULL,
-    numListings INT NOT NULL
+    logo_url TEXT NOT NULL UNIQUE,
+    start_date TIMESTAMP NOT NULL,
+    end_date TIMESTAMP NOT NULL,
+    num_listings INT NOT NULL DEFAULT 0
 );
 
 CREATE INDEX IF NOT EXISTS CharityCharityIdIndex ON Charity (

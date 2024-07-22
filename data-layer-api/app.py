@@ -350,13 +350,13 @@ def get_listings():
         try:
             if not is_descending:
                 result = connection.execute(
-                    text(f"SELECT listing_id, seller_id, title, price, address, status, created_on, last_updated_at FROM Listings WHERE price < :max_price AND price > :min_price AND status = :l_status ORDER BY {sort_by}"),
+                    text(f"SELECT listing_id, seller_id, title, price, address, status, for_charity, created_on, last_updated_at FROM Listings WHERE price < :max_price AND price > :min_price AND status = :l_status ORDER BY {sort_by}"),
                     {"max_price": max_price, "min_price": min_price,
                         "l_status": status}
                 )
             else:
                 result = connection.execute(
-                    text(f"SELECT listing_id, seller_id, title, price, address, status, created_on, last_updated_at FROM Listings WHERE price < :max_price AND price > :min_price AND status = :l_status ORDER BY {sort_by} DESC"),
+                    text(f"SELECT listing_id, seller_id, title, price, address, status, for_charity, created_on, last_updated_at FROM Listings WHERE price < :max_price AND price > :min_price AND status = :l_status ORDER BY {sort_by} DESC"),
                     {"max_price": max_price, "min_price": min_price,
                         "l_status": status}
                 )
@@ -366,7 +366,7 @@ def get_listings():
             return jsonify({}), 500
         rows = result.fetchall()
         if (rows):
-            return jsonify(format_result(['listingId', 'sellerId', 'title', 'price', 'address', 'status', 'listedAt', 'lastUpdatedAt'], rows, True)), 200
+            return jsonify(format_result(['listingId', 'sellerId', 'title', 'price', 'address', 'status',  'for_charity',  'listedAt', 'lastUpdatedAt'], rows, True)), 200
         return jsonify({}), 404
 
 
@@ -377,14 +377,14 @@ def get_listing():
     with engine_r.connect() as connection:
         try:
             result = connection.execute(text(
-                "SELECT listing_id, seller_id, title, price, address, status, created_on, last_updated_at FROM Listings WHERE listing_id = :l_id"), {"l_id": listing_id})
+                "SELECT listing_id, seller_id, title, price, address, status, for_charity, created_on, last_updated_at FROM Listings WHERE listing_id = :l_id"), {"l_id": listing_id})
         except IntegrityError:
             return jsonify({}), 400
         except:
             return jsonify({}), 500
         rows = result.fetchall()
         if (rows):
-            return jsonify(format_result(['listingId', 'sellerId', 'title', 'price', 'address', 'status', 'listedAt', 'lastUpdatedAt'], rows)), 200
+            return jsonify(format_result(['listingId', 'sellerId', 'title', 'price', 'address', 'status', 'for_charity', 'listedAt', 'lastUpdatedAt'], rows)), 200
         return jsonify({}), 404
 
 
@@ -395,14 +395,14 @@ def get_listing_by_seller():
     with engine_r.connect() as connection:
         try:
             result = connection.execute(text(
-                "SELECT listing_id, seller_id, title, price, address, status, created_on, last_updated_at FROM Listings WHERE seller_id = :usr_id"), {"usr_id": user_id})
+                "SELECT listing_id, seller_id, title, price, address, status, for_charity, created_on, last_updated_at FROM Listings WHERE seller_id = :usr_id"), {"usr_id": user_id})
         except IntegrityError:
             return jsonify({}), 400
         except:
             return jsonify({}), 500
         rows = result.fetchall()
         if (rows):
-            return jsonify(format_result(['listingId', 'sellerId', 'title', 'price', 'address', 'status', 'listedAt', 'lastUpdatedAt'], rows)), 200
+            return jsonify(format_result(['listingId', 'sellerId', 'title', 'price', 'address', 'status', 'for_charity', 'listedAt', 'lastUpdatedAt'], rows)), 200
         return jsonify({}), 404
 
 
@@ -415,13 +415,14 @@ def create_listing():
     status = request.json.get('status')
     latitude = request.json.get('latitude')
     longitude = request.json.get('longitude')
+    for_charity = request.json.get('forCharity')
 
     with engine_w.connect() as connection:
         try:
             result = connection.execute(
-                text("INSERT INTO Listings (seller_id, title, price, address, location, status) VALUES (:sllr_id, :l_title, :l_price, :addr, ll_to_earth(:lat, :lng), :l_status) RETURNING listing_id, title, price, address, status"),
+                text("INSERT INTO Listings (seller_id, title, price, address, location, status, for_charity) VALUES (:sllr_id, :l_title, :l_price, :addr, ll_to_earth(:lat, :lng), :l_status, :l_for_charity) RETURNING listing_id, title, price, address, status, for_charity"),
                 {"sllr_id": seller_id, "l_title": title, "l_price": price,
-                    "addr": address, "lat": latitude, "lng": longitude, "l_status": status}
+                    "addr": address, "lat": latitude, "lng": longitude, "l_status": status, "l_for_charity": for_charity}
             )
             connection.commit()
         except IntegrityError as e:
@@ -435,7 +436,10 @@ def create_listing():
             return jsonify({'message': 'Something went wrong'}), 500
 
         row = result.fetchall()
-        return jsonify(format_result(['listingId', 'title', 'price', 'address', 'status'], row)), 201
+        return jsonify(format_result(['listingId', 'title', 'price', 'address', 'status', 'forCharity'], row)), 201
+
+
+# if listing is for charity, add to funds
 
 @app.post('/create_sale')
 def create_sale():
@@ -457,6 +461,8 @@ def create_sale():
             return jsonify({}), 500
         return jsonify({}), 200
 
+
+# add charity
 @app.post('/update_listing')
 def update_listing():
     listing_id = request.json.get('listingId')
@@ -508,14 +514,14 @@ def get_all_listings():
     with engine_r.connect() as connection:
         try:
             result = connection.execute(text(
-                "SELECT listing_id, seller_id, title, price, location, address, status, created_on FROM Listings"))
+                "SELECT listing_id, seller_id, title, price, location, address, status, for_charity, created_on FROM Listings"))
         except IntegrityError:
             return jsonify({}), 400
         except:
             return jsonify({}), 500
         rows = result.fetchall()
         if (rows):
-            return jsonify(format_result(['listing_id', 'seller_id', 'title', 'price', 'location', 'address', 'status', 'created_on'], rows)), 200
+            return jsonify(format_result(['listing_id', 'seller_id', 'title', 'price', 'location', 'address', 'status', 'created_on', 'created_on'], rows)), 200
         return jsonify({}), 404
 
 
@@ -726,7 +732,7 @@ def get_charities():
     with engine_r.connect() as connection:
         try:
             result = connection.execute(
-                text("SELECT charity_id, name, status, fund, logoUrl, startDate, endDate, numListings FROM Charity"),
+                text("SELECT charity_id, name, status, fund, logo_url, start_date, end_date, num_listings FROM Charity"),
             )
         except IntegrityError:
             return jsonify({}), 400
@@ -734,7 +740,7 @@ def get_charities():
             return jsonify({}), 500
         rows = result.fetchall()
         if (rows):
-            return jsonify(format_result(['charityId', 'name', 'status', 'fund', 'logoUrl', 'startDate', 'endDate', 'numListings'], rows)), 200
+            return jsonify(format_result(['charity_id', 'name', 'status', 'fund', 'logo_url', 'start_date', 'end_date', 'num_listings'], rows)), 200
         return jsonify({}), 404
 
 if __name__ == '__main__':
