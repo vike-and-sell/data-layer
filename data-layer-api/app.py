@@ -681,5 +681,26 @@ def ignore_listing():
     return jsonify({'message': 'Something went wrong'}), 500
 
 
+
+# app post request to create charity
+
+# app get all charities
+
+@app.get('/get_charities')
+def get_charities():
+    with engine_r.connect() as connection:
+        try:
+            result = connection.execute(
+                text("SELECT charity_id, name, status, fund, logoUrl, startDate, endDate, numListings FROM Charity"),
+            )
+        except IntegrityError:
+            return jsonify({}), 400
+        except:
+            return jsonify({}), 500
+        rows = result.fetchall()
+        if (rows):
+            return jsonify(format_result(['charityId', 'name', 'status', 'fund', 'logoUrl', 'startDate', 'endDate', 'numListings'], rows)), 200
+        return jsonify({}), 404
+
 if __name__ == '__main__':
     app.run(debug=True)
