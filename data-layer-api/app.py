@@ -419,7 +419,7 @@ def create_listing():
     with engine_w.connect() as connection:
         try:
             result = connection.execute(
-                text("INSERT INTO Listings (seller_id, title, price, address, location, status) VALUES (:sllr_id, :l_title, :l_price, :addr, ll_to_earth(:lat, :lng), :l_status) RETURNING listing_id"),
+                text("INSERT INTO Listings (seller_id, title, price, address, location, status) VALUES (:sllr_id, :l_title, :l_price, :addr, ll_to_earth(:lat, :lng), :l_status) RETURNING listing_id, title, price, address, status"),
                 {"sllr_id": seller_id, "l_title": title, "l_price": price,
                     "addr": address, "lat": latitude, "lng": longitude, "l_status": status}
             )
@@ -435,8 +435,27 @@ def create_listing():
             return jsonify({'message': 'Something went wrong'}), 500
 
         row = result.fetchall()
-        return jsonify(format_result(['listingId'], row)), 201
+        return jsonify(format_result(['listingId', 'title', 'price', 'address', 'status'], row)), 201
 
+@app.post('/create_sale')
+def create_sale():
+    listing_id = request.json.get('listingId')
+    buyer_username = request.json.get('buyerUsername')
+    with engine_w.connect() as connection:
+        try:
+            result = connection.execute(text("SELECT user_id from Users WHERE username = :username"), {
+                            "username": buyer_username})
+            row = result.fetchone()
+            if row:
+                connection.execute(text("INSERT INTO Sales (listing_id, buyer_id) VALUES (:l_id, :b_id)"), {
+                                "l_id": listing_id, "b_id": row[0]})
+                connection.commit()
+            else:
+                return jsonify({}), 404
+        except:
+            connection.rollback()
+            return jsonify({}), 500
+        return jsonify({}), 200
 
 @app.post('/update_listing')
 def update_listing():
@@ -534,6 +553,22 @@ def get_search_history():
         if (rows):
             return jsonify(format_result(['search_text', 'search_date'], rows)), 200
         return jsonify({}), 404
+
+@app.post('/create_search')
+def get_search():
+    user_id = request.json.get('userId')
+    search = request.json.get('search')
+    with engine_w.connect() as connection:
+        try:
+            connection.execute(
+                text("INSERT INTO Searches (user_id, search_text) VALUES (:u_id, :search)"),
+                {"u_id": user_id, "search": search}
+            )
+            connection.commit()
+        except:
+            connection.rollback()
+            return jsonify({'message': 'Something went wrong'}), 500
+    return jsonify({}), 200
 
 
 @app.get('/get_chat_info')
