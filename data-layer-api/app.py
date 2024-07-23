@@ -440,6 +440,7 @@ def create_listing():
 
 
 # if listing is for charity, add to funds
+# ------------------------------------------------------------- ------------------------------------------------------------- -------------------------------------------------------------
 
 @app.post('/create_sale')
 def create_sale():
@@ -450,6 +451,7 @@ def create_sale():
             result = connection.execute(text("SELECT user_id from Users WHERE username = :username"), {
                             "username": buyer_username})
             row = result.fetchone()
+            print(row)
             if row:
                 connection.execute(text("INSERT INTO Sales (listing_id, buyer_id) VALUES (:l_id, :b_id)"), {
                                 "l_id": listing_id, "b_id": row[0]})
@@ -462,13 +464,13 @@ def create_sale():
         return jsonify({}), 200
 
 
-# add charity
 @app.post('/update_listing')
 def update_listing():
     listing_id = request.json.get('listingId')
     title = request.json.get('title')
     price = request.json.get('price')
     status = request.json.get('status')
+    for_charity = request.json.get('forCharity')
 
     with engine_w.connect() as connection:
         try:
@@ -481,6 +483,9 @@ def update_listing():
             if status is not None:
                 connection.execute(text("UPDATE Listings SET status = :l_status WHERE listing_id = :l_id"), {
                                    "l_status": status, "l_id": listing_id})
+            if for_charity is not None:
+                connection.execute(text("UPDATE Listings SET for_charity = :l_for_charity WHERE listing_id = :l_id"), {
+                                   "l_for_charity": for_charity, "l_id": listing_id})
             connection.commit()
         except IntegrityError:
             connection.rollback()
