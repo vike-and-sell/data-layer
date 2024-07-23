@@ -350,13 +350,15 @@ def get_listings():
         try:
             if not is_descending:
                 result = connection.execute(
-                    text(f"SELECT listing_id, seller_id, title, price, address, status, created_on, last_updated_at FROM Listings WHERE price < :max_price AND price > :min_price AND status = :l_status ORDER BY {sort_by}"),
+                    text(f"SELECT listing_id, seller_id, title, price, address, status, created_on, last_updated_at FROM Listings WHERE price < :max_price AND price > :min_price AND status = :l_status ORDER BY {
+                         sort_by}"),
                     {"max_price": max_price, "min_price": min_price,
                         "l_status": status}
                 )
             else:
                 result = connection.execute(
-                    text(f"SELECT listing_id, seller_id, title, price, address, status, created_on, last_updated_at FROM Listings WHERE price < :max_price AND price > :min_price AND status = :l_status ORDER BY {sort_by} DESC"),
+                    text(f"SELECT listing_id, seller_id, title, price, address, status, created_on, last_updated_at FROM Listings WHERE price < :max_price AND price > :min_price AND status = :l_status ORDER BY {
+                         sort_by} DESC"),
                     {"max_price": max_price, "min_price": min_price,
                         "l_status": status}
                 )
@@ -437,6 +439,7 @@ def create_listing():
         row = result.fetchall()
         return jsonify(format_result(['listingId', 'title', 'price', 'address', 'status'], row)), 201
 
+
 @app.post('/create_sale')
 def create_sale():
     listing_id = request.json.get('listingId')
@@ -444,11 +447,11 @@ def create_sale():
     with engine_w.connect() as connection:
         try:
             result = connection.execute(text("SELECT user_id from Users WHERE username = :username"), {
-                            "username": buyer_username})
+                "username": buyer_username})
             row = result.fetchone()
             if row:
                 connection.execute(text("INSERT INTO Sales (listing_id, buyer_id) VALUES (:l_id, :b_id)"), {
-                                "l_id": listing_id, "b_id": row[0]})
+                    "l_id": listing_id, "b_id": row[0]})
                 connection.commit()
             else:
                 return jsonify({}), 404
@@ -456,6 +459,7 @@ def create_sale():
             connection.rollback()
             return jsonify({}), 500
         return jsonify({}), 200
+
 
 @app.post('/update_listing')
 def update_listing():
@@ -483,40 +487,6 @@ def update_listing():
             connection.rollback()
             return jsonify({}), 500
         return jsonify({}), 200
-
-
-@app.get('/get_all_users')
-def get_all_users():
-
-    with engine_r.connect() as connection:
-        try:
-            result = connection.execute(text(
-                "SELECT username, address, joining_date, items_sold, items_purchased FROM Users"))
-        except IntegrityError:
-            return jsonify({}), 400
-        except:
-            return jsonify({}), 500
-        rows = result.fetchall()
-        if (rows):
-            return jsonify(format_result(['username', 'address', 'joining_date', 'items_sold', 'items_purchased'], rows)), 200
-        return jsonify({}), 404
-
-
-@app.get('/get_all_listings')
-def get_all_listings():
-
-    with engine_r.connect() as connection:
-        try:
-            result = connection.execute(text(
-                "SELECT listing_id, seller_id, title, price, location, address, status, created_on FROM Listings"))
-        except IntegrityError:
-            return jsonify({}), 400
-        except:
-            return jsonify({}), 500
-        rows = result.fetchall()
-        if (rows):
-            return jsonify(format_result(['listing_id', 'seller_id', 'title', 'price', 'location', 'address', 'status', 'created_on'], rows)), 200
-        return jsonify({}), 404
 
 
 @app.get('/get_chats')
@@ -554,6 +524,7 @@ def get_search_history():
             return jsonify(format_result(['search_text', 'search_date'], rows)), 200
         return jsonify({}), 404
 
+
 @app.post('/create_search')
 def get_search():
     user_id = request.json.get('userId')
@@ -561,7 +532,8 @@ def get_search():
     with engine_w.connect() as connection:
         try:
             connection.execute(
-                text("INSERT INTO Searches (user_id, search_text) VALUES (:u_id, :search)"),
+                text(
+                    "INSERT INTO Searches (user_id, search_text) VALUES (:u_id, :search)"),
                 {"u_id": user_id, "search": search}
             )
             connection.commit()
@@ -714,6 +686,31 @@ def ignore_listing():
             print(e)
 
     return jsonify({'message': 'Something went wrong'}), 500
+
+
+@app.get('/get_user_recommendation_info')
+def get_user_recommendation_info():
+    userId = request.args.get("userId")
+    with engine_r.connect() as connection:
+        try:
+            result = connection.execute(text("SELECT listing_id FROM Ignored WHERE user_id = :u_id;"), {
+                "u_id": userId,
+            })
+            connection.commit()
+            ignored = result.fetchall()
+            result = connection.execute(text("SELECT search_text FROM Searches WHERE user_id = :u_id;"), {
+                "u_id": userId,
+            })
+            connection.commit()
+            searches = result.fetchall()
+
+            return jsonify({
+                "ignored": [x[0] for x in ignored],
+                "searches": [x[0] for x in searches],
+            }), 200
+        except Exception as e:
+            print(e)
+            return Response(status=500)
 
 
 if __name__ == '__main__':
