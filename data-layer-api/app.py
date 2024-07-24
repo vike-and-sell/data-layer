@@ -289,7 +289,7 @@ def get_user_purchases():
                 print(rows[0])
                 return jsonify([x[0] for x in rows]), 200
             else:
-                return jsonify({}), 200
+                return jsonify([]), 200
         except IntegrityError:
             return jsonify({}), 400
         except Exception as e:
