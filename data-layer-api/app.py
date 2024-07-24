@@ -475,6 +475,7 @@ def update_listing():
     title = request.json.get('title')
     price = request.json.get('price')
     status = request.json.get('status')
+    charity = request.json.get('charity')
 
     with engine_w.connect() as connection:
         try:
@@ -487,6 +488,9 @@ def update_listing():
             if status is not None:
                 connection.execute(text("UPDATE Listings SET status = :l_status WHERE listing_id = :l_id"), {
                                    "l_status": status, "l_id": listing_id})
+            if charity is not None:
+                connection.execute(text("UPDATE Listings SET charity = :l_charity WHERE listing_id = :l_id"), {
+                                   "l_charity": charity, "l_id": listing_id})
             connection.commit()
         except IntegrityError:
             connection.rollback()
