@@ -451,10 +451,24 @@ def create_sale():
             result = connection.execute(text("SELECT user_id from Users WHERE username = :username"), {
                             "username": buyer_username})
             row = result.fetchone()
-            print(row)
             if row:
                 connection.execute(text("INSERT INTO Sales (listing_id, buyer_id) VALUES (:l_id, :b_id)"), {
                                 "l_id": listing_id, "b_id": row[0]})
+                
+                listing = connection.execute(text("SELECT for_charity FROM Listings WHERE listing_id = :l_id"), {
+                                "l_id": listing_id})
+                
+                listing_row = listing.fetchone()
+                for_charity = listing_row[0]
+
+                if for_charity:
+                    charity = connection.execute(text("SELECT charity_id from Charity WHERE status = 'AVAILABLE' ORDER BY end_date LIMIT 1"))
+                    charity_row = charity.fetchone()
+                    charity_id = charity_row[0]
+
+                    connection.execute(text("UPDATE Charity SET fund = fund + (SELECT price FROM Listings WHERE listing_id = :l_id) WHERE charity_id = :l_charity_id"), {
+                             "l_id": listing_id, "l_charity_id": charity_id})
+
                 connection.commit()
             else:
                 return jsonify({}), 404
