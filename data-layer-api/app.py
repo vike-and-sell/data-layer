@@ -350,14 +350,14 @@ def get_listings():
         try:
             if not is_descending:
                 result = connection.execute(
-                    text(f"SELECT listing_id, seller_id, title, price, address, status, created_on, last_updated_at FROM Listings WHERE price < :max_price AND price > :min_price AND status = :l_status ORDER BY {
+                    text(f"SELECT listing_id, seller_id, title, price, address, status, charity, created_on, last_updated_at FROM Listings WHERE price < :max_price AND price > :min_price AND status = :l_status ORDER BY {
                          sort_by}"),
                     {"max_price": max_price, "min_price": min_price,
                         "l_status": status}
                 )
             else:
                 result = connection.execute(
-                    text(f"SELECT listing_id, seller_id, title, price, address, status, created_on, last_updated_at FROM Listings WHERE price < :max_price AND price > :min_price AND status = :l_status ORDER BY {
+                    text(f"SELECT listing_id, seller_id, title, price, address, status, charity, created_on, last_updated_at FROM Listings WHERE price < :max_price AND price > :min_price AND status = :l_status ORDER BY {
                          sort_by} DESC"),
                     {"max_price": max_price, "min_price": min_price,
                         "l_status": status}
@@ -368,7 +368,7 @@ def get_listings():
             return jsonify({}), 500
         rows = result.fetchall()
         if (rows):
-            return jsonify(format_result(['listingId', 'sellerId', 'title', 'price', 'address', 'status', 'listedAt', 'lastUpdatedAt'], rows, True)), 200
+            return jsonify(format_result(['listingId', 'sellerId', 'title', 'price', 'address', 'status', 'charity', 'listedAt', 'lastUpdatedAt'], rows, True)), 200
         return jsonify({}), 404
 
 
@@ -379,14 +379,14 @@ def get_listing():
     with engine_r.connect() as connection:
         try:
             result = connection.execute(text(
-                "SELECT listing_id, seller_id, title, price, address, status, created_on, last_updated_at FROM Listings WHERE listing_id = :l_id"), {"l_id": listing_id})
+                "SELECT listing_id, seller_id, title, price, address, status, charity, created_on, last_updated_at FROM Listings WHERE listing_id = :l_id"), {"l_id": listing_id})
         except IntegrityError:
             return jsonify({}), 400
         except:
             return jsonify({}), 500
         rows = result.fetchall()
         if (rows):
-            return jsonify(format_result(['listingId', 'sellerId', 'title', 'price', 'address', 'status', 'listedAt', 'lastUpdatedAt'], rows)), 200
+            return jsonify(format_result(['listingId', 'sellerId', 'title', 'price', 'address', 'status', 'charity', 'listedAt', 'lastUpdatedAt'], rows)), 200
         return jsonify({}), 404
 
 
@@ -397,14 +397,14 @@ def get_listing_by_seller():
     with engine_r.connect() as connection:
         try:
             result = connection.execute(text(
-                "SELECT listing_id, seller_id, title, price, address, status, created_on, last_updated_at FROM Listings WHERE seller_id = :usr_id"), {"usr_id": user_id})
+                "SELECT listing_id, seller_id, title, price, address, status, charity, created_on, last_updated_at FROM Listings WHERE seller_id = :usr_id"), {"usr_id": user_id})
         except IntegrityError:
             return jsonify({}), 400
         except:
             return jsonify({}), 500
         rows = result.fetchall()
         if (rows):
-            return jsonify(format_result(['listingId', 'sellerId', 'title', 'price', 'address', 'status', 'listedAt', 'lastUpdatedAt'], rows)), 200
+            return jsonify(format_result(['listingId', 'sellerId', 'title', 'price', 'address', 'status', 'charity', 'listedAt', 'lastUpdatedAt'], rows)), 200
         return jsonify({}), 404
 
 
