@@ -439,9 +439,6 @@ def create_listing():
         return jsonify(format_result(['listingId', 'title', 'price', 'address', 'status', 'forCharity'], row)), 201
 
 
-# if listing is for charity, add to funds
-# ------------------------------------------------------------- ------------------------------------------------------------- -------------------------------------------------------------
-
 @app.post('/create_sale')
 def create_sale():
     listing_id = request.json.get('listingId')
@@ -740,11 +737,6 @@ def ignore_listing():
 
     return jsonify({'message': 'Something went wrong'}), 500
 
-
-
-# app post request to create charity
-
-# app get all charities
 
 @app.get('/get_charities')
 def get_charities():
