@@ -260,7 +260,7 @@ def get_user():
     with engine_r.connect() as connection:
         try:
             result = connection.execute(text(
-                "SELECT username, address, joining_date FROM Users WHERE user_id = :usr_id"), {"usr_id": user_id})
+                "SELECT username, address, joining_date, charity FROM Users WHERE user_id = :usr_id"), {"usr_id": user_id})
         except IntegrityError:
             return jsonify({}), 400
         except:
@@ -271,6 +271,7 @@ def get_user():
                 "username": row[0],
                 "address": row[1],
                 "joining_date": row[2].isoformat(),
+                "charity": row[3]
             }), 200
         return jsonify({}), 404
 
@@ -319,14 +320,16 @@ def update_user():
     user_id = request.json.get('userId')
     address = request.json.get('address')
     location = request.json.get('location')
+    charity = request.json.get('charity')
 
     with engine_w.connect() as connection:
         try:
             connection.execute(
                 text(
-                    "UPDATE Users SET address = :addr, location = ll_to_earth(:lat, :lng) WHERE user_id = :usr_id"),
+                    "UPDATE Users SET address = :addr, location = ll_to_earth(:lat, :lng), charity = :charity WHERE user_id = :usr_id"),
                 {"addr": address, "lat": location["lat"],
-                    "lng": location["lng"], "usr_id": user_id}
+                    "lng": location["lng"], "usr_id": user_id,
+                    "charity": charity}
             )
             connection.commit()
         except IntegrityError:
