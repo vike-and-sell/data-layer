@@ -778,31 +778,6 @@ def get_user_recommendation_info():
             return Response(status=500)
 
 
-@app.get('/get_user_recommendation_info')
-def get_user_recommendation_info():
-    userId = request.args.get("userId")
-    with engine_r.connect() as connection:
-        try:
-            result = connection.execute(text("SELECT listing_id FROM Ignored WHERE user_id = :u_id;"), {
-                "u_id": userId,
-            })
-            connection.commit()
-            ignored = result.fetchall()
-            result = connection.execute(text("SELECT search_text FROM Searches WHERE user_id = :u_id;"), {
-                "u_id": userId,
-            })
-            connection.commit()
-            searches = result.fetchall()
-
-            return jsonify({
-                "ignored": [x[0] for x in ignored],
-                "searches": [x[0] for x in searches],
-            }), 200
-        except Exception as e:
-            print(e)
-            return Response(status=500)
-
-
 @app.get('/get_charities')
 def get_charities():
     with engine_r.connect() as connection:
