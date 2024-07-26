@@ -137,3 +137,19 @@ CREATE TABLE IF NOT EXISTS Listing_Reviews (
 CREATE INDEX IF NOT EXISTS ReviewsListingIdIndex ON Listing_Reviews (
     reviewed_listing_id
 );
+
+-- Create Charity table
+CREATE TABLE IF NOT EXISTS Charity (
+    charity_id SERIAL PRIMARY KEY,
+    name TEXT NOT NULL UNIQUE,
+    status VARCHAR(20) NOT NULL CHECK (status IN ('AVAILABLE', 'CLOSED')),
+    fund DECIMAL(10, 2) NOT NULL,
+    logo_url TEXT NOT NULL UNIQUE,
+    start_date TIMESTAMP NOT NULL,
+    end_date TIMESTAMP NOT NULL,
+    num_listings INT NOT NULL DEFAULT 0
+);
+
+CREATE INDEX IF NOT EXISTS CharityCharityIdIndex ON Charity (
+    charity_id
+);

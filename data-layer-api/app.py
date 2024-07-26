@@ -462,7 +462,22 @@ def create_sale():
             row = result.fetchone()
             if row:
                 connection.execute(text("INSERT INTO Sales (listing_id, buyer_id) VALUES (:l_id, :b_id)"), {
-                    "l_id": listing_id, "b_id": row[0]})
+                                "l_id": listing_id, "b_id": row[0]})
+                
+                listing = connection.execute(text("SELECT charity FROM Listings WHERE listing_id = :l_id"), {
+                                "l_id": listing_id})
+                
+                listing_row = listing.fetchone()
+                charity = listing_row[0]
+
+                if charity:
+                    charity = connection.execute(text("SELECT charity_id from Charity WHERE status = 'AVAILABLE' ORDER BY end_date LIMIT 1"))
+                    charity_row = charity.fetchone()
+                    charity_id = charity_row[0]
+
+                    connection.execute(text("UPDATE Charity SET fund = fund + (SELECT price FROM Listings WHERE listing_id = :l_id) WHERE charity_id = :l_charity_id"), {
+                             "l_id": listing_id, "l_charity_id": charity_id})
+
                 connection.commit()
             else:
                 return jsonify({}), 404
@@ -470,6 +485,7 @@ def create_sale():
             connection.rollback()
             return jsonify({}), 500
         return jsonify({}), 200
+
 
 
 @app.post('/update_listing')
@@ -502,6 +518,40 @@ def update_listing():
             connection.rollback()
             return jsonify({}), 500
         return jsonify({}), 200
+
+
+@app.get('/get_all_users')
+def get_all_users():
+
+    with engine_r.connect() as connection:
+        try:
+            result = connection.execute(text(
+                "SELECT username, address, joining_date, items_sold, items_purchased FROM Users"))
+        except IntegrityError:
+            return jsonify({}), 400
+        except:
+            return jsonify({}), 500
+        rows = result.fetchall()
+        if (rows):
+            return jsonify(format_result(['username', 'address', 'joining_date', 'items_sold', 'items_purchased'], rows)), 200
+        return jsonify({}), 404
+
+
+@app.get('/get_all_listings')
+def get_all_listings():
+
+    with engine_r.connect() as connection:
+        try:
+            result = connection.execute(text(
+                "SELECT listing_id, seller_id, title, price, location, address, status, charity, created_on FROM Listings"))
+        except IntegrityError:
+            return jsonify({}), 400
+        except:
+            return jsonify({}), 500
+        rows = result.fetchall()
+        if (rows):
+            return jsonify(format_result(['listing_id', 'seller_id', 'title', 'price', 'location', 'address', 'status', 'charity', 'created_on'], rows)), 200
+        return jsonify({}), 404
 
 
 @app.get('/get_chats')
@@ -727,6 +777,22 @@ def get_user_recommendation_info():
             print(e)
             return Response(status=500)
 
+
+@app.get('/get_charities')
+def get_charities():
+    with engine_r.connect() as connection:
+        try:
+            result = connection.execute(
+                text("SELECT charity_id, name, status, fund, logo_url, start_date, end_date, num_listings FROM Charity"),
+            )
+        except IntegrityError:
+            return jsonify({}), 400
+        except:
+            return jsonify({}), 500
+        rows = result.fetchall()
+        if (rows):
+            return jsonify(format_result(['charity_id', 'name', 'status', 'fund', 'logo_url', 'start_date', 'end_date', 'num_listings'], rows)), 200
+        return jsonify({}), 404
 
 if __name__ == '__main__':
     app.run(debug=True)
