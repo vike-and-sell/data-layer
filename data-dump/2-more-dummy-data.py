@@ -6,6 +6,21 @@ def main():
     lnames = ['smith', 'brown', 'miller', 'johnson', 'garcia', 'li', 'singh', 'anderson', 'young', 'williams']
     pcodes = ['V9A', 'V9B', 'V9C', 'V9D', 'V9E', 'V8M', 'V8N', 'V8O', 'V8P', 'V8R', 'V8S', 'V8T', 'V8U', 'V8V', 'V8W', 'V8X', 'V8Y', 'V8Z']
     #print("INSERT INTO Users (username, email, password, location, address, joining_date) VALUES ")
+
+    '''for fname in fnames:
+        for lname in lnames:
+            user = fname + '_' + lname
+            email = user + '@uvic.ca'
+            password = str(hex(random.getrandbits(256)))
+            y, x = random.uniform(-123.3, -123.45), random.uniform(48.4, 48.51)
+            pcode = random.choice(pcodes)
+            year = random.randrange(1970, 2024)
+            month = random.randrange(1, 12)
+            day = random.randrange(1, 28)
+            query = f"('{user}', '{email}', '{password[2:]}', ll_to_earth({round(x, 6)}, {round(y,6)}), '{pcode}', '{year}-{month}-{day}T02:19:32.816610+00:00'),"
+            #USERS
+            print(query)'''
+
     for i in range(1000):
         fnamelen = random.randrange(5, 10)
         lnamelen = random.randrange(6, 15)
@@ -84,13 +99,13 @@ def main():
     ]
     print("INSERT INTO Listings (seller_id, title, price, location, address, status) VALUES ")
     for i in range(1000):
-        x, y = random.uniform(-180,180), random.uniform(-90, 90)
+        y, x = random.uniform(-123.3, -123.45), random.uniform(48.4, 48.51)
         itemstr = ''
         num_desc = random.randrange(0, 3)
         for i in range(num_desc):
             itemstr = itemstr +  random.choice(desc) + ' '
         itemstr = itemstr + random.choice(items)
-        query = f"({random.randrange(1, 25000)}, '{itemstr.title()}', {random.randrange(20, 10000)}, ll_to_earth({round(x, 6)}, {round(y, 6)}), '{random.choice(pcodes)}', 'AVAILABLE'),"
+        query = f"({random.randrange(1, 1000)}, '{itemstr.title()}', {random.randrange(20, 10000)}, ll_to_earth({round(x, 6)}, {round(y, 6)}), '{random.choice(pcodes)}', 'AVAILABLE'),"
         #LISTINGS
         print(query)
 
