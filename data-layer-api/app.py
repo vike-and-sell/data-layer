@@ -351,7 +351,7 @@ def get_listings():
     min_price = request.args.get('minPrice', 0)
     status = request.args.get('status', 'AVAILABLE')
     sort_by = request.args.get('sortBy', 'created_on')
-    is_descending = request.args.get('isDescending', False)
+    is_descending = request.args.get('isDescending') == "True"
     lat = request.args.get('lat', "48.466129")
     lng = request.args.get('lng', "-123.308937")
 
@@ -359,6 +359,8 @@ def get_listings():
         desc = ""
         if is_descending:
             desc = " DESC"
+
+        print(f"isDescending: {is_descending}, desc: '{desc}'")
         try:
             result = connection.execute(
                 text("SELECT listing_id, seller_id, title, price, address, status, charity, created_on, last_updated_at, earth_distance(ll_to_earth(:lat, :lng), location) as distance FROM Listings WHERE price < :max_price AND price > :min_price AND status = :l_status AND earth_distance(ll_to_earth(:lat,:lng), location) < 5000 ORDER BY {}{}".format(sort_by, desc)),
