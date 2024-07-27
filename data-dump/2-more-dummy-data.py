@@ -5,8 +5,8 @@ def main():
     fnames = ['mary', 'james', 'michael', 'william', 'george', 'thomas', 'susan', 'olivia', 'elizabeth', 'lisa']
     lnames = ['smith', 'brown', 'miller', 'johnson', 'garcia', 'li', 'singh', 'anderson', 'young', 'williams']
     pcodes = ['V9A', 'V9B', 'V9C', 'V9D', 'V9E', 'V8M', 'V8N', 'V8O', 'V8P', 'V8R', 'V8S', 'V8T', 'V8U', 'V8V', 'V8W', 'V8X', 'V8Y', 'V8Z']
-    print("INSERT INTO Users (username, email, password, location, address, joining_date) VALUES ")
-    for i in range(900):
+    #print("INSERT INTO Users (username, email, password, location, address, joining_date) VALUES ")
+    for i in range(1000):
         fnamelen = random.randrange(5, 10)
         lnamelen = random.randrange(6, 15)
         fname = ''
@@ -25,10 +25,15 @@ def main():
         day = random.randrange(1, 28)
         query = f"('{user}', '{email}', '{password[2:]}', ll_to_earth({round(x, 6)}, {round(y,6)}), '{pcode}', '{year}-{month}-{day}T02:19:32.816610+00:00'),"
         #USERS
-        print(query)
+        #print(query)
 
     desc = [
     "red",
+    "blue",
+    "yellow",
+    "green",
+    "black",
+    "white",
     "lightweight",
     "fast",
     "comfortable",
@@ -47,7 +52,8 @@ def main():
     "ballpoint",
     "breathable",
     "adjustable",
-    "multifunction"
+    "multifunction",
+    "wooden"
     ]
     items = [
     "apple",
@@ -69,18 +75,24 @@ def main():
     "pen",
     "sneakers",
     "lamp",
-    "printer" 
+    "printer",
+    "textbook",
+    "scooter",
+    "jacket",
+    "table",
+    "camera"
     ]
-    for i in range(500):
+    print("INSERT INTO Listings (seller_id, title, price, location, address, status) VALUES ")
+    for i in range(1000):
         x, y = random.uniform(-180,180), random.uniform(-90, 90)
         itemstr = ''
         num_desc = random.randrange(0, 3)
         for i in range(num_desc):
             itemstr = itemstr +  random.choice(desc) + ' '
         itemstr = itemstr + random.choice(items)
-        query = f"({random.randrange(1, 100)}, '{itemstr.title()}', {random.randrange(20, 10000)}, ll_to_earth({round(x, 6)}, {round(y, 6)}), '{random.choice(pcodes)}', 'AVAILABLE'),"
+        query = f"({random.randrange(1, 25000)}, '{itemstr.title()}', {random.randrange(20, 10000)}, ll_to_earth({round(x, 6)}, {round(y, 6)}), '{random.choice(pcodes)}', 'AVAILABLE'),"
         #LISTINGS
-        #print(query)
+        print(query)
 
     for i in range(100):
         year = random.randrange(1970, 2024)
