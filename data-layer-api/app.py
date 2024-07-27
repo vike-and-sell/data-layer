@@ -260,7 +260,7 @@ def get_user():
     with engine_r.connect() as connection:
         try:
             result = connection.execute(text(
-                "SELECT username, address, joining_date, charity FROM Users WHERE user_id = :usr_id"), {"usr_id": user_id})
+                "SELECT username, address, joining_date, charity, latitude(location), longitude(location) FROM Users WHERE user_id = :usr_id"), {"usr_id": user_id})
         except IntegrityError:
             return jsonify({}), 400
         except:
@@ -271,7 +271,11 @@ def get_user():
                 "username": row[0],
                 "address": row[1],
                 "joining_date": row[2].isoformat(),
-                "charity": row[3]
+                "charity": row[3],
+                "location": {
+                    "lat": row[4],
+                    "lng": row[5],
+                }
             }), 200
         return jsonify({}), 404
 
@@ -348,30 +352,31 @@ def get_listings():
     status = request.args.get('status', 'AVAILABLE')
     sort_by = request.args.get('sortBy', 'created_on')
     is_descending = request.args.get('isDescending', False)
+    lat = request.args.get('lat', "48.466129")
+    lng = request.args.get('lng', "-123.308937")
 
     with engine_r.connect() as connection:
+        desc = ""
+        if is_descending:
+            desc = " DESC"
         try:
-            if not is_descending:
-                result = connection.execute(
-                    text(f"SELECT listing_id, seller_id, title, price, address, status, charity, created_on, last_updated_at FROM Listings WHERE price < :max_price AND price > :min_price AND status = :l_status ORDER BY {
-                         sort_by}"),
-                    {"max_price": max_price, "min_price": min_price,
-                        "l_status": status}
-                )
-            else:
-                result = connection.execute(
-                    text(f"SELECT listing_id, seller_id, title, price, address, status, charity, created_on, last_updated_at FROM Listings WHERE price < :max_price AND price > :min_price AND status = :l_status ORDER BY {
-                         sort_by} DESC"),
-                    {"max_price": max_price, "min_price": min_price,
-                        "l_status": status}
-                )
+            result = connection.execute(
+                text("SELECT listing_id, seller_id, title, price, address, status, charity, created_on, last_updated_at, earth_distance(ll_to_earth(:lat, :lng), location) as distance FROM Listings WHERE price < :max_price AND price > :min_price AND status = :l_status AND earth_distance(ll_to_earth(:lat,:lng), location) < 5000 ORDER BY {}{}".format(sort_by, desc)),
+                {
+                    "max_price": max_price,
+                    "min_price": min_price,
+                    "l_status": status,
+                    "lat": lat,
+                    "lng": lng,
+                }
+            )
         except IntegrityError:
             return jsonify({}), 400
         except:
             return jsonify({}), 500
         rows = result.fetchall()
         if (rows):
-            return jsonify(format_result(['listingId', 'sellerId', 'title', 'price', 'address', 'status', 'charity', 'listedAt', 'lastUpdatedAt'], rows, True)), 200
+            return jsonify(format_result(['listingId', 'sellerId', 'title', 'price', 'address', 'status', 'charity', 'listedAt', 'lastUpdatedAt', 'distance'], rows, True)), 200
         return jsonify({}), 404
 
 
@@ -462,21 +467,22 @@ def create_sale():
             row = result.fetchone()
             if row:
                 connection.execute(text("INSERT INTO Sales (listing_id, buyer_id) VALUES (:l_id, :b_id)"), {
-                                "l_id": listing_id, "b_id": row[0]})
-                
+                    "l_id": listing_id, "b_id": row[0]})
+
                 listing = connection.execute(text("SELECT charity FROM Listings WHERE listing_id = :l_id"), {
-                                "l_id": listing_id})
-                
+                    "l_id": listing_id})
+
                 listing_row = listing.fetchone()
                 charity = listing_row[0]
 
                 if charity:
-                    charity = connection.execute(text("SELECT charity_id from Charity WHERE status = 'AVAILABLE' ORDER BY end_date LIMIT 1"))
+                    charity = connection.execute(text(
+                        "SELECT charity_id from Charity WHERE status = 'AVAILABLE' ORDER BY end_date LIMIT 1"))
                     charity_row = charity.fetchone()
                     charity_id = charity_row[0]
 
                     connection.execute(text("UPDATE Charity SET fund = fund + (SELECT price FROM Listings WHERE listing_id = :l_id) WHERE charity_id = :l_charity_id"), {
-                             "l_id": listing_id, "l_charity_id": charity_id})
+                        "l_id": listing_id, "l_charity_id": charity_id})
 
                 connection.commit()
             else:
@@ -485,7 +491,6 @@ def create_sale():
             connection.rollback()
             return jsonify({}), 500
         return jsonify({}), 200
-
 
 
 @app.post('/update_listing')
@@ -783,7 +788,8 @@ def get_charities():
     with engine_r.connect() as connection:
         try:
             result = connection.execute(
-                text("SELECT charity_id, name, status, fund, logo_url, start_date, end_date, num_listings FROM Charity"),
+                text(
+                    "SELECT charity_id, name, status, fund, logo_url, start_date, end_date, num_listings FROM Charity"),
             )
         except IntegrityError:
             return jsonify({}), 400
@@ -793,6 +799,7 @@ def get_charities():
         if (rows):
             return jsonify(format_result(['charity_id', 'name', 'status', 'fund', 'logo_url', 'start_date', 'end_date', 'num_listings'], rows)), 200
         return jsonify({}), 404
+
 
 if __name__ == '__main__':
     app.run(debug=True)

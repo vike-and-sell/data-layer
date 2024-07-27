@@ -9,7 +9,7 @@ SQL_COMMANDS=$(cat <<EOF
 -- Insert dummy data into Users table
 INSERT INTO Users (username, email, password, location, address, joining_date)
 VALUES
-('john_doe', 'john_doe@uvic.ca', '8b053b0b4813dc1986827113c07d5edc9a206f12244e9432cb0a98419a15ab66',  ll_to_earth(34.052235,118.243683), 'V8W', '2024-05-24T02:19:32.816610+00:00'),
+('john_doe', 'john_doe@uvic.ca', '8b053b0b4813dc1986827113c07d5edc9a206f12244e9432cb0a98419a15ab66',  ll_to_earth(48.466129, -123.308937), 'V8W', '2024-05-24T02:19:32.816610+00:00'),
 ('jane_smith', 'jane_smith@uvic.ca', '2edae18d7da86b00a3aaef6b2090f563c73853eb5b2e28ba1eb915268687718a',  ll_to_earth(34.052235,-118.243683), 'V8X', '2024-06-25T02:19:32.816610+00:00'),
 ('mary_smith', 'mary_smith@uvic.ca', '74d8e4be42973244754da63842c9f91e2e53c0ab099576ad4a08553d517a0f62', ll_to_earth(161.824894, 19.230461), 'V8R', '1976-1-17T02:19:32.816610+00:00'),
 ('mary_brown', 'mary_brown@uvic.ca', '7742b3b11757b2de5da231251f6b37c40339944667a46ef92a3e51af13dfbb8e', ll_to_earth(8.011663, 78.745595), 'V8U', '2020-9-17T02:19:32.816610+00:00'),
@@ -228,6 +228,11 @@ VALUES
 -- Insert dummy data into Listings table
 INSERT INTO Listings (seller_id, title, price, location, address, status)
 VALUES
+(1, 'Listing near UVic 1', 999.99, ll_to_earth(48.466129, -123.308937), 'V8P', 'AVAILABLE'),
+(1, 'Listing near UVic 2', 999.99, ll_to_earth(48.466130, -123.308932), 'V8P', 'AVAILABLE'),
+(1, 'Listing near UVic 3', 999.99, ll_to_earth(48.466131, -123.308943), 'V8P', 'AVAILABLE'),
+(1, 'Listing near UVic 4', 999.99, ll_to_earth(48.466132, -123.308939), 'V8P', 'AVAILABLE'),
+(1, 'Listing near UVic 5', 999.99, ll_to_earth(48.466128, -123.308941), 'V8P', 'AVAILABLE'),
 (1, 'Bicycle for sale', 200.00, ll_to_earth(40.730610,-73.935242), 'V8X', 'AVAILABLE'),
 (1, 'Volkswagen Jetta', 7000.00, ll_to_earth(40.730610,-73.935242), 'V8X', 'AVAILABLE'),
 (1, 'Math 100 Textbook', 50.00, ll_to_earth(40.730610,-73.935242), 'V8X', 'AVAILABLE'),
