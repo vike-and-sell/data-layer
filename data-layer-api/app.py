@@ -791,7 +791,7 @@ def get_charities():
         try:
             result = connection.execute(
                 text(
-                    "SELECT charity_id, name, status, fund, logo_url, start_date, end_date, num_listings FROM Charity"),
+                    "SELECT charity_id, name, status, fund, logo_url, start_date, end_date, num_listings FROM Charity LIMIT 1"),
             )
         except IntegrityError:
             return jsonify({}), 400
@@ -799,7 +799,7 @@ def get_charities():
             return jsonify({}), 500
         rows = result.fetchall()
         if (rows):
-            return jsonify(format_result(['charity_id', 'name', 'status', 'fund', 'logo_url', 'start_date', 'end_date', 'num_listings'], rows)), 200
+            return jsonify(format_result(['charity_id', 'name', 'status', 'fund', 'logo_url', 'start_date', 'end_date', 'num_listings'], rows, True)), 200
         return jsonify({}), 404
 
 
