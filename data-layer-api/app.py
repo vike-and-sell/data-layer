@@ -263,7 +263,8 @@ def get_user():
                 "SELECT username, address, joining_date, charity, latitude(location), longitude(location) FROM Users WHERE user_id = :usr_id"), {"usr_id": user_id})
         except IntegrityError:
             return jsonify({}), 400
-        except:
+        except Exception as e:
+            print(e)
             return jsonify({}), 500
         row = result.fetchone()
         if row:
@@ -354,6 +355,7 @@ def get_listings():
     is_descending = request.args.get('isDescending') == "True"
     lat = request.args.get('lat', "48.466129")
     lng = request.args.get('lng', "-123.308937")
+    offset = int(request.args.get('offset', '0'))
 
     with engine_r.connect() as connection:
         desc = ""
@@ -363,18 +365,20 @@ def get_listings():
         print(f"isDescending: {is_descending}, desc: '{desc}'")
         try:
             result = connection.execute(
-                text("SELECT listing_id, seller_id, title, price, address, status, charity, created_on, last_updated_at, earth_distance(ll_to_earth(:lat, :lng), location) as distance FROM Listings WHERE price < :max_price AND price > :min_price AND status = :l_status AND earth_distance(ll_to_earth(:lat,:lng), location) < 5000 ORDER BY {}{}".format(sort_by, desc)),
+                text("SELECT listing_id, seller_id, title, price, address, status, charity, created_on, last_updated_at, earth_distance(ll_to_earth(:lat, :lng), location) as distance FROM Listings WHERE price < :max_price AND price > :min_price AND status = :l_status AND earth_distance(ll_to_earth(:lat,:lng), location) < 5000 ORDER BY {}{} LIMIT 30 OFFSET :offset".format(sort_by, desc)),
                 {
                     "max_price": max_price,
                     "min_price": min_price,
                     "l_status": status,
                     "lat": lat,
                     "lng": lng,
+                    "offset": offset,
                 }
             )
         except IntegrityError:
             return jsonify({}), 400
-        except:
+        except Exception as e:
+            print(e)
             return jsonify({}), 500
         rows = result.fetchall()
         if (rows):
