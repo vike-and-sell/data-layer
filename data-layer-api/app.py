@@ -404,6 +404,56 @@ def get_listing():
         return jsonify({}), 404
 
 
+@app.delete('/delete_listing')
+def delete_listing():
+    listing_id = request.args.get('listingId')
+
+    with engine_r.connect() as connection:
+        try:
+            listing = connection.execute(text(
+                "SELECT listing_id FROM Listings WHERE listing_id = :l_id"), {"l_id": listing_id})
+
+            listing_exists = listing.fetchone()
+
+            if listing_exists is None:
+                return jsonify({}), 404
+            
+            chat = connection.execute(text(
+                "SELECT chat_id FROM Chats WHERE listing_id = :l_id"), {"l_id": listing_id})
+            
+            chat_row = chat.fetchone()
+
+            if chat_row is not None:
+                chat_id = chat_row[0]   
+
+                connection.execute(text(
+                    "DELETE FROM Messages WHERE chat_id = :c_id"), {"c_id": chat_id})
+
+            connection.execute(text(
+                "DELETE FROM Listing_Reviews WHERE reviewed_listing_id = :l_id"), {"l_id": listing_id})
+
+            connection.execute(text(
+                "DELETE FROM Listing_Ratings WHERE rated_listing_id = :l_id"), {"l_id": listing_id})
+           
+            connection.execute(text(
+                "DELETE FROM Sales WHERE listing_id = :l_id"), {"l_id": listing_id})
+
+            connection.execute(text(
+                "DELETE FROM Ignored WHERE listing_id = :l_id"), {"l_id": listing_id})
+
+            connection.execute(text(
+                "DELETE FROM Chats WHERE listing_id = :l_id"), {"l_id": listing_id})
+            connection.execute(text(
+                "DELETE FROM Listings WHERE listing_id = :l_id"), {"l_id": listing_id})
+            connection.commit()
+        except IntegrityError:
+            return jsonify({}), 400
+        except:
+            return jsonify({}), 500
+
+        return jsonify({}), 200
+
+
 @app.get('/get_listing_by_seller')
 def get_listing_by_seller():
     user_id = request.args.get('userId')
