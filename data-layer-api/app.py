@@ -475,20 +475,24 @@ def create_sale():
                 connection.execute(text("INSERT INTO Sales (listing_id, buyer_id) VALUES (:l_id, :b_id)"), {
                     "l_id": listing_id, "b_id": row[0]})
 
-                listing = connection.execute(text("SELECT charity FROM Listings WHERE listing_id = :l_id"), {
+                listing = connection.execute(text("SELECT charity, price FROM Listings WHERE listing_id = :l_id"), {
                     "l_id": listing_id})
 
                 listing_row = listing.fetchone()
-                charity = listing_row[0]
+                listing_charity = listing_row[0]
+                listing_price = listing_row[1]
+                
+                print(f"charity? {listing_charity}")
+                print(f"price? {listing_price}")
 
-                if charity:
+                if listing_charity:
                     charity = connection.execute(text(
                         "SELECT charity_id from Charity WHERE status = 'AVAILABLE' ORDER BY end_date LIMIT 1"))
                     charity_row = charity.fetchone()
                     charity_id = charity_row[0]
-
-                    connection.execute(text("UPDATE Charity SET fund = fund + (SELECT price FROM Listings WHERE listing_id = :l_id) WHERE charity_id = :l_charity_id"), {
-                        "l_id": listing_id, "l_charity_id": charity_id})
+                    print(charity_id)
+                    connection.execute(text("UPDATE Charity SET fund = fund + :l_price WHERE charity_id = :l_charity_id"), {
+                        "l_price": listing_price, "l_charity_id": charity_id})
 
                 connection.commit()
             else:
@@ -519,6 +523,7 @@ def update_listing():
                 connection.execute(text("UPDATE Listings SET status = :l_status WHERE listing_id = :l_id"), {
                                    "l_status": status, "l_id": listing_id})
             if charity is not None:
+                print(charity)
                 connection.execute(text("UPDATE Listings SET charity = :l_charity WHERE listing_id = :l_id"), {
                                    "l_charity": charity, "l_id": listing_id})
             connection.commit()
