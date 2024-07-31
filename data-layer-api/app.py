@@ -425,26 +425,33 @@ def delete_listing():
 
             if chat_row is not None:
                 chat_id = chat_row[0]   
-
+                print(f"found a chat: {chat_id}")
                 connection.execute(text(
                     "DELETE FROM Messages WHERE chat_id = :c_id"), {"c_id": chat_id})
+                print("Messages deleted")
 
             connection.execute(text(
                 "DELETE FROM Listing_Reviews WHERE reviewed_listing_id = :l_id"), {"l_id": listing_id})
+            print("Reviews deleted")
 
             connection.execute(text(
                 "DELETE FROM Listing_Ratings WHERE rated_listing_id = :l_id"), {"l_id": listing_id})
+            print("Ratings deleted")
            
             connection.execute(text(
                 "DELETE FROM Sales WHERE listing_id = :l_id"), {"l_id": listing_id})
+            print("Sales deleted")
 
             connection.execute(text(
                 "DELETE FROM Ignored WHERE listing_id = :l_id"), {"l_id": listing_id})
+            print("Ignored deleted")
 
             connection.execute(text(
                 "DELETE FROM Chats WHERE listing_id = :l_id"), {"l_id": listing_id})
+            print("Chats deleted")
             connection.execute(text(
                 "DELETE FROM Listings WHERE listing_id = :l_id"), {"l_id": listing_id})
+            print("Listing deleted")
             connection.commit()
         except IntegrityError:
             return jsonify({}), 400
@@ -856,6 +863,32 @@ def get_charities():
             return jsonify(format_result(['charity_id', 'name', 'status', 'fund', 'logo_url', 'start_date', 'end_date', 'num_listings'], rows, True)), 200
         return jsonify({}), 404
 
+
+@app.post('/add_charity')
+def add_charity():
+    name = request.json.get('name')
+    status = request.json.get('status')
+    logo_url = request.json.get('logo_url')
+    start_date = request.json.get('start_date')
+    end_date = request.json.get('end_date')  
+    fund = 0.00  
+
+    with engine_w.connect() as connection:
+        try:
+
+            result = connection.execute(
+                text("INSERT INTO Charity (name, status, fund, logo_url, start_date, end_date) VALUES (:name, :status, :fund, :logo_url, :start_date, :end_date) RETURNING charity_id"),
+                {"name": name, "status": status, "fund": fund, "logo_url": logo_url,
+                    "start_date": start_date, "end_date": end_date }
+            )
+            connection.commit()
+        except:
+            connection.rollback()
+            return jsonify({}), 500
+
+        row = result.fetchall()
+        return jsonify(format_result(['charity_id', 'name', 'status', 'fund', 'logo_url', 'start_date', 'end_date', 'num_listings'], row)), 201
+    
 
 if __name__ == '__main__':
     app.run(debug=True)
