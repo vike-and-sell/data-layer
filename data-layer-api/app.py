@@ -856,6 +856,22 @@ def get_charities():
             return jsonify(format_result(['charity_id', 'name', 'status', 'fund', 'logo_url', 'start_date', 'end_date', 'num_listings'], rows, True)), 200
         return jsonify({}), 404
 
+@app.get('/get_num_charity_listings')
+def get_num_charity_listings():
+    with engine_r.connect() as connection:
+        try:
+            result = connection.execute(
+                text(
+                    "SELECT * FROM Listings WHERE charity = true and status = 'AVAILABLE'"),
+            )
+        except IntegrityError:
+            return jsonify({}), 400
+        except:
+            return jsonify({}), 500
+        rows = result.fetchall()
+        if (rows):
+            return jsonify({'num_listings': len(rows)}), 200
+        return jsonify({}), 404
 
 if __name__ == '__main__':
     app.run(debug=True)
