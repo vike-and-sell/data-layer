@@ -408,7 +408,7 @@ def get_listing():
 def delete_listing():
     listing_id = request.args.get('listingId')
 
-    with engine_r.connect() as connection:
+    with engine_w.connect() as connection:
         try:
             listing = connection.execute(text(
                 "SELECT listing_id FROM Listings WHERE listing_id = :l_id"), {"l_id": listing_id})
